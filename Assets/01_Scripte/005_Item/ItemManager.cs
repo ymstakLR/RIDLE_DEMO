@@ -35,7 +35,6 @@ public class ItemManager : MonoBehaviour {
         foreach (Transform childTransform in _canvasUI.transform) {
             if (childTransform.gameObject.name == _itemName) {
                 childTransform.gameObject.GetComponent<Image>().enabled = true;
-                Debug.Log("アイテムの取得");
                 break;
             }//if
         }//foreach

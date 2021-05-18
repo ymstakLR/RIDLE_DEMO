@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Stage
+  - Enemy
+  - PlayerAttack
+  - PlayerBody
+  - Item
+  - Goal
+  - PlatformEffector
+  - SpringPoint
+  - DamageGimmick
+  - Gimmick
+  - StageObject
+  - EnemyAttack
+  - Spring
+  - StageEdge
+  - Supporter
+  - UnderTrigger
+  - Text
+  - PlayerMiss
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Stage
+  - Enemy
+  - MissEnemy
+  - PlayerAttack
+  - EnemyAttack
+  - Suppoter
+  - BigEnemy
+  - DamageBigEnemy
+  - Spring
+  - PlatformEffector
+  - FlyEnemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BackGround
+    uniqueID: 3302815627
+    locked: 0
+  - name: Stage_Middle
+    uniqueID: 835522363
+    locked: 0
+  - name: Goal
+    uniqueID: 4230655459
+    locked: 0
+  - name: Gimmick_Back
+    uniqueID: 1030690543
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Item
+    uniqueID: 1807778045
+    locked: 0
+  - name: Gimmick_Forward
+    uniqueID: 2473372839
+    locked: 0
+  - name: Stage_Forward
+    uniqueID: 4022577181
+    locked: 0
+  - name: UI
+    uniqueID: 2336354487
+    locked: 0

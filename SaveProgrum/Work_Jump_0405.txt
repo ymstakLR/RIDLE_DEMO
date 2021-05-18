@@ -1,0 +1,333 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+//PlayerLegで使用するスクリプト
+//プレイヤーの移動・ジャンプ処理を行う
+public class Work_Jump : MonoBehaviour{
+    private GameObject player;
+
+    public static float speed = 0; //プレイヤーの速度
+
+    private float speedX;//プレイヤーの上下向きの時の移動
+    private float speedY;//プレイヤーの左右向きの時の移動
+    private float speedMax = 6;//プレイヤーの最高速度
+    private float speedIDA = 4;//速度加算用の変数
+    private float jump = 0;//プレイヤーのジャンプ量
+    private float jumpMin = 2;//プレイヤーの最小ジャンプ量
+    private float jumpMax = 6;//プレイヤーの最大ジャンプ量
+    private float pastTFX = 0;//スピード調整
+    private float pastTFY = 0;//落下判定で使用
+    private float rotateZ = 0;//プレイヤーの回転
+    private float directionChangeX = 0;//向き変更の際に使用するX値
+    private float directionChangeY = 0;//向き変更の際に使用するY値
+    private float fallTime = 0;//落下アニメーションを行うまでの時間
+    private float directionTime = 0;
+
+    private bool jumpType = true;//true=Jump false=FileJump  
+    private bool speedFixed = false;//左右移動値の一定化
+    private bool isJump = false;//現在ジャンプ中かの判定
+    private bool moveTrigger = false;//移動可能かの判定
+    private bool direction = false;//treu右向き,false左向き
+    private bool stageStay = false;//ステージに触れているかの判定
+
+    public static bool aniJump = false;//ジャンプアニメーション判定
+    public static bool aniFall = false;//落下アニメーション判定
+
+    private Vector2 playerGravity;//プレイヤー用の重力
+
+    private Transform transform;//Transform
+    private Transform parentTF;//親オブジェクトのTransform
+    private Transform workTF;//WorkPointのTransform
+    private Transform gResetFTF;//GResetFPointのTransform
+    private Transform gResetBTF;//GResetBPointのTransform
+    private Transform gResetTTF;//GResetTPointのTransform
+    private Rigidbody2D rb2d;//重力
+    private Rigidbody2D rb2dLeg;//
+    private Animator animator;//アニメーション遷移で使用
+    private SpriteRenderer spriteRenderer;//スプライトのミラーで使用
+    
+
+    void Start() {
+        player = GameObject.Find("Player");
+        transform = this.GetComponent<Transform>();
+        parentTF = player.GetComponent<Transform>();
+        workTF = GameObject.Find("WorkPoint").GetComponent<Transform>();
+        gResetFTF = GameObject.Find("GResetFPoint").GetComponent<Transform>();
+        gResetBTF = GameObject.Find("GResetBPoint").GetComponent<Transform>();
+        gResetTTF = GameObject.Find("GResetTPoint").GetComponent<Transform>();
+        rb2d = player.GetComponent<Rigidbody2D>();
+        rb2dLeg = GetComponent<Rigidbody2D>();
+        animator = GameObject.Find("PlayerGra").GetComponent<Animator>();
+        spriteRenderer = player.GetComponent<SpriteRenderer>();
+     //10,0右　-10,0左　0,-10下 0,10上
+        playerGravity = new Vector2(0,-10);//重力下向き
+    //parentTF.position = new Vector2(parentTF.position.x - (float)0.6, parentTF.position.y);
+        parentTF.transform.position = new Vector2(2, (float)-2.6);
+ 
+    }//Start
+    private void FixedUpdate() {
+        Jump();
+        //FlipJump();
+        rb2d.AddForce(playerGravity);
+        rb2dLeg.AddForce(playerGravity);
+        switch (rotateZ) {
+            case 0://下向き
+                rb2d.velocity = new Vector2(speed, jump);//移動処理
+                rb2dLeg.velocity = new Vector2(speed, jump);//移動処理
+                break;
+            case 90://右向き
+                rb2d.velocity = new Vector2(-jump, speed);//移動処理
+                rb2dLeg.velocity = new Vector2(-jump, speed);//移動処理
+                break;
+            case 180://上向き
+                rb2d.velocity = new Vector2(-speed, -jump);//移動処理
+                rb2dLeg.velocity = new Vector2(-speed, -jump);//移動処理
+                break;
+            case 270://左向き
+                rb2d.velocity = new Vector2(jump, -speed);//移動処理
+                rb2dLeg.velocity = new Vector2(jump, -speed);//移動処理
+                break;
+        }//switch
+
+    }//FixedUpdate
+    private void Update() {
+        Work();
+        if (speed == 0) {
+            pastTFX = transform.position.x;//pastTFXの変更
+        }//if
+        if (PlayerBody.workTrigger) {
+            if(parentTF.localScale.x >= 0) {
+                rotateZ += 90;
+            } else {
+                rotateZ += 270;
+            }//if
+            rotateZ %= 360;
+            switch (rotateZ) {
+                case 0://下向き
+                    playerGravity = new Vector2(0, -10);
+                    break;
+                case 90://右向き
+                    playerGravity = new Vector2(10, 0);
+                    break;
+                case 180://上向き
+                    playerGravity = new Vector2(0, 10);
+                    break;
+                case 270://左向き
+                    playerGravity = new Vector2(-10, 0);
+                    break;
+            }//switch
+            parentTF.transform.position = new Vector2(workTF.transform.position.x, workTF.transform.position.y);//場所指定
+            parentTF.localRotation = Quaternion.Euler(parentTF.localRotation.x, parentTF.localRotation.y, rotateZ);//回転させる
+            PlayerBody.workTrigger = false;
+        }//if
+        
+        animator.SetFloat("Speed", Mathf.Abs(speed));//移動アニメーション遷移
+        animator.SetBool("AniJump", aniJump);//ジャンプアニメーション遷移
+        animator.SetBool("isFall", aniFall);//落下アニメーション遷移
+        
+    }//Update
+
+
+
+    //プレイヤー移動
+    private void Work() {
+        if (!speedFixed) {
+            //left=-1:wait=0:right=+1
+            speedX = Input.GetAxisRaw("Horizontal");
+            speedY = Input.GetAxisRaw("Vertical");
+            if (speedX > 0) {//右移動
+                if (speed < 0) {//反対向きに移動
+                    speed += (Time.deltaTime * (speedIDA * 8));
+                } else if (speed < speedMax) {//s 200
+                    speed += (Time.deltaTime * (speedIDA));
+                }//if
+            } else if (speedX < 0) {//左移動
+                if (speed > 0) {//反対向きに移動
+                    speed -= (Time.deltaTime * (speedIDA * 8));
+                } else if (speed > -speedMax) {// s -200
+                    speed -= (Time.deltaTime * (speedIDA));
+                }//if
+            } else {//移動しない
+                if (-0.1 <= speed && speed <= 0.1) {//徐々にスピードを落とす
+                    speed = 0;
+                } else if (0 <= speed) {
+                    speed -= (float)0.1;
+                } else if (speed <= 0) {
+                    speed += (float)0.1;
+                }//if
+               
+            }//if
+             //プレイヤーの向き変更
+            if (0 < speedX && !isJump && direction || 0 < speedX&&stageStay) {//右向き
+                Debug.LogError("r");
+                FacingRight();
+            }
+            if (speedX < -0 && !isJump && !direction || speedX < -0&&stageStay) {//左向き
+                FacingLeft();
+                Debug.LogError("l");
+            }//if
+        }else if( 45 < rotateZ && rotateZ < 135 || 235 < rotateZ && rotateZ < 315) { // 左、右壁移動 スピード1.５以下の場合
+            if(speed < 3 && !direction) {speed = (float)3;}
+            if (-3 < speed && direction) { speed = (float)-3;}
+        }//if
+
+    }//work
+    //プレイヤージャンプ
+    private void Jump() {
+        //////isJumpでジャンプ量を求める
+        if (Input.GetButton("Fire2") && !isJump) {//ジャンプ処理開始//Fire3にする
+            pastTFY = -9999;
+            speedFixed = true;
+            aniJump = true;
+            if (jump == 0) {//最小ジャンプ量に変化
+                jump += jumpMin;
+            } else if (jump < jumpMax) {//最大ジャンプ量まで変化
+                jump += (float)0.5;
+            } else {//最大ジャンプ量まで変化した場合
+                isJump = true;
+            }//if
+        }//if
+        if (!Input.GetButton("Fire2")) {//ジャンプボタンを離した
+            isJump = true;
+            if (stageStay) {
+                jump = 0;
+                isJump = false;
+            }//if
+        }//if
+        if (isJump&&!stageStay) {//ジャンプ量の変更をなくす
+            DirectionChange();
+            if (pastTFY  <= parentTF.position.y) {
+                pastTFY = parentTF.position.y;
+            } else {
+                aniFall = true;
+            }//if
+        }//if
+        
+    }//Jump
+    
+    private void FlipJump() {
+        //////isJumpでジャンプ量を求める
+        if (Input.GetButton("Fire3") && !isJump) {//ジャンプ処理開始
+            pastTFY = -9999;
+            speedFixed = true;
+            aniJump = true;
+            if (jump == 0) {//最小ジャンプ量に変化
+                jump += jumpMin;
+            } else if (jump < jumpMax) {//最大ジャンプ量まで変化
+                jump += (float)0.5;
+            } else {//最大ジャンプ量まで変化した場合
+                isJump = true;
+            }//if
+        }//if
+        if (!Input.GetButton("Fire3")) {//ジャンプボタンを離した
+            isJump = true;
+            if (stageStay) {
+                jump = 0;
+                isJump = false;
+            }//if
+        }//if
+        if (isJump && !stageStay) {//ジャンプ量の変更をなくす
+            DirectionChange();
+            if (pastTFY <= parentTF.position.y) {
+                pastTFY = parentTF.position.y;
+            } else {
+                aniFall = true;
+            }//if
+        }//if
+
+    }
+    
+
+    //プレイヤーの向き変更
+    private void DirectionChange() {
+        jump = rb2dLeg.velocity.y;
+        //重力の変更
+        if (rotateZ != 0) {
+            switch (rotateZ) {
+                case 90://右側
+                    if (parentTF.localScale.x <= -0.3) {//GRF
+                        directionChangeX = gResetBTF.transform.position.x;
+                        directionChangeY = transform.position.y;
+                    } else {//GRB
+
+                        directionChangeX = gResetFTF.transform.position.x;
+                        directionChangeY = transform.position.y;
+                        FacingLeft();
+                        speed = -speed;
+                    }//if
+                    break;
+                case 180://上側
+                    jump = -3;
+                    if (direction) {
+                        directionChangeX = gResetTTF.transform.position.x;
+                        directionChangeY = gResetTTF.transform.position.y;
+                        FacingRight();
+                        speed = -speed;
+                    } else {
+                        directionChangeX = gResetTTF.transform.position.x;
+                        directionChangeY = gResetTTF.transform.position.y;
+                        FacingLeft();
+                        speed = -speed;
+                    }//if
+                    break;
+                case 270://左側
+                    if (parentTF.localScale.x >= 0.3) {//GRF
+                        directionChangeX = gResetBTF.transform.position.x;
+                        directionChangeY = transform.position.y;
+
+                    } else {//GRB
+                            //  jump = -3;
+                        directionChangeX = gResetFTF.transform.position.x;
+                        directionChangeY = transform.position.y;
+                        FacingRight();
+                        speed = -speed;
+                    }//if
+                    break;
+            }//switch
+            playerGravity = new Vector2(0, -10);
+            rotateZ = 0;
+            parentTF.transform.position = 
+                new Vector2(directionChangeX, directionChangeY);//場所指定
+            parentTF.localRotation = 
+                Quaternion.Euler(parentTF.localRotation.x, parentTF.localRotation.y, rotateZ);//回転させる
+        }//if 
+        speedFixed = false;
+    }//DirectionChange
+    //プレイヤー右向く
+    private void FacingRight() {
+        parentTF.localScale = new Vector2((float)0.3, parentTF.localScale.y);
+        parentTF.position = new Vector2(parentTF.position.x /*+ (float)0.2*/, parentTF.position.y);
+        direction = false;
+    }
+    //プレイヤー左向く
+    private void FacingLeft() {
+        parentTF.localScale = new Vector2((float)-0.3, parentTF.localScale.y);
+        parentTF.position = new Vector2(parentTF.position.x /*- (float)0.2*/, parentTF.position.y);
+        direction = true;
+    }
+
+    private void OnCollisionStay2D(Collision2D col) {//プレイヤーの着地判定
+        if (col.gameObject.tag == "Stage") {
+            aniJump = false;
+            aniFall = false;
+            stageStay = true;
+            directionTime = 0;
+            if (!Input.GetButton("Fire2")) {
+                Debug.Log(jumpType);
+                isJump = false;
+                jump = 0;
+            }
+
+            fallTime = 0;
+        }//if
+    }//OnCollisionStay2D
+
+    private void OnCollisionExit2D(Collision2D col) {//プレイヤーの離陸判定
+        stageStay = false;
+        if (!Input.GetButton("Fire2")) {
+            //isJump = true;
+        }//if
+        
+    }//OnCollisionExit2D
+
+}

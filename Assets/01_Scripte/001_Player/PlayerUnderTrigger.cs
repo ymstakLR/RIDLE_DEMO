@@ -8,12 +8,12 @@ using UnityEngine;
 /// </summary>
 public class PlayerUnderTrigger : BaseUnderTrigger {
     protected PlayerAnimator _pAnimator;
+    public bool IsJumpUp { get; set; }
 
     protected new void Start() {
         base.Start();
         _pAnimator = this.transform.parent.GetComponent<PlayerAnimator>();
     }//Start
-
 
     //条件文を見やすくするようにする returnを使う(1104)
     private void OnTriggerEnter2D(Collider2D col) {
@@ -36,6 +36,7 @@ public class PlayerUnderTrigger : BaseUnderTrigger {
     private void OnTriggerExit2D(Collider2D col) {
         if(col.gameObject.tag == "Spring") {
             IsRise = true;//バネジャンプ直後の通過床での不具合解消
+            IsJumpUp = true;
         }//if
         if(col.gameObject.tag == "Stage"||col.gameObject.tag == "Gimmick") {
             IsRise = true;

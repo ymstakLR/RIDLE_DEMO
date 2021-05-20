@@ -66,7 +66,9 @@ public class PlayerJump : MonoBehaviour {
         _sideGravityFlipTimer = 2;
     }//Start
 
-
+    private void Update() {
+        Debug.Log("IsJumpUP_" + _pUnderTrigger.IsJumpUp);
+    }
 
     /// <summary>
     /// ・プレイヤーのジャンプ量を変更する処理
@@ -181,16 +183,17 @@ public class PlayerJump : MonoBehaviour {
             IsJump = true;
             return jumpSpeed = FIRST_JUMP_POWER;
         }//if
+        if (jumpSpeed < 0) {
+            _pUnderTrigger.IsJumpUp = false;
+        }//if
 
-        if (_keyDownTimer > KEY_DOWN_TIME || jumpSpeed > 390) {
-            // Debug.Log("kakunin");
-        }
-        if (_keyDownTimer > KEY_DOWN_TIME)//入力時間経過
+        if (_keyDownTimer > KEY_DOWN_TIME) //入力時間経過
             return jumpSpeed;
 
-        if (Input.GetButton(jumpButton))//入力中
+        if (Input.GetButton(jumpButton)) { //入力中
+            _pUnderTrigger.IsJumpUp = true;
             return jumpSpeed + JUMP_POWER;
-
+        }
         if (Input.GetButtonUp(jumpButton)) {//入力終了
             _keyDownTimer = KEY_DOWN_TIME;
         }//if

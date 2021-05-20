@@ -91,9 +91,6 @@ public class BossEnemyManager : MonoBehaviour {
 
             Destroy(this.GetComponent<PolygonCollider2D>());
             Destroy(BodyTrigger.GetComponent<PolygonCollider2D>());
-
-            BodyTrigger.layer = LayerMask.NameToLayer("BigEnemy");
-
             this.gameObject.AddComponent<PolygonCollider2D>();
             BodyTrigger.AddComponent<PolygonCollider2D>();
         }//if

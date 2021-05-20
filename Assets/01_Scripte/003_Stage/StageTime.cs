@@ -67,7 +67,6 @@ public class StageTime : MonoBehaviour {
         _displeyTime = "00";
         _calculationTimeS = 0;
         _calculationTimeM += 1;
-        Debug.Log("確認_" + _calculationTimeM.ToString().Length);
         if (_calculationTimeM.ToString().Length == 1) {
             _timeTextM.text = "0" + _calculationTimeM;
         } else {

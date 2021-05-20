@@ -57,6 +57,7 @@ public class PlayerUnderTriggerPE : PlayerUnderTrigger {
                 return;
             if (_fallTimer > 0.02) {//アニメーションが落下中の場合だったら//比較値は元々0.02だった(不具合を発見したら元に戻す(0426))
                 _pUnderTrigger.IsUnderTrigger = true;
+                Debug.Log("IsUnderTriggerTrue");
                 _pAnimator.AniFall = false;//ここの処理を別スクリプトで行えるようにする(0115)
             } else {
                 _fallTimer += Time.deltaTime;

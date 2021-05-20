@@ -13,7 +13,6 @@ public class MovingFloorCollision : MonoBehaviour {
     }//Update
 
     private void OnCollisionEnter2D(Collision2D col) {//0129現状時期のみの処理しか記載していないので敵オブジェクトの処理を後日記載していく
-        Debug.Log("colName_" + col.gameObject.name);
         if (col.gameObject.tag != "Player")
             return;
         

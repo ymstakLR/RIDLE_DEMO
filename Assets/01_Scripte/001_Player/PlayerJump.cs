@@ -66,10 +66,6 @@ public class PlayerJump : MonoBehaviour {
         _sideGravityFlipTimer = 2;
     }//Start
 
-    private void Update() {
-        Debug.Log("IsJumpUP_" + _pUnderTrigger.IsJumpUp);
-    }
-
     /// <summary>
     /// ・プレイヤーのジャンプ量を変更する処理
     /// ・PlayerManagerクラスで使用する
@@ -129,13 +125,11 @@ public class PlayerJump : MonoBehaviour {
     private float NormalJump(float jumpSpeed) {
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp)//FlipJumpボタンを押してるとき
             return jumpSpeed;
-
         if (Input.GetButtonDown(NORMAL_JUMP) &&
             _pUnderTrigger.IsUnderTrigger) {//NormalJampボタンを押しているとき
             JumpTypeFlag = EnumJumpTypeFlag.normal;
             _pAnimator.AniJump = true;
         }//if
-
         return JumpUp(jumpSpeed, NORMAL_JUMP);
     }//NormalJump
 
@@ -269,16 +263,22 @@ public class PlayerJump : MonoBehaviour {
         if (Input.GetButtonDown(NORMAL_JUMP) &&
             (this.transform.localEulerAngles.z == 90 || this.transform.localEulerAngles.z == 270) &&
             JumpTypeFlag < EnumJumpTypeFlag.wallFall) {
+
             float jumpPower = GRAVITY;
+
             //上に上昇する場合
             if ((this.transform.localEulerAngles.z == 90 && this.transform.localScale.x > 0) ||
                 this.transform.localEulerAngles.z == 270 && this.transform.localScale.x < 0) {
                 this.transform.localScale = new Vector2(-this.transform.localScale.x, this.transform.localScale.y);
                 jumpPower = 250;
+                _pAnimator.AniJump = true;
+            } else {//下に下降
+                _pAnimator.AniFall = true;
             }//if
+
             ///上昇、下降共通処理
             RotationChange(0);
-            _pAnimator.AniFall = false;
+            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y + 3f);
             JumpTypeFlag = EnumJumpTypeFlag.wallFall;
             return jumpPower;
         }//if
@@ -319,7 +319,6 @@ public class PlayerJump : MonoBehaviour {
             this.transform.localScale = new Vector2(this.transform.localScale.x, -this.transform.localScale.y);
             JumpTypeFlag = EnumJumpTypeFlag.flipFall;
             _isFlipJumpFall = true;//不具合が出た場合はこの処理を見なおしする(0113)
-            Debug.Log("_isFlipJumpFallTrue2");
         }//if
         if (!_pUnderTrigger.IsUnderTrigger) {//ステージに触れていないとき
             _pAnimator.AniFall = true;

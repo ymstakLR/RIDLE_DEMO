@@ -12,7 +12,6 @@ public class EnemySideDecision : MonoBehaviour {
         if (col.gameObject.tag == "Stage" || col.gameObject.tag == "Enemy" ||
             col.gameObject.tag == "StageEdge" || col.gameObject.tag == "Spring") {//ステージタグに触れた場合
             SideDecisionCol = true;
-            Debug.Log("Side_COl_"+col.gameObject.name);
         }//if
     }//OnCollisionStay2D
 

@@ -261,7 +261,6 @@ public class EnemyWork : MonoBehaviour {
     /// <returns></returns>
     private float DecisionCheck(bool sideDecisionCol,float enemySpeed,Transform transform) {
         if (sideDecisionCol) {
-            Debug.Log("kkkk");
             enemySpeed = -enemySpeed;//移動する向きの移動量に変更
             _scaleX = -_scaleX;//向きの反転
             transform.localScale = new Vector2(-(transform.localScale.x), transform.localScale.y);//向きの反転を反映

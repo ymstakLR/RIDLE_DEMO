@@ -80,8 +80,7 @@ public class PlayerManager : MonoBehaviour {
     /// </summary>
     private void PlayerInput() {
         if (_stageClearMgmt.StageStatus == EnumStageStatus.Normal ||
-            _stageClearMgmt.StageStatus == EnumStageStatus.BossBattle
-            /*!this.transform.Find("BodyTrigger").GetComponent<BodyTrigger>().IsStageClear*/) {//移動可能な場合
+            _stageClearMgmt.StageStatus == EnumStageStatus.BossBattle) {//移動可能な場合
             JumpSpeed = _pJump.MoveJump(JumpSpeed);//キー入力処理があるのでUpdateに記述する(0914)
             WorkSpeed = _pWork.MoveWork(WorkSpeed);//ジャンプ後の変変数取得が必要になるのでJumpSpeed後に記述する（確認中）0502
             _pWork.RightAngleWork(WorkSpeed);//角度変更移動

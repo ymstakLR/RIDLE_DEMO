@@ -88,18 +88,25 @@ public class PlayerWork : MonoBehaviour {
     private int GravityChange(int movingSpeed) {
         // 重力が左右の場合に下方向にジャンプする場合
         if (Input.GetButtonDown(_pJump.NORMAL_JUMP) &&
-           _pJump.JumpTypeFlag < EnumJumpTypeFlag.wallFall &&
             (this.transform.localEulerAngles.z == 90 && this.transform.localScale.x == -1 ||
             this.transform.localEulerAngles.z == 270 && this.transform.localScale.x == 1)) {
             movingSpeed = -movingSpeed;
+            Debug.Log("存在理由の確認");
         }//if
-             
+        if (_pJump.JumpTypeFlag == EnumJumpTypeFlag.flipUp && _pUnderTrigger.IsUnderTrigger) {
+            Debug.Log("存在理由の確認");//下のif文の条件文だった
+        }
+
         //下重力以外の時にジャンプボタンを押したとき
-        if (_pJump.JumpTypeFlag == EnumJumpTypeFlag.flipUp && _pUnderTrigger.IsUnderTrigger ||
-            _isMovingSpeedInversion && _pJump.JumpTypeFlag >= EnumJumpTypeFlag.wallFall) {
-            movingSpeed = -movingSpeed;
+        if (_isMovingSpeedInversion) {
+            if(_pJump.JumpTypeFlag == EnumJumpTypeFlag.wallFlipFall) {
+                movingSpeed = -movingSpeed;
+            }//if
+            if (_pJump.JumpTypeFlag == EnumJumpTypeFlag.wallFall && !_pAnimator.AniFall) {
+                movingSpeed = -movingSpeed;
+            }//if
             _isMovingSpeedInversion = false;
-        }//if
+        }//if            
 
         //床に触れたとき
         if (_pUnderTrigger.IsUnderTrigger) {

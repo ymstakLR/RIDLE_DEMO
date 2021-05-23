@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaceafca0a181b44eb3b8fa36748e8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _passingEnterNum: 0
 --- !u!1 &1973435607831616583
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +348,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.78}
-  m_Size: {x: 1, y: 4}
+  m_Size: {x: 2.25, y: 4}
   m_Direction: 0
 --- !u!1 &4951278201676708545
 GameObject:

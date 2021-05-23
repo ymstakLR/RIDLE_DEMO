@@ -65,16 +65,15 @@ public class EnemyTypeA : EnemyParent {
         _pastPosY = this.transform.position.y;
     }//UnderTriggerCheack
 
-    private void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "Stage" ||
-           col.gameObject.tag == "PlatformEffector" ||
-           col.gameObject.tag == "Gimmick") {
-            if (AniMiss && !_isMissEnd) {
-                RB2D.velocity = new Vector2(0, 0);
-                _isMissEnd = true;
-                Debug.Log("EnemyName_"+this.gameObject.name+"_MissEndObject_" + col.gameObject.name);
-            }//if
+    private void OnCollisionStay2D(Collision2D col) {
+        if (col.gameObject.tag != "Stage" &&
+           col.gameObject.tag != "PlatformEffector" &&
+           col.gameObject.tag != "Gimmick")
+            return;
+        if (AniMiss && !_isMissEnd && _eUnderTrigger.IsUnderTrigger) {
+            RB2D.velocity = new Vector2(0, 0);
+            _isMissEnd = true;
         }//if
-    }//OnCollisionEnter2D
+    }//OnCollisionStay2D
 
 }//EnemyTypeA

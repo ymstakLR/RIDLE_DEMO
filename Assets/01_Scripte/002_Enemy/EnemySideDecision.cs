@@ -16,12 +16,12 @@ public class EnemySideDecision : MonoBehaviour {
         }//if
     }//OnCollisionStay2D
 
-    private void OnTriggerEnter2D(Collider2D col) {
+    private void OnTriggerStay2D(Collider2D col) {//EnterからStayに変更した(0523)
         if (col.gameObject.tag == "Stage" || col.gameObject.tag == "Enemy" ||
             col.gameObject.tag == "StageEdge" || col.gameObject.tag == "Spring") {//ステージタグに触れた場合
             SideDecisionCol = true;
         }//if
-    }//OnTriggerEnter2D
+    }//OnTriggerStay2D
 
     private void OnTriggerExit2D(Collider2D col) {
         if (col.gameObject.tag == "Stage" || col.gameObject.tag == "Enemy" ||

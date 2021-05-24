@@ -37,6 +37,7 @@ public class BossEnemy2 : BossEnemyManager {
     //Fall
     private EnemyUnderTrigger _eUnderTrigger;
     private float _pastPosY;//
+    private bool _isLandSE;
 
     //Sword
     private GameObject _sword;//子要素の情報取得
@@ -220,7 +221,8 @@ public class BossEnemy2 : BossEnemyManager {
     /// </summary>
     private void Jump() {
         if (!Animator.GetBool("AniJump")) {
-            _audioManager.PlaySE("Spring_Demo");
+            _audioManager.PlaySE("Jump");
+            _isLandSE = true;
         }//if
         AnimatorChangeBool("AniJump", true);
         _motionTimer += Time.deltaTime;
@@ -252,10 +254,11 @@ public class BossEnemy2 : BossEnemyManager {
     /// <returns></returns>
     IEnumerator FallCoroutine(float waitTime) {
         if (_eUnderTrigger.IsUnderTrigger) {
-            yield return new WaitForSeconds(waitTime);
-            if (Animator.GetBool("AniJump")) {
+            if (_isLandSE) {
                 _audioManager.PlaySE("Enemy_Land");
+                _isLandSE = false;
             }//if
+            yield return new WaitForSeconds(waitTime);
             AnimatorChangeBool("AniJump", false);
             AnimatorChangeBool("AniFall", false);
             _motionFlag = EnumMotionFlag.wait;

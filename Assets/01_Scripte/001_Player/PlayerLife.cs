@@ -7,6 +7,8 @@ using UnityEngine.UI;
 /// 更新日時:0414
 /// </summary>
 public class PlayerLife : MonoBehaviour {
+    private PlayerAnimator _pAnimator;
+
     private readonly float RECOVERY_TIMER = 15;
 
     private Image[] _life;
@@ -17,6 +19,7 @@ public class PlayerLife : MonoBehaviour {
 
 
     private void Start() {
+        _pAnimator = this.GetComponent<PlayerAnimator>();
         _life = new Image[4];
         for (int i = 0; i < _life.Length; i++) {
              string path = "UI/UIItemReference/Life (" + (i+1) + ")";
@@ -89,11 +92,13 @@ public class PlayerLife : MonoBehaviour {
         for (int i = _life.Length - 1; 0 <= i; --i) {
             if (_life[1].fillAmount==0) {//ゲームミスになる
                 _life[0].fillAmount = 0;
+                _pAnimator.AudioManager.PlaySE("PlayerMiss");
                 this.GetComponent<PlayerAnimator>().AniMiss = true;
                 return;
             }//if
             if (_life[i].fillAmount ==1) {//ダメージを受ける
                 _life[i].fillAmount = _recoveryLifeAnimate;
+                _pAnimator.AudioManager.PlaySE("PlayerDamage");
                 return;
             }//if
             _life[i].fillAmount = 0;

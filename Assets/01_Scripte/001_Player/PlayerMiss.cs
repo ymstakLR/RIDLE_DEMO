@@ -54,7 +54,6 @@ public class PlayerMiss : MonoBehaviour {
     /// <param name="retrayTime"></param>
     private void CommonMiss(float retrayTime) {
         _retray.SceneRetray(retrayTime);
-        _pAnimator.AudioManager.PlaySE("PlayerMiss");
         _pAnimator.AudioManager.FadeOutStart(1f);
         TagChange(this.gameObject, "PlayerMiss");
         _isMiss = true;

@@ -83,7 +83,6 @@ public class PlayerBodyTrigger : MonoBehaviour {
         if (!_isDamage && //ダメージ中
             (col.gameObject.tag == "EnemyAttack" ||
             col.gameObject.tag == "DamageGimmick")) {
-            _pAnimator.AudioManager.PlaySE("PlayerDamage");
             _pAnimator.AniDamage = true;
             _isDamage = true;
             _pLife.LifeDecrease();

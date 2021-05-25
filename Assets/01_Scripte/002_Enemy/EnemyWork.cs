@@ -195,7 +195,7 @@ public class EnemyWork : MonoBehaviour {
         }//if
         if (jumpPower != JUMP_POWER_MAX && !isFall) {
             jumpPower = JUMP_POWER_MAX;
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("Spring_Demo");
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("Enemy_Jump");
             eAnimator.SetBool("AniJump", true);
         } else {
             jumpPower -= 5;

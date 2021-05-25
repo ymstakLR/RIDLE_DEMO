@@ -96,7 +96,7 @@ public class PlayerBodyTrigger : MonoBehaviour {
     private void GoalTouch(Collider2D col) {
         if (col.gameObject.tag != "Goal")//ゴールに触れていない場合処理を抜ける
             return;
-        if (!_rotatingArrow.IsTouchGoal) {
+        if (!_rotatingArrow.IsTouchGoal && !_rotatingArrow.IsTouchKey) {//&& !_rotatingArrow.IsTouchKeyを追加した(0525) SEを鳴らさないため
             _rotatingArrow.IsTouchGoal = true;
             _pAnimator.AudioManager.PlaySE("KeyGet_Demo");
         }//if

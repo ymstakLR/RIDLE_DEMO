@@ -16,6 +16,16 @@ USB引っこ抜く
 	SE,BGMの変更と音量調整
 	ステージの改良
 	Inside,Outsideの暴発
+
+
+0525
+	SE音量の変更
+	Enemy5の攻撃SE変更(既存のものの音を小さくする)
+	Enemy10ジャンプ音変更
+	BossEnemyのミス時のSEの単発慣らし
+	ゴールSEの重複
+	切り裂きエフェクト変更
+
 0524
 	一部SE,BGM変更
 	BossEnemy2の落下時のSEの鳴らす間隔変更

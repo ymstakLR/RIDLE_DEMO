@@ -205,7 +205,7 @@ public class BossEnemy2 : BossEnemyManager {
         } else {
             generatePosX -= 1.5f;
         }//if
-        _audioManager.PlaySE("Enemy_Fire");
+        _audioManager.PlaySE("BossEnemy_Fire");
         //生成
         GameObject instance = (GameObject)Instantiate(
             drill, new Vector2(generatePosX, this.transform.position.y - 3f), Quaternion.identity);
@@ -221,7 +221,7 @@ public class BossEnemy2 : BossEnemyManager {
     /// </summary>
     private void Jump() {
         if (!Animator.GetBool("AniJump")) {
-            _audioManager.PlaySE("Jump");
+            _audioManager.PlaySE("Enemy_Jump");
             _isLandSE = true;
         }//if
         AnimatorChangeBool("AniJump", true);

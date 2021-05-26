@@ -16,7 +16,7 @@ public class Enemy1 : EnemyTypeA {
         _enemyScore = 100;
         _underDecisionObject = this.transform.Find("UnderDecision").gameObject;
         _underDecisionTrigger = _underDecisionObject.GetComponent<EnemyUnderDecisionTrigger>();
-        EnemyMissFoll = -20;//ミス時の落下速度を反映
+        EnemyMissFoll = -10;//ミス時の落下速度を反映
         EnemySpeed = 6;//スピード値を反映
         if (this.GetComponent<Transform>().localScale.x < 0) {
             EnemySpeed = -EnemySpeed;

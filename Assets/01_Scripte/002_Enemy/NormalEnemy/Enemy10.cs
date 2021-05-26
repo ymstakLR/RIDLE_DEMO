@@ -26,7 +26,7 @@ public class Enemy10 : EnemyTypeA {
         _underDecisionTrigger = this.transform.Find("UnderDecision").GetComponent<EnemyUnderDecisionTrigger>();
         _landingCheck = this.transform.Find("LandCheck").GetComponent<EnemyLandingCheck>();
         _jumpTimer = Random.Range(0f, JUMP_TIME);
-        EnemyMissFoll = -20;//ミス時の落下速度を反映
+        EnemyMissFoll = -10;//ミス時の落下速度を反映
         EnemySpeed = 4;
         if (this.GetComponent<Transform>().localScale.x < 0) {
             EnemySpeed = -EnemySpeed;

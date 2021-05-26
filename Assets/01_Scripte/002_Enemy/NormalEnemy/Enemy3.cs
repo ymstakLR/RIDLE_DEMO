@@ -11,7 +11,7 @@ public class Enemy3 : EnemyTypeA {
     public new void Start() {
         base.Start();//EnemyParentのStartを行う
         _enemyScore = 100;
-        EnemyMissFoll = -20;//ミス時の落下速度を反映
+        EnemyMissFoll = -10;//ミス時の落下速度を反映
         EnemySpeed = 4;
         if (this.GetComponent<Transform>().localScale.x < 0) {
             EnemySpeed = -EnemySpeed;

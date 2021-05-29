@@ -20,7 +20,7 @@ public class PlayerUnderAttack : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         if(this.transform.parent.localScale.y == -1)
-            return;
+            return;   
         PlayerTagChange(col,"Player");
         AttackEnemyJudge(col);
     }//OnTriggerEnter2D

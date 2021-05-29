@@ -247,7 +247,6 @@ public class PlayerJump : MonoBehaviour {
             if (this.transform.localScale.x > 0 && this.transform.localEulerAngles.z == 270 ||
                 this.transform.localScale.x < 0 && this.transform.localEulerAngles.z == 90 ||
                     this.transform.localEulerAngles.z == 0) {
-                Debug.Log("落下確認");
                 IsWorkSpeedFlip = true;
                 jumpPower = GRAVITY;
             }//if

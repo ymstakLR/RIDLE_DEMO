@@ -95,12 +95,12 @@ public class Spring : MonoBehaviour {
             case 0://上移動
                 col.gameObject.GetComponent<Transform>().position =
                     new Vector2(col.gameObject.transform.position.x, this.GetComponent<Transform>().position.y + (float)7);
-                col.gameObject.GetComponent<PlayerManager>().JumpSpeed = 400;
+                col.gameObject.GetComponent<PlayerManager>().JumpPower = 400;
                 break;
             case 180://下移動
                 col.gameObject.GetComponent<Transform>().position =
                     new Vector2(col.gameObject.transform.position.x, this.GetComponent<Transform>().position.y - (float)7);
-                col.gameObject.GetComponent<PlayerManager>().JumpSpeed = -400;
+                col.gameObject.GetComponent<PlayerManager>().JumpPower = -400;
                 break;
         }//switch
         col.gameObject.GetComponent<PlayerJump>().JumpInputLimit();

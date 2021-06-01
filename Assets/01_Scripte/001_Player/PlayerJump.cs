@@ -216,9 +216,7 @@ public class PlayerJump : MonoBehaviour {
     private float JumpDown(float jumpSpeed) {
         Falling();
         PastTPY = this.transform.position.y;//自機の高さ更新
-
         jumpSpeed = LandingJudgment(jumpSpeed);
-
         if (_pUnderTrigger.IsUnderTrigger) {
             Debug.LogWarning("着地中重力__デバッグの必要あり");
             return -200;//円状に移動する床から離れてしまう
@@ -241,7 +239,6 @@ public class PlayerJump : MonoBehaviour {
 
         ///FlipJump状態を解除させる
         if (_sideGravityFlipTimer > SIDE_GRAVITY_FLIP_TIME && _sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 2) {
-
             float jumpPower = FIRST_JUMP_POWER;
             //下向きに落下する場合
             if (this.transform.localScale.x > 0 && this.transform.localEulerAngles.z == 270 ||
@@ -262,7 +259,6 @@ public class PlayerJump : MonoBehaviour {
         if (Input.GetButtonDown(NORMAL_JUMP) &&
             (this.transform.localEulerAngles.z == 90 || this.transform.localEulerAngles.z == 270) &&
             JumpTypeFlag < EnumJumpTypeFlag.wallFall) {
-
             float jumpPower = GRAVITY;
 
             //上に上昇する場合
@@ -313,7 +309,6 @@ public class PlayerJump : MonoBehaviour {
         if (PastTPY <= transform.position.y || _keyDownTimer <= 0f) {
             return;
         }
-
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp && _keyDownTimer > KEY_DOWN_TIME) {//FlipJump中の処理
             this.transform.localScale = new Vector2(this.transform.localScale.x, -this.transform.localScale.y);
             JumpTypeFlag = EnumJumpTypeFlag.flipFall;

@@ -254,16 +254,17 @@ public class Result : MonoBehaviour {
         //ダメージ数
         switch (_itemProperty.PlayerMissCount) {
             case 0:
+            case 1:
                 _damageRank.text = "A";
                 overallRankNum += 4;
                 break;
-            case 1:
+            case 2:
+            case 3:
                 _damageRank.text = "B";
                 overallRankNum += 3;
                 break;
-            case 2:
-            case 3:
             case 4:
+            case 5:
                 _damageRank.text = "C";
                 overallRankNum += 2;
                 break;

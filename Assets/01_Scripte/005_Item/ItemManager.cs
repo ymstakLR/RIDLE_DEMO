@@ -59,7 +59,6 @@ public class ItemManager : MonoBehaviour {
                 _audioManager.PlaySE("SpecialItemGet_Demo");
                 _uiScore.AddScore(appScorePoint: 500);
                 _itemProperty.SpecialItem += 1;
-                Debug.Log("SpeItemNum_" + _itemProperty.SpecialItem);
                 break;
         }//switch
     }//ItemScore

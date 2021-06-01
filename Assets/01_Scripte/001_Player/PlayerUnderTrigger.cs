@@ -37,6 +37,7 @@ public class PlayerUnderTrigger : BaseUnderTrigger {
         if(col.gameObject.tag == "Spring") {
             IsRise = true;//バネジャンプ直後の通過床での不具合解消
             IsJumpUp = true;
+            IsUnderTrigger = false;
         }//if
         if(col.gameObject.tag == "Stage"||col.gameObject.tag == "Gimmick") {
             IsRise = true;

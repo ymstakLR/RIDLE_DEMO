@@ -225,7 +225,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SpeItem
+  m_Text: Crystal
 --- !u!1 &3174658573496933376
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Damege
+  m_Text: Damage
 --- !u!1 &3174658574036351713
 GameObject:
   m_ObjectHideFlags: 0

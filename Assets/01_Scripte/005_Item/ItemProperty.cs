@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// アイテムの共通情報の宣言
-/// 更新日時:0417
+/// 更新日時:0603
 /// </summary>
 public class ItemProperty : MonoBehaviour {
     public int EnemyNumMax { get; set; }
@@ -14,7 +14,6 @@ public class ItemProperty : MonoBehaviour {
 
 
     private void Start() {
-        Debug.LogWarning("Disp__ItemPropertyStart");
         PlayerMissCount = 0;
         SpecialItem = 0;
     }//Start

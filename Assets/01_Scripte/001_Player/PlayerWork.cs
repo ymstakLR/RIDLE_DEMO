@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の移動処理
-/// 更新日時:0602
+/// 更新日時:0603
 /// </summary>
 public class PlayerWork : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -269,7 +269,6 @@ public class PlayerWork : MonoBehaviour {
                 playerTransform.localScale = new Vector2(-playerTransform.localScale.x, playerTransform.localScale.y);
             }//if
             if (intervalY < 1 && intervalY > -1) {
-                Debug.LogError("Work__ボス戦/ステージクリアの選定(ClearCriteria)");
                 return (0, EnumStageStatus.ClearCriteria);
             }//if
             return (0, enumStageStatus);

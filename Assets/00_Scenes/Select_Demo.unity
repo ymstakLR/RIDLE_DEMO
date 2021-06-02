@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 1127205699}
   - component: {fileID: 1127205698}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Stage1_SelectPicture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1052,7 @@ GameObject:
   - component: {fileID: 1134848641}
   - component: {fileID: 1134848640}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Stage3_SelectPicture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 1212823582}
   - component: {fileID: 1212823581}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Stage2_SelectPicture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1888,7 +1888,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.19607843, g: 0.50980395, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}

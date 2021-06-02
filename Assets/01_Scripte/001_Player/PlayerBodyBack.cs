@@ -8,11 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerBodyBack : MonoBehaviour {
     public bool IsBodyBack { get; set; }//Stage,PlatformEffectorタグに触れたときの判定
-    private PlayerUnderTrigger _pUnderTrigger;
-
-    private void Start() {
-        _pUnderTrigger = this.transform.parent.transform.Find("UnderTrigger").GetComponent<PlayerUnderTrigger>();
-    }//Start
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "PlatformEffector" && this.transform.parent.transform.localEulerAngles.z == 0)

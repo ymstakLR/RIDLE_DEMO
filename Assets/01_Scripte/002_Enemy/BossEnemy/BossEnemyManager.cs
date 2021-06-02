@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// ボス敵の共通処理をまとめて記載する
-/// 更新日時:0413
+/// 更新日時:0603
 /// </summary>
 public class BossEnemyManager : MonoBehaviour {
 
@@ -132,9 +132,6 @@ public class BossEnemyManager : MonoBehaviour {
             BodyTrigger.layer = LayerMask.NameToLayer("EnemyAttack");
             return;
         }//if
-        if (_recoveryTimer >= (RECOVERY_TIME * 0.5)) {//回復直前の場合
-            Animator.SetBool("AniDamage", false);
-        }//if
         SpriteRendererEnable();
     }//EnemyRecovery
 
@@ -157,10 +154,8 @@ public class BossEnemyManager : MonoBehaviour {
             return;
         if(_recoveryTimer == 0) {
             _audioManager.PlaySE("BossEnemyMiss");
-            Debug.Log("recovery_" + _recoveryTimer);
         }
         _stageClearManagement.StageStatus = EnumStageStatus.AfterBossBattle;
-        Debug.LogError("BossEnemyManager__ボス戦終了処理(AfterBossBattle)");
         _recoveryTimer += Time.deltaTime;
         Animator.SetBool("AniMiss", true);
         this.GetComponent<PolygonCollider2D>().isTrigger = true;
@@ -182,7 +177,6 @@ public class BossEnemyManager : MonoBehaviour {
         } else {//画面内から出た場合
             _stageClearManagement.BossEnemyArray.RemoveAt(0);
             _stageClearManagement.StageStatus = EnumStageStatus.Normal;
-            Debug.LogError("BossEnemyManager__通常に戻す(Normal)");
             _audioManager.PlayBGM(_stageBGMName);
             Destroy(this.gameObject);
         }//if

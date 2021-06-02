@@ -56,7 +56,6 @@ public class StageStatusManagement : MonoBehaviour {
                 bossEnemyArray[i].GetComponent<SpriteRenderer>().enabled = false;
                 StageStatus = EnumStageStatus.BeforeBossBattle;
                 GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("GoalLock");
-                Debug.LogError("StegeClearManagement__ボス戦開始前処理へ進む(BeforeBossBattle)");
                 return;
             }//if
         }//for
@@ -68,7 +67,6 @@ public class StageStatusManagement : MonoBehaviour {
     /// ステージ状態をクリアに変更する
     /// </summary>
     private void StatusClearChange() {
-        Debug.LogError("StegeClearManagement__ステージクリア処理へ進む(Clear)");
         StageStatus = EnumStageStatus.Clear;
         GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("GoalRelease");
     }//StatusClearChange

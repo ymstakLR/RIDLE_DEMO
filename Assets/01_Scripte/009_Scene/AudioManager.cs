@@ -2,7 +2,7 @@
 using UnityEngine;
 /// <summary>
 /// SE,BGM関連の管理処理
-/// 更新日時:0417
+/// 更新日時:0603
 /// </summary>
 public class AudioManager : MonoBehaviour {
     [SerializeField, Tooltip("BGM用のAudio Source")]
@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour {
             return;
         }//if
         if (bgmAudio.clip.name.ToString() == bgmName && bgmAudio.clip.name.Substring(0,5) != "Stage") {
-            Debug.LogWarning("Disp__"+bgmName + "はすでに流れています");
+            Debug.LogWarning(bgmName + "はすでに流れています");
             return;
         }//if
         bgmAudio.clip = _bgmDic[bgmName];

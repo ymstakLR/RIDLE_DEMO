@@ -53,6 +53,4 @@ public class PlayerBody : MonoBehaviour {
         }//if
     }//OnCollisionExit2D
 
-
-
 }//Body

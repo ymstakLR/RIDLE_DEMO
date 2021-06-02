@@ -6,7 +6,7 @@ using System.IO;
 
 /// <summary>
 /// シーンの遷移状態を保存する処理
-/// 更新日時:0419
+/// 更新日時:0603
 /// </summary>
 public class SceneSingleton :SingletonMonoBehaviour<SceneSingleton> {
     private static AudioManager _audioManager;
@@ -19,9 +19,8 @@ public class SceneSingleton :SingletonMonoBehaviour<SceneSingleton> {
 
 
     public new void Awake() {
-        Debug.LogWarning("Disp__SceneSingleton_Awake");
         if (_sceneHistoryList.Count == 0) {
-            _sceneHistoryList.Add("Title_Demo");//デモ版の段階のみTitle_Demoにする それ以降はTitleに戻す
+            _sceneHistoryList.Add("Title_Demo");//デモ版の段階のみTitle_Demoにする
         }//if
         if (this != Instance) {
             Destroy(this);

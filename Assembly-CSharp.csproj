@@ -152,10 +152,7 @@
     <Compile Include="Assets\01_Scripte\009_Scene\StageDataDisp.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\StageStartInitialize.cs" />
     <Compile Include="Assets\01_Scripte\010_Base\BaseUnderTrigger.cs" />
-    <Compile Include="Assets\Zero Rare\Retro Sound Effects\Demo\Demo.cs" />
     <None Include="Assets\01_Scripte\000_Log\log.txt" />
-    <None Include="Assets\01_Scripte\000_Log\2DActoinGame_Plan.txt" />
-    <None Include="Assets\01_Scripte\000_Log\成果物_文章.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/yamahita-aki/Desktop/Ridle/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の体に接触したときの処理
-/// 更新日時:0602
+/// 更新日時:0603
 /// </summary>
 public class PlayerBodyTrigger : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -95,7 +95,6 @@ public class PlayerBodyTrigger : MonoBehaviour {
             return;
         switch (_stageClearManagement.StageStatus) {
             case EnumStageStatus.Normal:
-                Debug.LogError("BodyTrigger1__ステージクリア処理を記述する(GoalMove)");
                 _stageClearManagement.StageStatus = EnumStageStatus.GoalMove;
                 break;
         }//switch

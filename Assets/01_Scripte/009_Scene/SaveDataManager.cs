@@ -6,6 +6,7 @@ using UnityEngine;
 /// <summary>
 /// データを保存するためのキーの列挙体(基本的にこのキーを経由してデータを保存する)
 /// この列挙体は使用用途によって分割したほうが、今後利用しやすいと考える(0504)
+/// 更新日時:0603
 /// </summary>
 public enum EnumSaveKey {
     BGMVol,
@@ -54,7 +55,6 @@ public class SaveDataManager : MonoBehaviour {
         for(int i = 2; i < Enum.GetValues(typeof(EnumSaveKey)).Length; i++) {
             string dataDeleteKey = Enum.ToObject(typeof(EnumSaveKey),i).ToString();
             DataDelete(dataDeleteKey);
-            Debug.Log((EnumSaveKey)Enum.ToObject(typeof(EnumSaveKey), i));
         }//for
     }//StageDataDelete
 

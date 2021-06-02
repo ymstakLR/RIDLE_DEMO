@@ -79,7 +79,6 @@ public class CameraChase : MonoBehaviour {
                     this.transform.position.y > (_playerTF.position.y + StageCorrectionPos.y - 0.1);
                 if (posX && posY && IsBossBattle) {
                     _stageClearManagement.StageStatus = EnumStageStatus.BossBattle;
-                    Debug.LogError("CameraChase__ボス戦に移動する(BossBattle)");
                 }//if
                 break;
             default:

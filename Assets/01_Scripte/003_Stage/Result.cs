@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 /// <summary>
 /// リザルト画面全般の処理
-/// 更新日時:0602
+/// 更新日時:0603
 /// </summary>
 public class Result : MonoBehaviour {
     private enum RankValue { A, B, C, D, E }//ランク更新用の数値列挙体
@@ -88,7 +88,6 @@ public class Result : MonoBehaviour {
                 _goalForward.GetComponent<Animator>().SetBool("AniLock", true);
                 break;
             case EnumStageStatus.Clear:
-                Debug.LogError("IsStageClear");
                 if (!_isResultInit) {
                     ResultInit();
                 }//if
@@ -152,10 +151,8 @@ public class Result : MonoBehaviour {
     /// ステージを終了できる状態にする処理
     /// </summary>
     private void StageEndStatus() {
-        Debug.Log("ステージ終了できる");
         if ((Input.GetButtonDown("NormalJump") ||Input.GetButtonDown("FlipJump") || Input.GetButtonDown("Attack")) &&
             !_isSceneBack) {
-            Debug.Log("セレクトボタンに戻る");
             GameObject.Find("GameManager").GetComponent<SceneChange>().BackSceneChange(isBackSE: false);
             _isSceneBack = true;
         }//if

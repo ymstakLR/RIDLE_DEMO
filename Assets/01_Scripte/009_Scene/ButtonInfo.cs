@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 /// <summary>
 /// ボタンUIの取得とボタンの情報更新処理
-/// 更新処理:0417
+/// 更新処理:0603
 /// </summary>
 public class ButtonInfo : MonoBehaviour {
 
@@ -50,7 +50,6 @@ public class ButtonInfo : MonoBehaviour {
         foreach (Transform child in searchField.transform) {
             if (child.name == "ButtonCanvas") {
                 _buttonCanvas = child.gameObject;
-                Debug.LogWarning("Disp__ButtonCanvas取得中");
                 return;
             } else {
                 ButtonCanvasSearch(child.gameObject);

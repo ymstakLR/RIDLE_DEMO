@@ -16,7 +16,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:0602
+/// 更新日時:0603
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -202,10 +202,8 @@ public class PlayerJump : MonoBehaviour {
         Falling();
         PastTPY = this.transform.position.y;//自機の高さ更新
         jumpSpeed = LandingJudgment(jumpSpeed);
-        if (_pUnderTrigger.IsUnderTrigger) {
-            Debug.LogWarning("着地中重力__デバッグの必要あり");
+        if (_pUnderTrigger.IsUnderTrigger)
             return -200;
-        }//if
 
         //左右重力の時にFlipJumpを行い自機のBodyからステージに触れた場合
         if (_pBody.IsBody != BodyType.wait && _isFlipJumpFall && (int)this.transform.localEulerAngles.z != 0) {

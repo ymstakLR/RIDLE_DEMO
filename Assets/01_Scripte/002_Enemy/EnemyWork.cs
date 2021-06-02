@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵の移動値の更新処理
-/// 更新日時:0408
+/// 更新日時:0602
 /// </summary>
 public class EnemyWork : MonoBehaviour {
 

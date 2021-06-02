@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// ボス敵2の処理
-/// 更新日時:0413
+/// 更新日時:0602
 /// </summary>
 public class BossEnemy2 : BossEnemyManager {
     private enum EnumMotionFlag {//モーションフラグの列挙体
@@ -132,7 +132,7 @@ public class BossEnemy2 : BossEnemyManager {
     private void MotionPatternSelect() {
         _motionFlagList.Clear();
         float distance = Vector2.Distance(Player.transform.position, this.transform.position);
-        ///時期との距離に応じて行う行動種類を変更する
+        ///自機との距離に応じて行う行動パターンを変更する
         if (distance < 20) {//自機が近くにいる場合
             _motionFlagList.Add(EnumMotionFlag.attackA);
             _motionFlagList.Add(EnumMotionFlag.jump);

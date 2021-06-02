@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// アイテム情報の取得・反映処理
-/// 更新日時:0417
+/// 更新日時:0602
 /// </summary>
 public class ItemManager : MonoBehaviour {
 
@@ -49,14 +49,14 @@ public class ItemManager : MonoBehaviour {
         omissionItemName = _itemName.Substring(0, 3);
         switch (omissionItemName) {
             case "Key":
-                _audioManager.PlaySE("KeyGet_Demo");
+                _audioManager.PlaySE("KeyGet");
                 _rotatingArrow.IsTouchKey = true;
                 break;
             case "Pla":
                 _uiScore.AddScore(appScorePoint: 1000);
                 break;
             case "Spe":
-                _audioManager.PlaySE("SpecialItemGet_Demo");
+                _audioManager.PlaySE("SpecialItemGet");
                 _uiScore.AddScore(appScorePoint: 500);
                 _itemProperty.SpecialItem += 1;
                 break;

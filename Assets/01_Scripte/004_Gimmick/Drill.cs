@@ -6,7 +6,7 @@ using UnityEngine;
 /// ダメージ判定のドリル処理
 /// 更新日時:0416
 /// </summary>
-public class Drill : MonoBehaviour {//ダメージ判定のドリルの処理:最終更新(0827)
+public class Drill : MonoBehaviour {
     private readonly float MOVING_SPEED = 1500;
 
     private float _movingSpeed;

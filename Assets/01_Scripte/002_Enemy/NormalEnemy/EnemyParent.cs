@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy全体で使用する処理　このスクリプトを継承してEnemy処理を作成していく
-/// 更新日時:0413
+/// 更新日時:0602
 /// </summary>
 public class EnemyParent : MonoBehaviour {
     public AudioManager AudioManager { get; set; }

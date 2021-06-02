@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// ボス敵1の処理
-/// 更新日時:0413
+/// 更新日時:0602
 /// </summary>
 public class BossEnemy1 : BossEnemyManager {
     private enum EnumMotionFlag {//モーションフラグの列挙体
@@ -97,7 +97,6 @@ public class BossEnemy1 : BossEnemyManager {
         _dushMoveX = 0;
         if (!_enemyBodyTrigger.IsStageTouch)
             yield break;
-        Debug.Log("登場処理終了");
         DushEndCorrection();
         DushEnd();
         _motionFlag = EnumMotionFlag.wait;
@@ -288,7 +287,7 @@ public class BossEnemy1 : BossEnemyManager {
             _dushMoveX = (Mathf.Floor(((directionPosX / directionPosY) * 10)) / 10*DUSH_SPEED);
             _dushMoveY = DUSH_SPEED;
         }//if
-        if (this.transform.position.y > Player.transform.position.y) {//時期より上に存在する場合
+        if (this.transform.position.y > Player.transform.position.y) {
             _dushMoveY = -_dushMoveY;
         }//if
     }//AngleConfirm

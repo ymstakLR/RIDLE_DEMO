@@ -4,20 +4,18 @@ using UnityEngine;
 
 /// <summary>
 /// UnderTriggerの変数を使用する
-/// 更新日時:0406 処理の必要性を調査中
+/// 更新日時:0602
 /// </summary>
 public class PlayerUnderTriggerPE : PlayerUnderTrigger {
 
     private Animator _animator;
     private PlayerUnderTrigger _pUnderTrigger;
     private PlayerJump _pJump;
-    private PlayerTop _pTop;
 
     private new void Start() {
         base.Start();
         _animator = this.transform.parent.GetComponent<Animator>();
         _pJump = this.transform.parent.GetComponent<PlayerJump>();
-        _pTop = this.transform.parent.transform.Find("Top").GetComponent<PlayerTop>();
         _pUnderTrigger = this.transform.parent.transform.Find("UnderTrigger").GetComponent<PlayerUnderTrigger>();
     }//Start
 
@@ -33,7 +31,7 @@ public class PlayerUnderTriggerPE : PlayerUnderTrigger {
             return;
         if (!_pUnderTrigger.IsJumpUp) {
             _pUnderTrigger.IsUnderTrigger = true;
-            _pAnimator.AniFall = false;//ここの処理を別スクリプトで行えるようにする(0115)
+            _pAnimator.AniFall = false;
         }//if
     }//OnTriggerEnter2D
 

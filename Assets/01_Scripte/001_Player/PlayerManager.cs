@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の移動情報の取得更新を行う
-/// 更新日時:0405
+/// 更新日時:0602
 /// </summary>
 public class PlayerManager : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour {
     /// 自機の移動量の更新
     /// </summary>
     private void MovePowerUpdate() {
-        //workSpeed/10は情報落ちするためこのように記述している(0914)ほかでこの値を使用する場合変数にする案も出てくる
+        //workPower/10は情報落ちする
         if (_pJump.IsFlipJumpFall) {//FlipJump中に落下するときの重力
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(WorkPower / 10, JumpPower / 10);
             return;
@@ -55,7 +55,7 @@ public class PlayerManager : MonoBehaviour {
         }//switch
     }//MovePowerUpdate
 
-    void Update() {//毎フレーム呼ばれる
+    private void Update() {
         _pAnimator.AnimatorMove(WorkPower);//アニメーション更新
         InputJudge();
     }//Update
@@ -80,8 +80,8 @@ public class PlayerManager : MonoBehaviour {
     private void PlayerInput() {
         if (_stageClearMgmt.StageStatus == EnumStageStatus.Normal ||
             _stageClearMgmt.StageStatus == EnumStageStatus.BossBattle) {//移動可能な場合
-            JumpPower = _pJump.MoveJump(JumpPower);//キー入力処理があるのでUpdateに記述する(0914)
-            WorkPower = _pWork.MoveWork(WorkPower);//ジャンプ後の変変数取得が必要になるのでJumpSpeed後に記述する（確認中）0502
+            JumpPower = _pJump.MoveJump(JumpPower);
+            WorkPower = _pWork.MoveWork(WorkPower);//ジャンプ後の変変数取得が必要になるのでJumpSpeed後に記述する
             _pWork.RightAngleWork(WorkPower);//角度変更移動
         } else if (_stageClearMgmt.StageStatus == EnumStageStatus.GoalMove ||
             _stageClearMgmt.StageStatus == EnumStageStatus.ClearCriteria) {
@@ -91,7 +91,6 @@ public class PlayerManager : MonoBehaviour {
         } else {
             //停止処理
             JumpPower = _pJump.JumpStop(JumpPower);
-            //JumpSpeed = jump.MoveJump(JumpSpeed);
             WorkPower = 0;
         }//if
     }//PlayerInput

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の攻撃用の処理
-/// 更新日時 : 0401
+/// 更新日時 : 0602
 /// </summary>
 public class PlayerAttack : MonoBehaviour {
     private Animator _animator;
@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour {
     private Renderer _renderer;
     private StageStatusManagement _stageClearMgmt;
 
-    private readonly float ATTACK_TIME = (float)0.4;//攻撃反映時間
+    private readonly float ATTACK_TIME = 0.4f;//攻撃反映時間
 
     private float _attackTimer;//攻撃を行い始めてからの時間
 
@@ -28,7 +28,6 @@ public class PlayerAttack : MonoBehaviour {
     void Update() {
         if(Time.timeScale == 0)//ポーズ中の場合は停止
             return;
-
         switch (_stageClearMgmt.StageStatus) {
             case EnumStageStatus.Normal:
             case EnumStageStatus.BossBattle:
@@ -54,7 +53,6 @@ public class PlayerAttack : MonoBehaviour {
             _attackTimer = 0;
             _pAnimator.AniAttack = true;
         }//if
-
     }//AttackBegin
 
     /// <summary>

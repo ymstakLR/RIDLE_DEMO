@@ -71,7 +71,6 @@
     <Compile Include="Assets\01_Scripte\001_Player\PlayerLife.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerManager.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerMiss.cs" />
-    <Compile Include="Assets\01_Scripte\001_Player\PlayerTop.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderAttack.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderTrigger.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderTriggerPE.cs" />

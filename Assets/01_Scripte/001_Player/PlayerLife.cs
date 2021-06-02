@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// 自機の体力についての処理
-/// 更新日時:0414
+/// 更新日時:0602
 /// </summary>
 public class PlayerLife : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -16,7 +16,6 @@ public class PlayerLife : MonoBehaviour {
 
     private float _recoveryTime;
     private float _recoveryLifeAnimate;
-
 
     private void Start() {
         _pAnimator = this.GetComponent<PlayerAnimator>();
@@ -65,7 +64,6 @@ public class PlayerLife : MonoBehaviour {
             _recoveryLifeAnimate = 0;
             return;
         }//if
-            
         if (_recoveryTime < RECOVERY_TIMER) {
             _recoveryTime += Time.deltaTime;
             return;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Aタイプの敵共通の処理
-/// 更新日時:0413
+/// 更新日時:0602
 /// </summary>
 public class EnemyTypeA : EnemyParent {
     public GameObject SideDecisionObject { get; set; }//enemyの子オブジェクトSideDecisionを取得

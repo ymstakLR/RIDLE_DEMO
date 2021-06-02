@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵がステージに触れている判定処理
-/// 更新日時:0408
+/// 更新日時:0602
 /// </summary>
 public class EnemyLandingCheck : MonoBehaviour {
     private bool _isLandingCheck;

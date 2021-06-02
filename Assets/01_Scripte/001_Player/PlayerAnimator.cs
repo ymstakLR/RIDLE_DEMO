@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機のアニメーションの更新処理
-/// 更新日時:0405
+/// 更新日時:0602
 /// </summary>
 public class PlayerAnimator : MonoBehaviour {
     public AudioManager AudioManager { get; set; }

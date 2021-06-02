@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の足部分接触物判定処理
-/// 更新日時:0406
+/// 更新日時:0602
 /// </summary>
 public class PlayerUnderTrigger : BaseUnderTrigger {
     protected PlayerAnimator _pAnimator;
@@ -15,7 +15,7 @@ public class PlayerUnderTrigger : BaseUnderTrigger {
         _pAnimator = this.transform.parent.GetComponent<PlayerAnimator>();
     }//Start
 
-    //条件文を見やすくするようにする returnを使う(1104)
+
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Stage") {
             IsUnderTrigger = true;
@@ -35,7 +35,7 @@ public class PlayerUnderTrigger : BaseUnderTrigger {
 
     private void OnTriggerExit2D(Collider2D col) {
         if(col.gameObject.tag == "Spring") {
-            IsRise = true;//バネジャンプ直後の通過床での不具合解消
+            IsRise = true;
             IsJumpUp = true;
             IsUnderTrigger = false;
         }//if

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵9の移動処理
-/// 更新日時:0409
+/// 更新日時:0603
 /// </summary>
 public class Enemy9 : EnemyTypeA {
     private EnemySideDecision _sideDecision;

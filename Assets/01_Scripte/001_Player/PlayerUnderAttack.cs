@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 足部分の攻撃判定処理
-/// 更新日時:0405
+/// 更新日時:0602
 /// </summary>
 public class PlayerUnderAttack : MonoBehaviour {
     private PlayerJump _pJump;
@@ -46,11 +46,11 @@ public class PlayerUnderAttack : MonoBehaviour {
     /// 敵を攻撃しているかの判定処理
     /// </summary>
     /// <param name="col">触れた当たり判定</param>
-    private void AttackEnemyJudge(Collider2D col) {//ここにタグ追加した　不具合があったら見なおす(0425)
-        if (col.gameObject.tag != "Enemy"&&col.gameObject.tag != "EnemyAttack")//タグ名が正しくないのでinspectorから変更する必要あり(0924)
+    private void AttackEnemyJudge(Collider2D col) {
+        if (col.gameObject.tag != "Enemy"&&col.gameObject.tag != "EnemyAttack")
             return;
         if (_pJump.JumpTypeFlag == EnumJumpTypeFlag.flipFall ||
-           _pJump.JumpTypeFlag == EnumJumpTypeFlag.wallFlipFall)//↑の条件文にまとめれるが見づらくなるので分割した(0928)
+           _pJump.JumpTypeFlag == EnumJumpTypeFlag.wallFlipFall)//↑の条件文にまとめれるが見づらくなるので分割した
             return;
         AttackEnemy();
     }//EnemyAttackJudge

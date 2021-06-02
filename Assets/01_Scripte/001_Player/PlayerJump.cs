@@ -16,7 +16,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:0407
+/// 更新日時:0602
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -53,7 +53,7 @@ public class PlayerJump : MonoBehaviour {
     public bool IsWorkSpeedFlip { get; set; }
 
 
-    void Start() {
+    private void Start() {
         _pAnimator = this.GetComponent<PlayerAnimator>();
         _pBody = this.transform.Find("Body").GetComponent<PlayerBody>();
         _pBodyBack = this.transform.Find("BodyBack").GetComponent<PlayerBodyBack>();
@@ -82,21 +82,6 @@ public class PlayerJump : MonoBehaviour {
         jumpSpeed = JumpDown(jumpSpeed);//ジャンプの上昇中は処理更新しない
         return jumpSpeed;
     }//MoveJump
-
-    ///// <summary>
-    ///// PlatformEffectタグからジャンプせずに降りた場合の落下値の変更処理
-    ///// </summary>
-    ///// <param name="jumpSpeed">現在のプレイヤーのジャンプ量</param>
-    ///// <returns>変更後のジャンプ量</returns>
-    //private float PlatformEffectExit(float jumpSpeed) {
-    //    if (_pBody.IsBody != BodyType.platformEffect ||
-    //        _pUnderTrigger.IsUnderTrigger ||
-    //        !_isPlatformEffectExit)
-    //        return jumpSpeed;
-    //    Debug.Log("PE2D処理確認");
-    //    _isPlatformEffectExit = false;
-    //    return jumpSpeed -FALL_POWER;
-    //}//PlatformEffectExit
 
     /// <summary>
     /// 敵を踏みつけたときに発生するジャンプ量
@@ -168,7 +153,7 @@ public class PlayerJump : MonoBehaviour {
     /// <param name="jumpSpeed">現在のプレイヤーのジャンプ量</param>
     /// <param name="jumpButton">入力したキー</param>
     /// <returns>変更後のジャンプ量</returns>
-    private float JumpUp(float jumpSpeed, string jumpButton) {//if処理が多いので減らす(0914)
+    private float JumpUp(float jumpSpeed, string jumpButton) {
         _keyDownTimer += Time.deltaTime;
         if (Input.GetButtonDown(jumpButton) && _pUnderTrigger.IsUnderTrigger) {//入力直後
             _pAnimator.AudioManager.PlaySE("Jump");
@@ -187,7 +172,7 @@ public class PlayerJump : MonoBehaviour {
         if (Input.GetButton(jumpButton)) { //入力中
             _pUnderTrigger.IsJumpUp = true;
             return jumpSpeed + JUMP_POWER;
-        }
+        }//if
         if (Input.GetButtonUp(jumpButton)) {//入力終了
             _keyDownTimer = KEY_DOWN_TIME;
         }//if
@@ -200,7 +185,7 @@ public class PlayerJump : MonoBehaviour {
     /// </summary>
     /// <param name="jumpSpeed">現在のプレイヤーのジャンプ量</param>
     /// <returns>プレイヤーにかかる重力値</returns>
-    private float JumpWithWall(float jumpSpeed) {//重力上側にする場合 //重力右側、左側の処理もここで作れそう(0916)
+    private float JumpWithWall(float jumpSpeed) {//重力上側にする場合
         RotationChange(this.transform.localEulerAngles.z + 180);
         this.transform.localScale = new Vector2(-this.transform.localScale.x, -this.transform.localScale.y);
         return GRAVITY;
@@ -219,11 +204,11 @@ public class PlayerJump : MonoBehaviour {
         jumpSpeed = LandingJudgment(jumpSpeed);
         if (_pUnderTrigger.IsUnderTrigger) {
             Debug.LogWarning("着地中重力__デバッグの必要あり");
-            return -200;//円状に移動する床から離れてしまう
+            return -200;
         }//if
 
         //左右重力の時にFlipJumpを行い自機のBodyからステージに触れた場合
-        if (_pBody.IsBody != BodyType.wait && _isFlipJumpFall && (int)this.transform.localEulerAngles.z != 0) {//(int)this....は後で追加した変数になる(0130)
+        if (_pBody.IsBody != BodyType.wait && _isFlipJumpFall && (int)this.transform.localEulerAngles.z != 0) {
             //上部のステージに触れたとき
             if (!_pBodyBack.IsBodyBack &&
                 ((this.transform.localEulerAngles.z == 270 && this.transform.localScale.x < 0) ||
@@ -233,7 +218,7 @@ public class PlayerJump : MonoBehaviour {
             RotationChange(0);
             float posX = this.transform.position.x;
             float posY = this.transform.position.y + 3f;
-            this.transform.position = new Vector2(posX,posY);//元々2.5
+            this.transform.position = new Vector2(posX,posY);
             _isFlipJumpFall = false;
         }//if
 
@@ -251,7 +236,7 @@ public class PlayerJump : MonoBehaviour {
             _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;
             _isFlipJumpFall = true;
             return jumpPower;
-        } else if (_sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 3) {//FlipJump状態を継続(0130)
+        } else if (_sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 3) {
             _sideGravityFlipTimer += Time.deltaTime;
         }//if
 
@@ -285,8 +270,6 @@ public class PlayerJump : MonoBehaviour {
             RotationChange(this.transform.localEulerAngles.z + 180);
             this.transform.localScale = new Vector2(-this.transform.localScale.x, this.transform.localScale.y);
             _sideGravityFlipTimer = 0;
-            //元々下のコメント文の条件文に入っていた、要確認(0922)
-            //if (this.transform.localEulerAngles.z != 180 &&sideGravityFlipTimer > SIDE_GRAVITY_FLIP_TIME)sideGravityFlipTimer = 0;
             //FlipJumpを押したとき
             if (this.transform.localEulerAngles.z == 90 || this.transform.localEulerAngles.z == 270) {
                 _pAnimator.AniFall = true;
@@ -305,14 +288,12 @@ public class PlayerJump : MonoBehaviour {
     /// 落下中の処理
     /// </summary>
     private void Falling() {
-
-        if (PastTPY <= transform.position.y || _keyDownTimer <= 0f) {
+        if (PastTPY <= transform.position.y || _keyDownTimer <= 0f) 
             return;
-        }
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp && _keyDownTimer > KEY_DOWN_TIME) {//FlipJump中の処理
             this.transform.localScale = new Vector2(this.transform.localScale.x, -this.transform.localScale.y);
             JumpTypeFlag = EnumJumpTypeFlag.flipFall;
-            _isFlipJumpFall = true;//不具合が出た場合はこの処理を見なおしする(0113)
+            _isFlipJumpFall = true;
         }//if
         if (!_pUnderTrigger.IsUnderTrigger) {//ステージに触れていないとき
             _pAnimator.AniFall = true;
@@ -329,8 +310,7 @@ public class PlayerJump : MonoBehaviour {
     /// </summary>
     /// <param name="TurningAngle">変更したい角度</param>
     public void RotationChange(float anglesZ) {
-        //Debug.Log("angle_" + anglesZ%360);
-        this.transform.localRotation = Quaternion.Euler(//一行だと長くなり見にくくなるので改行した(0918)
+        this.transform.localRotation = Quaternion.Euler(//一行だと長くなり見にくくなるので改行した
                 this.transform.localRotation.x,
                 this.transform.localRotation.y,
                 anglesZ % 360);
@@ -351,7 +331,7 @@ public class PlayerJump : MonoBehaviour {
         if (PastTPY < transform.position.y) {
             _pAnimator.AniFall = false;
         }//if
-        _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;//元々if文に入っていた(0427)if (_sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME) 
+        _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;
         JumpTypeFlag = 0;
         IsJump = false;
         _isFlipJumpFall = false;

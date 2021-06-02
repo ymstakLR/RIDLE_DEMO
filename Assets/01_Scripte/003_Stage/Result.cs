@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 /// <summary>
 /// リザルト画面全般の処理
-/// 更新日時:0414
+/// 更新日時:0602
 /// </summary>
 public class Result : MonoBehaviour {
     private enum RankValue { A, B, C, D, E }//ランク更新用の数値列挙体
@@ -106,7 +106,7 @@ public class Result : MonoBehaviour {
     IEnumerator ResultTextMoveCorutine() {
         yield return new WaitForSeconds(2.5f);
         if (_resultTextTransform.localPosition.x < -1200) {
-            _audioManager.PlayBGM("ClearDemo");
+            _audioManager.PlayBGM("Clear");
             _audioManager.LoopBGM(isLoop: false);
             _isResultBGM = true;
         }//if

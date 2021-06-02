@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の体に接触したときの処理
-/// 更新日時:0401
+/// 更新日時:0602
 /// </summary>
 public class PlayerBodyTrigger : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -35,9 +35,7 @@ public class PlayerBodyTrigger : MonoBehaviour {
     private void Damage() {
         if (!_isDamage || _pAnimator.AniMiss)
             return;
-
         _recoveryTimer += Time.deltaTime;
-
         //ミスから回復する
         if (_recoveryTimer > RECOVERY_TIME) {
             _spriteRenderer.enabled = true;
@@ -46,20 +44,14 @@ public class PlayerBodyTrigger : MonoBehaviour {
             _isDamage = false;
             return;
         }//if
-
         //アニメーションの回復
-        if (_recoveryTimer > RECOVERY_TIME - 1)
+        if (_recoveryTimer > RECOVERY_TIME - 1) {
             _pAnimator.AniDamage = false;
-
+        }//if
         //自機の表示・非表示の変更
         if (_recoveryTimer <= _rendererEnableTime)
             return;
-
-        if (_spriteRenderer.enabled) {
-            _spriteRenderer.enabled = false;
-        } else {
-            _spriteRenderer.enabled = true;
-        }//if
+        _spriteRenderer.enabled = !_spriteRenderer.enabled;
         _rendererEnableTime += (float)0.1;
     }//Damage
 
@@ -80,9 +72,8 @@ public class PlayerBodyTrigger : MonoBehaviour {
     /// </summary>
     /// <param name="col"></param>
     private void EnemyTouch(Collider2D col) {
-        if (!_isDamage && //ダメージ中
-            (col.gameObject.tag == "EnemyAttack" ||
-            col.gameObject.tag == "DamageGimmick")) {
+        if (!_isDamage && 
+            (col.gameObject.tag == "EnemyAttack" ||col.gameObject.tag == "DamageGimmick")) {
             _pAnimator.AniDamage = true;
             _isDamage = true;
             _pLife.LifeDecrease();
@@ -98,7 +89,7 @@ public class PlayerBodyTrigger : MonoBehaviour {
             return;
         if (!_rotatingArrow.IsTouchGoal && !_rotatingArrow.IsTouchKey) {//&& !_rotatingArrow.IsTouchKeyを追加した(0525) SEを鳴らさないため
             _rotatingArrow.IsTouchGoal = true;
-            _pAnimator.AudioManager.PlaySE("KeyGet_Demo");
+            _pAnimator.AudioManager.PlaySE("KeyGet");
         }//if
         if (!_rotatingArrow.IsTouchKey)
             return;

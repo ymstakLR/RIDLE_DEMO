@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 敵の横から触れた場合の判定処理
-/// 更新日時:0408
+/// 更新日時:0602
 /// </summary>
 public class EnemySideDecision : MonoBehaviour {
     public bool SideDecisionCol { get; set; }

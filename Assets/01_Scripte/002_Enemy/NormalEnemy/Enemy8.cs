@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 敵8の移動処理
-/// 更新日時:0409
+/// 更新日時:0603
 /// </summary>
 public class Enemy8 : Enemy1 {
 

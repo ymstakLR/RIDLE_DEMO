@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵6の移動・攻撃処理
-/// 更新日時:0409
+/// 更新日時:0602
 /// </summary>
 public class Enemy6 : Enemy5 {
 

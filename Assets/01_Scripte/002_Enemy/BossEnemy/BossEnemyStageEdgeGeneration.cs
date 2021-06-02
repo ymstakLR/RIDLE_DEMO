@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// ボス戦中のステージ移動範囲変更用処理
-/// 更新日時:0413
+/// 更新日時:0602
 /// </summary>
 public class BossEnemyStageEdgeGeneration : StageEdgeBase {
 

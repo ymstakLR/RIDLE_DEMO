@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機がミスしたときの処理
-/// 更新日時:0405
+/// 更新日時:0602
 /// </summary>
 public class PlayerMiss : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -13,14 +13,14 @@ public class PlayerMiss : MonoBehaviour {
     private float _missPos;
     private bool _isMiss;
 
-    void Start() {
+    private void Start() {
         _pAnimator = this.GetComponent<PlayerAnimator>();
         _retray = GameObject.Find("EventSystem").GetComponent<Retray>();
         _missPos = Camera.main.GetComponent<StageEdgeGeneration>().LowerEndPos ;
     }//Start
     
 
-    void Update() {
+    private void Update() {
         if(_isMiss)
             return;
         FallOffScreen();

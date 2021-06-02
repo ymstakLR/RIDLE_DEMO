@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の移動処理
-/// 更新日時:0407
+/// 更新日時:0602
 /// </summary>
 public class PlayerWork : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -13,10 +13,10 @@ public class PlayerWork : MonoBehaviour {
     private PlayerJump _pJump;
     private PlayerUnderTrigger _pUnderTrigger;
 
-    private readonly int MAX_MOVING_VALUE = 250;//移動値の最大(右移動の場合)//適切な値に変更する(0914)
-    private readonly int MOVING_VALUE = 7;//移動量//適切な値に変更する(0914)
-    private readonly int STOP_VALUE = 10;//キー入力してないときの移動量//適切な値に変更する(0914)
-    private readonly int TURN_AROUND_MOVING_VALUE = 100/*25*/;//振り向き時の移動量//適切な値に変更する(0914)値を変更した(1103)
+    private readonly int MAX_MOVING_VALUE = 250;//移動値の最大
+    private readonly int MOVING_VALUE = 7;//移動量
+    private readonly int STOP_VALUE = 10;//キー入力してないときの移動量
+    private readonly int TURN_AROUND_MOVING_VALUE = 100;//振り向き時の移動量
 
     private Transform _insideTF;
     private Transform _outsideTF;
@@ -31,7 +31,7 @@ public class PlayerWork : MonoBehaviour {
         _pUnderTrigger = transform.Find("UnderTrigger").GetComponent<PlayerUnderTrigger>();
         _insideTF = this.transform.Find("Point/InsideWorkPoint");
         _outsideTF = this.transform.Find("Point/OutsideWorkPoint");
-        _isMovingSpeedInversion = true;//宣言時に初期化できるがコードを見やすくするために分割した(0917)
+        _isMovingSpeedInversion = true;//宣言時に初期化できるがコードを見やすくするために分割した
     }//Start
 
     /// <summary>
@@ -86,17 +86,6 @@ public class PlayerWork : MonoBehaviour {
     /// <param name="movingSpeed">プレイヤーの現在の移動量</param>
     /// <returns>プレイヤーの移動量</returns>
     private int GravityChange(int movingSpeed) {
-        // 重力が左右の場合に下方向にジャンプする場合
-        if (Input.GetButtonDown(_pJump.NORMAL_JUMP) &&
-            (this.transform.localEulerAngles.z == 90 && this.transform.localScale.x == -1 ||
-            this.transform.localEulerAngles.z == 270 && this.transform.localScale.x == 1)) {
-            movingSpeed = -movingSpeed;
-            Debug.Log("存在理由の確認");
-        }//if
-        if (_pJump.JumpTypeFlag == EnumJumpTypeFlag.flipUp && _pUnderTrigger.IsUnderTrigger) {
-            Debug.Log("存在理由の確認");//下のif文の条件文だった
-        }
-
         //下重力以外の時にジャンプボタンを押したとき
         if (_isMovingSpeedInversion) {
             if(_pJump.JumpTypeFlag == EnumJumpTypeFlag.wallFlipFall) {
@@ -112,14 +101,11 @@ public class PlayerWork : MonoBehaviour {
         if (_pUnderTrigger.IsUnderTrigger) {
             _isMovingSpeedInversion = true;
         }//if
-   
         return movingSpeed;
     }//GravityChange
 
     /// <summary>
-    /// ・プレイヤーの向きを変更する処理
-    /// ・MoveWorkメソッドで使用する
-    /// ・この処理は一回しか使用しないがコードを見やすくするために分割した
+    /// プレイヤーの向きを変更する処理
     /// </summary>
     /// <param name="movingDirection">変更後のプレイヤーの向き</param>
     private void DirectionChange(float movingDirection) {//向き変更用処理
@@ -133,8 +119,8 @@ public class PlayerWork : MonoBehaviour {
     }//DirectionChange
 
     /// <summary>
-    /// ・プレイヤーの移動量の更新
-    /// ・MoveWorkメソッドで使用する
+    /// プレイヤーの移動量の更新
+    /// MoveWorkメソッドで使用する
     /// </summary>
     /// <param name="movingSpeed">現在のプレイヤーの移動量</param>
     /// <param name="movingDirection">現在のプレイヤーの向き</param>
@@ -147,7 +133,6 @@ public class PlayerWork : MonoBehaviour {
             } else {
                 movingSpeed += MOVING_VALUE;
             }//if
-
             if (movingSpeed > changeMovingValue) {
                 movingSpeed = (int)changeMovingValue;
             }//if
@@ -168,8 +153,8 @@ public class PlayerWork : MonoBehaviour {
     }//MoveUpdate
 
     /// <summary>
-    /// ・プレイヤーの移動量を減少させる処理
-    /// ・MoveWorkメソッドで使用する
+    /// プレイヤーの移動量を減少させる処理
+    /// MoveWorkメソッドで使用する
     /// </summary>
     /// <param name="movingSpeed">現在のプレイヤーの移動量</param>
     /// <returns>変更後のプレイヤーの移動量</returns>
@@ -212,7 +197,6 @@ public class PlayerWork : MonoBehaviour {
     }//OperationKeyChange
 
 
-    /*ここから下のメソッドはRightAngleWorkメソッドのみで使用するメソッド*/
     /// <summary>
     /// 直角移動(内側移動と外側移動)の処理
     /// PlayerManagerで使用する
@@ -235,7 +219,7 @@ public class PlayerWork : MonoBehaviour {
     /// <param name="movingSpeed">プレイヤーの現在の移動スピードを取得している</param>
     /// <param name="movingDirection">プレイヤーの向き(右向きか左向きか)取得</param>
     private void InsideWork(float movingSpeed,float movingDirection) {
-        //以下の条件式3つは一つにまとめれるが条件式の内容がわかりにくくなるので分割した(0918)
+        //以下の条件式3つは一つにまとめれるが条件式の内容がわかりにくくなるので分割した
         if (!_pBodyForward.IsBodyForward || !_pUnderTrigger.IsUnderTrigger)
             return;
         if ((movingSpeed < 0 && this.transform.localScale.x > 0) ||
@@ -251,7 +235,6 @@ public class PlayerWork : MonoBehaviour {
         }//if
         _pBodyForward.IsBodyForward = false;
         _pBody.IsBody = BodyType.stage;
-        //Debug.Log("InsideWork");
     }//InsideWork
 
     /// <summary>
@@ -262,11 +245,6 @@ public class PlayerWork : MonoBehaviour {
         if (_pUnderTrigger.IsUnderTrigger || 
             _pBody.IsBody != BodyType.stage)
             return;
-        OutsideWorkBase();
-        //Debug.Log("0301_OutsideWork");
-    }//OutsideWork
-
-    public void OutsideWorkBase() {
         _pUnderTrigger.IsUnderTrigger = true;
         this.transform.position = new Vector2(_outsideTF.position.x, _outsideTF.position.y);
         if (this.transform.localScale.x > 0) {//右向きの場合
@@ -274,8 +252,7 @@ public class PlayerWork : MonoBehaviour {
         } else {//左向きの場合
             _pJump.RotationChange(this.transform.localEulerAngles.z + 90);
         }//if
-    }//OutsideWorkBase
-
+    }//OutsideWork
 
     /// <summary>
     /// ステージクリア状態でゴールに触れたときの処理

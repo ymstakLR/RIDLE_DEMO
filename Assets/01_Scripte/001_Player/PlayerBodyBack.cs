@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 背面の当たり判定用の処理
-/// 更新日時:0401
+/// 更新日時:0602
 /// </summary>
 public class PlayerBodyBack : MonoBehaviour {
     public bool IsBodyBack { get; set; }//Stage,PlatformEffectorタグに触れたときの判定

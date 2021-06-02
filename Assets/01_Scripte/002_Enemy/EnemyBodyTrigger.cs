@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 敵の攻撃判定用の処理
-/// 更新日時:0408
+/// 更新日時:0602
 /// </summary>
 public class EnemyBodyTrigger : MonoBehaviour {
     public bool IsEnemyDamage { get; set; }
-    public bool IsStageTouch { get; set; }//現在,BossEnemy1でしか使用していない。今後の使用状況次第ではほかのクラスに役割を移動させる(0512)
+    public bool IsStageTouch { get; set; }//現在,BossEnemy1でしか使用していない。
 
     private void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.tag == "PlayerAttack" && this.gameObject.layer == LayerMask.NameToLayer("EnemyAttack")) {
             IsEnemyDamage = true;
-            Debug.Log("確認1");
         }//if
     }//OnTriggerStay2D
 

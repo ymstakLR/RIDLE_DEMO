@@ -8,7 +8,7 @@ using UnityEngine;
 /// 自機がアームに触れたら、自機を動けなくして捕獲アニメーションにする
 /// クレーンをEnemy4のほうに縮ませる
 /// 自機がEnemy4に触れたら自機にダメージ
-/// 更新日時:0408
+/// 更新日時:0602
 /// </summary>
 public class Enemy4 : EnemyParent {
     private GameObject _armObject;//アームオブジェクト

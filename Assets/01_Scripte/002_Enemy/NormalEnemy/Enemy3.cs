@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵3の処理
-/// 更新日時:0408
+/// 更新日時:0602
 /// </summary>
 public class Enemy3 : EnemyTypeA {
 

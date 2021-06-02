@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 触れたら自機をジャンプさせる処理
-/// 更新日時:0416
+/// 更新日時:0602
 /// </summary>
 public class Spring : MonoBehaviour {
 
@@ -72,7 +72,7 @@ public class Spring : MonoBehaviour {
         if (col.gameObject.tag != "Player")
             return;
         if (!_isElasticity) {
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("Spring_Demo");
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("Spring");
         }//if
         
         col.gameObject.GetComponent<PlayerJump>().RotationChange(0);

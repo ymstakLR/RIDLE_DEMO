@@ -11,9 +11,6 @@ public class BossEnemyManager : MonoBehaviour {
     [SerializeField]
     private int maxLifeNum;//最大体力値
 
-    [SerializeField]
-    protected AudioClip audioClip;
-
     private readonly float RECOVERY_TIME = (float)2;//回復するための時間
 
     public Animator Animator { get; set; }
@@ -115,7 +112,7 @@ public class BossEnemyManager : MonoBehaviour {
         _rendererEnableTime = 0;
         _nowLifeNum--;
         if(_recoveryTimer == 0) {
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("EnemyMiss_Demo");
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("EnemyMiss");
         }//if
     }//EnemyDamage
 
@@ -159,7 +156,7 @@ public class BossEnemyManager : MonoBehaviour {
         if (_nowLifeNum != 0)
             return;
         if(_recoveryTimer == 0) {
-            _audioManager.PlaySE("BossEnemyMiss_Demo");
+            _audioManager.PlaySE("BossEnemyMiss");
             Debug.Log("recovery_" + _recoveryTimer);
         }
         _stageClearManagement.StageStatus = EnumStageStatus.AfterBossBattle;

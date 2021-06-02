@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// メインゲーム中のスコア表示処理
-/// 更新日時:0415
+/// 更新日時:0602
 /// </summary>
 public class Score : MonoBehaviour {
     private int _scoreNum;

@@ -15,6 +15,7 @@ public class MovingObjects_Circle : MonoBehaviour {
     [SerializeField,Tooltip("時計回り判定")]
     private bool isClockCycle;
 
+
     //オブジェクト数が3の場合 OneCircleTimeを1/3にしてそれぞれのオブジェクトに割り当てる
     private readonly float OneCircleTime = (float)6.25;//一周に使用する時間
 
@@ -38,10 +39,10 @@ public class MovingObjects_Circle : MonoBehaviour {
 
     private void CircleMovingWork() {
         for(int i = 1; i <= mMovingObjectList.Count ; i++) {
+            float workSpeed = Time.time * decisionSpeed;
             float cirleCorrection = _circleCorrection * i;
-            float decisionPosX = decisionRadius * Mathf.Sin((Time.time + cirleCorrection) * decisionSpeed);
-            float decisionPosY = decisionRadius * Mathf.Cos((Time.time + cirleCorrection) * decisionSpeed);
-
+            float decisionPosX = decisionRadius * Mathf.Sin(workSpeed + cirleCorrection);
+            float decisionPosY = decisionRadius * Mathf.Cos(workSpeed + cirleCorrection);
             if (isClockCycle) {//回転を逆にする
                 decisionPosY = -decisionPosY;
             }//if

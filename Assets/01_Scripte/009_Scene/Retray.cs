@@ -12,6 +12,7 @@ public class Retray : MonoBehaviour {
     private float MAX_MISS_TIMER = 5f;
 
     private float _missTimer;
+    private float _deltaTime;
 
     private void Awake() {
         Time.timeScale = 1;
@@ -26,11 +27,12 @@ public class Retray : MonoBehaviour {
         }else if(_missTimer > 2) {
             Time.timeScale = 0f;
         }//if
-        _missTimer += (float)0.01;
+        _missTimer += _deltaTime;
     }//Update
 
-    public void SceneRetray(float missTimerNum) {
+    public void SceneRetray(float missTimerNum ,float deltaTime) {
         _missTimer = missTimerNum;
+        _deltaTime = deltaTime;
     }//SceneRetray
 
 }//Retray

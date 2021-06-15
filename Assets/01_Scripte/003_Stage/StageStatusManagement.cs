@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnumStageStatus {//現在のステージ状態
+    StartUp,
     Normal,
     GoalMove,
     ClearCriteria,

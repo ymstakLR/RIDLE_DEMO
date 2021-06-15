@@ -28,7 +28,7 @@ public class PlayerJump : MonoBehaviour {
 
     public EnumJumpTypeFlag JumpTypeFlag { get; set; }
 
-    private readonly int FALL_POWER = 9;//一回しか使わないが変更しやすくするため定数にした(0916)
+    private readonly int FALL_POWER = 12;//一回しか使わないが変更しやすくするため定数にした(0916)
     private readonly int FIRST_JUMP_POWER = 150;//一回しか使わないが変更しやすくするため定数にした(0916)
     private readonly int GRAVITY = -300;
     private readonly int JUMP_POWER = 3;//一回しか使わないが変更しやすくするため定数にした(0916)
@@ -37,7 +37,7 @@ public class PlayerJump : MonoBehaviour {
     public string NORMAL_JUMP { get { return "NormalJump"; } }
     public string FLIP_JUMP { get { return "FlipJump"; } }
 
-    public readonly float SIDE_GRAVITY_FLIP_TIME = (float)0.3;//Workスクリプトで使用するのでpublicになっている(0928)
+    public readonly float SIDE_GRAVITY_FLIP_TIME = (float)0.5;//Workスクリプトで使用するのでpublicになっている(0928)
 
     private float _sideGravityFlipTimer;//左右重力の時にFlipJumpをした時のタイムフラグ
     public float SideGravityFlipTimer { get { return _sideGravityFlipTimer; } }//読み取り専用
@@ -61,10 +61,47 @@ public class PlayerJump : MonoBehaviour {
         _pUnderTrigger = this.transform.Find("UnderTrigger").GetComponent<PlayerUnderTrigger>();
         _pWork = this.transform.GetComponent<PlayerWork>();
 
+        _normalJumpInput = new Dictionary<string, bool>() {
+            {"Button",false},
+            {"ButtonDown",false},
+            {"ButtonUp",false}
+        };
+        _flipJumpInput = new Dictionary<string, bool>() {
+            {"Button",false},
+            {"ButtonDown",false},
+            {"ButtonUp",false}
+        };
+
         JumpTypeFlag = EnumJumpTypeFlag.wait;
         _keyDownTimer = KEY_DOWN_TIME;
         _sideGravityFlipTimer = 2;
     }//Start
+
+    public Dictionary<string, bool> _normalJumpInput;
+    public Dictionary<string, bool> _flipJumpInput;
+
+    public void JumpButtonUpdate() {
+        if (Input.GetButton(NORMAL_JUMP)) {
+            _normalJumpInput["Button"] = true;
+        }
+        if (Input.GetButtonDown(NORMAL_JUMP)) {
+            _normalJumpInput["ButtonDown"] = true;
+        }
+        if (Input.GetButtonUp(NORMAL_JUMP)) {
+            _normalJumpInput["ButtonUp"] = true;
+        }
+        if (Input.GetButton(FLIP_JUMP)) {
+            _flipJumpInput["Button"] = true;
+        }
+        if (Input.GetButtonDown(FLIP_JUMP)) {
+            _flipJumpInput["ButtonDown"] = true;
+        }
+        if (Input.GetButtonUp(FLIP_JUMP)) {
+            _flipJumpInput["ButtonUp"] = true;
+        }
+    }
+
+
 
     /// <summary>
     /// ・プレイヤーのジャンプ量を変更する処理
@@ -80,6 +117,12 @@ public class PlayerJump : MonoBehaviour {
         jumpSpeed = NormalJump(jumpSpeed);//FlipJump中は処理更新しない
         jumpSpeed = FlipJump(jumpSpeed);//NormalJump中は処理更新しない
         jumpSpeed = JumpDown(jumpSpeed);//ジャンプの上昇中は処理更新しない
+        _normalJumpInput["Button"] = false;
+        _normalJumpInput["ButtonDown"] = false;
+        _normalJumpInput["ButtonUp"] = false;
+        _flipJumpInput["Button"] = false;
+        _flipJumpInput["ButtonDown"] = false;
+        _flipJumpInput["ButtonUp"] = false;
         return jumpSpeed;
     }//MoveJump
 
@@ -110,12 +153,12 @@ public class PlayerJump : MonoBehaviour {
     private float NormalJump(float jumpSpeed) {
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp)//FlipJumpボタンを押してるとき
             return jumpSpeed;
-        if (Input.GetButtonDown(NORMAL_JUMP) &&
+        if (_normalJumpInput["ButtonDown"] &&
             _pUnderTrigger.IsUnderTrigger) {//NormalJampボタンを押しているとき
             JumpTypeFlag = EnumJumpTypeFlag.normal;
             _pAnimator.AniJump = true;
         }//if
-        return JumpUp(jumpSpeed, NORMAL_JUMP);
+        return JumpUp(jumpSpeed, _normalJumpInput);
     }//NormalJump
 
     /// <summary>
@@ -134,17 +177,17 @@ public class PlayerJump : MonoBehaviour {
             return JumpWithWall(jumpSpeed);
 
         if (_pUnderTrigger.IsUnderTrigger &&
-            Input.GetButtonDown(FLIP_JUMP) &&
+            _flipJumpInput["ButtonDown"] &&
             JumpTypeFlag < EnumJumpTypeFlag.flipFall) {//FlipJumpボタンを押したとき
             JumpTypeFlag = EnumJumpTypeFlag.flipUp;
         }//if
-
         if (_keyDownTimer == 0) {//このジャンプを行った瞬間の場合 //上の処理に組み込めそうだが条件文が複雑になるので分割した(0916)
             this.transform.localScale = new Vector2(this.transform.localScale.x, -this.transform.localScale.y);
             _pAnimator.AniFall = true;
         }//if
-        return JumpUp(jumpSpeed, FLIP_JUMP);
+        return JumpUp(jumpSpeed, _flipJumpInput);
     }//FlipJump
+
 
     /// <summary>
     /// ・ジャンプ量を上昇させる処理
@@ -153,9 +196,9 @@ public class PlayerJump : MonoBehaviour {
     /// <param name="jumpSpeed">現在のプレイヤーのジャンプ量</param>
     /// <param name="jumpButton">入力したキー</param>
     /// <returns>変更後のジャンプ量</returns>
-    private float JumpUp(float jumpSpeed, string jumpButton) {
+    private float JumpUp(float jumpSpeed, Dictionary<string,bool>jumpInput) {
         _keyDownTimer += Time.deltaTime;
-        if (Input.GetButtonDown(jumpButton) && _pUnderTrigger.IsUnderTrigger) {//入力直後
+        if (jumpInput["ButtonDown"] && _pUnderTrigger.IsUnderTrigger) {//入力直後
             _pAnimator.AudioManager.PlaySE("Jump");
             _keyDownTimer = 0;
             _pUnderTrigger.IsUnderTrigger = false;
@@ -166,16 +209,17 @@ public class PlayerJump : MonoBehaviour {
             _pUnderTrigger.IsJumpUp = false;
         }//if
 
-        if (_keyDownTimer > KEY_DOWN_TIME) //入力時間経過
+        if (_keyDownTimer > KEY_DOWN_TIME) { //入力時間経過
             return jumpSpeed;
-
-        if (Input.GetButton(jumpButton)) { //入力中
-            _pUnderTrigger.IsJumpUp = true;
-            return jumpSpeed + JUMP_POWER;
-        }//if
-        if (Input.GetButtonUp(jumpButton)) {//入力終了
+        }
+        if (jumpInput["ButtonUp"]) {//入力終了
             _keyDownTimer = KEY_DOWN_TIME;
         }//if
+        if (jumpInput["Button"]) { //入力中
+            _pUnderTrigger.IsJumpUp = true;
+            return jumpSpeed +  JUMP_POWER;
+        }//if
+        
         return jumpSpeed;
     }//JumppingUp
 
@@ -216,7 +260,7 @@ public class PlayerJump : MonoBehaviour {
             RotationChange(0);
             float posX = this.transform.position.x;
             float posY = this.transform.position.y + 3f;
-            this.transform.position = new Vector2(posX,posY);
+            this.transform.position = new Vector2(posX, posY);
             _isFlipJumpFall = false;
         }//if
 
@@ -239,7 +283,7 @@ public class PlayerJump : MonoBehaviour {
         }//if
 
         ///左右重力でNormalJumpをする場合
-        if (Input.GetButtonDown(NORMAL_JUMP) &&
+        if (_normalJumpInput["ButtonDown"] &&
             (this.transform.localEulerAngles.z == 90 || this.transform.localEulerAngles.z == 270) &&
             JumpTypeFlag < EnumJumpTypeFlag.wallFall) {
             float jumpPower = GRAVITY;
@@ -263,7 +307,7 @@ public class PlayerJump : MonoBehaviour {
 
 
         //重力が下以外の場合にジャンプボタンを初めて押した場合
-        if ((Input.GetButtonDown(NORMAL_JUMP) || Input.GetButtonDown(FLIP_JUMP)) &&
+        if ((_normalJumpInput["ButtonDown"] || _flipJumpInput["ButtonDown"]) &&
             this.transform.localEulerAngles.z != 0 && JumpTypeFlag < EnumJumpTypeFlag.wallFall) {
             RotationChange(this.transform.localEulerAngles.z + 180);
             this.transform.localScale = new Vector2(-this.transform.localScale.x, this.transform.localScale.y);
@@ -279,6 +323,7 @@ public class PlayerJump : MonoBehaviour {
         if (jumpSpeed > GRAVITY && _keyDownTimer > KEY_DOWN_TIME) {//個々の条件文を変更させる(0914)
             jumpSpeed -= FALL_POWER;
         }//if
+
         return jumpSpeed;
     }//JumppingDown
 
@@ -286,7 +331,7 @@ public class PlayerJump : MonoBehaviour {
     /// 落下中の処理
     /// </summary>
     private void Falling() {
-        if (PastTPY <= transform.position.y || _keyDownTimer <= 0f) 
+        if (PastTPY <= transform.position.y || _keyDownTimer <= 0f)
             return;
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp && _keyDownTimer > KEY_DOWN_TIME) {//FlipJump中の処理
             this.transform.localScale = new Vector2(this.transform.localScale.x, -this.transform.localScale.y);
@@ -375,7 +420,7 @@ public class PlayerJump : MonoBehaviour {
     /// ジャンプボタンを制限させる
     /// バネや敵踏みつけジャンプ量とジャンプボタンのジャンプ量が合わされないようにするための処理
     /// </summary>
-    public void JumpInputLimit(){
+    public void JumpInputLimit() {
         _keyDownTimer = KEY_DOWN_TIME + 1;
     }//JumpInputLimit
 

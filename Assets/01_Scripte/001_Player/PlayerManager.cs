@@ -26,9 +26,16 @@ public class PlayerManager : MonoBehaviour {
         _goalPos = new Vector3(_goalPos.x - 8.25f, _goalPos.y-1 , _goalPos.z);
     }//Start
 
+
     private void FixedUpdate() {//ゲーム時間で一定時間ごとに呼ばれる
+        InputJudge();
         MovePowerUpdate();
     }//FixedUpdate
+
+    private void Update() {
+        _pAnimator.AnimatorMove(WorkPower);//アニメーション更新
+        _pJump.JumpButtonUpdate();
+    }//Update
 
     /// <summary>
     /// 自機の移動量の更新
@@ -55,10 +62,6 @@ public class PlayerManager : MonoBehaviour {
         }//switch
     }//MovePowerUpdate
 
-    private void Update() {
-        _pAnimator.AnimatorMove(WorkPower);//アニメーション更新
-        InputJudge();
-    }//Update
 
     /// <summary>
     /// 入力可能か判定する処理
@@ -78,21 +81,27 @@ public class PlayerManager : MonoBehaviour {
     /// 自機の入力情報反映処理
     /// </summary>
     private void PlayerInput() {
-        if (_stageClearMgmt.StageStatus == EnumStageStatus.Normal ||
-            _stageClearMgmt.StageStatus == EnumStageStatus.BossBattle) {//移動可能な場合
-            JumpPower = _pJump.MoveJump(JumpPower);
-            WorkPower = _pWork.MoveWork(WorkPower);//ジャンプ後の変変数取得が必要になるのでJumpSpeed後に記述する
-            _pWork.RightAngleWork(WorkPower);//角度変更移動
-        } else if (_stageClearMgmt.StageStatus == EnumStageStatus.GoalMove ||
-            _stageClearMgmt.StageStatus == EnumStageStatus.ClearCriteria) {
-            JumpPower = _pJump.MoveJump(JumpPower);
-            (WorkPower, _stageClearMgmt.StageStatus) =
-                _pWork.GoalMoveWork(this.GetComponent<Transform>(), _goalPos, _stageClearMgmt.StageStatus);
-        } else {
-            //停止処理
-            JumpPower = _pJump.JumpStop(JumpPower);
-            WorkPower = 0;
-        }//if
+        switch (_stageClearMgmt.StageStatus) {
+            case EnumStageStatus.Normal:
+            case EnumStageStatus.BossBattle:
+                //操作可能
+                JumpPower = _pJump.MoveJump(JumpPower);
+                WorkPower = _pWork.MoveWork(WorkPower);//ジャンプ後の変変数取得が必要になるのでJumpSpeed後に記述する
+                _pWork.RightAngleWork(WorkPower);//角度変更移動
+                break;
+            case EnumStageStatus.GoalMove:
+            case EnumStageStatus.ClearCriteria:
+                //自動移動
+                JumpPower = _pJump.MoveJump(JumpPower);
+                (WorkPower, _stageClearMgmt.StageStatus) =
+                    _pWork.GoalMoveWork(this.GetComponent<Transform>(), _goalPos, _stageClearMgmt.StageStatus);
+                break;
+            default:
+                //停止
+                JumpPower = _pJump.JumpStop(JumpPower);
+                WorkPower = 0;
+                break;
+        }//switch
     }//PlayerInput
 
 }//PlayerManager

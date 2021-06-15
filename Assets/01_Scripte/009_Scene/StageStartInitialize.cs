@@ -8,25 +8,27 @@ using UnityEngine;
 /// </summary>
 public class StageStartInitialize : MonoBehaviour {
     private Transform _titleText;
+    private StageStatusManagement _stageClearMgmt;
 
     private float _waitTimer;
 
     private void Awake() {
+
         _titleText = this.transform.Find("Text");
-        Time.timeScale = 0f;
+        _stageClearMgmt = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
+        //Time.timeScale = 0f;
         _titleText.localPosition = new Vector3(800, 0,0);
     }//Awake
 
-    private void Update() {
-        Time.timeScale = 0f;
+    private void FixedUpdate() {
         //テキストのみスクロール
         if (_titleText.localPosition.x > 0) {
-            _titleText.localPosition = new Vector3(_titleText.localPosition.x - 15f, 0,0);
+            _titleText.localPosition = new Vector3(_titleText.localPosition.x - 15f, 0, 0);
             return;
         }//if
         //一定時間停止
-        if(_waitTimer < 2) {
-            _waitTimer += 0.02f;
+        if (_waitTimer < 2) {
+            _waitTimer += Time.deltaTime;
             return;
         }//if
         //テキスト・画像のスクロール
@@ -34,8 +36,14 @@ public class StageStartInitialize : MonoBehaviour {
             this.transform.localPosition = new Vector3(this.transform.localPosition.x - 15f, 0, 0);
         } else {
             Time.timeScale = 1f;
+            _stageClearMgmt.StageStatus = EnumStageStatus.Normal;
             Destroy(this);
         }//if
+    }
+
+    private void Update() {
+
+        
     }//Update
 
 }//StageStartInitialize

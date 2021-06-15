@@ -16,12 +16,17 @@ public class PauseButton : MonoBehaviour {
 
     private float _isContinueTimer;
 
+    private float _deltaTime;
+
     void Start() {
         _pauseUI = GameObject.Find("UI/ButtonCanvas");
         _pauseUI.SetActive(false);
         _gameManager = GameObject.Find("GameManager");
         _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
+        Time.timeScale = 1f;
+        _isContinueTimer = 2;
     }//Start
+    
 
     void Update() {
         ContinueWaitTime();
@@ -32,11 +37,11 @@ public class PauseButton : MonoBehaviour {
     /// 再開する時に一定時間待ち状態にしてから再開する処理
     /// </summary>
     private void ContinueWaitTime() {
-        if (_isContinueTimer > 0.25f && _isContinueTimer < 1) {
+        if (_isContinueTimer > 0.75f && _isContinueTimer < 1) {
             Continue();
-            _isContinueTimer += 1;
+            _isContinueTimer = 2;
         } else if (_isContinueTimer < 1) {
-            _isContinueTimer += 0.01f;
+            _isContinueTimer += _deltaTime;
         }//if
     }//ContinueWaitTime
 
@@ -45,7 +50,8 @@ public class PauseButton : MonoBehaviour {
     /// </summary>
     private void PauseJudge() {
         if (!Input.GetButtonDown(PAUSE) ||
-            _stageClearManagement.StageStatus == EnumStageStatus.Clear)
+            _stageClearManagement.StageStatus == EnumStageStatus.Clear||
+            _stageClearManagement.StageStatus == EnumStageStatus.StartUp)
             return;
         PauseInit();
     }//PauseJudge
@@ -55,8 +61,10 @@ public class PauseButton : MonoBehaviour {
     /// </summary>
     private void PauseInit() {
         if (Time.timeScale == 0) {
+            Debug.Log("確認");
             Continue();
         } else {
+            _deltaTime = Time.deltaTime;
             Time.timeScale = 0;
             _pauseUI.SetActive(true);
             _gameManager.GetComponent<ButtonInfo>().ButtonInteractable(true);
@@ -71,7 +79,7 @@ public class PauseButton : MonoBehaviour {
     }//Continue
 
     public void ContinueButton() {
-        if (_isContinueTimer > 0.25) {
+        if (_isContinueTimer > 0.5) {
             _isContinueTimer = 0;
             _gameManager.GetComponent<AudioManager>().PlaySE("ButtonClick");
             _gameManager.GetComponent<ButtonInfo>().ButtonInteractable(false);
@@ -79,7 +87,7 @@ public class PauseButton : MonoBehaviour {
     }//ContinueButton
 
     public void RestartButton() {
-        this.GetComponent<Retray>().SceneRetray(3f);
+        this.GetComponent<Retray>().SceneRetray(3f,_deltaTime);
         _gameManager.GetComponent<AudioManager>().PlaySE("ButtonClick");
         _gameManager.GetComponent<ButtonInfo>().ButtonInteractable(false);
     }//RestartButton

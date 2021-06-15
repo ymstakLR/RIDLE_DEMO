@@ -15,4 +15,12 @@ public class StageEdgeGeneration : StageEdgeBase {
         StageEndPosUpdate(rightEndPos, leftEndPos, raiseEndPos, lowerEndPos, new Vector2(0,0), false);
     }//Awake
 
+    public Pauser test;
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.I)) {
+            Debug.Log("safa");
+            test.Resume();
+        }
+    }
+
 }//StageEdgeGeneration

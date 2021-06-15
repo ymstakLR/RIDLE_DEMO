@@ -35,7 +35,7 @@ public class PlayerMiss : MonoBehaviour {
         float posY = this.transform.position.y;
         if (((angleZ == 0 || angleZ == 180) && posY < _missPos + 5f) ||
             ((angleZ == 90 || angleZ == 270) && posY < _missPos + 6.5f)) {
-            CommonMiss(2.0f);
+            CommonMiss(1.0f);//(2.0f)
         }//if
     }//FallOffScreen
 
@@ -53,7 +53,7 @@ public class PlayerMiss : MonoBehaviour {
     /// </summary>
     /// <param name="retrayTime"></param>
     private void CommonMiss(float retrayTime) {
-        _retray.SceneRetray(retrayTime);
+        _retray.SceneRetray(retrayTime,Time.deltaTime);
         _pAnimator.AudioManager.FadeOutStart(1f);
         TagChange(this.gameObject, "PlayerMiss");
         _isMiss = true;

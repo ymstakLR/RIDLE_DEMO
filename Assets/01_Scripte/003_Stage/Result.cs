@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 /// <summary>
 /// リザルト画面全般の処理
-/// 更新日時:0603
+/// 更新日時:0616
 /// </summary>
 public class Result : MonoBehaviour {
     private enum RankValue { A, B, C, D, E }//ランク更新用の数値列挙体
@@ -70,8 +70,11 @@ public class Result : MonoBehaviour {
         _resultTextPositionX = _resultTextTransform.localPosition.x;
     }//Start
 
-    private void Update() {
+    private void FixedUpdate() {
         StageStatus();
+    }//FixedUpdate
+
+    private void Update() {
         StageEndStatusJudge();
     }//Update
 
@@ -110,8 +113,7 @@ public class Result : MonoBehaviour {
             _isResultBGM = true;
         }//if
         if (_resultTextTransform.localPosition.x < -800) {
-            //supporterInfo.SetActive(true);
-            _resultTextPositionX += (float)7.5;
+            _resultTextPositionX += (float)8;
             _resultTextTransform.localPosition = new Vector2(
                 _resultTextPositionX, _resultTextTransform.localPosition.y);
         } else {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy全体で使用する処理　このスクリプトを継承してEnemy処理を作成していく
-/// 更新日時:0602
+/// 更新日時:0616
 /// </summary>
 public class EnemyParent : MonoBehaviour {
     public AudioManager AudioManager { get; set; }
@@ -92,12 +92,15 @@ public class EnemyParent : MonoBehaviour {
     /// 時期と一定距離離れたら消去する処理(ミスしていないとき)
     /// </summary>
     public void EnemyErasure() {
-        if (60 < Mathf.Abs(_playerObject.transform.position.x - this.transform.position.x) ||
-            40 < Mathf.Abs(_playerObject.transform.position.y - this.transform.position.y)||
-            (_stageClearManagement.StageStatus != EnumStageStatus.Normal && this.tag == "Enemy")) {
-            _appearanceManager.enabled = true;
-            Destroy(this.gameObject);
-        }//if
+        if (60 > Mathf.Abs(_playerObject.transform.position.x - this.transform.position.x) &&
+            40 > Mathf.Abs(_playerObject.transform.position.y - this.transform.position.y))//生成範囲内の場合
+            return;
+        if ((_stageClearManagement.StageStatus == EnumStageStatus.Normal ||
+            _stageClearManagement.StageStatus == EnumStageStatus.Pause) &&//指定のステータスの場合
+            this.tag == "MissEnemy")
+            return;
+        _appearanceManager.enabled = true;
+        Destroy(this.gameObject);
     }//EnemyErasure
 
     /// <summary>

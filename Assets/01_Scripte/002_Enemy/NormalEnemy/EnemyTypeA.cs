@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Aタイプの敵共通の処理
-/// 更新日時:0602
+/// 更新日時:0616
 /// </summary>
 public class EnemyTypeA : EnemyParent {
     public GameObject SideDecisionObject { get; set; }//enemyの子オブジェクトSideDecisionを取得
@@ -46,10 +46,11 @@ public class EnemyTypeA : EnemyParent {
     /// 敵の非表示化
     /// </summary>
     private void EnemyErasureMiss() {
-        if (_stageClearManagement.StageStatus != EnumStageStatus.Normal) {
-            this.GetComponent<Renderer>().enabled = false;
-        } else {
+        if (_stageClearManagement.StageStatus == EnumStageStatus.Normal||
+            _stageClearManagement.StageStatus == EnumStageStatus.Pause) {
             this.GetComponent<Renderer>().enabled = true;
+        } else {
+            this.GetComponent<Renderer>().enabled = false;
         }//if
     }//EnemyErasureMiss
 

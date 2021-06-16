@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// pause関連の処理
-/// 更新日時:0414
+/// 更新日時:0616
 /// </summary>
 public class PauseButton : MonoBehaviour {
     private readonly string PAUSE = "Pause";
@@ -15,8 +15,9 @@ public class PauseButton : MonoBehaviour {
     private StageStatusManagement _stageClearManagement;
 
     private float _isContinueTimer;
-
     private float _deltaTime;
+
+    private EnumStageStatus _stageStatus_BeforePause;//ポーズ前のEnumStageStatus情報
 
     void Start() {
         _pauseUI = GameObject.Find("UI/ButtonCanvas");
@@ -25,6 +26,7 @@ public class PauseButton : MonoBehaviour {
         _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
         Time.timeScale = 1f;
         _isContinueTimer = 2;
+        _stageStatus_BeforePause = EnumStageStatus.Normal; 
     }//Start
     
 
@@ -51,9 +53,10 @@ public class PauseButton : MonoBehaviour {
     private void PauseJudge() {
         if (!Input.GetButtonDown(PAUSE) ||
             _stageClearManagement.StageStatus == EnumStageStatus.Clear||
-            _stageClearManagement.StageStatus == EnumStageStatus.StartUp)
+            (_stageClearManagement.StageStatus == EnumStageStatus.Pause&&_pauseUI.activeSelf == false))
             return;
         PauseInit();
+        Debug.Log(_stageClearManagement.StageStatus);
     }//PauseJudge
 
     /// <summary>
@@ -61,9 +64,10 @@ public class PauseButton : MonoBehaviour {
     /// </summary>
     private void PauseInit() {
         if (Time.timeScale == 0) {
-            Debug.Log("確認");
             Continue();
         } else {
+            _stageStatus_BeforePause = _stageClearManagement.StageStatus;
+            _stageClearManagement.StageStatus = EnumStageStatus.Pause;
             _deltaTime = Time.deltaTime;
             Time.timeScale = 0;
             _pauseUI.SetActive(true);
@@ -73,6 +77,7 @@ public class PauseButton : MonoBehaviour {
     }//PauseInit
 
     public void Continue() {
+        _stageClearManagement.StageStatus = _stageStatus_BeforePause;
         Time.timeScale = 1;
         _pauseUI.transform.Find("EXITButton").gameObject.GetComponent<Selectable>().Select();
         _pauseUI.SetActive(false);
@@ -93,6 +98,8 @@ public class PauseButton : MonoBehaviour {
     }//RestartButton
 
     public void ExitButton() {
+        Continue();
+        _stageClearManagement.StageStatus = EnumStageStatus.Pause;
         _gameManager.GetComponent<SceneChange>().BackSceneChange(isBackSE: false);
     }//ExitButton
 

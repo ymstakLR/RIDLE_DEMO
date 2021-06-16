@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 円周移動する床の処理
+/// 更新日時:0616
+/// </summary>
 public class MovingObjects_Circle : MonoBehaviour {
 
     private Vector2 _centerPos;//中心のPosition //処理が長くなるので変数にした

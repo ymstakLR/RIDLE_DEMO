@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// ステージ開始時の演出処理
-/// 更新日時:0419
+/// 更新日時:0616
 /// </summary>
 public class StageStartInitialize : MonoBehaviour {
     private Transform _titleText;

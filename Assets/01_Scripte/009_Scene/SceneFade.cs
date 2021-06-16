@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// シーンのフェードについての処理
-/// 更新日時:0419
+/// 更新日時:0616
 /// </summary>
 public class SceneFade : MonoBehaviour {
     private Image _fadeOutImage;
@@ -19,7 +19,7 @@ public class SceneFade : MonoBehaviour {
         _fadeOutImage = this.transform.Find("Canvas").transform.Find("Image").GetComponent<Image>();
     }//Start
 
-    private void Update() {
+    private void FixedUpdate() {
         if (!_isFade)
             return;
         FadeJudge();

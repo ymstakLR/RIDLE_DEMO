@@ -24,7 +24,7 @@ public enum SceneChoice {
 
 /// <summary>
 /// シーンを遷移するための処理
-/// 更新日時:0419
+/// 更新日時:0616
 /// </summary>
 public class SceneChange : MonoBehaviour {
 
@@ -43,7 +43,7 @@ public class SceneChange : MonoBehaviour {
         this.GetComponent<ButtonInfo>().ButtonInteractable(false);
         //gameManager.GetComponent<AudioManager>().PlaySE("ButtonClick");
         _gameManager.GetComponent<AudioManager>().PlaySE("Click");
-        SceneFade(1, true);
+        SceneFade(0.5f, true);//SceneFade(1, true);0616
         StartCoroutine(NextSceneCoroutine(sceneChoice));
     }//MainChange
 
@@ -84,7 +84,7 @@ public class SceneChange : MonoBehaviour {
         } else {
             _gameManager.GetComponent<AudioManager>().PlaySE("Click");
         }//if
-        SceneFade(1, true);
+        SceneFade(0.5f, true);//SceneFade(1, true);0616
         StartCoroutine(BackSceneCoroutine());
     }//StageClearChange
 

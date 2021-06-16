@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の移動情報の取得更新を行う
-/// 更新日時:0602
+/// 更新日時:0616
 /// </summary>
 public class PlayerManager : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour {
 
     private void Update() {
         _pAnimator.AnimatorMove(WorkPower);//アニメーション更新
+        if (_stageClearMgmt.StageStatus == EnumStageStatus.Pause)
+            return;
         _pJump.JumpButtonUpdate();
     }//Update
 

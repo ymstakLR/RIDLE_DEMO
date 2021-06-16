@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 触れたら自機をジャンプさせる処理
-/// 更新日時:0602
+/// 更新日時:0616
 /// </summary>
 public class Spring : MonoBehaviour {
 
@@ -25,7 +25,7 @@ public class Spring : MonoBehaviour {
         _underPositionY = (float)-1.5;
     }//Start
 
-    private void Update() {
+    private void FixedUpdate() {
         SpringMove();
         SpringWork();
         SpringReturn();
@@ -95,12 +95,12 @@ public class Spring : MonoBehaviour {
             case 0://上移動
                 col.gameObject.GetComponent<Transform>().position =
                     new Vector2(col.gameObject.transform.position.x, this.GetComponent<Transform>().position.y + (float)7);
-                col.gameObject.GetComponent<PlayerManager>().JumpPower = 400;
+                col.gameObject.GetComponent<PlayerManager>().JumpPower = 450;
                 break;
             case 180://下移動
                 col.gameObject.GetComponent<Transform>().position =
                     new Vector2(col.gameObject.transform.position.x, this.GetComponent<Transform>().position.y - (float)7);
-                col.gameObject.GetComponent<PlayerManager>().JumpPower = -400;
+                col.gameObject.GetComponent<PlayerManager>().JumpPower = -450;
                 break;
         }//switch
         col.gameObject.GetComponent<PlayerJump>().JumpInputLimit();

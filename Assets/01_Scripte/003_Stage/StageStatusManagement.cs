@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnumStageStatus {//現在のステージ状態
-    StartUp,
+    Pause,
     Normal,
     GoalMove,
     ClearCriteria,
@@ -15,7 +15,7 @@ public enum EnumStageStatus {//現在のステージ状態
 
 /// <summary>
 /// ステージ状態の管理処理
-/// 更新日時:0415
+/// 更新日時:0616
 /// </summary>
 public class StageStatusManagement : MonoBehaviour {
     public EnumStageStatus StageStatus { get; set; }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// ボス敵1の処理
-/// 更新日時:0602
+/// 更新日時:0616
 /// </summary>
 public class BossEnemy1 : BossEnemyManager {
     private enum EnumMotionFlag {//モーションフラグの列挙体
@@ -47,12 +47,9 @@ public class BossEnemy1 : BossEnemyManager {
         _randomMin = _randomMax -2;
     }//Start
 
-
-    // Update is called once per frame
-    void Update() {
-        ParentUpdate();
-        if(NowLifeNum == 0) {//ミス判定になった場合
-            Rigidbody.velocity = new Vector2(0,0);
+    private void FixedUpdate() {
+        if (NowLifeNum == 0) {//ミス判定になった場合
+            Rigidbody.velocity = new Vector2(0, 0);
             return;
         }//if
         switch (_motionFlag) {//各モーションに遷移
@@ -69,7 +66,11 @@ public class BossEnemy1 : BossEnemyManager {
                 Fire();
                 break;
         }//switch
+    }
 
+    // Update is called once per frame
+    void Update() {
+        ParentUpdate();
     }//Update
 
     /// <summary>

@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -124,6 +124,7 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy1FireBall.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\ButtonInfo.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\CustomStandaloneInputModule.cs" />
+    <Compile Include="Assets\01_Scripte\003_Stage\Pauser.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerLife.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\StageEdgeGeneration.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\StageStartInitialize.cs" />
@@ -145,7 +146,6 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy2.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy10.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerMiss.cs" />
-    <Compile Include="Assets\01_Scripte\003_Stage\Pauser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\01_Scripte\000_Log\log.txt" />

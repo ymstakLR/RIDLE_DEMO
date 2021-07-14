@@ -1,0 +1,23 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "RIDLE_Wait.moc3",
+		"Textures": [
+			"RIDLE_Wait.2048/texture_00.png"
+		],
+		"Physics": "RIDLE_Wait.physics3.json",
+		"DisplayInfo": "RIDLE_Wait.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	]
+}

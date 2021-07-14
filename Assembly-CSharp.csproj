@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -146,9 +146,157 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy2.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy10.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerMiss.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\ICubismMaskCommandSource.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\GameObjectExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Expression\CubismExpressionData.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismUpdateExecutionOrder.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Demo\CubismLookTarget.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Motion\CubismMotionState.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismBuiltinShaders.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismModel.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\Masking\MaskTexturePreview.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismUserData3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Expression\CubismPlayingExpression.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsSubRig.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeMotionData.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastable.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ICubismDrawOrderHandler.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\ComponentExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismBuiltinMaterials.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\FpsCounter.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\ICubismFadeState.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAutoMouthInput.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ICubismOpacityHandler.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedParameters.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTile.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismDrawable.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\ObjectExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskMaskedJunction.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismUpdateController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Pose\CubismPoseController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ICubismTask.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\ICubismLookTarget.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsNormalization.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsParticle.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\ICubismMaskTextureCommandSource.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ComponentExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Motion\CubismMotionPriority.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismSortingMode.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Expression\CubismExpressionList.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycaster.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkParameter.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismParameter.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismHitDrawable.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRenderer.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAudioSamplingQuality.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismDontMoveOnReimportAttribute.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\UserData\CubismUserDataTag.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionDirection.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\ByteExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsMath.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Pose\CubismPosePart.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismMouthController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTilePool.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismPhysics3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismModel3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\IntExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRendererExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedDrawables.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\BenchmarkController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\CubismLookAxis.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterStore.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismMoveOnReimportCopyComponentsOnly.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedParts.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTexture.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Pose\CubismPoseData.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\ModelSpawner.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\CubismLookParameter.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Motion\CubismMotionController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeStateObserver.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\TotalElapsedTime.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeCurveType.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\Raycasting\RaycastHitDisplay.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsOutput.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismSortingModeExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeMotionList.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismMotion3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismPartsInspector.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismAutoEyeBlinkInput.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismDynamicDrawableData.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismPart.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\ICubismUpdatable.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismDisplayInfoPartName.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismPose3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\LookAt\Billboarder.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ArrayExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastablePrecision.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismCanvasInformation.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsRig.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskProperties.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastHit.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismMoc.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterBlendMode.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskCommandBuffer.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\CubismLookTargetBehaviour.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedMemory.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Expression\CubismExpressionPreview.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismDisplayInfo3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Demo\CubismSampleController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\CubismLookController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\UserData\CubismUserDataTargetType.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismCoreDll.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Expression\CubismExpressionController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParametersInspector.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\UserData\CubismUserDataBody.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedCanvasInformation.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismRenderController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismTaskableModel.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAudioMouthInput.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsInput.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\AsyncToggler.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Motion\CubismMotionLayer.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysics.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadePlayingMotion.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Motion\CubismMotionPreview.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\FrameRateMeasurer.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismDisplayInfoParameterName.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismMouthParameter.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsSourceComponent.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedModel.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismJsonParser.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismRenderer.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismTaskQueue.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismExp3Json.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\FrameRateUiHolder.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismShaderVariables.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionParameter.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeMath.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Tasking\CubismBuiltinAsyncTaskHandler.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismLogging.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedMoc.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedArrayView.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTransform.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />
     <None Include="Assets\01_Scripte\000_Log\log.txt" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\x86\Live2DCubismCore.dll" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Mask.shader" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Unlit.shader" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\x64\Live2DCubismCore.dll" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\arm64\Live2DCubismCore.dll" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\CubismCG.cginc" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\RedistributableFiles.txt" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\arm\Live2DCubismCore.dll" />
+    <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86\Live2DCubismCore.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -821,8 +969,7 @@
       <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

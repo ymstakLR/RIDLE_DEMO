@@ -5,38 +5,47 @@ using System;
 using System.IO;
 using UnityEditor;
 
+
 [Serializable]
-public struct StageData {
-    public List<string> deck;
-    public int money;
-}
-public struct InfoData {
-    public string[,] deck;
-}
+public  class StageData {
+    public List<string> nameList;
+    public List<string> rankList;
+    public List<string> scoreList;
+    public List<string> timeList;
+}//StageData
+
 
 public static class SaveManager {
 
-    public static StageData sd;
-    public static InfoData id;
     const string SAVE_FILE_PATH = "saveData.json";
 
-    public static void saveDeck(List<string> _deck) {
-        sd.deck = _deck;
-        save();
-    }
-    public static void saveStageInfo(string[,] _info) {
-        id.deck = _info;
-        save();
+    public static StageData stageData = new StageData();
+
+
+    public static void SaveStageList(List<List<string>> list) {
+        stageData.nameList = list[0];
+        stageData.rankList = list[1];
+        stageData.scoreList = list[2];
+        stageData.timeList = list[3];
+        Save();
     }
 
-    public static void saveMoney(int _money) {
-        sd.money = _money;
-        save();
-    }
+    public static void LogOutput() {
+        Debug.Log("LogOutputの開始");
+        for (int i = 0; i < stageData.nameList.Count; i++) {
+            Debug.Log((i+1).ToString()+"リスト目の表示");
+            Debug.Log(stageData.nameList[i]);
+            Debug.Log(stageData.rankList[i]);
+            Debug.Log(stageData.scoreList[i]);
+            Debug.Log(stageData.timeList[i]);
+        }//for
+    }//LogOutput
 
-    public static void save() {
-        //string json = JsonUtility.ToJson(sd);//SaveData情報
-        string json = JsonUtility.ToJson(id);//SaveData情報
+
+    public static void Save() {
+        string json = JsonUtility.ToJson(stageData, true);//SaveData情報
+
+        Debug.Log(json.ToString());
         string path = Directory.GetCurrentDirectory();//プロジェクトフォルダまでのパス
         path += ("/Assets/Test/" + SAVE_FILE_PATH);
         StreamWriter writer = new StreamWriter(path, false);
@@ -45,17 +54,20 @@ public static class SaveManager {
         writer.Close();
     }
 
-    public static void load() {
+    public static void Load() {
         try {
             string path = Directory.GetCurrentDirectory();
-            FileInfo info = new FileInfo(path + "/" + SAVE_FILE_PATH);
+            FileInfo info = new FileInfo(path + "/Assets/Test/" + SAVE_FILE_PATH);
             StreamReader reader = new StreamReader(info.OpenRead());
             string json = reader.ReadToEnd();
             //sd = JsonUtility.FromJson<StageData>(json);
-            id = JsonUtility.FromJson<InfoData>(json);
+            stageData = JsonUtility.FromJson<StageData>(json);
+            LogOutput();
         } catch (Exception e) {
             //sd = new StageData();
-            id = new InfoData();
+            stageData = new StageData();
         }
+        
     }
+
 }

@@ -68,6 +68,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismPose3Json.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\StageEdgeBase.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\MovingObjects_Circle.cs" />
+    <Compile Include="Assets\Test\SaveManagerTest.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsRig.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskProperties.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastHit.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Assets\01_Scripte\001_Player\PlayerLife.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsSubRig.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismBuiltinMaterials.cs" />
+    <Compile Include="Assets\Test\SaveManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismDrawable.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ICubismTask.cs" />
@@ -278,8 +280,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Test\SaveManager.cs" />
-    <Compile Include="Assets\Test\SaveManagerTest.cs" />
     <None Include="Assets\01_Scripte\000_Log\log.txt" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Mask.shader" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Unlit.shader" />

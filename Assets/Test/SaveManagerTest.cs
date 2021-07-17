@@ -2,41 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveManagerTest : MonoBehaviour
-{
-    public List<string> stageData;
-    string[,] stageDataInfo;
-    
+public class SaveManagerTest : MonoBehaviour {
+
+
+    public List<List<string>> stageData = new List<List<string>>();
+
+    public List<string> nameList = new List<string>();
+    public List<string> rankList = new List<string>();
+    public List<string> scoreList = new List<string>();
+    public List<string> timeList = new List<string>();
+
     // Start is called before the first frame update
-    void Start()
-    {
-        stageDataInfo = new string[2, 4];
-        stageDataInfo[0, 0] = "ステージ";
-        stageDataInfo[0, 1] = "ランク";
-        stageDataInfo[0, 2] = "スコア";
-        stageDataInfo[0, 3] = "タイム";
+    void Start() {
+        nameList.Insert(0, "ステージ1");
+        nameList.Insert(1, "Stage2");
 
-        stageDataInfo[0, 0] = "stage";
-        stageDataInfo[0, 1] = "lank";
-        stageDataInfo[0, 2] = "score";
-        stageDataInfo[0, 3] = "time";
+        rankList.Insert(0, "A");
+        rankList.Insert(1, "E");
 
-        stageData.Insert(0,"ランク");
-        stageData.Insert(1, "スコア");
-        stageData.Insert(2, "タイム");
-        SaveManager.load();
-        //SaveManager.saveDeck(stageData);
-        SaveManager.saveStageInfo(stageDataInfo);
-        //SaveManager.saveMoney(1);
-        //SaveManager.saveMoney(100);
-        //SaveManager.saveMoney(10000);
-        //Debug.Log(SaveManager.sd.money);
-        //SaveManager.save();
+        scoreList.Insert(0, "123");
+        scoreList.Insert(1, "456789");
+
+        timeList.Insert(0, "0:25");
+        timeList.Insert(1, "9:59");
+
+        stageData.Insert(0, nameList);
+        stageData.Insert(1, rankList);
+        stageData.Insert(2, scoreList);
+        stageData.Insert(3, timeList);
+
+        SaveManager.Load();
+        //SaveManager.SaveStageList(stageData);
+        //SaveManager.LogOutput();
+        Debug.Log(SaveManager.stageData.nameList[1]);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }

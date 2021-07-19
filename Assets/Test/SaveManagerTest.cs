@@ -14,27 +14,25 @@ public class SaveManagerTest : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        nameList.Insert(0, "ステージ1");
-        nameList.Insert(1, "Stage2");
+        SaveManager.Load();
+        nameList.AddRange(SaveManager.stageData.nameList);
+        rankList.AddRange(SaveManager.stageData.rankList);
+        scoreList.AddRange(SaveManager.stageData.scoreList);
+        timeList.AddRange(SaveManager.stageData.timeList);
+        
+       
+        nameList[1] = "すてーじ2";
+        rankList[1] = "A";
+        scoreList[1] = "1000";
+        timeList[1] = "1:25";
 
-        rankList.Insert(0, "A");
-        rankList.Insert(1, "E");
-
-        scoreList.Insert(0, "123");
-        scoreList.Insert(1, "456789");
-
-        timeList.Insert(0, "0:25");
-        timeList.Insert(1, "9:59");
 
         stageData.Insert(0, nameList);
         stageData.Insert(1, rankList);
         stageData.Insert(2, scoreList);
         stageData.Insert(3, timeList);
 
-        SaveManager.Load();
-        //SaveManager.SaveStageList(stageData);
-        //SaveManager.LogOutput();
-        Debug.Log(SaveManager.stageData.nameList[1]);
+        SaveManager.SaveStageList(stageData);
     }
 
     // Update is called once per frame

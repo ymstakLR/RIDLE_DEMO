@@ -22,18 +22,27 @@ public struct OptionData {
     public bool isFullscreen;
 }//OptionData
 
+[Serializable]
+public struct UnlockData {
+    public List<bool> unlockList;
+}
+
 /// <summary>
 /// ゲームで使用するデータの管理処理
 /// 更新日時:0720
 /// </summary>
 public static class SaveManager {
     const string SAVE_DATA_PATH = "/Assets/Test/";
+    const int STAGE_NUM = 3;
 
     const string STAGE_FILE_PATH = SAVE_DATA_PATH+"stageData.json";
     public static StageData stageData;
 
     const string OPTION_FILE_PATH = SAVE_DATA_PATH+"optionData.json";
     public static OptionData optionData;
+
+    const string UNLOCK_FILE_PATH = SAVE_DATA_PATH + "unlockData.json";
+    public static UnlockData unlockData;
 
     /// <summary>
     /// ステージデータ更新処理
@@ -66,6 +75,13 @@ public static class SaveManager {
         Debug.Log("オプションデータの更新終了");
     }//OptionDataUpdate
 
+    public static void UnlockDataUpdate(List<bool> list) {
+        unlockData.unlockList = list;
+        string jsonData = JsonUtility.ToJson(unlockData, true);
+        DataSave(jsonData, UNLOCK_FILE_PATH);
+        Debug.Log("アンロックデータの更新終了");
+    }
+
     /// <summary>
     /// データの保存処理
     /// </summary>
@@ -85,17 +101,23 @@ public static class SaveManager {
     /// </summary>
     public static void DataInit() {
         string path = Directory.GetCurrentDirectory();
+        if (File.Exists(path + STAGE_FILE_PATH)) {//指定のファイルが存在する場合
+            Debug.Log("ステージデータの読み込み");
+            DataLoad(STAGE_FILE_PATH);
+        } else {
+            StageDataGenerate();
+        }//if
         if (File.Exists(path + OPTION_FILE_PATH)) {
             Debug.Log("オプションデータの読み込み");
             DataLoad(OPTION_FILE_PATH);
         } else {
             OptionDataGenerate();
         }//if
-        if (File.Exists(path + STAGE_FILE_PATH)) {//指定のファイルが存在する場合
-            Debug.Log("ステージデータの読み込み");
-            DataLoad(STAGE_FILE_PATH);
+        if (File.Exists(path + UNLOCK_FILE_PATH)) {//指定のファイルが存在する場合
+            Debug.Log("アンロックデータの読み込み");
+            DataLoad(UNLOCK_FILE_PATH);
         } else {
-            StageDataGenerate();
+            UnlockDataGenerate();
         }//if
     }//DataLoad
 
@@ -114,6 +136,9 @@ public static class SaveManager {
             case OPTION_FILE_PATH:
                 optionData = JsonUtility.FromJson<OptionData>(json);
                 break;
+            case UNLOCK_FILE_PATH:
+                unlockData = JsonUtility.FromJson<UnlockData>(json);
+                break;
         }//switch
         reader.Close();
     }//DataLoad
@@ -129,8 +154,8 @@ public static class SaveManager {
         List<string> rList = new List<string>();
         List<string> sList = new List<string>();
         List<string> tList = new List<string>();
-        for (int i = 0; i < 2; i++) {
-            nList.Insert(i, "Stage" + (i + 1));
+        for (int i = 0; i <= STAGE_NUM; i++) {
+            nList.Insert(i, "Stage" + i);
             rList.Insert(i, "E");
             sList.Insert(i, "0");
             tList.Insert(i, "9.59");
@@ -158,4 +183,16 @@ public static class SaveManager {
         string jsonData = JsonUtility.ToJson(optionData, true);
         DataSave(jsonData, OPTION_FILE_PATH);
     }//OptionDataInit
+
+    public static void UnlockDataGenerate() {
+        Debug.Log("アンロックデータの初期化");
+        unlockData = new UnlockData();
+        List<bool> list = new List<bool>();
+        for(int i = 0; i < STAGE_NUM * 4; i++) {
+            list.Insert(i, false);
+        }
+        unlockData.unlockList = list;
+        string jsonData = JsonUtility.ToJson(unlockData, true);
+        DataSave(jsonData, UNLOCK_FILE_PATH);
+    }
 }//SaveManager

@@ -27,7 +27,9 @@ public class SaveDataManager : MonoBehaviour {
 
 
     private void Awake() {
+        SaveManager.DataInit();
         AudioSet(this.GetComponent<AudioManager>());
+        SaveDataUpdate.SetResolution();
     }//Awake
 
     /// <summary>
@@ -35,10 +37,8 @@ public class SaveDataManager : MonoBehaviour {
     /// </summary>
     /// <param name="audioManager"></param>
     private void AudioSet(AudioManager audioManager) {
-        audioManager.BGMAudio.volume = float.Parse(PlayerPrefs.GetString(EnumSaveKey.BGMVol.ToString(), 0.5.ToString()));
-        DataSave(EnumSaveKey.BGMVol.ToString(), audioManager.BGMAudio.volume.ToString());
-        audioManager.SEAudio.volume = float.Parse(PlayerPrefs.GetString(EnumSaveKey.SEVol.ToString(), 0.5.ToString()));
-        DataSave(EnumSaveKey.SEVol.ToString(), audioManager.SEAudio.volume.ToString());
+        audioManager.BGMAudio.volume = SaveManager.optionData.bgmVol/10f;//Vol/10と記述すると整数(0)になる
+        audioManager.SEAudio.volume = SaveManager.optionData.seVol/10f;
     }
 
     /// <summary>

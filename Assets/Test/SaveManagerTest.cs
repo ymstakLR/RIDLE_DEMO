@@ -23,8 +23,8 @@ public class SaveManagerTest : MonoBehaviour {
     public List<bool> unlockData = new List<bool>();
 
     // Start is called before the first frame update
-    void Start() {
-        SaveManager.DataInit();
+    void Awake() {
+        //SaveManager.DataInit();
     }
 
     // Update is called once per frame
@@ -58,5 +58,8 @@ public class SaveManagerTest : MonoBehaviour {
             unlockData[1] = true;
             SaveManager.UnlockDataUpdate(unlockData);
         }//if
+        if (Input.GetKeyDown(KeyCode.F4)) {
+            SaveDataUpdate.BGMVolumeUpadate(9);
+        }
     }//Update
 }//SaveManagerTest

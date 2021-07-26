@@ -12,6 +12,7 @@ public class StageDataDisp : MonoBehaviour {
 
     private void Start() {
         _saveDataManager = GameObject.Find("GameManager").GetComponent<SaveDataManager>();
+        Debug.LogError("S");
         StageDataSearch();
     }//Start
 
@@ -19,13 +20,20 @@ public class StageDataDisp : MonoBehaviour {
     /// ステージデータ情報を探す処理
     /// </summary>
     private void StageDataSearch() {//ここの処理はネストが深いので浅くできる方法を検討する(0503)
+        for(int i = 1; i < SaveManager.stageData.nameList.Count; i++) {
+            Debug.Log(i + "つめのデータ:" + SaveManager.stageData.nameList[i].ToString());
+        }
+
+
         foreach (EnumSaveKey key in System.Enum.GetValues(typeof(EnumSaveKey))) {
             foreach (Transform childText in this.transform) {
+                Debug.LogError("foreach_" + childText.ToString());
                 if (key.ToString() == childText.name.ToString()) {
                     StageDataUpdate(key,childText.GetComponent<Text>());
                 }//if
             }//foreach
         }//foreach
+
     }//StageDataSearch
 
     /// <summary>

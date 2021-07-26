@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// オプション画面の各種ボタン処理
-/// 更新日時:0417
+/// 更新日時:0726
 /// </summary>
 public class OptionsButtonMove : MonoBehaviour {
 
@@ -24,6 +24,7 @@ public class OptionsButtonMove : MonoBehaviour {
 
     //全画面変更関連
     private Text _fullScreenText;
+    private bool _isFullScreen;
 
     private bool _isInit;//この変数はなく世相
 
@@ -81,12 +82,12 @@ public class OptionsButtonMove : MonoBehaviour {
             case "BGMSlider":
                 _audioManager.BGMAudio.volume = slider.value;
                 _audioManager.BGMSettingVolume = _audioManager.BGMAudio.volume;
-                _saveDataManager.DataSave(EnumSaveKey.BGMVol.ToString(), _audioManager.BGMAudio.volume.ToString());
+                SaveDataUpdate.BGMVolumeUpadate(_audioManager.BGMAudio.volume);
                 BarActive(_audioManager.BGMAudio, slider);
                 break;
             case "SESlider":
                 _audioManager.SEAudio.volume = slider.value;
-                _saveDataManager.DataSave(EnumSaveKey.SEVol.ToString(), _audioManager.SEAudio.volume.ToString());
+                SaveDataUpdate.SEVolumeUpdate(_audioManager.SEAudio.volume);
                 BarActive(_audioManager.SEAudio, slider);
                 if (_isInit) {
                     _audioManager.PlaySE("ButtonClick");
@@ -125,11 +126,13 @@ public class OptionsButtonMove : MonoBehaviour {
     /// <param name="clickButton"></param>
     public void ResolutionChangeButton(GameObject clickButton) {
         _audioManager.PlaySE("ButtonClick");
+        //表示テキストの更新
         Text changeNumText = clickButton.transform.GetChild(0).GetComponent<Text>();
         int xSize = int.Parse(changeNumText.text.ToString().Substring(0, 4));
         int ySize = int.Parse(changeNumText.text.ToString().Substring(5, changeNumText.text.Length - 5));
         _numericalValueText.text = xSize + "×" + ySize;
-        Screen.SetResolution(xSize, ySize, Screen.fullScreen);
+        //データ保存と反映
+        SaveDataUpdate.ResolutionUpdate(xSize, ySize);
         ResolutionChangeCancel(clickButton);
     }//ResolutionChangeButton
 
@@ -148,13 +151,16 @@ public class OptionsButtonMove : MonoBehaviour {
     /// </summary>
     public void FullScreenButton() {
         _audioManager.PlaySE("ButtonClick");
-        if (Screen.fullScreen) {
-            Screen.fullScreen = false;
+        if (_isFullScreen) {
+            Debug.Log("2");
+            _isFullScreen = false;
             _fullScreenText.text = "OFF";
         } else {
-            Screen.fullScreen = true;
+            Debug.Log("1");
+            _isFullScreen = true;
             _fullScreenText.text = "ON";
         }//if
+        SaveDataUpdate.FullScreenCheackUpdate(_isFullScreen);
     }//FullScreenButton
 
     /// <summary>

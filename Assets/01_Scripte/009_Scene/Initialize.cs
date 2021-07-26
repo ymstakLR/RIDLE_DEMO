@@ -12,7 +12,7 @@ public class Initialize : MonoBehaviour {
     [RuntimeInitializeOnLoadMethod]
     static void OnRuntimeMethodLoad() {
         // スクリーンサイズの指定
-        Screen.SetResolution(Screen.width, Screen.height, Screen.fullScreen);
+        SaveDataUpdate.SetResolution();
     }//OnRuntimeMethodLoad
 
 }//Initialize

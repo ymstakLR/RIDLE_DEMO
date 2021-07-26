@@ -35,13 +35,13 @@ public static class SaveManager {
     const string SAVE_DATA_PATH = "/Assets/Test/";
     const int STAGE_NUM = 3;
 
-    const string STAGE_FILE_PATH = SAVE_DATA_PATH+"stageData.json";
+    const string STAGE_FILE_PATH ="stageData.json";
     public static StageData stageData;
 
-    const string OPTION_FILE_PATH = SAVE_DATA_PATH+"optionData.json";
+    const string OPTION_FILE_PATH ="optionData.json";
     public static OptionData optionData;
 
-    const string UNLOCK_FILE_PATH = SAVE_DATA_PATH + "unlockData.json";
+    const string UNLOCK_FILE_PATH ="unlockData.json";
     public static UnlockData unlockData;
 
     /// <summary>
@@ -88,7 +88,7 @@ public static class SaveManager {
     /// <param name="json">保存するjsonData</param>
     /// <param name="filePath">保存するファイルパス</param>
     public static void DataSave(string json, string filePath) {
-        string path = Directory.GetCurrentDirectory();//プロジェクトフォルダまでのパス
+        string path = Test();
         path = path + filePath;
         StreamWriter writer = new StreamWriter(path, false);
         writer.WriteLine(json);
@@ -100,7 +100,8 @@ public static class SaveManager {
     /// 保存データの読み込み処理
     /// </summary>
     public static void DataInit() {
-        string path = Directory.GetCurrentDirectory();
+        Debug.LogError("DataInitStart");
+        string path = Test();
         if (File.Exists(path + STAGE_FILE_PATH)) {//指定のファイルが存在する場合
             Debug.Log("ステージデータの読み込み");
             DataLoad(STAGE_FILE_PATH);
@@ -126,7 +127,7 @@ public static class SaveManager {
     /// </summary>
     /// <param name="dataPath">読み込むデータファイルのパス情報</param>
     public static void DataLoad(string loadFilePath) {
-        FileInfo info = new FileInfo(Directory.GetCurrentDirectory()+loadFilePath);
+        FileInfo info = new FileInfo(Test()+loadFilePath);
         StreamReader reader = new StreamReader(info.OpenRead());
         string json = reader.ReadToEnd();
         switch (loadFilePath) {
@@ -195,4 +196,16 @@ public static class SaveManager {
         string jsonData = JsonUtility.ToJson(unlockData, true);
         DataSave(jsonData, UNLOCK_FILE_PATH);
     }
+
+
+    public static string Test() {
+        string path="";
+        #if UNITY_EDITOR
+            path = Directory.GetCurrentDirectory()+"/Assets/Test/";
+        #else
+            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');    
+        #endif
+        return path;
+    }//Test
+
 }//SaveManager

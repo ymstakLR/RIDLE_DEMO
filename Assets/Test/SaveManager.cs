@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
+
 
 [Serializable]
 public struct StageDataStruct {
@@ -29,7 +30,7 @@ public struct UnlockData {
 
 /// <summary>
 /// ゲームで使用するデータの管理処理
-/// 更新日時:0720
+/// 更新日時:0727
 /// </summary>
 public static class SaveManager {
     const string SAVE_DATA_PATH = "/Assets/Test/";
@@ -69,26 +70,29 @@ public static class SaveManager {
         optionData.resolutionH = (int)arrayList[2];
         optionData.resolutionW = (int)arrayList[3];
         optionData.isFullscreen = (bool)arrayList[4];
-
         string jsonData = JsonUtility.ToJson(optionData, true);
         DataSave(jsonData, OPTION_FILE_PATH);
         Debug.Log("オプションデータの更新終了");
     }//OptionDataUpdate
 
+    /// <summary>
+    /// アンロックデータの更新処理
+    /// </summary>
+    /// <param name="list">データ更新するリスト</param>
     public static void UnlockDataUpdate(List<bool> list) {
         unlockData.unlockList = list;
         string jsonData = JsonUtility.ToJson(unlockData, true);
         DataSave(jsonData, UNLOCK_FILE_PATH);
         Debug.Log("アンロックデータの更新終了");
-    }
+    }//UnlockDataUpdate
 
     /// <summary>
     /// データの保存処理
     /// </summary>
     /// <param name="json">保存するjsonData</param>
     /// <param name="filePath">保存するファイルパス</param>
-    public static void DataSave(string json, string filePath) {
-        string path = Test();
+    private static void DataSave(string json, string filePath) {
+        string path = SaveFilePathSetting();
         path = path + filePath;
         StreamWriter writer = new StreamWriter(path, false);
         writer.WriteLine(json);
@@ -101,7 +105,7 @@ public static class SaveManager {
     /// </summary>
     public static void DataInit() {
         Debug.LogError("DataInitStart");
-        string path = Test();
+        string path = SaveFilePathSetting();
         if (File.Exists(path + STAGE_FILE_PATH)) {//指定のファイルが存在する場合
             Debug.Log("ステージデータの読み込み");
             DataLoad(STAGE_FILE_PATH);
@@ -126,8 +130,8 @@ public static class SaveManager {
     /// データ読み込み処理
     /// </summary>
     /// <param name="dataPath">読み込むデータファイルのパス情報</param>
-    public static void DataLoad(string loadFilePath) {
-        FileInfo info = new FileInfo(Test()+loadFilePath);
+    private static void DataLoad(string loadFilePath) {
+        FileInfo info = new FileInfo(SaveFilePathSetting()+loadFilePath);
         StreamReader reader = new StreamReader(info.OpenRead());
         string json = reader.ReadToEnd();
         switch (loadFilePath) {
@@ -148,7 +152,7 @@ public static class SaveManager {
     /// ステージデータの初期化処理
     /// </summary>
     /// 
-    public static void StageDataGenerate() {
+    private static void StageDataGenerate() {
         Debug.Log("ステージデータの初期化");
         stageData = new StageDataStruct();
         List<string> nList = new List<string>();
@@ -159,7 +163,7 @@ public static class SaveManager {
             nList.Insert(i, "Stage" + i);
             rList.Insert(i, "E");
             sList.Insert(i, "0");
-            tList.Insert(i, "9.59");
+            tList.Insert(i, "9:59");
         }//for
         stageData.nameList = nList;
         stageData.rankList = rList;
@@ -173,7 +177,7 @@ public static class SaveManager {
     /// オプションデータの初期化処理
     /// </summary>
     /// 
-    public static void OptionDataGenerate() {
+    private static void OptionDataGenerate() {
         Debug.Log("オプションデータの初期化");
         optionData = new OptionDataStruct();
         optionData.bgmVol = 5;
@@ -185,7 +189,10 @@ public static class SaveManager {
         DataSave(jsonData, OPTION_FILE_PATH);
     }//OptionDataInit
 
-    public static void UnlockDataGenerate() {
+    /// <summary>
+    /// アンロックデータの初期化処理
+    /// </summary>
+    private static void UnlockDataGenerate() {
         Debug.Log("アンロックデータの初期化");
         unlockData = new UnlockData();
         List<bool> list = new List<bool>();
@@ -195,10 +202,13 @@ public static class SaveManager {
         unlockData.unlockList = list;
         string jsonData = JsonUtility.ToJson(unlockData, true);
         DataSave(jsonData, UNLOCK_FILE_PATH);
-    }
+    }//UnlockDataGenerate
 
-
-    public static string Test() {
+    /// <summary>
+    /// ファイルを保存するパスを設定する処理
+    /// </summary>
+    /// <returns></returns>
+    private static string SaveFilePathSetting() {
         string path="";
         #if UNITY_EDITOR
             path = Directory.GetCurrentDirectory()+"/Assets/Test/";
@@ -206,6 +216,6 @@ public static class SaveManager {
             path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');    
         #endif
         return path;
-    }//Test
+    }//SaveFilePathSetting
 
 }//SaveManager

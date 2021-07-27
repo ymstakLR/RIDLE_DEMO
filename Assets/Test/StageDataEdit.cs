@@ -39,15 +39,25 @@ public static class StageDataEdit{
     /// <param name="stageRank">更新するステージランク</param>
     /// <param name="stageScore">更新するステージスコア</param>
     /// <param name="stageTime">更新するステージタイム</param>
-    private static void StageDataUpdate(int stageNum,
+    public static void StageDataUpdate(
         string stageName,string stageRank,
         string stageScore,string stageTime) {
         StageDataLoad();
+        int stageNum = StageDataIdentification(stageName);
+        Debug.Log("StageNum_" + stageNum);
         _nameList[stageNum] = stageName;
         _rankList[stageNum] = stageRank;
         _scoreList[stageNum] = stageScore;
         _timeList[stageNum] = stageTime;
         StageDataSave();
     }//StageDataUpdate
+
+    public static int StageDataIdentification(string stageName) {
+        int stageNum = 0;
+        while (_nameList[stageNum].ToString() != stageName) {
+            stageNum++;
+        }
+        return stageNum;
+    }
 
 }

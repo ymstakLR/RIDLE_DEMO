@@ -1,6 +1,6 @@
 {
-    "bgmVol": 1,
-    "seVol": 1,
+    "bgmVol": 0,
+    "seVol": 0,
     "resolutionH": 1980,
     "resolutionW": 1080,
     "isFullscreen": true

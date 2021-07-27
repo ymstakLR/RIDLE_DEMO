@@ -290,6 +290,7 @@ public class Result : MonoBehaviour {
     /// ステージクリア時の情報の保存判定
     /// </summary>
     private void StageDataUpdate() {
+
         ScoreDataUpdate();
         RankDataUpdate();
     }//StageDataUpdate
@@ -298,6 +299,13 @@ public class Result : MonoBehaviour {
     /// スコアデータの更新させる処理
     /// </summary>
     private void ScoreDataUpdate() {
+        string sceneName = SceneManager.GetActiveScene().name;
+        int stageNum = StageDataEdit.StageDataIdentification(sceneName);
+        if (_score.ScoreNum > int.Parse(StageDataEdit._scoreList[stageNum])) {//スコアが更新した場合
+
+        }
+
+
         string stageMaxScore = SceneManager.GetActiveScene().name + "MaxScore";
         string stageScoreKey = PlayerPrefs.GetString(stageMaxScore);
         int saveMaxScore = int.Parse(stageScoreKey.Substring(6, 5));//ここの値は今後変更する可能性あり(0503)

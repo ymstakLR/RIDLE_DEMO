@@ -12,42 +12,40 @@ public class StageDataDisp : MonoBehaviour {
 
     private void Start() {
         _saveDataManager = GameObject.Find("GameManager").GetComponent<SaveDataManager>();
-        Debug.LogError("S");
         StageDataSearch();
     }//Start
 
     /// <summary>
     /// ステージデータ情報を探す処理
     /// </summary>
-    private void StageDataSearch() {//ここの処理はネストが深いので浅くできる方法を検討する(0503)
-        for(int i = 1; i < SaveManager.stageData.nameList.Count; i++) {
-            Debug.Log(i + "つめのデータ:" + SaveManager.stageData.nameList[i].ToString());
-        }
-
-
-        foreach (EnumSaveKey key in System.Enum.GetValues(typeof(EnumSaveKey))) {
-            foreach (Transform childText in this.transform) {
-                Debug.LogError("foreach_" + childText.ToString());
-                if (key.ToString() == childText.name.ToString()) {
-                    StageDataUpdate(key,childText.GetComponent<Text>());
-                }//if
+    private void StageDataSearch() {
+        int stageCount = 0;//ステージ番号 1ずつ増やしていき該当するデータ情報を更新する
+        foreach(Transform stageNum in this.transform) {
+            stageCount++;
+            foreach(Transform stageData in stageNum.transform) {
+                StageDataUpdate(stageData, stageCount);
             }//foreach
         }//foreach
-
     }//StageDataSearch
 
     /// <summary>
-    /// ステージデータ情報を更新する
+    /// ステージデータを更新する
     /// </summary>
-    /// <param name="key">データを保存するためのキー</param>
-    /// <param name="updateText">更新するテキスト</param>
-    private void StageDataUpdate(EnumSaveKey key,Text updateText) {
-        if (updateText.name.ToString().Contains("Score")) {
-            updateText.text = PlayerPrefs.GetString(key.ToString(), "Score:00000");
-        } else if (updateText.name.Contains("Rank")) {
-            updateText.text = PlayerPrefs.GetString(key.ToString(), "E");
-        }//if
-        _saveDataManager.DataSave(key.ToString(), updateText.text);
+    /// <param name="stageData">更新するステージデータ</param>
+    /// <param name="stageCount">更新するステージの</param>
+    private void StageDataUpdate(Transform stageData,int stageCount) {
+        Text updateText = stageData.GetComponent<Text>();
+        switch (stageData.ToString()) {
+            case string str when str.Contains("Score"):
+                updateText.text = "Score: " + int.Parse(SaveManager.stageData.scoreList[stageCount]).ToString("D5");
+                break;
+            case string str when str.Contains("Rank"):
+                updateText.text = SaveManager.stageData.rankList[stageCount].ToString();
+                break;
+            case string str when str.Contains("Time"):
+                updateText.text = " Time :    " + SaveManager.stageData.timeList[stageCount].ToString();
+                break;
+        }//switch
     }//StageDataUpdate
 
 }//StageDataDisp

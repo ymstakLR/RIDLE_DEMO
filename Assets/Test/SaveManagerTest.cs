@@ -61,5 +61,11 @@ public class SaveManagerTest : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F4)) {
             OptionDataEdit.BGMVolumeUpadate(9);
         }
+        if (Input.GetKeyDown(KeyCode.F5)) {
+            Debug.Log("F5");
+            StageDataEdit.StageDataUpdate("Stage2", "D", "321", "01:23");
+        }
     }//Update
+    
 }//SaveManagerTest
+

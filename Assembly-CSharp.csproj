@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.11f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Test\SaveDataUpdate.cs" />
+    <Compile Include="Assets\Test\OptionDataEdit.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy5.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\ItemManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\ComponentExtensionMethods.cs" />
@@ -90,6 +90,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\ICubismMaskCommandSource.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismUpdateExecutionOrder.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismModel.cs" />
+    <Compile Include="Assets\Test\FilePath.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsParticle.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerAnimator.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\AudioManager.cs" />
@@ -287,7 +288,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Test\FilePath.cs" />
+    <Compile Include="Assets\Test\StageDataEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />

@@ -29,7 +29,7 @@ public class SaveDataManager : MonoBehaviour {
     private void Awake() {
         SaveManager.DataInit();
         AudioSet(this.GetComponent<AudioManager>());
-        SaveDataUpdate.SetResolution();
+        OptionDataEdit.SetResolution();
     }//Awake
 
     /// <summary>

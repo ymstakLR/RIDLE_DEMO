@@ -82,12 +82,12 @@ public class OptionsButtonMove : MonoBehaviour {
             case "BGMSlider":
                 _audioManager.BGMAudio.volume = slider.value;
                 _audioManager.BGMSettingVolume = _audioManager.BGMAudio.volume;
-                SaveDataUpdate.BGMVolumeUpadate(_audioManager.BGMAudio.volume);
+                OptionDataEdit.BGMVolumeUpadate(_audioManager.BGMAudio.volume);
                 BarActive(_audioManager.BGMAudio, slider);
                 break;
             case "SESlider":
                 _audioManager.SEAudio.volume = slider.value;
-                SaveDataUpdate.SEVolumeUpdate(_audioManager.SEAudio.volume);
+                OptionDataEdit.SEVolumeUpdate(_audioManager.SEAudio.volume);
                 BarActive(_audioManager.SEAudio, slider);
                 if (_isInit) {
                     _audioManager.PlaySE("ButtonClick");
@@ -132,7 +132,7 @@ public class OptionsButtonMove : MonoBehaviour {
         int ySize = int.Parse(changeNumText.text.ToString().Substring(5, changeNumText.text.Length - 5));
         _numericalValueText.text = xSize + "×" + ySize;
         //データ保存と反映
-        SaveDataUpdate.ResolutionUpdate(xSize, ySize);
+        OptionDataEdit.ResolutionUpdate(xSize, ySize);
         ResolutionChangeCancel(clickButton);
     }//ResolutionChangeButton
 
@@ -160,7 +160,7 @@ public class OptionsButtonMove : MonoBehaviour {
             _isFullScreen = true;
             _fullScreenText.text = "ON";
         }//if
-        SaveDataUpdate.FullScreenCheackUpdate(_isFullScreen);
+        OptionDataEdit.FullScreenCheackUpdate(_isFullScreen);
     }//FullScreenButton
 
     /// <summary>

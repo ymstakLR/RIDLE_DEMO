@@ -59,7 +59,7 @@ public class SaveManagerTest : MonoBehaviour {
             SaveManager.UnlockDataUpdate(unlockData);
         }//if
         if (Input.GetKeyDown(KeyCode.F4)) {
-            SaveDataUpdate.BGMVolumeUpadate(9);
+            OptionDataEdit.BGMVolumeUpadate(9);
         }
     }//Update
 }//SaveManagerTest

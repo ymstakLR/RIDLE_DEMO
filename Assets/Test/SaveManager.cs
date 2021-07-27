@@ -6,7 +6,7 @@ using System.IO;
 using UnityEditor;
 
 [Serializable]
-public struct StageData {
+public struct StageDataStruct {
     public List<string> nameList;
     public List<string> rankList;
     public List<string> scoreList;
@@ -14,7 +14,7 @@ public struct StageData {
 }//StageData
 
 [Serializable]
-public struct OptionData {
+public struct OptionDataStruct {
     public int bgmVol;
     public int seVol;
     public int resolutionH;
@@ -36,10 +36,10 @@ public static class SaveManager {
     const int STAGE_NUM = 3;
 
     const string STAGE_FILE_PATH ="stageData.json";
-    public static StageData stageData;
+    public static StageDataStruct stageData;
 
     const string OPTION_FILE_PATH ="optionData.json";
-    public static OptionData optionData;
+    public static OptionDataStruct optionData;
 
     const string UNLOCK_FILE_PATH ="unlockData.json";
     public static UnlockData unlockData;
@@ -132,10 +132,10 @@ public static class SaveManager {
         string json = reader.ReadToEnd();
         switch (loadFilePath) {
             case STAGE_FILE_PATH:
-                stageData = JsonUtility.FromJson<StageData>(json);
+                stageData = JsonUtility.FromJson<StageDataStruct>(json);
                 break;
             case OPTION_FILE_PATH:
-                optionData = JsonUtility.FromJson<OptionData>(json);
+                optionData = JsonUtility.FromJson<OptionDataStruct>(json);
                 break;
             case UNLOCK_FILE_PATH:
                 unlockData = JsonUtility.FromJson<UnlockData>(json);
@@ -150,7 +150,7 @@ public static class SaveManager {
     /// 
     public static void StageDataGenerate() {
         Debug.Log("ステージデータの初期化");
-        stageData = new StageData();
+        stageData = new StageDataStruct();
         List<string> nList = new List<string>();
         List<string> rList = new List<string>();
         List<string> sList = new List<string>();
@@ -175,7 +175,7 @@ public static class SaveManager {
     /// 
     public static void OptionDataGenerate() {
         Debug.Log("オプションデータの初期化");
-        optionData = new OptionData();
+        optionData = new OptionDataStruct();
         optionData.bgmVol = 5;
         optionData.seVol = 5;
         optionData.resolutionH = 1980;

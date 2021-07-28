@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 /// <summary>
 /// オプション画面の各種ボタン処理
-/// 更新日時:0726
+/// 更新日時:0728
 /// </summary>
 public class OptionsButtonMove : MonoBehaviour {
 
     private AudioManager _audioManager;
-    private SaveDataManager _saveDataManager;
 
     
     private Slider _bgmSlider;
@@ -36,7 +35,6 @@ public class OptionsButtonMove : MonoBehaviour {
     private void Start() {
         //変数宣言
         _audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
-        _saveDataManager = GameObject.Find("GameManager").GetComponent<SaveDataManager>();
 
         _bgmSlider = this.transform.Find("BGMSlider").GetComponent<Slider>();
         _seSlider = this.transform.Find("SESlider").GetComponent<Slider>();
@@ -178,7 +176,7 @@ public class OptionsButtonMove : MonoBehaviour {
     /// <param name="clickButton">クリックしたボタン</param>
     public void DataDelete(GameObject clickButton) {
         _audioManager.PlaySE("ButtonClick");
-        _saveDataManager.StageDataDelete();
+        SaveManager.StageDataDelete();
         DataDeleteCancel(clickButton);
     }//DataDelete
 

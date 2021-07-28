@@ -2,21 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ステージデータを編集する処理
+/// 更新日時:0728
+/// </summary>
 public static class StageDataEdit{
     public static List<List<string>> _stageData = new List<List<string>>();
-    public static List<string> _nameList = new List<string>();
-    public static List<string> _rankList = new List<string>();
-    public static List<string> _scoreList = new List<string>();
-    public static List<string> _timeList = new List<string>();
-
+    public static List<string> _nameList;
+    public static List<string> _rankList;
+    public static List<string> _scoreList;
+    public static List<string> _timeList;
 
     /// <summary>
     /// ステージデータ読み込み処理
     /// </summary>
-    private static void StageDataLoad() {
+    public static void StageDataLoad() {
+        _nameList = new List<string>();
         _nameList.AddRange(SaveManager.stageData.nameList);
+        _rankList = new List<string>();
         _rankList.AddRange(SaveManager.stageData.rankList);
+        _scoreList = new List<string>();
         _scoreList.AddRange(SaveManager.stageData.scoreList);
+        _timeList = new List<string>();
         _timeList.AddRange(SaveManager.stageData.timeList);
     }//StageDataLoad
 
@@ -44,7 +51,6 @@ public static class StageDataEdit{
         string stageScore,string stageTime) {
         StageDataLoad();
         int stageNum = StageDataIdentification(stageName);
-        Debug.Log("StageNum_" + stageNum);
         _nameList[stageNum] = stageName;
         _rankList[stageNum] = stageRank;
         _scoreList[stageNum] = stageScore;
@@ -52,12 +58,18 @@ public static class StageDataEdit{
         StageDataSave();
     }//StageDataUpdate
 
+    /// <summary>
+    /// ステージデータを指定したステージ名と紐づける処理
+    /// </summary>
+    /// <param name="stageName">紐づけたいステージ名</param>
+    /// <returns></returns>
     public static int StageDataIdentification(string stageName) {
+        StageDataLoad();
         int stageNum = 0;
         while (_nameList[stageNum].ToString() != stageName) {
             stageNum++;
-        }
+        }//While
         return stageNum;
-    }
+    }//StageDataIdentification
 
-}
+}//StageDataEdit

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 /// <summary>
 /// リザルト画面全般の処理
-/// 更新日時:0616
+/// 更新日時:0728
 /// </summary>
 public class Result : MonoBehaviour {
     private enum RankValue { A, B, C, D, E }//ランク更新用の数値列挙体
@@ -17,7 +17,6 @@ public class Result : MonoBehaviour {
     private GameObject _goalForward;
     private GameObject _arrow;
     private ItemProperty _itemProperty;
-    private SaveDataManager _saveDataManager;
     private Score _score;
     private StageStatusManagement _stageClearManagement;
     private Transform _resultTextTransform;
@@ -51,7 +50,6 @@ public class Result : MonoBehaviour {
         _audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
         _goalForward = GameObject.Find("Goal/Goal_Forward");
         _itemProperty = GameObject.Find("UI").GetComponent<ItemProperty>();
-        _saveDataManager = GameObject.Find("GameManager").GetComponent<SaveDataManager>();
         _score = GameObject.Find("UI/UIText/ScoreNumText").GetComponent<Score>();
         _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
         
@@ -287,39 +285,21 @@ public class Result : MonoBehaviour {
     }//RankUpdate
 
     /// <summary>
-    /// ステージクリア時の情報の保存判定
+    /// ステージクリア時の情報の更新処理
     /// </summary>
     private void StageDataUpdate() {
-
-        ScoreDataUpdate();
-        RankDataUpdate();
+        string sceneName = SceneManager.GetActiveScene().name;
+        int stageNum = StageDataEdit.StageDataIdentification(sceneName);
+        RankDataUpdateCheck(sceneName,stageNum);
     }//StageDataUpdate
 
     /// <summary>
-    /// スコアデータの更新させる処理
+    /// ランクデータを更新判定処理
     /// </summary>
-    private void ScoreDataUpdate() {
-        string sceneName = SceneManager.GetActiveScene().name;
-        int stageNum = StageDataEdit.StageDataIdentification(sceneName);
-        if (_score.ScoreNum > int.Parse(StageDataEdit._scoreList[stageNum])) {//スコアが更新した場合
-
-        }
-
-
-        string stageMaxScore = SceneManager.GetActiveScene().name + "MaxScore";
-        string stageScoreKey = PlayerPrefs.GetString(stageMaxScore);
-        int saveMaxScore = int.Parse(stageScoreKey.Substring(6, 5));//ここの値は今後変更する可能性あり(0503)
-        if (_score.ScoreNum > saveMaxScore) {//スコアが更新されたら
-            _saveDataManager.DataSave(stageMaxScore, "Score:" + _score.ScoreNum.ToString("D5"));
-        }//if
-    }//ScoreUpdate
-
-    /// <summary>
-    /// ランクデータを更新させる処理
-    /// </summary>
-    private void RankDataUpdate() {
-        string stageMaxRank = SceneManager.GetActiveScene().name + "MaxRank";
-        string stageRankKey = PlayerPrefs.GetString(stageMaxRank);
+    /// <param name="sceneName">更新するステージ名</param>
+    /// <param name="stageNum">更新するリスト配列番号</param>
+    private void RankDataUpdateCheck(string sceneName,int stageNum) {
+        string stageRankKey = StageDataEdit._rankList[stageNum];
         int maxRank = 0;
         int playRank = 0;
         foreach (RankValue key in System.Enum.GetValues(typeof(RankValue))) {
@@ -330,9 +310,50 @@ public class Result : MonoBehaviour {
                 maxRank = (int)key;
             }//if
         }//foreach
-        if (playRank < maxRank) {
-            _saveDataManager.DataSave(stageMaxRank, _overallRank.text);
+        if (playRank < maxRank) {//ランクが更新した場合
+            StageDataEdit.StageDataUpdate(sceneName, _overallRank.text.ToString(), _score.ScoreNum.ToString(),TimeTextEdit());
+        } else if (playRank == maxRank) {
+            ScoreDataUpdateCheck(sceneName, stageNum, _overallRank.text.ToString());
         }//if
     }//RankDataUpdate
+
+    /// <summary>
+    /// スコアデータの更新判定処理
+    /// </summary>
+    /// <param name="sceneName">更新するステージ名</param>
+    /// <param name="stageNum">更新するリスト配列番号</param>
+    /// <param name="overallRank">更新するランク</param>
+    private void ScoreDataUpdateCheck(string sceneName,int stageNum,string overallRank) {
+        if (_score.ScoreNum > int.Parse(StageDataEdit._scoreList[stageNum])) {//スコアが更新した場合
+            StageDataEdit.StageDataUpdate(sceneName, overallRank, _score.ScoreNum.ToString(),TimeTextEdit());
+        } else if (_score.ScoreNum == int.Parse(StageDataEdit._scoreList[stageNum])) {
+            TimeDataUpdateCheck(sceneName, stageNum, overallRank);
+        }//if
+    }//ScoreUpdate
+
+    /// <summary>
+    /// タイムデータの更新判定処理
+    /// </summary>
+    /// <param name="sceneName">更新するステージ名</param>
+    /// <param name="stageNum">更新するリスト配列番号</param>
+    /// <param name="overallRank">更新するランク</param>
+    private void TimeDataUpdateCheck(string sceneName,int stageNum,string overallRank) {
+        string saveTimeM = StageDataEdit._timeList[stageNum].Substring(0, 2);
+        string saveTimeS = StageDataEdit._timeList[stageNum].Substring(3, 2);
+        int saveTime = int.Parse(saveTimeM + saveTimeS);
+        if (_itemProperty.StageTime > saveTime) {//タイムが更新されたとき
+            StageDataEdit.StageDataUpdate(sceneName, overallRank, _score.ScoreNum.ToString(),TimeTextEdit());
+        }//if
+    }//TimeDataUpdateCheck
+
+    /// <summary>
+    /// タイムテキストを編集する処理 例)0123 → 01:23
+    /// </summary>
+    /// <returns></returns>
+    private string TimeTextEdit() {
+        string timeM = (_itemProperty.StageTime / 60).ToString("D2");
+        string timeS = (_itemProperty.StageTime % 60).ToString("D2");
+        return timeM + ":" + timeS;
+    }//TimeTextEdit
 
 }//Result

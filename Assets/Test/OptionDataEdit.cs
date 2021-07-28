@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オプションデータを編集する処理
+/// 更新日時:0728
+/// </summary>
 public static class OptionDataEdit{
     public static ArrayList optionData = new ArrayList();
 
@@ -15,6 +19,7 @@ public static class OptionDataEdit{
         optionData.Insert(3, SaveManager.optionData.resolutionW);
         optionData.Insert(4, SaveManager.optionData.isFullscreen);
     }//OptionDataLoad
+
     /// <summary>
     /// オプションデータを保存する処理
     /// </summary>
@@ -79,4 +84,4 @@ public static class OptionDataEdit{
             );
     }//SetResolution
 
-}
+}//OptionDataEdit

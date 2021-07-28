@@ -8,10 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class StageDataDisp : MonoBehaviour {
 
-    private SaveDataManager _saveDataManager;
-
     private void Start() {
-        _saveDataManager = GameObject.Find("GameManager").GetComponent<SaveDataManager>();
         StageDataSearch();
     }//Start
 

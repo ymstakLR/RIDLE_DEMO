@@ -75,7 +75,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismPose3Json.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\StageEdgeBase.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\MovingObjects_Circle.cs" />
-    <Compile Include="Assets\Test\SaveManagerTest.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsRig.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskProperties.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastHit.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\ICubismMaskCommandSource.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismUpdateExecutionOrder.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismModel.cs" />
-    <Compile Include="Assets\Test\FilePath.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsParticle.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerAnimator.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\AudioManager.cs" />
@@ -209,6 +207,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTile.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\DamageBallBase.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\ICubismLookTarget.cs" />
+    <Compile Include="Assets\Test\StageDataEdit.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkParameter.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismParameter.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\KeyItemPositionChange.cs" />
@@ -288,7 +287,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Test\StageDataEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />

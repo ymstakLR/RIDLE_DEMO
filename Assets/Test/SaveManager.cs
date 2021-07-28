@@ -36,13 +36,13 @@ public static class SaveManager {
     const string SAVE_DATA_PATH = "/Assets/Test/";
     const int STAGE_NUM = 3;
 
-    const string STAGE_FILE_PATH ="stageData.json";
+    const string STAGE_FILE ="stageData.json";
     public static StageDataStruct stageData;
 
-    const string OPTION_FILE_PATH ="optionData.json";
+    const string OPTION_FILE ="optionData.json";
     public static OptionDataStruct optionData;
 
-    const string UNLOCK_FILE_PATH ="unlockData.json";
+    const string UNLOCK_FILE ="unlockData.json";
     public static UnlockData unlockData;
 
     /// <summary>
@@ -56,7 +56,7 @@ public static class SaveManager {
         stageData.timeList = list[3];
 
         string jsonData = JsonUtility.ToJson(stageData, true);//SaveData情報
-        DataSave(jsonData, STAGE_FILE_PATH);
+        DataSave(jsonData, STAGE_FILE);
         Debug.Log("ステージデータの更新終了");
     }//StageDataUpdate
 
@@ -71,8 +71,7 @@ public static class SaveManager {
         optionData.resolutionW = (int)arrayList[3];
         optionData.isFullscreen = (bool)arrayList[4];
         string jsonData = JsonUtility.ToJson(optionData, true);
-        DataSave(jsonData, OPTION_FILE_PATH);
-        Debug.Log("オプションデータの更新終了");
+        DataSave(jsonData, OPTION_FILE);
     }//OptionDataUpdate
 
     /// <summary>
@@ -82,8 +81,7 @@ public static class SaveManager {
     public static void UnlockDataUpdate(List<bool> list) {
         unlockData.unlockList = list;
         string jsonData = JsonUtility.ToJson(unlockData, true);
-        DataSave(jsonData, UNLOCK_FILE_PATH);
-        Debug.Log("アンロックデータの更新終了");
+        DataSave(jsonData, UNLOCK_FILE);
     }//UnlockDataUpdate
 
     /// <summary>
@@ -101,26 +99,39 @@ public static class SaveManager {
     }//DataSave
 
     /// <summary>
+    /// ステージデータを削除する処理
+    /// </summary>
+    public static void StageDataDelete() {
+        File.Delete(SaveFilePathSetting() + STAGE_FILE);
+        StageDataGenerate();
+    }//StageDataDelete
+
+    /// <summary>
+    /// アンロックデータを削除する処理
+    /// </summary>
+    public static void UnlockDataDelete() {
+        File.Delete(SaveFilePathSetting() + UNLOCK_FILE);
+        UnlockDataGenerate();
+    }//UnlockDataDelete
+
+    /// <summary>
     /// 保存データの読み込み処理
     /// </summary>
     public static void DataInit() {
-        Debug.LogError("DataInitStart");
         string path = SaveFilePathSetting();
-        if (File.Exists(path + STAGE_FILE_PATH)) {//指定のファイルが存在する場合
+        if (File.Exists(path + STAGE_FILE)) {//指定のファイルが存在する場合
             Debug.Log("ステージデータの読み込み");
-            DataLoad(STAGE_FILE_PATH);
+            DataLoad(STAGE_FILE);
         } else {
             StageDataGenerate();
         }//if
-        if (File.Exists(path + OPTION_FILE_PATH)) {
-            Debug.Log("オプションデータの読み込み");
-            DataLoad(OPTION_FILE_PATH);
+        if (File.Exists(path + OPTION_FILE)) {
+            DataLoad(OPTION_FILE);
         } else {
             OptionDataGenerate();
         }//if
-        if (File.Exists(path + UNLOCK_FILE_PATH)) {//指定のファイルが存在する場合
-            Debug.Log("アンロックデータの読み込み");
-            DataLoad(UNLOCK_FILE_PATH);
+        if (File.Exists(path + UNLOCK_FILE)) {//指定のファイルが存在する場合
+            DataLoad(UNLOCK_FILE);
         } else {
             UnlockDataGenerate();
         }//if
@@ -135,13 +146,13 @@ public static class SaveManager {
         StreamReader reader = new StreamReader(info.OpenRead());
         string json = reader.ReadToEnd();
         switch (loadFilePath) {
-            case STAGE_FILE_PATH:
+            case STAGE_FILE:
                 stageData = JsonUtility.FromJson<StageDataStruct>(json);
                 break;
-            case OPTION_FILE_PATH:
+            case OPTION_FILE:
                 optionData = JsonUtility.FromJson<OptionDataStruct>(json);
                 break;
-            case UNLOCK_FILE_PATH:
+            case UNLOCK_FILE:
                 unlockData = JsonUtility.FromJson<UnlockData>(json);
                 break;
         }//switch
@@ -163,14 +174,14 @@ public static class SaveManager {
             nList.Insert(i, "Stage" + i);
             rList.Insert(i, "E");
             sList.Insert(i, "0");
-            tList.Insert(i, "9:59");
+            tList.Insert(i, "09:59");
         }//for
         stageData.nameList = nList;
         stageData.rankList = rList;
         stageData.scoreList = sList;
         stageData.timeList = tList;
         string jsonData = JsonUtility.ToJson(stageData, true);
-        DataSave(jsonData, STAGE_FILE_PATH);
+        DataSave(jsonData, STAGE_FILE);
     }//StageDataInit
 
     /// <summary>
@@ -178,22 +189,20 @@ public static class SaveManager {
     /// </summary>
     /// 
     private static void OptionDataGenerate() {
-        Debug.Log("オプションデータの初期化");
         optionData = new OptionDataStruct();
-        optionData.bgmVol = 5;
-        optionData.seVol = 5;
+        optionData.bgmVol = 0;
+        optionData.seVol = 0;
         optionData.resolutionH = 1980;
         optionData.resolutionW = 1080;
         optionData.isFullscreen = true;
         string jsonData = JsonUtility.ToJson(optionData, true);
-        DataSave(jsonData, OPTION_FILE_PATH);
+        DataSave(jsonData, OPTION_FILE);
     }//OptionDataInit
 
     /// <summary>
     /// アンロックデータの初期化処理
     /// </summary>
     private static void UnlockDataGenerate() {
-        Debug.Log("アンロックデータの初期化");
         unlockData = new UnlockData();
         List<bool> list = new List<bool>();
         for(int i = 0; i < STAGE_NUM * 4; i++) {
@@ -201,7 +210,7 @@ public static class SaveManager {
         }
         unlockData.unlockList = list;
         string jsonData = JsonUtility.ToJson(unlockData, true);
-        DataSave(jsonData, UNLOCK_FILE_PATH);
+        DataSave(jsonData, UNLOCK_FILE);
     }//UnlockDataGenerate
 
     /// <summary>

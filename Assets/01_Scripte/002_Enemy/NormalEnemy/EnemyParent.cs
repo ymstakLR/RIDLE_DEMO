@@ -49,6 +49,12 @@ public class EnemyParent : MonoBehaviour {
     public void ParentUpdate() {
         EnemyMiss();
         EnemyErasure();
+        if ((_stageClearManagement.StageStatus != EnumStageStatus.Normal &&
+            _stageClearManagement.StageStatus != EnumStageStatus.Pause)) {
+            Debug.Log("dafasfdasfaf");
+            _appearanceManager.enabled = true;
+            Destroy(this.gameObject);
+        }
     }//ParentUpdate 
 
     /// <summary>

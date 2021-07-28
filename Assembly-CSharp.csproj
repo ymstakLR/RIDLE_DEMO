@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.11f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Test\OptionDataEdit.cs" />
+    <Compile Include="Assets\01_Scripte\011_SaveData\OptionDataEdit.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy5.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\ItemManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\ComponentExtensionMethods.cs" />
@@ -207,7 +207,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTile.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\DamageBallBase.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\ICubismLookTarget.cs" />
-    <Compile Include="Assets\Test\StageDataEdit.cs" />
+    <Compile Include="Assets\01_Scripte\011_SaveData\StageDataEdit.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkParameter.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismParameter.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\KeyItemPositionChange.cs" />
@@ -237,7 +237,7 @@
     <Compile Include="Assets\01_Scripte\001_Player\PlayerLife.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsSubRig.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismBuiltinMaterials.cs" />
-    <Compile Include="Assets\Test\SaveManager.cs" />
+    <Compile Include="Assets\01_Scripte\011_SaveData\SaveManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismDrawable.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ICubismTask.cs" />
@@ -250,7 +250,7 @@
     <Compile Include="Assets\01_Scripte\004_Gimmick\DigonalCannon.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTexture.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeCurveType.cs" />
-    <Compile Include="Assets\01_Scripte\009_Scene\SaveDataManager.cs" />
+    <Compile Include="Assets\01_Scripte\009_Scene\GameStartInit.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy6.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemyStageEdgeGeneration.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemySideDecision.cs" />

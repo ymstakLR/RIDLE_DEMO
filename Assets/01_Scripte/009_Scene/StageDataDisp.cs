@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// ステージデータの情報を表示させるための処理(ステージ選択画面で使用する)
-/// 更新日時:0503
+/// 更新日時:0728
 /// </summary>
 public class StageDataDisp : MonoBehaviour {
 

@@ -15,11 +15,13 @@ public class EnemyAppearanceManager : MonoBehaviour {
     public List<float> EnemyFloatList { get { return _enemyFloatList; } }
 
     private GameObject _player;
+    private StageStatusManagement _stageClearManagement;
 
     private int _hierarchCount;
 
     void Start() {
         _player = GameObject.Find("Ridle");
+        _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
         GetHierarchyCount();
     }//Start
 
@@ -43,6 +45,10 @@ public class EnemyAppearanceManager : MonoBehaviour {
     /// 敵を生成する判定処理
     /// </summary>
     private void EnemyGenerateJudge() {
+        //指定のステージステータス出ない場合
+        if ((_stageClearManagement.StageStatus != EnumStageStatus.Normal &&
+            _stageClearManagement.StageStatus != EnumStageStatus.Pause))
+            return;
         //カメラ範囲内の場合
         if (30 > Mathf.Abs(_player.transform.position.x - this.transform.position.x) &&
            20 > Mathf.Abs(_player.transform.position.y - this.transform.position.y))

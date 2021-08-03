@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9126545731668171000}
-  - component: {fileID: 9126545731668171003}
+  - component: {fileID: -7520618432365971099}
   m_Layer: 0
   m_Name: Enemy6Appearance
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9126545731668171003
+--- !u!114 &-7520618432365971099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9126545731668171001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968c9a9921f6f014ca46d8fa59783398, type: 3}
+  m_Script: {fileID: 11500000, guid: 755b41c33aee66540af24155872f6581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyObject: {fileID: 2531938271851963865, guid: b43842eace7ec2e409dc92a392c7df40,
-    type: 3}
-  _enemyFloatList: []
+  _object: {fileID: 2531938271851963865, guid: b43842eace7ec2e409dc92a392c7df40, type: 3}
+  _objectFloatList: []

@@ -13,7 +13,7 @@ public class EnemyParent : MonoBehaviour {
     public Rigidbody2D RB2D { get; set; }
     public Transform EnemyTransform { get; set; }
 
-    private EnemyAppearanceManager _appearanceManager;
+    private ObjectAppearanceManager _appearanceManager;
     protected StageStatusManagement _stageClearManagement;
 
     private EnemyCount _enemyCount;
@@ -39,7 +39,7 @@ public class EnemyParent : MonoBehaviour {
         _enemyCount = GameObject.Find("UI").transform.Find("UIText").transform.Find("EnemyCount").GetComponent<EnemyCount>();
         _uiScore = GameObject.Find("UI").transform.Find("UIText").transform.Find("ScoreNumText").GetComponent<Score>();
 
-        _appearanceManager = this.transform.parent.GetComponent<EnemyAppearanceManager>();
+        _appearanceManager = this.transform.parent.GetComponent<ObjectAppearanceManager>();
         _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
         if (_playerObject.transform.position.x < this.transform.position.x) {
             this.transform.localScale = new Vector2(-this.transform.localScale.x, this.transform.localScale.y);
@@ -49,12 +49,7 @@ public class EnemyParent : MonoBehaviour {
     public void ParentUpdate() {
         EnemyMiss();
         EnemyErasure();
-        if ((_stageClearManagement.StageStatus != EnumStageStatus.Normal &&
-            _stageClearManagement.StageStatus != EnumStageStatus.Pause)) {
-            Debug.Log("dafasfdasfaf");
-            _appearanceManager.enabled = true;
-            Destroy(this.gameObject);
-        }
+        StageStatusCheack();
     }//ParentUpdate 
 
     /// <summary>
@@ -108,6 +103,19 @@ public class EnemyParent : MonoBehaviour {
         _appearanceManager.enabled = true;
         Destroy(this.gameObject);
     }//EnemyErasure
+
+    /// <summary>
+    /// ステージ状態をチェックする処理
+    /// </summary>
+    private void StageStatusCheack() {
+        if (this.gameObject.layer == LayerMask.NameToLayer("Suppoter"))
+            return;
+        if ((_stageClearManagement.StageStatus != EnumStageStatus.Normal &&
+            _stageClearManagement.StageStatus != EnumStageStatus.Pause)) {
+            _appearanceManager.enabled = true;
+            Destroy(this.gameObject);
+        }//if
+    }//StageStatusCheack
 
     /// <summary>
     /// 当たり判定を変更する処理

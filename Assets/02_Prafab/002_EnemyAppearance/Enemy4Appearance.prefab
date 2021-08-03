@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5454424649803515671}
-  - component: {fileID: 5454424649803515668}
+  - component: {fileID: -2613794659177203549}
   m_Layer: 0
   m_Name: Enemy4Appearance
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5454424649803515668
+--- !u!114 &-2613794659177203549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5454424649803515670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968c9a9921f6f014ca46d8fa59783398, type: 3}
+  m_Script: {fileID: 11500000, guid: 755b41c33aee66540af24155872f6581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyObject: {fileID: 6596809841855271063, guid: 7d902173f1a1eee40a8e152f43e36fc8,
-    type: 3}
-  _enemyFloatList: []
+  _object: {fileID: 6596809841855271063, guid: 7d902173f1a1eee40a8e152f43e36fc8, type: 3}
+  _objectFloatList: []

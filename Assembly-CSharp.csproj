@@ -139,7 +139,6 @@
     <Compile Include="Assets\01_Scripte\003_Stage\StageTime.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastablePrecision.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\WorkThorn.cs" />
-    <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\EnemyAppearanceManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskCommandBuffer.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\CubismLookTargetBehaviour.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParametersInspector.cs" />
@@ -177,6 +176,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRenderer.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Pose\CubismPosePart.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRendererExtensionMethods.cs" />
+    <Compile Include="Assets\01_Scripte\003_Stage\ObjectAppearanceManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\CubismLookAxis.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismMoveOnReimportCopyComponentsOnly.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerAttack.cs" />

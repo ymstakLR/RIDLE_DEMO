@@ -25,7 +25,7 @@ public class Enemy4 : EnemyParent {
         _craneObject = this.gameObject.transform.Find("Enemy4_Crane").gameObject;
         _enemyArm = _armObject.GetComponent<EnemyArm>();
         _enemyCrane = _craneObject.GetComponent<EnemyCrane>();
-        _longestScaleSize = this.transform.parent.GetComponent<EnemyAppearanceManager>().EnemyFloatList[0];
+        _longestScaleSize = this.transform.parent.GetComponent<ObjectAppearanceManager>().ObjectFloatList[0];
         EnemyMissFoll = 0;//ミス時の落下速度を反映
         EnemySpeed = 0;//スピード値を反映
     }//Start

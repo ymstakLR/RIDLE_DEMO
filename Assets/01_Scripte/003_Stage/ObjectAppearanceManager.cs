@@ -57,7 +57,6 @@ public class ObjectAppearanceManager : MonoBehaviour {
         if (40 < Mathf.Abs(_player.transform.position.x - this.transform.position.x) ||
             30 < Mathf.Abs(_player.transform.position.y - this.transform.position.y))
             return;
-        Debug.Log(_object.name.ToString()+"__"+_stageClearManagement.StageStatus);
         ObjectGenerate();
     }//EnemyGenarateJudge
 

@@ -341,7 +341,7 @@ public class Result : MonoBehaviour {
         string saveTimeM = StageDataEdit._timeList[stageNum].Substring(0, 2);
         string saveTimeS = StageDataEdit._timeList[stageNum].Substring(3, 2);
         int saveTime = int.Parse(saveTimeM + saveTimeS);
-        if (_itemProperty.StageTime > saveTime) {//タイムが更新されたとき
+        if (_itemProperty.StageTime < saveTime) {//タイムが更新されたとき
             StageDataEdit.StageDataUpdate(sceneName, overallRank, _score.ScoreNum.ToString(),TimeTextEdit());
         }//if
     }//TimeDataUpdateCheck

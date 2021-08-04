@@ -376,6 +376,7 @@ public class PlayerJump : MonoBehaviour {
         }//if
         if (PastTPY < transform.position.y) {
             _pAnimator.AniFall = false;
+            Debug.Log("kkkkkkk");
         }//if
         _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;
         JumpTypeFlag = 0;

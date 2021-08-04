@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 足部分の攻撃判定処理
-/// 更新日時:0602
+/// 更新日時:0804
 /// </summary>
 public class PlayerUnderAttack : MonoBehaviour {
     private PlayerJump _pJump;

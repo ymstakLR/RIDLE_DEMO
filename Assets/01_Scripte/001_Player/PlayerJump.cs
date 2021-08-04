@@ -16,7 +16,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:0616
+/// 更新日時:0804
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -80,27 +80,35 @@ public class PlayerJump : MonoBehaviour {
     public Dictionary<string, bool> _normalJumpInput;
     public Dictionary<string, bool> _flipJumpInput;
 
-    public void JumpButtonUpdate() {
-        if (Input.GetButton(NORMAL_JUMP)) {
+    /// <summary>
+    /// ジャンプボタン各種の入力取得処理
+    /// </summary>
+    public void JumpButtonInput() {//似た条件文で見やすくするため{}を省略した(0804)
+        if (Input.GetButton(NORMAL_JUMP))
             _normalJumpInput["Button"] = true;
-        }
-        if (Input.GetButtonDown(NORMAL_JUMP)) {
+        if (Input.GetButtonDown(NORMAL_JUMP))
             _normalJumpInput["ButtonDown"] = true;
-        }
-        if (Input.GetButtonUp(NORMAL_JUMP)) {
+        if (Input.GetButtonUp(NORMAL_JUMP))
             _normalJumpInput["ButtonUp"] = true;
-        }
-        if (Input.GetButton(FLIP_JUMP)) {
+        if (Input.GetButton(FLIP_JUMP))
             _flipJumpInput["Button"] = true;
-        }
-        if (Input.GetButtonDown(FLIP_JUMP)) {
+        if (Input.GetButtonDown(FLIP_JUMP))
             _flipJumpInput["ButtonDown"] = true;
-        }
-        if (Input.GetButtonUp(FLIP_JUMP)) {
+        if (Input.GetButtonUp(FLIP_JUMP)) 
             _flipJumpInput["ButtonUp"] = true;
-        }
-    }
+    }//JumpButtonInpu
 
+    /// <summary>
+    /// 各種ジャンプボタンの入力判定の削除処理
+    /// </summary>
+    private void JumpButtonRelease() {
+        _normalJumpInput["Button"] = false;
+        _normalJumpInput["ButtonDown"] = false;
+        _normalJumpInput["ButtonUp"] = false;
+        _flipJumpInput["Button"] = false;
+        _flipJumpInput["ButtonDown"] = false;
+        _flipJumpInput["ButtonUp"] = false;
+    }//JumpButtonRelease
 
 
     /// <summary>
@@ -117,12 +125,7 @@ public class PlayerJump : MonoBehaviour {
         jumpSpeed = NormalJump(jumpSpeed);//FlipJump中は処理更新しない
         jumpSpeed = FlipJump(jumpSpeed);//NormalJump中は処理更新しない
         jumpSpeed = JumpDown(jumpSpeed);//ジャンプの上昇中は処理更新しない
-        _normalJumpInput["Button"] = false;
-        _normalJumpInput["ButtonDown"] = false;
-        _normalJumpInput["ButtonUp"] = false;
-        _flipJumpInput["Button"] = false;
-        _flipJumpInput["ButtonDown"] = false;
-        _flipJumpInput["ButtonUp"] = false;
+        JumpButtonRelease();
         return jumpSpeed;
     }//MoveJump
 
@@ -403,6 +406,8 @@ public class PlayerJump : MonoBehaviour {
     /// <param name="jumpSpeed"></param>
     /// <returns></returns>
     public float JumpStop(float jumpSpeed) {
+        JumpButtonRelease();
+        jumpSpeed = UnderAttackPower(jumpSpeed);
         if (_pAnimator.AniJump) {
             _pAnimator.AniFall = true;
             _pAnimator.AniJump = false;

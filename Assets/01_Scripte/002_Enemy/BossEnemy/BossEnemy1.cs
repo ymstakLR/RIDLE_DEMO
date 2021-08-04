@@ -79,7 +79,8 @@ public class BossEnemy1 : BossEnemyManager {
     private void Appearance() {
         //アニメーションの遷移を記載する
         AnimatorChangeBool("AniDush", true);
-        this.GetComponent<SpriteRenderer>().enabled = false;
+        Debug.Log("jkaku");
+        //this.GetComponent<SpriteRenderer>().enabled = false;
         this.transform.rotation = Quaternion.Euler(
             this.transform.rotation.x, this.transform.rotation.y, 90);
         Rigidbody.velocity = new Vector2(_dushMoveX, -_dushMoveY);

@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour {
         _pAnimator.AnimatorMove(WorkPower);//アニメーション更新
         if (_stageClearMgmt.StageStatus == EnumStageStatus.Pause)
             return;
-        _pJump.JumpButtonUpdate();
+        _pJump.JumpButtonInput();
     }//Update
 
     /// <summary>

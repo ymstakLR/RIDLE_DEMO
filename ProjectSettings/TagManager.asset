@@ -22,6 +22,8 @@ TagManager:
   - UnderTrigger
   - Text
   - PlayerMiss
+  - PlayerSlashing
+  - PlayerTrampling
   layers:
   - Default
   - TransparentFX

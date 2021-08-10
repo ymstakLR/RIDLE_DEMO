@@ -27,7 +27,7 @@ public class PlayerUnderAttack : MonoBehaviour {
 
 
     private void OnTriggerExit2D(Collider2D col) {
-        PlayerTagChange(col, "PlayerAttack");
+        PlayerTagChange(col, "PlayerTrampling");
     }//OnTriggerExit2D
 
     /// <summary>
@@ -38,7 +38,7 @@ public class PlayerUnderAttack : MonoBehaviour {
     private void PlayerTagChange(Collider2D col, string tagName) {
         if (col.gameObject.tag == "Stage"||col.gameObject.tag == "PlatformEffector"||col.gameObject.tag =="Gimmick") {
             this.gameObject.tag = tagName;
-            this.gameObject.layer = LayerMask.NameToLayer(tagName);
+            //this.gameObject.layer = LayerMask.NameToLayer(tagName);
         }//if
     }//PlayerTagChange
 

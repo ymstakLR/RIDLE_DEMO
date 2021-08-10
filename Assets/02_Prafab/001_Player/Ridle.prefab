@@ -408,8 +408,8 @@ GameObject:
   - component: {fileID: 4951278201911385335}
   - component: {fileID: 7957628810016703248}
   m_Layer: 12
-  m_Name: Attack
-  m_TagString: PlayerAttack
+  m_Name: SlashingAttack
+  m_TagString: PlayerSlashing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 4951278202317456754}
   m_Layer: 12
   m_Name: UnderAttack
-  m_TagString: PlayerAttack
+  m_TagString: PlayerTrampling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -103,11 +103,11 @@ public class BossEnemyManager : MonoBehaviour {
     /// ダメージを受けたときの処理
     /// </summary>
     private void EnemyDamage() {
-        if (!BodyTrigger.GetComponent<EnemyBodyTrigger>().IsEnemyDamage)//回復中の場合
+        if (BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType == EnemyDamageType.None)
             return;
         this.gameObject.layer = LayerMask.NameToLayer("DamageBigEnemy");
         BodyTrigger.layer = LayerMask.NameToLayer("DamageBigEnemy");
-        BodyTrigger.GetComponent<EnemyBodyTrigger>().IsEnemyDamage = false;
+        BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType = EnemyDamageType.None;
         _recoveryTimer = 0;
         _rendererEnableTime = 0;
         _nowLifeNum--;

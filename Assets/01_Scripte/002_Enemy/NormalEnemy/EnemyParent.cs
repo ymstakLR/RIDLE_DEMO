@@ -35,7 +35,7 @@ public class EnemyParent : MonoBehaviour {
         EnemyTransform = this.GetComponent<Transform>();
         EnemyBodyTrigger = this.transform.Find("BodyTrigger").GetComponent<EnemyBodyTrigger>();
 
-        _playerObject = GameObject.Find("Ridle"); 
+        _playerObject = GameObject.Find("Ridle");
         _enemyCount = GameObject.Find("UI").transform.Find("UIText").transform.Find("EnemyCount").GetComponent<EnemyCount>();
         _uiScore = GameObject.Find("UI").transform.Find("UIText").transform.Find("ScoreNumText").GetComponent<Score>();
 
@@ -56,9 +56,10 @@ public class EnemyParent : MonoBehaviour {
     /// ミスしたときの処理
     /// </summary>
     public void EnemyMiss() {
-        if (!EnemyBodyTrigger.IsEnemyDamage)
+        if (EnemyBodyTrigger.EnemyDamageType == 0)
             return;
-        AttackEffect.EffectGenerate("SlashingDamage", this.gameObject, this.GetComponent<Collider2D>().offset);
+        if (EnemyBodyTrigger.EnemyDamageType == EnemyDamageType.Slashing)
+            AttackEffect.EffectGenerate("SlashingDamage", this.gameObject, this.GetComponent<Collider2D>().offset);
 
         AudioManager.PlaySE("NomalEnemyDamage");
         AniMiss = true;
@@ -67,7 +68,6 @@ public class EnemyParent : MonoBehaviour {
         SetLayerRecursively();
         _enemyCount.EnemyCountDecrease();
         _uiScore.AddScore(_enemyScore);
-        EnemyBodyTrigger.IsEnemyDamage = false;
         MissColliderChange();
 
     }//EnemyMiss
@@ -81,7 +81,7 @@ public class EnemyParent : MonoBehaviour {
             child.gameObject.layer = LayerMask.NameToLayer("MissEnemy");
         }//foreach
     }//SetLayerRecursively
-    
+
     /// <summary>
     /// ミスしたときの当たり判定変更処理
     /// </summary>
@@ -89,7 +89,7 @@ public class EnemyParent : MonoBehaviour {
         CapsuleCollider2D col = this.gameObject.GetComponent<CapsuleCollider2D>();
         col.size = new Vector2(0.05f, col.size.y);
         col.direction = CapsuleDirection2D.Vertical;
-        
+
     }//MissColliderChange
 
     /// <summary>
@@ -123,7 +123,7 @@ public class EnemyParent : MonoBehaviour {
     /// <summary>
     /// 当たり判定を変更する処理
     /// </summary>
-    protected void ColliderChange(Vector2 offset,Vector2 size,CapsuleDirection2D direction) {
+    protected void ColliderChange(Vector2 offset, Vector2 size, CapsuleDirection2D direction) {
         CapsuleCollider2D col = this.GetComponent<CapsuleCollider2D>();
         col.offset = offset;
         col.size = size;

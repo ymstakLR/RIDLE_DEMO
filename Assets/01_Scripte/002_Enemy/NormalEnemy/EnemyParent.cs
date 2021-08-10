@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy全体で使用する処理　このスクリプトを継承してEnemy処理を作成していく
-/// 更新日時:0616
+/// 更新日時:0810
 /// </summary>
 public class EnemyParent : MonoBehaviour {
     public AudioManager AudioManager { get; set; }
@@ -58,6 +58,8 @@ public class EnemyParent : MonoBehaviour {
     public void EnemyMiss() {
         if (!EnemyBodyTrigger.IsEnemyDamage)
             return;
+        AttackEffect.EffectGenerate("SlashingDamage", this.gameObject, this.GetComponent<Collider2D>().offset);
+
         AudioManager.PlaySE("NomalEnemyDamage");
         AniMiss = true;
         EnemyAnimator.SetBool("AniMiss", AniMiss);//ミスアニメーションを行う
@@ -67,6 +69,7 @@ public class EnemyParent : MonoBehaviour {
         _uiScore.AddScore(_enemyScore);
         EnemyBodyTrigger.IsEnemyDamage = false;
         MissColliderChange();
+
     }//EnemyMiss
 
     /// <summary>

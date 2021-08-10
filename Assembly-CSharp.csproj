@@ -113,7 +113,7 @@
     <Compile Include="Assets\01_Scripte\009_Scene\StageDataDisp.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\SelectFirstCursor.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy7.cs" />
-    <Compile Include="Assets\Firewall\zangeki_Damage\animatest.cs" />
+    <Compile Include="Assets\Firewall\zangeki_Damage\SlashingDamage.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Expression\CubismExpressionPreview.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismDisplayInfo3Json.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterExtensionMethods.cs" />
@@ -288,6 +288,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
+    <Compile Include="Assets\01_Scripte\002_Enemy\AttackEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />

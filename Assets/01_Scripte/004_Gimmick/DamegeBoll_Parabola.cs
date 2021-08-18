@@ -17,6 +17,13 @@ public class DamegeBoll_Parabola : MonoBehaviour {
 
     private bool _isDestroy;
 
+
+    private GameObject objA;
+    private GameObject objB;
+
+    private int _ballDeleteCounter;
+
+
     private void Start() {
         if (0 < transform.localScale.x) {
             _angles = new Vector3(-45, 45, 0);
@@ -49,8 +56,31 @@ public class DamegeBoll_Parabola : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Stage") {
-            _isDestroy = true;
+            _ballDeleteCounter++;
+            Debug.Log(_ballDeleteCounter);
+            //_isDestroy = true;
         }//if
-    }//OnTriggerEnter2D
+    }//OnTriggerEnter2
+
+    private void OnTriggerExit2D(Collider2D col) {
+        if (col.gameObject.tag == "Stage") {
+            _ballDeleteCounter--;
+            Debug.Log(_ballDeleteCounter);
+        }//if
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.tag == "Stage") {
+            Debug.Log("enter");
+        }//if
+    }
+
+    private void OnCollisionExit2D(Collision2D col) {
+        if (col.gameObject.tag == "Stage") {
+            Debug.Log("exit");
+        }//if
+    }
+
 
 }//DamageBoll_Parabola

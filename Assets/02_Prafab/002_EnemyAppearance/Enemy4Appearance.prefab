@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _object: {fileID: 6596809841855271063, guid: 7d902173f1a1eee40a8e152f43e36fc8, type: 3}
-  _objectFloatList: []
+  _objectFloatList:
+  - 20

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 ///自機が捕獲されたときにPlayerCrtlの代わりに使用する処理
-///更新日時:0602
+///更新日時:20210819
 /// </summary>
 public class PlayerCapture : MonoBehaviour {
     private EnemyArm _enemyArm;
@@ -25,7 +25,7 @@ public class PlayerCapture : MonoBehaviour {
 
     void Update() {
         if (_isFarstProcess) {
-            this.transform.Find("Attack").GetComponent<PlayerAttack>().enabled = false;
+            this.transform.Find("SlashingAttack").GetComponent<PlayerAttack>().enabled = false;
             this.GetComponent<PlayerJump>().JumpTypeFlag = EnumJumpTypeFlag.normal;
             _isFarstProcess = false;
         }//isFarstProcess
@@ -41,7 +41,7 @@ public class PlayerCapture : MonoBehaviour {
             this.transform.parent = null;//アームの子オブジェクトから親オブジェクトに変更する
             this.GetComponent<Animator>().SetBool("AniCapture", false);//ここからしか使用しないのでPlayerAnimationに含めずに処理する
             this.GetComponent<PlayerManager>().enabled = true;
-            this.transform.Find("Attack").GetComponent<PlayerAttack>().enabled = true;
+            this.transform.Find("SlashingAttack").GetComponent<PlayerAttack>().enabled = true;
             _pJump.IsJump = true;
             _uncaptureCount = 0;
             _isFarstProcess = true;

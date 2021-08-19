@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// ステージデータの情報を表示させるための処理(ステージ選択画面で使用する)
-/// 更新日時:0728
+/// 更新日時:20210819
 /// </summary>
 public class StageDataDisp : MonoBehaviour {
 
@@ -40,7 +40,7 @@ public class StageDataDisp : MonoBehaviour {
                 updateText.text = SaveManager.stageData.rankList[stageCount].ToString();
                 break;
             case string str when str.Contains("Time"):
-                updateText.text = " Time :    " + SaveManager.stageData.timeList[stageCount].ToString();
+                updateText.text = " Time: " + SaveManager.stageData.timeList[stageCount].ToString();
                 break;
         }//switch
     }//StageDataUpdate

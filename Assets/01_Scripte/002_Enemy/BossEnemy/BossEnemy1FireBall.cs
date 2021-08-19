@@ -5,7 +5,7 @@ using UnityEngine;
 /// ボス敵1の生成したダメージ玉の処理
 /// 更新日時:0413
 /// </summary>
-public class BossEnemy1FireBall : DamageBallBase {
+public class BossEnemy1FireBall : GenerateDamageObjBase {
     private GameObject _player;
 
     private readonly float BALL_SPEED = (float)22.5;
@@ -70,7 +70,7 @@ public class BossEnemy1FireBall : DamageBallBase {
     }//FixedUpdate
 
     void Update() {
-        BallDestroy();
+        GenerateDamageObjDestroy();
     }//Update
 
 }//BossEnemy1FireBall

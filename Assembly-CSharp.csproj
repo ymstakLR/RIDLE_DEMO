@@ -206,7 +206,7 @@
     <Compile Include="Assets\01_Scripte\009_Scene\Initialize.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\ICubismFadeState.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTile.cs" />
-    <Compile Include="Assets\01_Scripte\004_Gimmick\DamageBallBase.cs" />
+    <Compile Include="Assets\01_Scripte\004_Gimmick\GenerateDamageObjBase.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\ICubismLookTarget.cs" />
     <Compile Include="Assets\01_Scripte\011_SaveData\StageDataEdit.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkParameter.cs" />
@@ -289,7 +289,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Firewall\DamageBallSidePoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />

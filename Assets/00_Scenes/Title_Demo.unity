@@ -450,7 +450,7 @@ Animator:
   m_GameObject: {fileID: 719126957}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8ab4abe757b41e4cabcbfc750fe0695, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd883448b21998e4c994e0ae435fea1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 835045060}
   - component: {fileID: 835045059}
   m_Layer: 5
-  m_Name: EXITText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 1079539125}
   - component: {fileID: 1079539124}
   m_Layer: 5
-  m_Name: STARTText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -926,7 +926,7 @@ Animator:
   m_GameObject: {fileID: 1188802467}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8ab4abe757b41e4cabcbfc750fe0695, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd883448b21998e4c994e0ae435fea1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 1913531836}
   - component: {fileID: 1913531835}
   m_Layer: 5
-  m_Name: OPTIONSText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1407,7 +1407,7 @@ Animator:
   m_GameObject: {fileID: 1918946615}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8ab4abe757b41e4cabcbfc750fe0695, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd883448b21998e4c994e0ae435fea1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1551,11 +1551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ebeeb9acd3baf48b9a23c07ead1a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameList: []
-  rankList: []
-  scoreList: []
-  timeList: []
-  unlockData: []
 --- !u!1001 &231867351309091513
 PrefabInstance:
   m_ObjectHideFlags: 0

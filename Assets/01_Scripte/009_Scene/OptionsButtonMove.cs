@@ -39,10 +39,10 @@ public class OptionsButtonMove : MonoBehaviour {
         _bgmSlider = this.transform.Find("BGMSlider").GetComponent<Slider>();
         _seSlider = this.transform.Find("SESlider").GetComponent<Slider>();
         _numericalValueButton = this.transform.Find("NumericalValueButton").gameObject;
-        _numericalValueText = _numericalValueButton.transform.Find("NumericalValueText").GetComponent<Text>();
+        _numericalValueText = _numericalValueButton.transform.Find("Text").GetComponent<Text>();
         _resolutionChange = this.transform.Find("ResolutionChange").gameObject;
         _resolutionChangeFirstCursor = _resolutionChange.transform.Find("1280720Button").gameObject;
-        _fullScreenText = this.transform.Find("FULLSCREENButton/FULLSCREENText").GetComponent<Text>();
+        _fullScreenText = this.transform.Find("FULLSCREENButton/Text").GetComponent<Text>();
 
         _dataDeleteButton = this.transform.Find("DATADELETEButton").gameObject;
         _dataDeleteCheack = this.transform.Find("DataDeleteCheack").gameObject;

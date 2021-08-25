@@ -260,7 +260,7 @@ Animator:
   m_GameObject: {fileID: 23102686}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8ab4abe757b41e4cabcbfc750fe0695, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd883448b21998e4c994e0ae435fea1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -634,7 +634,7 @@ Animator:
   m_GameObject: {fileID: 593271437}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8ab4abe757b41e4cabcbfc750fe0695, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd883448b21998e4c994e0ae435fea1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 775211824}
   - component: {fileID: 775211823}
   m_Layer: 5
-  m_Name: Stage3Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2102,7 +2102,7 @@ GameObject:
   - component: {fileID: 1635864816}
   - component: {fileID: 1635864815}
   m_Layer: 5
-  m_Name: Stage2Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2681,7 +2681,7 @@ GameObject:
   - component: {fileID: 5266573044797080291}
   - component: {fileID: 7558732310370467429}
   m_Layer: 5
-  m_Name: Stage1Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2697,7 +2697,7 @@ Animator:
   m_GameObject: {fileID: 7576160351176169929}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8ab4abe757b41e4cabcbfc750fe0695, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd883448b21998e4c994e0ae435fea1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

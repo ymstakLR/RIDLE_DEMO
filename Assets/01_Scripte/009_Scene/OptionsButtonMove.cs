@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 /// <summary>
 /// オプション画面の各種ボタン処理
-/// 更新日時:0728
+/// 更新日時:20210825
 /// </summary>
 public class OptionsButtonMove : MonoBehaviour {
 
     private AudioManager _audioManager;
 
-    
     private Slider _bgmSlider;
     private Slider _seSlider;
 
@@ -19,7 +18,6 @@ public class OptionsButtonMove : MonoBehaviour {
     private GameObject _numericalValueButton;
     private Text _numericalValueText;
     private GameObject _resolutionChange;
-    private GameObject _resolutionChangeFirstCursor;
 
     //全画面変更関連
     private Text _fullScreenText;
@@ -28,9 +26,8 @@ public class OptionsButtonMove : MonoBehaviour {
     private bool _isInit;//この変数はなく世相
 
     //データ削除関連
-    private GameObject _dataDeleteButton;
     private GameObject _dataDeleteCheack;
-    private GameObject _dataDeleteCheackFirstCursor;
+    private GameObject _dataDeleteConfirm;
 
     private void Start() {
         //変数宣言
@@ -41,13 +38,9 @@ public class OptionsButtonMove : MonoBehaviour {
         _numericalValueButton = this.transform.Find("NumericalValueButton").gameObject;
         _numericalValueText = _numericalValueButton.transform.Find("Text").GetComponent<Text>();
         _resolutionChange = this.transform.Find("ResolutionChange").gameObject;
-        _resolutionChangeFirstCursor = _resolutionChange.transform.Find("1280720Button").gameObject;
         _fullScreenText = this.transform.Find("FULLSCREENButton/Text").GetComponent<Text>();
-
-        _dataDeleteButton = this.transform.Find("DATADELETEButton").gameObject;
         _dataDeleteCheack = this.transform.Find("DataDeleteCheack").gameObject;
-        _dataDeleteCheackFirstCursor = _dataDeleteCheack.transform.Find("NOButton").gameObject;
-
+        _dataDeleteConfirm = this.transform.Find("DataDeleteConfirm").gameObject;
         OptionInit();
     }//Start
 
@@ -57,6 +50,7 @@ public class OptionsButtonMove : MonoBehaviour {
     private void OptionInit() {
         _resolutionChange.SetActive(false);
         _dataDeleteCheack.SetActive(false);
+        _dataDeleteConfirm.SetActive(false);
         _bgmSlider.value = _audioManager.BGMAudio.volume;
         BarActive(_audioManager.BGMAudio, _bgmSlider);
         _seSlider.value = _audioManager.SEAudio.volume;
@@ -115,7 +109,7 @@ public class OptionsButtonMove : MonoBehaviour {
     public void ResolutionButton() {
         _audioManager.PlaySE("ButtonClick");
         _resolutionChange.SetActive(true);
-        _resolutionChangeFirstCursor.GetComponent<Selectable>().Select();
+        _resolutionChange.transform.Find("1280720Button").GetComponent<Selectable>().Select();
     }//ResolutionButton
 
     /// <summary>
@@ -167,7 +161,7 @@ public class OptionsButtonMove : MonoBehaviour {
     public void DataDeleteButton() {
         _audioManager.PlaySE("ButtonClick");
         _dataDeleteCheack.SetActive(true);
-        _dataDeleteCheackFirstCursor.GetComponent<Selectable>().Select();
+        _dataDeleteCheack.transform.Find("NOButton").GetComponent<Selectable>().Select();
     }//DataDeleteButton
 
     /// <summary>
@@ -176,18 +170,28 @@ public class OptionsButtonMove : MonoBehaviour {
     /// <param name="clickButton">クリックしたボタン</param>
     public void DataDelete(GameObject clickButton) {
         _audioManager.PlaySE("ButtonClick");
-        SaveManager.StageDataDelete();
-        DataDeleteCancel(clickButton);
+        _dataDeleteConfirm.SetActive(true);
+        _dataDeleteConfirm.transform.Find("Button").GetComponent<Selectable>().Select();
     }//DataDelete
+
+    /// <summary>
+    /// データ削除の確定処理
+    /// </summary>
+    public void DataDeleteConfirm(GameObject clickButton) {
+        SaveManager.StageDataDelete();
+        _dataDeleteConfirm.SetActive(false);
+        DataDeleteCancel(clickButton);
+    }
 
     /// <summary>
     /// データ削除のキャンセル処理
     /// </summary>
     /// <param name="selectButton">選択しているボタン</param>
     public void DataDeleteCancel(GameObject selectButton) {
+        selectButton.transform.Find("Text").GetComponent<Text>().color = Color.black;//別方法での処理を実装できるか模索する(20210825)
         _dataDeleteCheack.SetActive(false);
         selectButton.transform.localScale = new Vector3(1, 1, 1);
-        _dataDeleteButton.GetComponent<Selectable>().Select();
+        this.transform.Find("DATADELETEButton").GetComponent<Selectable>().Select();
     }//DataDeleteCancel
 
 }//OptionsButtonMove

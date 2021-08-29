@@ -16,7 +16,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:0804
+/// 更新日時:20210830
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -376,7 +376,6 @@ public class PlayerJump : MonoBehaviour {
         }//if
         if (PastTPY < transform.position.y) {
             _pAnimator.AniFall = false;
-            Debug.Log("kkkkkkk");
         }//if
         _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;
         JumpTypeFlag = 0;
@@ -415,6 +414,7 @@ public class PlayerJump : MonoBehaviour {
         }//if
         _keyDownTimer = KEY_DOWN_TIME + 1;
         JumpDown(jumpSpeed);
+        _pUnderTrigger.IsJumpUp = false;
         _pUnderTrigger.IsRise = false;
         if (jumpSpeed < GRAVITY) {
             return LandingJudgment(jumpSpeed);

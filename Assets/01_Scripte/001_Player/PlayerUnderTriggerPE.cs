@@ -41,9 +41,14 @@ public class PlayerUnderTriggerPE : PlayerUnderTrigger {
     private void OnTriggerStay2D(Collider2D col) {//元々はOnTriggerEnter2Dの処理だった 不具合があった場合上記のコメントになっている処理を確認する(0805)
         if (col.gameObject.tag != "PlatformEffector")
             return;
+        if (!_pUnderTrigger.IsJumpUp)
+            Debug.Log("!_pUnderTrigger.IsJumpUp");
+        if (_isPEExit)
+            Debug.Log("_isPEExit");
         if (!_pUnderTrigger.IsJumpUp && _isPEExit) {
             _pUnderTrigger.IsUnderTrigger = true;
             _pAnimator.AniFall = false;
+            Debug.Log("AniFallFalse2");
             _isPEExit = false;
         }//if
     }//OnTriggerStay2D

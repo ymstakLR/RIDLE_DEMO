@@ -20,6 +20,6 @@ public static class AttackEffect{
             (GameObject)Resources.Load(effectName),
             new Vector2(pos.x + posCorrection.x, pos.y + posCorrection.y), 
             Quaternion.identity);
-        instance.transform.parent = targetObj.transform;
+        //instance.transform.parent = targetObj.transform;
     }//EffectGenerate
 }

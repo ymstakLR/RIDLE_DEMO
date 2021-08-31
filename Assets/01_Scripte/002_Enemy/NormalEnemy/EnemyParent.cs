@@ -60,6 +60,13 @@ public class EnemyParent : MonoBehaviour {
             return;
         if (EnemyBodyTrigger.EnemyDamageType == EnemyDamageType.Slashing)
             AttackEffect.EffectGenerate("SlashingDamage", this.gameObject, this.GetComponent<Collider2D>().offset);
+        if (EnemyBodyTrigger.EnemyDamageType == EnemyDamageType.Trampling) {
+            Vector2 posCorrecdtion = new Vector2(
+                0,
+                - 4.5f);
+            AttackEffect.EffectGenerate("ShockWave",_playerObject, posCorrecdtion);
+        }
+            
 
         AudioManager.PlaySE("NomalEnemyDamage");
         AniMiss = true;

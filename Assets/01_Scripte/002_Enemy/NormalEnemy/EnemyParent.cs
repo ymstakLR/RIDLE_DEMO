@@ -58,16 +58,7 @@ public class EnemyParent : MonoBehaviour {
     public void EnemyMiss() {
         if (EnemyBodyTrigger.EnemyDamageType == 0)
             return;
-        if (EnemyBodyTrigger.EnemyDamageType == EnemyDamageType.Slashing)
-            AttackEffect.EffectGenerate("SlashingDamage", this.gameObject, this.GetComponent<Collider2D>().offset);
-        if (EnemyBodyTrigger.EnemyDamageType == EnemyDamageType.Trampling) {
-            Vector2 posCorrecdtion = new Vector2(
-                0,
-                - 4.5f);
-            AttackEffect.EffectGenerate("ShockWave",_playerObject, posCorrecdtion);
-        }
-            
-
+        DamageEffectSelect();
         AudioManager.PlaySE("NomalEnemyDamage");
         AniMiss = true;
         EnemyAnimator.SetBool("AniMiss", AniMiss);//ミスアニメーションを行う
@@ -78,6 +69,30 @@ public class EnemyParent : MonoBehaviour {
         MissColliderChange();
 
     }//EnemyMiss
+
+    /// <summary>
+    /// ダメージエフェクトを選択する処理
+    /// </summary>
+    private void DamageEffectSelect() {
+        Vector2 generatePos;
+        switch (EnemyBodyTrigger.EnemyDamageType) {
+            case EnemyDamageType.Slashing:
+                generatePos = new Vector2(
+                    this.gameObject.transform.position.x + this.GetComponent<Collider2D>().offset.x, 
+                    this.gameObject.transform.position.y + this.GetComponent<Collider2D>().offset.y);
+                AttackEffect.EffectGenerate("SlashingDamage", this.gameObject, generatePos);
+                break;
+            case EnemyDamageType.Trampling:
+                generatePos = new Vector2(
+                    _playerObject.transform.position.x,
+                    _playerObject.transform.position.y);
+                AttackEffect.EffectGenerate("ShockWave2", _playerObject,generatePos);
+                break;
+            default:
+                break;
+        }
+           
+    }
 
     /// <summary>
     /// 全てのレイヤーを変更する

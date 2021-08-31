@@ -13,13 +13,14 @@ public static class AttackEffect{
     /// </summary>
     /// <param name="effectName">生成するエフェクト名</param>
     /// <param name="targetObj">対象のオブジェクト</param>
-    /// <param name="posCorrection">生成するエフェクトの配置補正値</param>
-    public static void EffectGenerate(string effectName,GameObject targetObj,Vector2 posCorrection) {
-        Vector2 pos = targetObj.transform.position;
+    /// <param name="generatePos">生成するエフェクトの配置補正値</param>
+    public static void EffectGenerate(string effectName,GameObject targetObj,Vector2 generatePos) {
         GameObject instance = (GameObject)UnityEngine.Object.Instantiate(
             (GameObject)Resources.Load(effectName),
-            new Vector2(pos.x + posCorrection.x, pos.y + posCorrection.y), 
+            new Vector2(generatePos.x,generatePos.y), 
             Quaternion.identity);
+        instance.transform.localRotation = targetObj.transform.localRotation;
+        instance.transform.localScale = targetObj.transform.localScale;
         //instance.transform.parent = targetObj.transform;
     }//EffectGenerate
 }

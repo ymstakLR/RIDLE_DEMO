@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の体に接触したときの処理
-/// 更新日時:0603
+/// 更新日時:20210903
 /// </summary>
 public class PlayerBodyTrigger : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -76,6 +76,7 @@ public class PlayerBodyTrigger : MonoBehaviour {
             (col.gameObject.tag == "EnemyAttack" ||col.gameObject.tag == "DamageGimmick")) {
             _pAnimator.AniDamage = true;
             _isDamage = true;
+            AttackEffect.EffectGenerate("Burest", this.transform.parent.position, this.transform.parent.gameObject, true);
             _pLife.LifeDecrease();
         }//if
     }//EnemyTouch

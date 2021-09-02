@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// エフェクト関連の処理(今後クラス名を変更する必要がある)
-/// 更新日時:0810
+/// 更新日時:20210903
 /// </summary>
 public static class AttackEffect{
 
@@ -14,13 +14,16 @@ public static class AttackEffect{
     /// <param name="effectName">生成するエフェクト名</param>
     /// <param name="targetObj">対象のオブジェクト</param>
     /// <param name="generatePos">生成するエフェクトの配置補正値</param>
-    public static void EffectGenerate(string effectName,GameObject targetObj,Vector2 generatePos) {
+    public static void EffectGenerate(string effectName,Vector2 generatePos, GameObject targetObj,bool targetParent) {
         GameObject instance = (GameObject)UnityEngine.Object.Instantiate(
             (GameObject)Resources.Load(effectName),
             new Vector2(generatePos.x,generatePos.y), 
             Quaternion.identity);
         instance.transform.localRotation = targetObj.transform.localRotation;
         instance.transform.localScale = targetObj.transform.localScale;
-        //instance.transform.parent = targetObj.transform;
+        if (targetParent) {
+            instance.transform.parent = targetObj.transform;
+        }//if
     }//EffectGenerate
+
 }

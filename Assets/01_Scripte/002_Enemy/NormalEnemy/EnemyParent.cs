@@ -86,7 +86,7 @@ public class EnemyParent : MonoBehaviour {
                 generatePos = new Vector2(
                     _playerObject.transform.position.x,
                     _playerObject.transform.position.y);
-                AttackEffect.EffectGenerate("ShockWave2", generatePos, _playerObject,false);
+                AttackEffect.EffectGenerate("ShockWave", generatePos, _playerObject,false);
                 break;
             default:
                 break;

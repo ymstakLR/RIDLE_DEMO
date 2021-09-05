@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Aタイプの敵共通の処理
-/// 更新日時:0616
+/// 更新日時:20210906
 /// </summary>
 public class EnemyTypeA : EnemyParent {
     public GameObject SideDecisionObject { get; set; }//enemyの子オブジェクトSideDecisionを取得
@@ -31,11 +31,11 @@ public class EnemyTypeA : EnemyParent {
     /// 各種敵共通のUpdate処理
     /// </summary>
     protected void TypeAUpdate() {
+        EnemyRendererHide();
         if (!AniMiss) {
             ParentUpdate();
             UnderTriggerCheack();
         } else {
-            EnemyErasureMiss();
             SideDecisionObject.GetComponent<Collider2D>().enabled = false;
             _eUnderTrigger.IsRise = false;
             _eUnderTrigger.IsGimmickJump = false;//現状trueになるときはないが、レイヤー順番変更の処理を理解しやすくするために記述している(0502)
@@ -45,14 +45,13 @@ public class EnemyTypeA : EnemyParent {
     /// <summary>
     /// 敵の非表示化
     /// </summary>
-    private void EnemyErasureMiss() {
-        if (_stageClearManagement.StageStatus == EnumStageStatus.Normal||
-            _stageClearManagement.StageStatus == EnumStageStatus.Pause) {
+    private void EnemyRendererHide() {
+        if (_stageClearManagement.StageStatus == EnumStageStatus.Normal) {
             this.GetComponent<Renderer>().enabled = true;
         } else {
             this.GetComponent<Renderer>().enabled = false;
         }//if
-    }//EnemyErasureMiss
+    }//EnemyRendererHide
 
     /// <summary>
     /// 敵のUnderTriggerの判定を更新する処理

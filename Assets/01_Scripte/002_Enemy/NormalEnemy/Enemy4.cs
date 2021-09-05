@@ -8,7 +8,7 @@ using UnityEngine;
 /// 自機がアームに触れたら、自機を動けなくして捕獲アニメーションにする
 /// クレーンをEnemy4のほうに縮ませる
 /// 自機がEnemy4に触れたら自機にダメージ
-/// 更新日時:0602
+/// 更新日時:20210906
 /// </summary>
 public class Enemy4 : EnemyParent {
     private GameObject _armObject;//アームオブジェクト
@@ -37,10 +37,26 @@ public class Enemy4 : EnemyParent {
 
     private void Update() {
         ParentUpdate();
+        EnemyRendererHide();
         if (AniMiss) {
             this.GetComponent<EnemyParent>().enabled = false;
         }//if
     }//Update
+
+    /// <summary>
+    /// 敵の非表示化
+    /// </summary>
+    private void EnemyRendererHide() {//非表示化するRendererを探索できるような処理に変更する(20210906
+        if (_stageClearManagement.StageStatus == EnumStageStatus.Normal) {
+            this.GetComponent<Renderer>().enabled = true;
+            _craneObject.GetComponent<Renderer>().enabled = true;
+            _armObject.GetComponent<Renderer>().enabled = true;
+        } else {
+            this.GetComponent<Renderer>().enabled = false;
+            _craneObject.GetComponent<Renderer>().enabled = false;
+            _armObject.GetComponent<Renderer>().enabled = false;
+        }//if
+    }//EnemyRendererHide
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "PlayerAttack") {//自機の攻撃に触れた場合

@@ -90,9 +90,8 @@ public class EnemyParent : MonoBehaviour {
                 break;
             default:
                 break;
-        }
-           
-    }
+        }//switch
+    }//DamageEffectSelect
 
     /// <summary>
     /// 全てのレイヤーを変更する

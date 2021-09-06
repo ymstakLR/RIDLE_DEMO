@@ -76,7 +76,7 @@ public class PlayerBodyTrigger : MonoBehaviour {
             (col.gameObject.tag == "EnemyAttack" ||col.gameObject.tag == "DamageGimmick")) {
             _pAnimator.AniDamage = true;
             _isDamage = true;
-            AttackEffect.EffectGenerate("Burest", this.transform.parent.position, this.transform.parent.gameObject, true);
+            //AttackEffect.EffectGenerate("Burest", this.transform.parent.position, this.transform.parent.gameObject, true);
             _pLife.LifeDecrease();
         }//if
     }//EnemyTouch

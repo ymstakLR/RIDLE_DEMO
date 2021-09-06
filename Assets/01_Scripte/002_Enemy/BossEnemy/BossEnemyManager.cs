@@ -108,7 +108,6 @@ public class BossEnemyManager : MonoBehaviour {
         this.gameObject.layer = LayerMask.NameToLayer("DamageBigEnemy");
         BodyTrigger.layer = LayerMask.NameToLayer("DamageBigEnemy");
         Debug.Log(BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType);
-        DamageEffectSelect();
         BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType = EnemyDamageType.None;
         _recoveryTimer = 0;
         _rendererEnableTime = 0;
@@ -117,29 +116,6 @@ public class BossEnemyManager : MonoBehaviour {
             GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("EnemyMiss");
         }//if
     }//EnemyDamage
-
-    /// <summary>
-    /// ダメージエフェクトを選択する処理
-    /// </summary>
-    private void DamageEffectSelect() {
-        Vector2 generatePos;
-        switch (BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType) {
-            case EnemyDamageType.Slashing:
-                generatePos = new Vector2(
-                    this.gameObject.transform.position.x + this.GetComponent<Collider2D>().offset.x,
-                    this.gameObject.transform.position.y + this.GetComponent<Collider2D>().offset.y);
-                AttackEffect.EffectGenerate("SlashingDamage", generatePos, this.gameObject, false);
-                break;
-            case EnemyDamageType.Trampling:
-                generatePos = new Vector2(
-                    Player.transform.position.x,
-                    Player.transform.position.y);
-                AttackEffect.EffectGenerate("ShockWave", generatePos, Player, false);
-                break;
-            default:
-                break;
-        }//switch
-    }//DamageEffectSelect
 
     /// <summary>
     /// ダメージを受けた後の処理

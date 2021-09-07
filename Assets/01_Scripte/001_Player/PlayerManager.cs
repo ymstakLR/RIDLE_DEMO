@@ -102,6 +102,7 @@ public class PlayerManager : MonoBehaviour {
                 //停止
                 JumpPower = _pJump.JumpStop(JumpPower);
                 WorkPower = 0;
+                Debug.Log(_stageClearMgmt.StageStatus);
                 break;
         }//switch
     }//PlayerInput

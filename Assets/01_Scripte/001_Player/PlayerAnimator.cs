@@ -14,6 +14,7 @@ public class PlayerAnimator : MonoBehaviour {
     public bool AniAttack { get; set; }
     public bool AniDamage { get; set; }
     public bool AniMiss { get; set; }
+    public bool IsEnable { get; set; }
 
     private Animator _animator;
 
@@ -30,4 +31,5 @@ public class PlayerAnimator : MonoBehaviour {
         _animator.SetBool("AniDamage", AniDamage);
         _animator.SetBool("AniMiss", AniMiss);
     }//AnimatorMove
+
 }//PlayerAnimator

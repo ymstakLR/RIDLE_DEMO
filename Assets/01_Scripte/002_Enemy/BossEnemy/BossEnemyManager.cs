@@ -85,7 +85,6 @@ public class BossEnemyManager : MonoBehaviour {
         if (this.GetComponent<SpriteRenderer>().sprite != _sprite) {//画像が変わったとき
             _sprite = this.GetComponent<SpriteRenderer>().sprite;
             BodyTrigger.GetComponent<SpriteRenderer>().sprite = _sprite;
-
             Destroy(this.GetComponent<PolygonCollider2D>());
             Destroy(BodyTrigger.GetComponent<PolygonCollider2D>());
             this.gameObject.AddComponent<PolygonCollider2D>();
@@ -93,7 +92,7 @@ public class BossEnemyManager : MonoBehaviour {
         }//if
         if (!BodyTrigger.GetComponent<PolygonCollider2D>().isTrigger) {//isTriggerがAddComponentと同時に設定できないのでこの処理で設定する
             BodyTrigger.GetComponent<PolygonCollider2D>().isTrigger = true;
-            if(_recoveryTimer >= RECOVERY_TIME) {
+            if (_recoveryTimer >= RECOVERY_TIME) {
                 BodyTrigger.layer = LayerMask.NameToLayer("EnemyAttack");
             }//if
         } //if
@@ -107,15 +106,41 @@ public class BossEnemyManager : MonoBehaviour {
             return;
         this.gameObject.layer = LayerMask.NameToLayer("DamageBigEnemy");
         BodyTrigger.layer = LayerMask.NameToLayer("DamageBigEnemy");
-        Debug.Log(BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType);
-        BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType = EnemyDamageType.None;
         _recoveryTimer = 0;
         _rendererEnableTime = 0;
         _nowLifeNum--;
+        if (_nowLifeNum == 0) {
+            DamageEffectSelect();
+        }
+        BodyTrigger.GetComponent<EnemyBodyTrigger>().EnemyDamageType = EnemyDamageType.None;
         if (_recoveryTimer == 0) {
             GameObject.Find("GameManager").GetComponent<AudioManager>().PlaySE("EnemyMiss");
         }//if
     }//EnemyDamage
+
+    /// <summary>
+    /// ダメージエフェクトを選択する処理
+    /// </summary>
+    private void DamageEffectSelect() {
+        Vector2 generatePos;
+        switch (this.transform.Find("BodyTrigger").GetComponent<EnemyBodyTrigger>().EnemyDamageType) {
+            case EnemyDamageType.Slashing:
+                generatePos = new Vector2(
+                    this.gameObject.transform.position.x + this.GetComponent<Collider2D>().offset.x,
+                    this.gameObject.transform.position.y + this.GetComponent<Collider2D>().offset.y);
+                AttackEffect.EffectGenerate("SlashingDamage", generatePos, this.gameObject, true);
+                break;
+            case EnemyDamageType.Trampling:
+                generatePos = new Vector2(
+                    Player.transform.position.x,
+                    Player.transform.position.y);
+                AttackEffect.EffectGenerate("ShockWave", generatePos, Player, false);
+                break;
+            default:
+                break;
+        }//switch
+    }//DamageEffectSelect
+
 
     /// <summary>
     /// ダメージを受けた後の処理
@@ -153,7 +178,7 @@ public class BossEnemyManager : MonoBehaviour {
     private void EnemyMiss() {
         if (_nowLifeNum != 0)
             return;
-        if(_recoveryTimer == 0) {
+        if (_recoveryTimer == 0) {
             _audioManager.PlaySE("BossEnemyMiss");
         }
         _stageClearManagement.StageStatus = EnumStageStatus.AfterBossBattle;
@@ -174,7 +199,8 @@ public class BossEnemyManager : MonoBehaviour {
         yield return new WaitForSeconds((float)2.5);
         _destroyPositionY = _mainCameraTF.y - 25;
         if (this.transform.position.y > _destroyPositionY) {
-;            this.transform.position = new Vector2(this.transform.position.x,this.transform.position.y - (Time.deltaTime*(float)20));
+            ;
+            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - (Time.deltaTime * (float)20));
         } else {//画面内から出た場合
             _stageClearManagement.BossEnemyArray.RemoveAt(0);
             _stageClearManagement.StageStatus = EnumStageStatus.Normal;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy全体で使用する処理　このスクリプトを継承してEnemy処理を作成していく
-/// 更新日時:0810
+/// 更新日時:20210910
 /// </summary>
 public class EnemyParent : MonoBehaviour {
     public AudioManager AudioManager { get; set; }
@@ -79,7 +79,7 @@ public class EnemyParent : MonoBehaviour {
                 generatePos = new Vector2(
                     this.gameObject.transform.position.x + this.GetComponent<Collider2D>().offset.x,
                     this.gameObject.transform.position.y + this.GetComponent<Collider2D>().offset.y);
-                AttackEffect.EffectGenerate("SlashingDamage", generatePos, this.gameObject, false);
+                AttackEffect.EffectGenerate("SlashingDamage", generatePos, _playerObject, false);
                 break;
             case EnemyDamageType.Trampling:
                 generatePos = new Vector2(

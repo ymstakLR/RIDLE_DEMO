@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵10の移動処理
-/// 更新日時:0603
+/// 更新日時:20210910
 /// </summary>
 public class Enemy10 : EnemyTypeA {
 
@@ -57,12 +57,12 @@ public class Enemy10 : EnemyTypeA {
                 transform: EnemyTransform,
                 enemySideDecision: SideDecisionScript,
                 enemyUnderDecisionTrigger: _underDecisionTrigger);
-            ColliderChange(new Vector2(1.2f, -2.75f), new Vector2(7.5f, 6), CapsuleDirection2D.Horizontal);
+            ColliderChange(new Vector2(0.55f, -1.3f), new Vector2(3.8f, 3), CapsuleDirection2D.Horizontal);
         } else { 
             (_jumpPower, _jumpTimer, _isFall) = EnemyWork.Jump(
                 EnemyAnimator, _eUnderTrigger, _landingCheck, RB2D, transform,
                 EnemySpeed, _jumpPower, _pastTPY, _jumpTimer, JUMP_POWER_MAX, _isFall);
-            ColliderChange(new Vector2(1.2f, -1.25f), new Vector2(7.5f, 9), CapsuleDirection2D.Vertical);
+            ColliderChange(new Vector2(0.55f, -0.5f), new Vector2(3.8f, 4.73f), CapsuleDirection2D.Vertical);
         }//if
         _pastTPY = this.transform.position.y;
         _jumpTimer += Time.deltaTime;

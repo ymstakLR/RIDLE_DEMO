@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// エフェクト関連の処理(今後クラス名を変更する必要がある)
-/// 更新日時:20210903
+/// 更新日時:20210910
 /// </summary>
 public static class AttackEffect{
 
@@ -19,7 +19,7 @@ public static class AttackEffect{
             (GameObject)Resources.Load(effectName),
             new Vector2(generatePos.x,generatePos.y), 
             Quaternion.identity);
-        instance.transform.localRotation = targetObj.transform.localRotation;
+        instance.transform.localEulerAngles = targetObj.transform.localEulerAngles;
         instance.transform.localScale = targetObj.transform.localScale;
         if (targetParent) {
             instance.transform.parent = targetObj.transform;

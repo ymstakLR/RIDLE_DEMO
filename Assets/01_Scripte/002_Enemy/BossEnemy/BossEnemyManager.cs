@@ -92,6 +92,7 @@ public class BossEnemyManager : MonoBehaviour {
         }//if
         if (!BodyTrigger.GetComponent<PolygonCollider2D>().isTrigger) {//isTriggerがAddComponentと同時に設定できないのでこの処理で設定する
             BodyTrigger.GetComponent<PolygonCollider2D>().isTrigger = true;
+            Debug.Log("true");
             if (_recoveryTimer >= RECOVERY_TIME) {
                 BodyTrigger.layer = LayerMask.NameToLayer("EnemyAttack");
             }//if

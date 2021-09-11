@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 自機の体に接触したときの処理
-/// 更新日時:20210903
+/// 更新日時:20210911
 /// </summary>
 public class PlayerBodyTrigger : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -52,7 +52,7 @@ public class PlayerBodyTrigger : MonoBehaviour {
         if (_recoveryTimer <= _rendererEnableTime)
             return;
         _spriteRenderer.enabled = !_spriteRenderer.enabled;
-        _rendererEnableTime += (float)0.1;
+        _rendererEnableTime += 0.1f;
     }//Damage
 
     private void OnTriggerEnter2D(Collider2D col) {

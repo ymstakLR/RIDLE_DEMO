@@ -19,6 +19,12 @@ public class EnemyParent : MonoBehaviour {
     private EnemyCount _enemyCount;
     protected GameObject _playerObject;
     protected Score _uiScore;
+    private SpriteRenderer _spriteRenderer;
+
+    private float _blinkingTimer;
+    private float _blinkingEnableTime;
+
+    private readonly float BLINKING_TIME = 1.5f;
 
     public int EnemyMissFoll { get; set; }//敵がミス状態になったときに落下する速度
 
@@ -38,6 +44,7 @@ public class EnemyParent : MonoBehaviour {
         _playerObject = GameObject.Find("Ridle");
         _enemyCount = GameObject.Find("UI").transform.Find("UIText").transform.Find("EnemyCount").GetComponent<EnemyCount>();
         _uiScore = GameObject.Find("UI").transform.Find("UIText").transform.Find("ScoreNumText").GetComponent<Score>();
+        _spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         _appearanceManager = this.transform.parent.GetComponent<ObjectAppearanceManager>();
         _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
@@ -113,7 +120,7 @@ public class EnemyParent : MonoBehaviour {
     }//MissColliderChange
 
     /// <summary>
-    /// 時期と一定距離離れたら消去する処理(ミスしていないとき)
+    /// 自機と一定距離離れたら消去する処理(ミスしていないとき)
     /// </summary>
     public void EnemyErasure() {
         if (60 > Mathf.Abs(_playerObject.transform.position.x - this.transform.position.x) &&
@@ -139,6 +146,22 @@ public class EnemyParent : MonoBehaviour {
             Destroy(this.gameObject);
         }//if
     }//StageStatusCheack
+
+    /// <summary>
+    /// ミスした際の点滅処理
+    /// </summary>
+    protected void EnemyMissBlinking() {
+        if (_blinkingTimer > BLINKING_TIME) {
+            _spriteRenderer.enabled = true;
+            return;
+        }//if
+        _blinkingTimer += Time.deltaTime;
+        if (_blinkingTimer <= _blinkingEnableTime)
+            return;
+        _spriteRenderer.enabled = !_spriteRenderer.enabled;
+        _blinkingEnableTime += 0.1f;
+    }//EnemyMissBlinking
+
 
     /// <summary>
     /// 当たり判定を変更する処理

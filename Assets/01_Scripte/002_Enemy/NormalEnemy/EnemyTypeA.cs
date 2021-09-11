@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Aタイプの敵共通の処理
-/// 更新日時:20210906
+/// 更新日時:20210911
 /// </summary>
 public class EnemyTypeA : EnemyParent {
     public GameObject SideDecisionObject { get; set; }//enemyの子オブジェクトSideDecisionを取得
@@ -12,6 +12,7 @@ public class EnemyTypeA : EnemyParent {
 
     private EnemyBodyTrigger _eBodyTrigger;
     protected EnemyUnderTrigger _eUnderTrigger;
+    private EnumStageStatus _beforeStageStatus;
 
     private float _pastPosY;
 
@@ -36,6 +37,7 @@ public class EnemyTypeA : EnemyParent {
             ParentUpdate();
             UnderTriggerCheack();
         } else {
+            EnemyMissBlinking();
             SideDecisionObject.GetComponent<Collider2D>().enabled = false;
             _eUnderTrigger.IsRise = false;
             _eUnderTrigger.IsGimmickJump = false;//現状trueになるときはないが、レイヤー順番変更の処理を理解しやすくするために記述している(0502)
@@ -46,11 +48,15 @@ public class EnemyTypeA : EnemyParent {
     /// 敵の非表示化
     /// </summary>
     private void EnemyRendererHide() {
+        if (_stageClearManagement.StageStatus == _beforeStageStatus)
+            return;
+        Debug.Log("kakunin");
         if (_stageClearManagement.StageStatus == EnumStageStatus.Normal) {
             this.GetComponent<Renderer>().enabled = true;
         } else {
             this.GetComponent<Renderer>().enabled = false;
         }//if
+        _beforeStageStatus = _stageClearManagement.StageStatus;
     }//EnemyRendererHide
 
     /// <summary>

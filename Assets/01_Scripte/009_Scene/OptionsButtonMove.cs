@@ -94,7 +94,8 @@ public class OptionsButtonMove : MonoBehaviour {
     /// <param name="audio"></param>
     /// <param name="slider"></param>
     private void BarActive(AudioSource audio,Slider slider) {
-        if(audio.volume < 0.1) {
+        float volumevalue = Mathf.Round(audio.volume * 10) / 10;//情報落ち対策用変数
+        if (volumevalue < 0.1) {
             slider.transform.GetChild(1).gameObject.SetActive(false);
             audio.volume = 0;
             slider.value = 0;
@@ -133,6 +134,7 @@ public class OptionsButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="clickButton"></param>
     public void ResolutionChangeCancel(GameObject clickButton) {
+        clickButton.transform.Find("Text").GetComponent<Text>().color = Color.black;//別方法での処理を実装できるか模索する(20210825)
         _resolutionChange.SetActive(false);
         clickButton.transform.localScale = new Vector3(1, 1, 1);
         _numericalValueButton.GetComponent<Selectable>().Select();
@@ -181,14 +183,14 @@ public class OptionsButtonMove : MonoBehaviour {
         SaveManager.StageDataDelete();
         _dataDeleteConfirm.SetActive(false);
         DataDeleteCancel(clickButton);
-    }
+    }//DataDeleteConfirm
 
     /// <summary>
     /// データ削除のキャンセル処理
     /// </summary>
     /// <param name="selectButton">選択しているボタン</param>
     public void DataDeleteCancel(GameObject selectButton) {
-        selectButton.transform.Find("Text").GetComponent<Text>().color = Color.black;//別方法での処理を実装できるか模索する(20210825)
+        selectButton.transform.Find("Text").GetComponent<Text>().color = Color.black;
         _dataDeleteCheack.SetActive(false);
         selectButton.transform.localScale = new Vector3(1, 1, 1);
         this.transform.Find("DATADELETEButton").GetComponent<Selectable>().Select();

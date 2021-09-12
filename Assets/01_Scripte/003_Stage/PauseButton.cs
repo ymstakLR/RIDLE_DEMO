@@ -56,7 +56,6 @@ public class PauseButton : MonoBehaviour {
             (_stageClearManagement.StageStatus == EnumStageStatus.Pause&&_pauseUI.activeSelf == false))
             return;
         PauseInit();
-        Debug.Log(_stageClearManagement.StageStatus);
     }//PauseJudge
 
     /// <summary>

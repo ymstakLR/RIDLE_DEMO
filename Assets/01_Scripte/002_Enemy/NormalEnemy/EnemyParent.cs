@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy全体で使用する処理　このスクリプトを継承してEnemy処理を作成していく
-/// 更新日時:20210910
+/// 更新日時:20210912
 /// </summary>
 public class EnemyParent : MonoBehaviour {
     public AudioManager AudioManager { get; set; }
@@ -19,12 +19,11 @@ public class EnemyParent : MonoBehaviour {
     private EnemyCount _enemyCount;
     protected GameObject _playerObject;
     protected Score _uiScore;
-    private SpriteRenderer _spriteRenderer;
+    protected Renderer _renderer;
 
-    private float _blinkingTimer;
-    private float _blinkingEnableTime;
-
-    private readonly float BLINKING_TIME = 1.5f;
+    private float _blinkingTimer;//現在の点滅時間
+    private float _blinkingEnableTime;//点滅切り替え時間
+    private readonly float BLINKING_TIME = 1.5f;//点滅時間
 
     public int EnemyMissFoll { get; set; }//敵がミス状態になったときに落下する速度
 
@@ -44,7 +43,7 @@ public class EnemyParent : MonoBehaviour {
         _playerObject = GameObject.Find("Ridle");
         _enemyCount = GameObject.Find("UI").transform.Find("UIText").transform.Find("EnemyCount").GetComponent<EnemyCount>();
         _uiScore = GameObject.Find("UI").transform.Find("UIText").transform.Find("ScoreNumText").GetComponent<Score>();
-        _spriteRenderer = this.GetComponent<SpriteRenderer>();
+        _renderer = this.GetComponent<Renderer>();
 
         _appearanceManager = this.transform.parent.GetComponent<ObjectAppearanceManager>();
         _stageClearManagement = GameObject.Find("Stage").GetComponent<StageStatusManagement>();
@@ -151,15 +150,18 @@ public class EnemyParent : MonoBehaviour {
     /// ミスした際の点滅処理
     /// </summary>
     protected void EnemyMissBlinking() {
-        if (_blinkingTimer > BLINKING_TIME) {
-            _spriteRenderer.enabled = true;
+        if (_blinkingTimer > BLINKING_TIME * 2)//点滅処理終了後
+            return;
+        if (_blinkingTimer > BLINKING_TIME) {//点滅処理終了直前
+            _renderer.enabled = true;
+            _blinkingTimer= _blinkingTimer*2;
             return;
         }//if
+        if (_blinkingTimer >= _blinkingEnableTime) {//点滅切り替え
+            _renderer.enabled = !_renderer.enabled;
+            _blinkingEnableTime += 0.1f;
+        }//if
         _blinkingTimer += Time.deltaTime;
-        if (_blinkingTimer <= _blinkingEnableTime)
-            return;
-        _spriteRenderer.enabled = !_spriteRenderer.enabled;
-        _blinkingEnableTime += 0.1f;
     }//EnemyMissBlinking
 
 

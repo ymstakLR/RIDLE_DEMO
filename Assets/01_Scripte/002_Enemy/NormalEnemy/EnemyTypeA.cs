@@ -50,11 +50,10 @@ public class EnemyTypeA : EnemyParent {
     private void EnemyRendererHide() {
         if (_stageClearManagement.StageStatus == _beforeStageStatus)
             return;
-        Debug.Log("kakunin");
         if (_stageClearManagement.StageStatus == EnumStageStatus.Normal) {
-            this.GetComponent<Renderer>().enabled = true;
+            _renderer.enabled = true;
         } else {
-            this.GetComponent<Renderer>().enabled = false;
+            _renderer.enabled = false;
         }//if
         _beforeStageStatus = _stageClearManagement.StageStatus;
     }//EnemyRendererHide

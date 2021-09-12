@@ -76,6 +76,9 @@ TagManager:
   - name: Item
     uniqueID: 1807778045
     locked: 0
+  - name: Effect
+    uniqueID: 2011184441
+    locked: 0
   - name: Gimmick_Forward
     uniqueID: 2473372839
     locked: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 円周移動する床の処理
-/// 更新日時:0616
+/// 更新日時:20210914
 /// </summary>
 public class MovingObjects_Circle : MonoBehaviour {
 
@@ -32,7 +32,6 @@ public class MovingObjects_Circle : MonoBehaviour {
         _circleCorrection = OneCircleTime / mMovingObjectList.Count;
         for (int i = 0; i < mMovingObjectList.Count; i++) {
             GameObject cloneObj = Instantiate(mMovingObjectList[i],this.transform);//生成
-            cloneObj.transform.parent = this.gameObject.transform;//子要素
             cloneObjectList.Add(cloneObj);//リストに追加
         }//for
     }//Start

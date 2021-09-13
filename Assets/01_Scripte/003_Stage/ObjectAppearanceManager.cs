@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 指定位置でオブジェクトを生成する処理
-/// 更新日時:0803
+/// 更新日時:20210914
 /// </summary>
 public class ObjectAppearanceManager : MonoBehaviour {
     [SerializeField, Tooltip("生成したいオブジェクト")]
@@ -64,9 +64,7 @@ public class ObjectAppearanceManager : MonoBehaviour {
     /// オブジェクトを生成する処理
     /// </summary>
     private void ObjectGenerate() {
-        GameObject instance = (GameObject)Instantiate(
-            _object, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-        instance.transform.parent = this.transform;
+        GameObject instance = (GameObject)Instantiate(_object,this.transform);
         instance.GetComponent<SpriteRenderer>().sortingOrder = instance.GetComponent<SpriteRenderer>().sortingOrder - _hierarchCount;
         this.GetComponent<ObjectAppearanceManager>().enabled = false;
     }//EnemyGenerate

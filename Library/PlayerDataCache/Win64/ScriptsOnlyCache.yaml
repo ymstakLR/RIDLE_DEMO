@@ -944,7 +944,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 17864}
+      Script: {instanceID: 17866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2412,4 +2412,4 @@ ScriptsOnlyBuild:
   - Assets/00_Scenes/Stage1.unity
   - Assets/00_Scenes/Stage2.unity
   - Assets/00_Scenes/Stage3.unity
-  playerPath: D:/UnityData/00000003_BildData/RIDLE_DEMO/RIDLE.exe
+  playerPath: D:/UnityData/00000003_BildData/RIDLE_DEMO/RIDLE_Data/RIDLE.exe

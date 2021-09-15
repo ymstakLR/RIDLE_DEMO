@@ -289,10 +289,14 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
+    <Compile Include="Assets\Firewall\InputManagerGenerator.cs" />
+    <Compile Include="Assets\Firewall\InputManagerSetter.cs" />
+    <Compile Include="Assets\Firewall\InputManagerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />
     <None Include="Assets\01_Scripte\000_Log\log.txt" />
+    <None Include="Assets\Firewall\inputmanager.txt" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\x86\Live2DCubismCore.dll" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Mask.shader" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Unlit.shader" />

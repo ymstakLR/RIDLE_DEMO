@@ -28,6 +28,29 @@ public struct UnlockData {
     public List<bool> unlockList;
 }
 
+[Serializable]
+public struct InputData {
+    public List<string> nameList;
+    public List<string> descriptiveNameList;
+    public List<string> descriptiveNegativeNameList;
+    public List<string> negativeButtonList;
+    public List<string> positiveButtonList;
+    public List<string> altNegativeButtionList;
+    public List<string> altPositionButtonList;
+
+    public List<float> gravityList;
+    public List<float> deadList;
+    public List<float> sensitivityList;
+
+    public List<bool> snapList;
+    public List<bool> invertList;
+
+    public List<AxisType> typeList;
+
+    public List<int> axisList;
+    public List<int> joyNumList;
+}
+
 /// <summary>
 /// ゲームで使用するデータの管理処理
 /// 更新日時:0727
@@ -44,6 +67,10 @@ public static class SaveManager {
 
     const string UNLOCK_FILE ="unlockData.json";
     public static UnlockData unlockData;
+
+    const int AXES_SIZE_NUM = 12;
+    const string INPUT_FILE = "inputData.json";
+    public static InputData inputData;
 
     /// <summary>
     /// ステージデータ更新処理
@@ -132,7 +159,8 @@ public static class SaveManager {
         } else {
             UnlockDataGenerate();
         }//if
-    }//DataLoad
+        InputDataGenerate();
+    }//DataInit
 
     /// <summary>
     /// データ読み込み処理
@@ -208,6 +236,22 @@ public static class SaveManager {
         string jsonData = JsonUtility.ToJson(unlockData, true);
         DataSave(jsonData, UNLOCK_FILE);
     }//UnlockDataGenerate
+
+
+    private static void InputDataGenerate() {
+        inputData = new InputData();
+        List<string> nameList = new List<string>();
+        List<string> nButtonList = new List<string>();
+        List<string> pButtonList = new List<string>();
+        List<string> apButtonList = new List<string>();
+        for(int i = 0; i < AXES_SIZE_NUM; i++) {
+            InputManagerInfo.DefaultNameInsert(nameList, i);
+            InputManagerInfo.DefaultNegativeButtonInsert(nButtonList, i);
+            InputManagerInfo.DefaultPositiveButtonInsert(pButtonList, i);
+            InputManagerInfo.DefaultAltPositiveButtonInsert(apButtonList, i);
+        }
+    }
+
 
     /// <summary>
     /// ファイルを保存するパスを設定する処理

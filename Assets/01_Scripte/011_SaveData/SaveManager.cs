@@ -31,24 +31,12 @@ public struct UnlockData {
 [Serializable]
 public struct InputData {
     public List<string> nameList;
-    public List<string> descriptiveNameList;
-    public List<string> descriptiveNegativeNameList;
     public List<string> negativeButtonList;
     public List<string> positiveButtonList;
-    public List<string> altNegativeButtionList;
     public List<string> altPositionButtonList;
-
-    public List<float> gravityList;
-    public List<float> deadList;
-    public List<float> sensitivityList;
-
-    public List<bool> snapList;
-    public List<bool> invertList;
-
-    public List<AxisType> typeList;
-
-    public List<int> axisList;
-    public List<int> joyNumList;
+    public List<string> invertList;
+    public List<string> typeList;
+    public List<string> axisList;
 }
 
 /// <summary>
@@ -68,7 +56,7 @@ public static class SaveManager {
     const string UNLOCK_FILE ="unlockData.json";
     public static UnlockData unlockData;
 
-    const int AXES_SIZE_NUM = 12;
+    const int AXES_SIZE_NUM = 10;
     const string INPUT_FILE = "inputData.json";
     public static InputData inputData;
 
@@ -109,6 +97,19 @@ public static class SaveManager {
         DataSave(jsonData, UNLOCK_FILE);
     }//UnlockDataUpdate
 
+    public static void InputDataUpdate(List<List<string>> list) {
+        inputData.nameList = list[0];
+        inputData.negativeButtonList = list[1];
+        inputData.positiveButtonList = list[2];
+        inputData.altPositionButtonList = list[3];
+        inputData.invertList = list[4];
+        inputData.typeList = list[5];
+        inputData.axisList = list[6];
+        string jsonData = JsonUtility.ToJson(inputData, true);
+        DataSave(jsonData, INPUT_FILE);
+        Debug.Log("SaveManager.InputDataUpdate");
+    }
+
     /// <summary>
     /// データの保存処理
     /// </summary>
@@ -139,6 +140,7 @@ public static class SaveManager {
         UnlockDataGenerate();
     }//UnlockDataDelete
 
+
     /// <summary>
     /// 保存データの読み込み処理
     /// </summary>
@@ -154,12 +156,17 @@ public static class SaveManager {
         } else {
             OptionDataGenerate();
         }//if
-        if (File.Exists(path + UNLOCK_FILE)) {//指定のファイルが存在する場合
+        if (File.Exists(path + UNLOCK_FILE)) {
             DataLoad(UNLOCK_FILE);
         } else {
             UnlockDataGenerate();
         }//if
-        InputDataGenerate();
+        if (File.Exists(path + INPUT_FILE)) {
+            DataLoad(INPUT_FILE);
+        } else {
+            InputDataGenerate();
+        }//if
+        
     }//DataInit
 
     /// <summary>
@@ -179,6 +186,9 @@ public static class SaveManager {
                 break;
             case UNLOCK_FILE:
                 unlockData = JsonUtility.FromJson<UnlockData>(json);
+                break;
+            case INPUT_FILE:
+                inputData = JsonUtility.FromJson<InputData>(json);
                 break;
         }//switch
         reader.Close();
@@ -244,13 +254,28 @@ public static class SaveManager {
         List<string> nButtonList = new List<string>();
         List<string> pButtonList = new List<string>();
         List<string> apButtonList = new List<string>();
+        List<string> invertList = new List<string>();
+        List<string> typeList = new List<string>();
+        List<string> axisList = new List<string>();
         for(int i = 0; i < AXES_SIZE_NUM; i++) {
             InputManagerInfo.DefaultNameInsert(nameList, i);
             InputManagerInfo.DefaultNegativeButtonInsert(nButtonList, i);
             InputManagerInfo.DefaultPositiveButtonInsert(pButtonList, i);
             InputManagerInfo.DefaultAltPositiveButtonInsert(apButtonList, i);
-        }
-    }
+            InputManagerInfo.DefaultInvert(invertList, i);
+            InputManagerInfo.DefaultType(typeList, i);
+            InputManagerInfo.DefaultAxis(axisList, i);
+        }//for
+        inputData.nameList = nameList;
+        inputData.negativeButtonList = nButtonList;
+        inputData.positiveButtonList = pButtonList;
+        inputData.altPositionButtonList = apButtonList;
+        inputData.invertList = invertList;
+        inputData.typeList = typeList;
+        inputData.axisList = axisList;
+        string jsonData = JsonUtility.ToJson(inputData, true);
+        DataSave(jsonData, INPUT_FILE);
+    }//InputDataGenerate
 
 
     /// <summary>

@@ -16,7 +16,7 @@ public static class StageDataEdit{
     /// <summary>
     /// ステージデータ読み込み処理
     /// </summary>
-    public static void StageDataLoad() {
+    private static void StageDataLoad() {
         _nameList = new List<string>();
         _nameList.AddRange(SaveManager.stageData.nameList);
         _rankList = new List<string>();

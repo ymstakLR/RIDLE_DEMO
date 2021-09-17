@@ -1,0 +1,86 @@
+{
+    "nameList": [
+        "Horizontal",
+        "Vertical",
+        "Horizontal",
+        "Vertical",
+        "Attack",
+        "NormalJump",
+        "FlipJump",
+        "Pause",
+        "Submit",
+        "Cancel"
+    ],
+    "negativeButtonList": [
+        "a",
+        "s",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "positiveButtonList": [
+        "d",
+        "w",
+        "",
+        "",
+        "i",
+        "j",
+        "l",
+        "h",
+        "k",
+        "l"
+    ],
+    "altPositionButtonList": [
+        "",
+        "",
+        "",
+        "",
+        "joystick button 1",
+        "joystick button 0",
+        "joystick button 2",
+        "joystick button 9",
+        "joystick button 1",
+        "joystick button 2"
+    ],
+    "invertList": [
+        "False",
+        "False",
+        "False",
+        "True",
+        "False",
+        "False",
+        "False",
+        "False",
+        "False",
+        "False"
+    ],
+    "typeList": [
+        "KeyOrMouseButton",
+        "KeyOrMouseButton",
+        "JoystickAxis",
+        "JoystickAxis",
+        "KeyOrMouseButton",
+        "KeyOrMouseButton",
+        "KeyOrMouseButton",
+        "KeyOrMouseButton",
+        "KeyOrMouseButton",
+        "KeyOrMouseButton"
+    ],
+    "axisList": [
+        "1",
+        "1",
+        "1",
+        "2",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+    ]
+}

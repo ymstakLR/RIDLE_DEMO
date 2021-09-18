@@ -14,6 +14,9 @@ public static class InputManagerEdit {
     public static List<string> _typeList;
     public static List<string> _axisList;
 
+    /// <summary>
+    /// InputDataの読み込み処理
+    /// </summary>
     public static void InputDataLoad() {
         Debug.Log("InputManagerEdit.InputDataLoad");
         _nameList = new List<string>();
@@ -32,70 +35,65 @@ public static class InputManagerEdit {
         _axisList.AddRange(SaveManager.inputData.axisList);
     }//InputDataLoad
 
+    /// <summary>
+    /// InputDataの保存処理
+    /// </summary>
     private static void InputDataSave() {
         Debug.Log("InputManagerEdit.InputDataSave");
         _inputData.Insert(0, _nameList);
-        _inputData.Insert(1,_negativeButtonList);
-        _inputData.Insert(2,_positiveButtonList);
-        _inputData.Insert(3,_altPositionButtonList);
-        _inputData.Insert(4,_invertList);
-        _inputData.Insert(5,_typeList);
-        _inputData.Insert(6,_axisList);
+        _inputData.Insert(1, _negativeButtonList);
+        _inputData.Insert(2, _positiveButtonList);
+        _inputData.Insert(3, _altPositionButtonList);
+        _inputData.Insert(4, _invertList);
+        _inputData.Insert(5, _typeList);
+        _inputData.Insert(6, _axisList);
         SaveManager.InputDataUpdate(_inputData);
-    }
+    }//InputDataSave
 
-    public static void InputDataUpdate(string inputName,string keyButton,string joystickButton) {
-        Debug.Log("InputManagerEdit.InputDataUpdate");
-        InputDataLoad();
-        int inputNum = InputDataIdentification(inputName);
-        if(keyButton != "") {
-            _positiveButtonList[inputNum] = keyButton;
-        }//if
-        if(joystickButton != "") {
-            _altPositionButtonList[inputNum] = joystickButton;
-        }//if
-        InputDataSave();
-    }//InputDataUpdate
-
-    public static int InputDataIdentification(string inputName) {
-        int inputNum = 0;
-        while(_nameList[inputNum].ToString() != inputName) {
-            inputNum++;
-        }//while
-        return inputNum;
-    }
-
+    /// <summary>
+    /// InputManagerの更新処理
+    /// </summary>
     public static void InputManagerUpdate() {
-        for(int i = 0; i < 10; i++) {
-            AddAxis(CreatePadAxis(i));
-        }
-    }
+        InputDataLoad();
+        SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
+        SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
+        axesProperty.ClearArray();
+        for (int i = 0; i < 10; i++) {
+            AddAxis(CreateInputAxis(i), serializedObject, axesProperty);
+        }//for
+    }//InputManagerUpdate
 
-
-    private static InputAxis CreatePadAxis(int i) {
+    /// <summary>
+    /// キーそれぞれに指定した値を設定する
+    /// </summary>
+    private static InputAxis CreateInputAxis(int i) {
         var axis = new InputAxis();
         axis.name = _nameList[i];
         axis.negativeButton = _negativeButtonList[i];
         axis.positiveButton = _positiveButtonList[i];
         axis.altPositiveButton = _altPositionButtonList[i];
+        axis.gravity = 1000;
+        axis.dead = 0.2f;
+        axis.sensitivity = 1;
         if (_invertList[i] == "true") {
             axis.invert = true;
-        }
-        if(_typeList[i]== "KeyOrMouseButton") {
-            axis.type = AxisType.KeyOrMouseButton;
-        }
+        }//if
+        if (_typeList[i] == "JoystickAxis") {
+            axis.type = AxisType.JoystickAxis;
+        }//if
         axis.axis = int.Parse(_axisList[i]);
         return axis;
-    }
+    }//CreateInputAxis
 
-    private static void AddAxis(InputAxis axis) {
-        SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
-        SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
-        axesProperty.ClearArray();
-
+    /// <summary>
+    /// InputManagerにキーを追加する処理
+    /// </summary>
+    /// <param name="axis"></param>
+    /// <param name="serializedObject"></param>
+    /// <param name="axesProperty"></param>
+    private static void AddAxis(InputAxis axis, SerializedObject serializedObject, SerializedProperty axesProperty) {
         axesProperty.arraySize++;
         serializedObject.ApplyModifiedProperties();
-
         SerializedProperty axisProperty = axesProperty.GetArrayElementAtIndex(axesProperty.arraySize - 1);
 
         GetChildProperty(axisProperty, "m_Name").stringValue = axis.name;
@@ -115,7 +113,7 @@ public static class InputManagerEdit {
         GetChildProperty(axisProperty, "joyNum").intValue = axis.joyNum;
 
         serializedObject.ApplyModifiedProperties();
-    }
+    }//AddAxis
 
     private static SerializedProperty GetChildProperty(SerializedProperty parent, string name) {
         SerializedProperty child = parent.Copy();
@@ -126,6 +124,40 @@ public static class InputManagerEdit {
             }
         } while (child.Next(false));
         return null;
+    }//SerializedProperty
+
+
+    ///この下のキー情報更新処理をキーコンフィグ画面の処理に実装
+
+    /// <summary>
+    /// キー情報を変更する処理
+    /// </summary>
+    /// <param name="inputName"></param>
+    /// <param name="keyButton"></param>
+    /// <param name="joystickButton"></param>
+    public static void InputDataUpdate(string inputName, string keyButton, string joystickButton) {
+        InputDataLoad();
+        int inputNum = InputDataIdentification(inputName);
+        if (keyButton != "") {
+            _positiveButtonList[inputNum] = keyButton;
+        }//if
+        if (joystickButton != "") {
+            _altPositionButtonList[inputNum] = joystickButton;
+        }//if
+        InputDataSave();
+    }//InputDataUpdate
+
+    /// <summary>
+    /// 更新したいキー名と等しいリスト配列番号取得処理
+    /// </summary>
+    /// <param name="inputName"></param>
+    /// <returns></returns>
+    public static int InputDataIdentification(string inputName) {
+        int inputNum = 0;
+        while (_nameList[inputNum].ToString() != inputName) {
+            inputNum++;
+        }//while
+        return inputNum;
     }
 
-}
+}//InputManagerEdit

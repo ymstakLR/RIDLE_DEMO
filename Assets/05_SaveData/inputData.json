@@ -4,6 +4,8 @@
         "Vertical",
         "Horizontal",
         "Vertical",
+        "Horizontal",
+        "Vertical",
         "Attack",
         "NormalJump",
         "FlipJump",
@@ -21,6 +23,8 @@
         "",
         "",
         "",
+        "",
+        "",
         ""
     ],
     "positiveButtonList": [
@@ -28,7 +32,9 @@
         "w",
         "",
         "",
-        "i",
+        "",
+        "",
+        "k",
         "j",
         "l",
         "h",
@@ -36,6 +42,8 @@
         "l"
     ],
     "altPositionButtonList": [
+        "",
+        "",
         "",
         "",
         "",
@@ -57,11 +65,15 @@
         "False",
         "False",
         "False",
+        "False",
+        "False",
         "False"
     ],
     "typeList": [
         "KeyOrMouseButton",
         "KeyOrMouseButton",
+        "JoystickAxis",
+        "JoystickAxis",
         "JoystickAxis",
         "JoystickAxis",
         "KeyOrMouseButton",
@@ -76,6 +88,8 @@
         "1",
         "1",
         "2",
+        "7",
+        "8",
         "1",
         "1",
         "1",

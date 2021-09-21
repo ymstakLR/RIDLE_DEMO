@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// InputManager‚Ì•ÒW
+/// XV“ú:20210922
+/// </summary>
 public static class InputManagerEdit {
     public static List<List<string>> _inputData = new List<List<string>>();
 
@@ -58,7 +62,7 @@ public static class InputManagerEdit {
         SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
         SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
         axesProperty.ClearArray();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             AddAxis(CreateInputAxis(i), serializedObject, axesProperty);
         }//for
     }//InputManagerUpdate

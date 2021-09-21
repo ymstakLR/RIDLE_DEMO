@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System;
 
 public class InputManagerTest : MonoBehaviour {
     SerializedObject serializedObject;
@@ -34,8 +35,31 @@ public class InputManagerTest : MonoBehaviour {
             InputManagerEdit.InputManagerUpdate();
             Debug.Log("kakunin3");
         }
+        DownKeyCheck();
     }
 
+    /// <summary>
+    /// 入力されたキーの確認処理
+    /// </summary>
+    void DownKeyCheck() {
+        if (Input.anyKeyDown) {
+            foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
+                if (Input.GetKeyDown(code)) {
+                    //処理を書く
+                    Debug.Log(code);
+                    break;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// キー情報の生成処理
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="joystickNum"></param>
+    /// <param name="axisNum"></param>
+    /// <returns></returns>
     private InputAxis CreatePadAxis(string name, int joystickNum, int axisNum) {
         var axis = new InputAxis();
         axis.name = name;
@@ -50,7 +74,10 @@ public class InputManagerTest : MonoBehaviour {
         return axis;
     }
 
-
+    /// <summary>
+    /// キー情報の反映処理
+    /// </summary>
+    /// <param name="axis"></param>
     private void AddAxis(InputAxis axis) {
         SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
 
@@ -77,6 +104,7 @@ public class InputManagerTest : MonoBehaviour {
 
         serializedObject.ApplyModifiedProperties();
     }
+
 
     private SerializedProperty GetChildProperty(SerializedProperty parent,string name) {
         SerializedProperty child = parent.Copy();

@@ -41,7 +41,7 @@ public struct InputData {
 
 /// <summary>
 /// ゲームで使用するデータの管理処理
-/// 更新日時:0727
+/// 更新日時:20210922
 /// </summary>
 public static class SaveManager {
     const string SAVE_DATA_PATH = "/Assets/05_SaveData/";
@@ -56,7 +56,7 @@ public static class SaveManager {
     const string UNLOCK_FILE ="unlockData.json";
     public static UnlockData unlockData;
 
-    const int AXES_SIZE_NUM = 10;
+    const int AXES_SIZE_NUM = 12;
     const string INPUT_FILE = "inputData.json";
     public static InputData inputData;
 
@@ -258,13 +258,13 @@ public static class SaveManager {
         List<string> typeList = new List<string>();
         List<string> axisList = new List<string>();
         for(int i = 0; i < AXES_SIZE_NUM; i++) {
-            InputManagerInfo.DefaultNameInsert(nameList, i);
-            InputManagerInfo.DefaultNegativeButtonInsert(nButtonList, i);
-            InputManagerInfo.DefaultPositiveButtonInsert(pButtonList, i);
-            InputManagerInfo.DefaultAltPositiveButtonInsert(apButtonList, i);
-            InputManagerInfo.DefaultInvert(invertList, i);
-            InputManagerInfo.DefaultType(typeList, i);
-            InputManagerInfo.DefaultAxis(axisList, i);
+            InputManagerInitialSetting.DefaultNameInsert(nameList, i);
+            InputManagerInitialSetting.DefaultNegativeButtonInsert(nButtonList, i);
+            InputManagerInitialSetting.DefaultPositiveButtonInsert(pButtonList, i);
+            InputManagerInitialSetting.DefaultAltPositiveButtonInsert(apButtonList, i);
+            InputManagerInitialSetting.DefaultInvert(invertList, i);
+            InputManagerInitialSetting.DefaultType(typeList, i);
+            InputManagerInitialSetting.DefaultAxis(axisList, i);
         }//for
         inputData.nameList = nameList;
         inputData.negativeButtonList = nButtonList;

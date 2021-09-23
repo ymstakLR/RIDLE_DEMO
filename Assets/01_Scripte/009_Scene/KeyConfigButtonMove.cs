@@ -16,8 +16,11 @@ public class KeyConfigButtonMove : MonoBehaviour {
                 _isSubmitButtonUp = true;
             }
         }
-        if (_isSubmitButtonUp)
+        if (_isSubmitButtonUp) {
             DownKeyCheck();
+            test();
+        }
+            
     }//Update
     
     public void KeyConfigButton(GameObject inputButton) {
@@ -49,4 +52,18 @@ public class KeyConfigButtonMove : MonoBehaviour {
             _isSubmitButtonUp = false;
         }//if
     }//DownKeyCheack
+
+    void test() {
+        float horizontal = Input.GetAxis("Horizontal");
+        if (horizontal == 0)
+            return;
+        if (horizontal == 1)
+            Debug.Log("十字キー右");
+        else if(horizontal ==-1)
+            Debug.Log("十字キー左");
+        else if(horizontal <0)
+            Debug.Log("スティック左");
+        else
+            Debug.Log("スティックー右");
+    }
 }//KeyConfigButtonMove

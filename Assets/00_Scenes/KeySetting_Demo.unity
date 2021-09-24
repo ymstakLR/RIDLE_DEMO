@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 10720300}
   - component: {fileID: 10720299}
   m_Layer: 5
-  m_Name: ATTACKControllerButton
+  m_Name: ATTACKController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 10720297}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 64439003}
   - component: {fileID: 64439002}
   m_Layer: 5
-  m_Name: CANCELButton
+  m_Name: CANCEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 83341703}
   - component: {fileID: 83341702}
   m_Layer: 5
-  m_Name: UPText
+  m_Name: UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 183353554}
   - component: {fileID: 183353553}
   m_Layer: 5
-  m_Name: CONTROLLERText
+  m_Name: CONTROLLER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: 224480374}
   - component: {fileID: 224480373}
   m_Layer: 5
-  m_Name: DOWNKeyButton
+  m_Name: DOWNKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 224480371}
@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 233402082}
   - component: {fileID: 233402081}
   m_Layer: 5
-  m_Name: RIGHTText
+  m_Name: RIGHT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1615,7 +1615,7 @@ GameObject:
   - component: {fileID: 409860014}
   - component: {fileID: 409860013}
   m_Layer: 5
-  m_Name: JUMPControllerButton
+  m_Name: JUMPController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1716,7 +1716,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 409860011}
@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 488493563}
   - component: {fileID: 488493562}
   m_Layer: 5
-  m_Name: DEFAULTButton
+  m_Name: DEFAULT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2060,7 +2060,7 @@ GameObject:
   - component: {fileID: 575018982}
   - component: {fileID: 575018981}
   m_Layer: 5
-  m_Name: OKKeyButton
+  m_Name: OKKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2161,7 +2161,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 575018979}
@@ -2298,7 +2298,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2191"
+  m_Text: W
 --- !u!222 &708512820
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2377,7 +2377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2192"
+  m_Text: D
 --- !u!222 &723198110
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2559,7 +2559,7 @@ GameObject:
   - component: {fileID: 868771637}
   - component: {fileID: 868771636}
   m_Layer: 5
-  m_Name: RIGHTKeyButton
+  m_Name: RIGHTKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2660,7 +2660,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 868771634}
@@ -2742,7 +2742,7 @@ GameObject:
   - component: {fileID: 871913501}
   - component: {fileID: 871913500}
   m_Layer: 5
-  m_Name: DOWNControllerButton
+  m_Name: DOWNController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2804,7 +2804,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871913498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -2843,7 +2843,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 871913498}
@@ -2885,7 +2885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.57397676, g: 0.5754717, b: 0.5238964, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2925,7 +2925,7 @@ GameObject:
   - component: {fileID: 874459264}
   - component: {fileID: 874459263}
   m_Layer: 5
-  m_Name: CANCELControllerButton
+  m_Name: CANCELController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3026,7 +3026,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 874459261}
@@ -3187,7 +3187,7 @@ GameObject:
   - component: {fileID: 950407878}
   - component: {fileID: 950407877}
   m_Layer: 5
-  m_Name: PAUSEKeyButton
+  m_Name: PAUSEKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3288,7 +3288,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 950407875}
@@ -3370,7 +3370,7 @@ GameObject:
   - component: {fileID: 988749582}
   - component: {fileID: 988749581}
   m_Layer: 5
-  m_Name: OKButton
+  m_Name: OK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3629,7 +3629,7 @@ GameObject:
   - component: {fileID: 1094285162}
   - component: {fileID: 1094285161}
   m_Layer: 5
-  m_Name: KEYBORADText
+  m_Name: KEYBOARD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3687,7 +3687,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: KEY BORAD
+  m_Text: KEY BOARD
 --- !u!222 &1094285162
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3708,7 +3708,7 @@ GameObject:
   - component: {fileID: 1097199259}
   - component: {fileID: 1097199258}
   m_Layer: 5
-  m_Name: DOWNText
+  m_Name: DOWN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3787,7 +3787,7 @@ GameObject:
   - component: {fileID: 1118606846}
   - component: {fileID: 1118606845}
   m_Layer: 5
-  m_Name: FLIPJUNPText
+  m_Name: FLIPJUNP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3924,7 +3924,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2190"
+  m_Text: A
 --- !u!222 &1130162043
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4143,7 +4143,7 @@ GameObject:
   - component: {fileID: 1168656164}
   - component: {fileID: 1168656163}
   m_Layer: 5
-  m_Name: RIGHTControllerButton
+  m_Name: RIGHTController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4205,7 +4205,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168656161}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -4244,7 +4244,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1168656161}
@@ -4286,7 +4286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.57397676, g: 0.5754717, b: 0.5238964, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4401,7 +4401,7 @@ GameObject:
   - component: {fileID: 1194993290}
   - component: {fileID: 1194993289}
   m_Layer: 5
-  m_Name: FLIPJUMPKeyButton
+  m_Name: FLIPJUMPKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4502,7 +4502,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1194993287}
@@ -4660,7 +4660,7 @@ GameObject:
   - component: {fileID: 1248124422}
   - component: {fileID: 1248124421}
   m_Layer: 5
-  m_Name: PAUSEText
+  m_Name: PAUSE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4739,7 +4739,7 @@ GameObject:
   - component: {fileID: 1285370560}
   - component: {fileID: 1285370559}
   m_Layer: 5
-  m_Name: LEFTText
+  m_Name: LEFT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4821,7 +4821,7 @@ GameObject:
   - component: {fileID: 1308396925}
   - component: {fileID: 1308396924}
   m_Layer: 5
-  m_Name: FLIPJUMPControllerButton
+  m_Name: FLIPJUMPController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4922,7 +4922,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1308396922}
@@ -5083,7 +5083,7 @@ GameObject:
   - component: {fileID: 1413786387}
   - component: {fileID: 1413786386}
   m_Layer: 5
-  m_Name: ATTACKKeyButton
+  m_Name: ATTACKKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5184,7 +5184,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1413786384}
@@ -5366,7 +5366,7 @@ GameObject:
   - component: {fileID: 1436208578}
   - component: {fileID: 1436208577}
   m_Layer: 5
-  m_Name: UPControllerButton
+  m_Name: UPController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5428,7 +5428,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436208575}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -5467,7 +5467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1436208575}
@@ -5509,7 +5509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.57397676, g: 0.5754717, b: 0.5238964, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5546,7 +5546,7 @@ GameObject:
   - component: {fileID: 1534669115}
   - component: {fileID: 1534669114}
   m_Layer: 5
-  m_Name: KEYCONFIGText
+  m_Name: KEYCONFIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5783,7 +5783,7 @@ GameObject:
   - component: {fileID: 1645872775}
   - component: {fileID: 1645872774}
   m_Layer: 5
-  m_Name: ATTACKText
+  m_Name: ATTACK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6020,7 +6020,7 @@ GameObject:
   - component: {fileID: 1748131824}
   - component: {fileID: 1748131823}
   m_Layer: 5
-  m_Name: OKText
+  m_Name: OK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6102,7 +6102,7 @@ GameObject:
   - component: {fileID: 1749823813}
   - component: {fileID: 1749823812}
   m_Layer: 5
-  m_Name: LEFTKeyButton
+  m_Name: LEFTKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6203,7 +6203,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1749823810}
@@ -6285,7 +6285,7 @@ GameObject:
   - component: {fileID: 1815680951}
   - component: {fileID: 1815680950}
   m_Layer: 5
-  m_Name: LEFTControllerButton
+  m_Name: LEFTController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6347,7 +6347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815680948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -6386,7 +6386,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1815680948}
@@ -6428,7 +6428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.57397676, g: 0.5754717, b: 0.5238964, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6468,7 +6468,7 @@ GameObject:
   - component: {fileID: 1845524663}
   - component: {fileID: 1845524662}
   m_Layer: 5
-  m_Name: OKControllerButton
+  m_Name: OKController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6569,7 +6569,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1845524660}
@@ -6651,7 +6651,7 @@ GameObject:
   - component: {fileID: 1845897983}
   - component: {fileID: 1845897982}
   m_Layer: 5
-  m_Name: JUMPKeyButton
+  m_Name: JUMPKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6752,7 +6752,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1845897980}
@@ -6831,7 +6831,7 @@ GameObject:
   - component: {fileID: 1915339905}
   - component: {fileID: 1915339904}
   m_Layer: 5
-  m_Name: CANCELText
+  m_Name: CANCEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6913,7 +6913,7 @@ GameObject:
   - component: {fileID: 1940265825}
   - component: {fileID: 1940265824}
   m_Layer: 5
-  m_Name: CANCELKeyButton
+  m_Name: CANCELKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7014,7 +7014,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1940265822}
@@ -7176,7 +7176,7 @@ GameObject:
   - component: {fileID: 1967754804}
   - component: {fileID: 1967754803}
   m_Layer: 5
-  m_Name: UPKeyButton
+  m_Name: UPKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7289,7 +7289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1967754801}
@@ -7426,7 +7426,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2193"
+  m_Text: S
 --- !u!222 &1974864108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7447,7 +7447,7 @@ GameObject:
   - component: {fileID: 1974978995}
   - component: {fileID: 1974978994}
   m_Layer: 5
-  m_Name: JUMPText
+  m_Name: JUMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7529,7 +7529,7 @@ GameObject:
   - component: {fileID: 1991069871}
   - component: {fileID: 1991069870}
   m_Layer: 5
-  m_Name: PAUSEControllerButton
+  m_Name: PAUSEController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7630,7 +7630,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyConfigButton
+        m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1991069868}

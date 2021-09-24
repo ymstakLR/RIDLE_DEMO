@@ -12,10 +12,20 @@ using UnityEngine;
 /// </summary>
 public static class InputManagerInitialSetting {
     public static void DefaultNameInsert(List<string>list,int i) {
-        string[] name = { "Horizontal", "Vertical","Horizontal","Vertical",
-                            "Horizontal","Vertical","Attack","NormalJump",
-                            "FlipJump", "Pause","Submit","Cancel" };
+        string[] name = {
+            "Horizontal", "Vertical","Horizontal","Vertical",
+            "Horizontal","Vertical","Attack","NormalJump",
+            "FlipJump", "Pause","Submit","Cancel"
+        };
         list.Insert(i, name[i]);
+    }
+    public static void DefaultDescriptiveNameInsert(List<string>list,int i) {
+        string[] descriptiveName = {
+            "HorizontalKey","VerticalKey","HorizontalJoystick","VerticalJoystick",
+            "HorizontalCrossKey","VerticalCrossKey","Attack","NormalJump",
+            "FlipJump", "Pause","Submit","Cancel"
+        };
+        list.Insert(i, descriptiveName[i]);
     }
     public static void DefaultNegativeButtonInsert(List<string> list,int i) {
         string[] negativeButton = { "a", "s", "", "", "", "", "", "", "", "", "", "" };

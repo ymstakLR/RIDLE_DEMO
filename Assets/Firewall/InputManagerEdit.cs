@@ -139,15 +139,26 @@ public static class InputManagerEdit {
     /// <param name="inputName"></param>
     /// <param name="keyButton"></param>
     /// <param name="joystickButton"></param>
-    public static void InputDataUpdate(string inputName, string keyButton, string joystickButton) {
+    public static void InputDataUpdate(string inputName, string inputCode,InputDataUpdateType type) {
         InputDataLoad();
+        Debug.Log("InputName___"+inputName);
         int inputNum = InputDataIdentification(inputName);
-        if (keyButton != "") {
-            _positiveButtonList[inputNum] = keyButton;
-        }//if
-        if (joystickButton != "") {
-            _altPositionButtonList[inputNum] = joystickButton;
-        }//if
+        switch (type) {
+            case InputDataUpdateType.KeyNegative:
+                _negativeButtonList[inputNum] = inputCode;
+                break;
+            case InputDataUpdateType.KeyPositive:
+                _positiveButtonList[inputNum] = inputCode;
+                break;
+            case InputDataUpdateType.JoystickNegative:
+                break;
+            case InputDataUpdateType.JoystickPositive:
+                _altPositionButtonList[inputNum] = inputCode;
+                break;
+            default:
+                break;
+        }//switch
+        Debug.Log(inputNum);
         InputDataSave();
     }//InputDataUpdate
 
@@ -161,7 +172,15 @@ public static class InputManagerEdit {
         while (_nameList[inputNum].ToString() != inputName) {
             inputNum++;
         }//while
+        Debug.Log(inputNum);
         return inputNum;
+    }
+
+    public enum InputDataUpdateType {
+        KeyNegative,
+        KeyPositive,
+        JoystickNegative,
+        JoystickPositive
     }
 
 }//InputManagerEdit

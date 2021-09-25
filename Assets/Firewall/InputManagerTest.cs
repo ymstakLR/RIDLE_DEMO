@@ -28,7 +28,6 @@ public class InputManagerTest : MonoBehaviour {
             AddAxis(CreatePadAxis("TestKey", 0, 1));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)){
-            InputManagerEdit.InputDataUpdate("Attack", "i", "");
             Debug.Log("kakunin");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) {

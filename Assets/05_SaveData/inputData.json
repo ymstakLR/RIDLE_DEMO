@@ -14,8 +14,8 @@
         "Cancel"
     ],
     "negativeButtonList": [
-        "a",
-        "s",
+        "Y",
+        "O",
         "",
         "",
         "",
@@ -28,8 +28,8 @@
         ""
     ],
     "positiveButtonList": [
-        "d",
-        "w",
+        "U",
+        "I",
         "",
         "",
         "",

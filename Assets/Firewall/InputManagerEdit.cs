@@ -77,7 +77,7 @@ public static class InputManagerEdit {
         axis.gravity = 1000;
         axis.dead = 0.2f;
         axis.sensitivity = 1;
-        if (_invertList[i] == "true") {
+        if (_invertList[i].ToLower() == "true") {
             axis.invert = true;
         }//if
         if (_typeList[i] == "JoystickAxis") {
@@ -145,7 +145,8 @@ public static class InputManagerEdit {
                 inputText = _altPositionButtonList[inputNum];
                 break;
         }
-        return inputText;
+        inputText = inputText.Replace("joystick", "");
+        return inputText.ToUpper();
     }
 
     ///この下のキー情報更新処理をキーコンフィグ画面の処理に実装
@@ -188,7 +189,6 @@ public static class InputManagerEdit {
         while (_nameList[inputNum].ToString() != inputName) {
             inputNum++;
         }//while
-        Debug.Log(inputNum);
         return inputNum;
     }
 

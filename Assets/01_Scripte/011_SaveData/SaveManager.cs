@@ -139,6 +139,14 @@ public static class SaveManager {
         UnlockDataGenerate();
     }//UnlockDataDelete
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public static void InputDataDelete() {
+        File.Delete(SaveFilePathSetting() + INPUT_FILE);
+        InputDataGenerate();
+    }
+
 
     /// <summary>
     /// •Û‘¶ƒf[ƒ^‚Ì“Ç‚İ‚İˆ—

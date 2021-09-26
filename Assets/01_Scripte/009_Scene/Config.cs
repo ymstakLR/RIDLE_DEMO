@@ -29,8 +29,8 @@ public class Config : MonoBehaviour {
             InputManagerEdit.InputDataType type;
             (fixName,type)=InputTypeSelect(childTransform.name.ToString());
             childTransform.GetChild(0).GetComponent<Text>().text= InputManagerEdit.InputTextUpdate(fixName, type);
-        }
-    }
+        }//foreach
+    }//InputButtonTextUpdate
 
 
     private void Update() {
@@ -43,6 +43,13 @@ public class Config : MonoBehaviour {
             DownKeyCheck();
         }//if
     }//Update
+
+
+    public void DefaultButton() {
+        SaveManager.InputDataDelete();
+        InputManagerEdit.InputManagerUpdate();
+        InputButtonTextUpdate();
+    }
     
     private void ConfigButton(GameObject inputButton,bool isKeyBoard) {
         foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
@@ -131,9 +138,12 @@ public class Config : MonoBehaviour {
                     string fixName;
                     InputManagerEdit.InputDataType type;
                     (fixName,type) = InputTypeSelect(_inputButton.name.ToString());
-                    InputManagerEdit.InputDataUpdate(fixName, code.ToString(), type);
+                    Debug.Log(code.ToString().ToLower());
+                    InputManagerEdit.InputDataUpdate(fixName, code.ToString().ToLower(), type);
+                    InputManagerEdit.InputManagerUpdate();
+                    
+                    _inputButton.transform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.InputTextUpdate(fixName, type);//ボタン文字の変更
 
-                    _inputButton.transform.GetChild(0).GetComponent<Text>().text = code.ToString();//ボタン文字の変更
                     break;
                 }//if
             }//foreach

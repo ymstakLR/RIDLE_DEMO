@@ -22,7 +22,6 @@ public static class InputManagerEdit {
     /// InputDataの読み込み処理
     /// </summary>
     public static void InputDataLoad() {
-        Debug.Log("InputManagerEdit.InputDataLoad");
         _nameList = new List<string>();
         _nameList.AddRange(SaveManager.inputData.nameList);
         _negativeButtonList = new List<string>();
@@ -43,7 +42,6 @@ public static class InputManagerEdit {
     /// InputDataの保存処理
     /// </summary>
     private static void InputDataSave() {
-        Debug.Log("InputManagerEdit.InputDataSave");
         _inputData.Insert(0, _nameList);
         _inputData.Insert(1, _negativeButtonList);
         _inputData.Insert(2, _positiveButtonList);
@@ -130,6 +128,25 @@ public static class InputManagerEdit {
         return null;
     }//SerializedProperty
 
+    public static string InputTextUpdate(string inputName,InputDataType type) {
+        InputDataLoad();
+        int inputNum = InputDataIdentification(inputName);
+        string inputText="";
+        switch (type) {
+            case InputDataType.KeyNegative:
+                inputText = _negativeButtonList[inputNum];
+                break;
+            case InputDataType.KeyPositive:
+                inputText = _positiveButtonList[inputNum];
+                break;
+            case InputDataType.JoystickNegative:
+                break;
+            case InputDataType.JoystickPositive:
+                inputText = _altPositionButtonList[inputNum];
+                break;
+        }
+        return inputText;
+    }
 
     ///この下のキー情報更新処理をキーコンフィグ画面の処理に実装
 
@@ -139,26 +156,25 @@ public static class InputManagerEdit {
     /// <param name="inputName"></param>
     /// <param name="keyButton"></param>
     /// <param name="joystickButton"></param>
-    public static void InputDataUpdate(string inputName, string inputCode,InputDataUpdateType type) {
+    public static void InputDataUpdate(string inputName, string inputCode,InputDataType type) {
         InputDataLoad();
         Debug.Log("InputName___"+inputName);
         int inputNum = InputDataIdentification(inputName);
         switch (type) {
-            case InputDataUpdateType.KeyNegative:
+            case InputDataType.KeyNegative:
                 _negativeButtonList[inputNum] = inputCode;
                 break;
-            case InputDataUpdateType.KeyPositive:
+            case InputDataType.KeyPositive:
                 _positiveButtonList[inputNum] = inputCode;
                 break;
-            case InputDataUpdateType.JoystickNegative:
+            case InputDataType.JoystickNegative:
                 break;
-            case InputDataUpdateType.JoystickPositive:
+            case InputDataType.JoystickPositive:
                 _altPositionButtonList[inputNum] = inputCode;
                 break;
             default:
                 break;
         }//switch
-        Debug.Log(inputNum);
         InputDataSave();
     }//InputDataUpdate
 
@@ -176,7 +192,7 @@ public static class InputManagerEdit {
         return inputNum;
     }
 
-    public enum InputDataUpdateType {
+    public enum InputDataType {
         KeyNegative,
         KeyPositive,
         JoystickNegative,

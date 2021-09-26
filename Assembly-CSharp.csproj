@@ -125,6 +125,7 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy2.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedArrayView.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Demo\CubismLookTarget.cs" />
+    <Compile Include="Assets\01_Scripte\009_Scene\Config.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismUserData3Json.cs" />
     <Compile Include="Assets\Firewall\InputManagerEdit.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\CircularMoveing.cs" />
@@ -294,7 +295,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\01_Scripte\009_Scene\KeyConfigButtonMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />

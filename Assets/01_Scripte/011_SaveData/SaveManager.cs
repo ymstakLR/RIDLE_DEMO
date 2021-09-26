@@ -107,7 +107,6 @@ public static class SaveManager {
         inputData.axisList = list[6];
         string jsonData = JsonUtility.ToJson(inputData, true);
         DataSave(jsonData, INPUT_FILE);
-        Debug.Log("SaveManager.InputDataUpdate");
     }
 
     /// <summary>

@@ -19,14 +19,14 @@ public static class InputManagerInitialSetting {
         };
         list.Insert(i, name[i]);
     }
-    public static void DefaultDescriptiveNameInsert(List<string>list,int i) {
-        string[] descriptiveName = {
-            "HorizontalKey","VerticalKey","HorizontalJoystick","VerticalJoystick",
-            "HorizontalCrossKey","VerticalCrossKey","Attack","NormalJump",
-            "FlipJump", "Pause","Submit","Cancel"
-        };
-        list.Insert(i, descriptiveName[i]);
-    }
+    //public static void DefaultDescriptiveNameInsert(List<string>list,int i) {
+    //    string[] descriptiveName = {
+    //        "HorizontalKey","VerticalKey","HorizontalJoystick","VerticalJoystick",
+    //        "HorizontalCrossKey","VerticalCrossKey","Attack","Jump",
+    //        "FlipJump", "Pause","Submit","Cancel"
+    //    };
+    //    list.Insert(i, descriptiveName[i]);
+    //}
     public static void DefaultNegativeButtonInsert(List<string> list,int i) {
         string[] negativeButton = { "a", "s", "", "", "", "", "", "", "", "", "", "" };
         list.Insert(i, negativeButton[i]);

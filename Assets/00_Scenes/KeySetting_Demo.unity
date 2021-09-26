@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 10720300}
   - component: {fileID: 10720299}
   m_Layer: 5
-  m_Name: ATTACKController
+  m_Name: AttackController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ RectTransform:
   m_Children:
   - {fileID: 1019088147}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 15
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 64439003}
   - component: {fileID: 64439002}
   m_Layer: 5
-  m_Name: CANCEL
+  m_Name: Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +341,7 @@ RectTransform:
   m_Children:
   - {fileID: 802659248}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 22
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: 224480374}
   - component: {fileID: 224480373}
   m_Layer: 5
-  m_Name: DOWNKey
+  m_Name: DownKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,10 +1488,6 @@ RectTransform:
   - {fileID: 950407876}
   - {fileID: 575018980}
   - {fileID: 1940265823}
-  - {fileID: 1436208576}
-  - {fileID: 871913499}
-  - {fileID: 1815680949}
-  - {fileID: 1168656162}
   - {fileID: 409860012}
   - {fileID: 10720298}
   - {fileID: 1308396923}
@@ -1501,6 +1497,10 @@ RectTransform:
   - {fileID: 488493561}
   - {fileID: 988749580}
   - {fileID: 64439001}
+  - {fileID: 1436208576}
+  - {fileID: 871913499}
+  - {fileID: 1815680949}
+  - {fileID: 1168656162}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1615,7 +1615,7 @@ GameObject:
   - component: {fileID: 409860014}
   - component: {fileID: 409860013}
   m_Layer: 5
-  m_Name: JUMPController
+  m_Name: NormalJumpController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1634,7 +1634,7 @@ RectTransform:
   m_Children:
   - {fileID: 1198835361}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 488493563}
   - component: {fileID: 488493562}
   m_Layer: 5
-  m_Name: DEFAULT
+  m_Name: Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,7 +1817,7 @@ RectTransform:
   m_Children:
   - {fileID: 1711776875}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 20
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2060,7 +2060,7 @@ GameObject:
   - component: {fileID: 575018982}
   - component: {fileID: 575018981}
   m_Layer: 5
-  m_Name: OKKey
+  m_Name: SubmitKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2559,7 +2559,7 @@ GameObject:
   - component: {fileID: 868771637}
   - component: {fileID: 868771636}
   m_Layer: 5
-  m_Name: RIGHTKey
+  m_Name: RightKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2742,7 +2742,7 @@ GameObject:
   - component: {fileID: 871913501}
   - component: {fileID: 871913500}
   m_Layer: 5
-  m_Name: DOWNController
+  m_Name: DownController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2761,7 +2761,7 @@ RectTransform:
   m_Children:
   - {fileID: 377760459}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 11
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2925,7 +2925,7 @@ GameObject:
   - component: {fileID: 874459264}
   - component: {fileID: 874459263}
   m_Layer: 5
-  m_Name: CANCELController
+  m_Name: CancelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2944,7 +2944,7 @@ RectTransform:
   m_Children:
   - {fileID: 1560234204}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 19
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3187,7 +3187,7 @@ GameObject:
   - component: {fileID: 950407878}
   - component: {fileID: 950407877}
   m_Layer: 5
-  m_Name: PAUSEKey
+  m_Name: PauseKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3370,7 +3370,7 @@ GameObject:
   - component: {fileID: 988749582}
   - component: {fileID: 988749581}
   m_Layer: 5
-  m_Name: OK
+  m_Name: Ok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3389,7 +3389,7 @@ RectTransform:
   m_Children:
   - {fileID: 1948239764}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 21
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4143,7 +4143,7 @@ GameObject:
   - component: {fileID: 1168656164}
   - component: {fileID: 1168656163}
   m_Layer: 5
-  m_Name: RIGHTController
+  m_Name: RightController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4162,7 +4162,7 @@ RectTransform:
   m_Children:
   - {fileID: 161536664}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 13
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4401,7 +4401,7 @@ GameObject:
   - component: {fileID: 1194993290}
   - component: {fileID: 1194993289}
   m_Layer: 5
-  m_Name: FLIPJUMPKey
+  m_Name: FlipJumpKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4821,7 +4821,7 @@ GameObject:
   - component: {fileID: 1308396925}
   - component: {fileID: 1308396924}
   m_Layer: 5
-  m_Name: FLIPJUMPController
+  m_Name: FlipJumpController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4840,7 +4840,7 @@ RectTransform:
   m_Children:
   - {fileID: 1611214257}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5083,7 +5083,7 @@ GameObject:
   - component: {fileID: 1413786387}
   - component: {fileID: 1413786386}
   m_Layer: 5
-  m_Name: ATTACKKey
+  m_Name: AttackKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5366,7 +5366,7 @@ GameObject:
   - component: {fileID: 1436208578}
   - component: {fileID: 1436208577}
   m_Layer: 5
-  m_Name: UPController
+  m_Name: UpController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5385,7 +5385,7 @@ RectTransform:
   m_Children:
   - {fileID: 1694159882}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 10
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6102,7 +6102,7 @@ GameObject:
   - component: {fileID: 1749823813}
   - component: {fileID: 1749823812}
   m_Layer: 5
-  m_Name: LEFTKey
+  m_Name: LeftKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6285,7 +6285,7 @@ GameObject:
   - component: {fileID: 1815680951}
   - component: {fileID: 1815680950}
   m_Layer: 5
-  m_Name: LEFTController
+  m_Name: LeftController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6304,7 +6304,7 @@ RectTransform:
   m_Children:
   - {fileID: 113143790}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 12
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6468,7 +6468,7 @@ GameObject:
   - component: {fileID: 1845524663}
   - component: {fileID: 1845524662}
   m_Layer: 5
-  m_Name: OKController
+  m_Name: SubmitController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6487,7 +6487,7 @@ RectTransform:
   m_Children:
   - {fileID: 298249420}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 18
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6651,7 +6651,7 @@ GameObject:
   - component: {fileID: 1845897983}
   - component: {fileID: 1845897982}
   m_Layer: 5
-  m_Name: JUMPKey
+  m_Name: NormalJumpKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6913,7 +6913,7 @@ GameObject:
   - component: {fileID: 1940265825}
   - component: {fileID: 1940265824}
   m_Layer: 5
-  m_Name: CANCELKey
+  m_Name: CancelKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7176,7 +7176,7 @@ GameObject:
   - component: {fileID: 1967754804}
   - component: {fileID: 1967754803}
   m_Layer: 5
-  m_Name: UPKey
+  m_Name: UpKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7529,7 +7529,7 @@ GameObject:
   - component: {fileID: 1991069871}
   - component: {fileID: 1991069870}
   m_Layer: 5
-  m_Name: PAUSEController
+  m_Name: PauseController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7548,7 +7548,7 @@ RectTransform:
   m_Children:
   - {fileID: 834480669}
   m_Father: {fileID: 368782093}
-  m_RootOrder: 17
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

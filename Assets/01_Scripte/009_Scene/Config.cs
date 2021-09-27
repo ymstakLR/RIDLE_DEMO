@@ -120,22 +120,21 @@ public class Config : MonoBehaviour {
         if (Input.anyKeyDown) {
             foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
                 if (Input.GetKeyDown(code)) {
-                    if (code.ToString().Contains("Mouse"))//マウス入力判定
-                        return;
                     if ((_isControllerConfigButton && !code.ToString().Contains("Joystick"))||
                         _isKeyBoardConfigButton && code.ToString().Contains("Joystick")) 
                         return;
-                    //入力codeの種類をチェックして対象外のキーの場合、returnさせる
-
+                    string editText = InputManagerEdit.InputTextEdit(code.ToString().ToLower());//入力文字変換
+                    if (!InputManagerEdit.InputTextCheack(editText))//対象外文字の選別
+                        return;
                     string fixName;
                     InputManagerEdit.InputDataType type;
                     (fixName,type) = InputTypeSelect(_inputButton.name.ToString());
 
                     //InputManagerEdit.InputDataUpdate(fixName, code.ToString().ToLower(), type);
-                    string editText = InputManagerEdit.InputTextEdit(code.ToString().ToLower());
+                    //キーが重複化した場合のそれぞれの入力キーの交換
                     InputManagerEdit.InputDataUpdate(fixName,editText, type);
                     InputManagerEdit.InputManagerUpdate();
-                    
+                    //表示文字の変更
                     _inputButton.transform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.InputTextUpdate(fixName, type);//ボタン文字の変更
 
                     break;

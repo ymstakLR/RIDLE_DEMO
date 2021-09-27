@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 /// <summary>
 /// InputManagerの編集
@@ -199,15 +200,18 @@ public static class InputManagerEdit {
     }
 
 
+
     public static string InputTextEdit(string inputText) {
-        Debug.Log("inputText___" + inputText);
         inputText = inputText.Replace("arrow", "");//矢印キー
         inputText = inputText.Replace("alpha", "");//数字キー
         inputText = inputText.Replace("page", "page ");//pageup,pagedown
-        inputText = inputText.Replace("shift", " shift");
-        inputText = inputText.Replace("control", " ctrl");
-        inputText = inputText.Replace("alt", " alt");
-        inputText = inputText.Replace("command", " cmd");
+        inputText = inputText.Replace("shift", " shift");//Shiftキー
+        inputText = inputText.Replace("control", " ctrl");//Controlキー
+        inputText = inputText.Replace("alt", " alt");//Altキー
+        inputText = inputText.Replace("command", " cmd");//Commandキー
+        inputText = inputText.Replace("sys", "sys ");//PRTSCキー
+        inputText = inputText.Replace("scroll", "scroll ");//SCRLKキー
+
         if (inputText.Contains("keypad")){//テンキー
             inputText = inputText.Replace("keypad","");
             switch (inputText) {
@@ -231,10 +235,81 @@ public static class InputManagerEdit {
             }
             if(inputText != "enter")
                 inputText = "[" + inputText + "]";
+            return inputText;
         }
-        //inputText = inputText.Replace("page", "page ");
-
+        if (inputText.Contains("bracket")) {//[]キー
+            inputText = inputText.Replace("bracket", "");
+            switch (inputText) {
+                case "left":
+                    inputText = "[";
+                    break;
+                case "right":
+                    inputText = "]";
+                    break;
+            }
+            return inputText;
+        }
+        switch (inputText) {//その他のキー
+            case "minus":
+                inputText = "-";
+                break;
+            case "quote":
+                inputText = "'";
+                break;
+            case "backquote":
+                inputText = "`";
+                break;
+            case "equals":
+                inputText = "=";
+                break;
+            case "semicolon":
+                inputText = ";";
+                break;
+            case "comma":
+                inputText = ",";
+                break;
+            case "period":
+                inputText = ".";
+                break;
+            case "slash":
+                inputText = "/";
+                break;
+            case "backslash":
+                inputText="\\";
+                break;
+        }
         return inputText;
+    }
+
+    public static bool InputTextCheack(string inputText) {
+        inputText = inputText.Replace(" ", "");
+        if (inputText.Contains("return"))
+            return true;
+        if (inputText.Contains("[") && inputText.Contains("]"))
+            return true;
+        if (inputText.Length == 1)
+            return true;
+        for (int i = 0; i <= 9; i++) {//0～9の数値チェック
+            if (inputText == i.ToString()) {
+                return true;
+            }
+                
+        }//for
+        foreach (InputTextCheackData data in Enum.GetValues(typeof(InputTextCheackData))){
+            string str = Enum.GetName(typeof(InputTextCheackData), data);
+            if (inputText == str) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    enum InputTextCheackData {
+        f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,
+        tab,escape,leftshift,leftctrl,leftcmd,leftalt,
+        space,rightalt,menu,rightctrl,rightshift,backspace,
+        up,down,left,right,insert,delete,home,end,pageup,pagedown,
+        sysreq,scrolllock,pause,enter,numlock,
     }
 
 }//InputManagerEdit

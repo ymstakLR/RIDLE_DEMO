@@ -159,7 +159,6 @@ public static class InputManagerEdit {
     /// <param name="joystickButton"></param>
     public static void InputDataUpdate(string inputName, string inputCode,InputDataType type) {
         InputDataLoad();
-        Debug.Log("InputName___"+inputName);
         int inputNum = InputDataIdentification(inputName);
         switch (type) {
             case InputDataType.KeyNegative:
@@ -197,6 +196,45 @@ public static class InputManagerEdit {
         KeyPositive,
         JoystickNegative,
         JoystickPositive
+    }
+
+
+    public static string InputTextEdit(string inputText) {
+        Debug.Log("inputText___" + inputText);
+        inputText = inputText.Replace("arrow", "");//矢印キー
+        inputText = inputText.Replace("alpha", "");//数字キー
+        inputText = inputText.Replace("page", "page ");//pageup,pagedown
+        inputText = inputText.Replace("shift", " shift");
+        inputText = inputText.Replace("control", " ctrl");
+        inputText = inputText.Replace("alt", " alt");
+        inputText = inputText.Replace("command", " cmd");
+        if (inputText.Contains("keypad")){//テンキー
+            inputText = inputText.Replace("keypad","");
+            switch (inputText) {
+                case "plus":
+                    inputText = "+";
+                    break;
+                case "minus":
+                    inputText = "-";
+                    break;
+                case "multiply":
+                    inputText = "*";
+                    break;
+                case "divide":
+                    inputText = "/";
+                    break;
+                case "period":
+                    inputText = ".";
+                    break;
+                default:
+                    break;
+            }
+            if(inputText != "enter")
+                inputText = "[" + inputText + "]";
+        }
+        //inputText = inputText.Replace("page", "page ");
+
+        return inputText;
     }
 
 }//InputManagerEdit

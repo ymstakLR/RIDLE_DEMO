@@ -57,14 +57,12 @@ public class Config : MonoBehaviour {
                 if((isKeyBoard && code.ToString().Contains("Joystick"))||
                     !isKeyBoard && !code.ToString().Contains("Joystick"))
                     return;
-                if(isKeyBoard && !code.ToString().Contains("Joystick")) {
-                    Debug.Log("キー設定の開始");
+                if(isKeyBoard && !code.ToString().Contains("Joystick")) 
                     _isKeyBoardConfigButton = true;
-                }//if
-                if (!isKeyBoard && code.ToString().Contains("Joystick")) {
-                    Debug.Log("コントローラ設定の開始");
+
+                if (!isKeyBoard && code.ToString().Contains("Joystick")) 
                     _isControllerConfigButton = true;
-                }//if
+
                 _inputButton = inputButton;
                 _inputButton.GetComponent<Animator>().enabled = false;
                 _inputButton.GetComponent<Button>().interactable = false;
@@ -122,24 +120,20 @@ public class Config : MonoBehaviour {
         if (Input.anyKeyDown) {
             foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
                 if (Input.GetKeyDown(code)) {
-                    if (code.ToString().Contains("Mouse")){//マウス入力判定
+                    if (code.ToString().Contains("Mouse"))//マウス入力判定
                         return;
-                    }
                     if ((_isControllerConfigButton && !code.ToString().Contains("Joystick"))||
-                        _isKeyBoardConfigButton && code.ToString().Contains("Joystick")) {
+                        _isKeyBoardConfigButton && code.ToString().Contains("Joystick")) 
                         return;
-                    }
-                    if (_isControllerConfigButton &&code.ToString().Contains("Joystick")) {
-                        Debug.Log("コントローラ設定入力");
-                    }
-                    if(_isKeyBoardConfigButton&& !code.ToString().Contains("Joystick")) {
-                        Debug.Log("キー設定入力");
-                    }
+                    //入力codeの種類をチェックして対象外のキーの場合、returnさせる
+
                     string fixName;
                     InputManagerEdit.InputDataType type;
                     (fixName,type) = InputTypeSelect(_inputButton.name.ToString());
-                    Debug.Log(code.ToString().ToLower());
-                    InputManagerEdit.InputDataUpdate(fixName, code.ToString().ToLower(), type);
+
+                    //InputManagerEdit.InputDataUpdate(fixName, code.ToString().ToLower(), type);
+                    string editText = InputManagerEdit.InputTextEdit(code.ToString().ToLower());
+                    InputManagerEdit.InputDataUpdate(fixName,editText, type);
                     InputManagerEdit.InputManagerUpdate();
                     
                     _inputButton.transform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.InputTextUpdate(fixName, type);//ボタン文字の変更

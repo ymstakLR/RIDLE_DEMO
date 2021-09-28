@@ -211,7 +211,7 @@ public static class InputManagerEdit {
         inputText = inputText.Replace("command", " cmd");//Commandキー
         inputText = inputText.Replace("sys", "sys ");//PRTSCキー
         inputText = inputText.Replace("scroll", "scroll ");//SCRLKキー
-
+        inputText = inputText.Replace("joystickbutton", "joystick button ");
         if (inputText.Contains("keypad")){//テンキー
             inputText = inputText.Replace("keypad","");
             switch (inputText) {
@@ -287,6 +287,8 @@ public static class InputManagerEdit {
             return true;
         if (inputText.Contains("[") && inputText.Contains("]"))
             return true;
+        if (inputText.Contains("button"))
+            return true;
         if (inputText.Length == 1)
             return true;
         for (int i = 0; i <= 9; i++) {//0～9の数値チェック
@@ -310,6 +312,78 @@ public static class InputManagerEdit {
         space,rightalt,menu,rightctrl,rightshift,backspace,
         up,down,left,right,insert,delete,home,end,pageup,pagedown,
         sysreq,scrolllock,pause,enter,numlock,
+    }
+
+    public enum InputTextDuplicationType {
+        posButton,
+        negaButton,
+        altPosButton,
+    }
+
+    public static void InputTextDuplicationCheack(string inputText,string inputButtonText) {
+        int inputTextListNum = -1;
+        int inputButtonTextListNum=-1;
+        InputDataLoad();
+        if (inputText == inputButtonText) {
+            Debug.Log("同じキー入力確認");
+            return;
+        }
+        Debug.Log("入力値と同じボタンの値を求める");
+        for(int i = 0; i < 12; i++) {
+            //i==10,11 Submit,Cancel
+            //iが0～9の場合は
+            if (inputText == _positiveButtonList[i]) {
+                Debug.Log(_nameList[i]+"__"+i+"__posB");
+                inputTextListNum = i;
+                //Debug.Log(InputTextDuplicationType.posButton.ToString());
+            }
+            if (inputText == _negativeButtonList[i]) {
+                inputTextListNum = i;
+                Debug.Log(_nameList[i] + "__" + i + "__negaB");
+            }
+            if (inputText == _altPositionButtonList[i]) {
+                inputTextListNum = i;
+                Debug.Log(_nameList[i] + "__" + i + "__altB");
+            }
+        }
+
+        for (int i = 0; i < 12; i++) {
+
+            if (inputButtonText == _positiveButtonList[i]) {
+                inputButtonTextListNum = i;
+                Debug.Log(inputButtonText);
+                Debug.LogError("posB__" + _nameList[i]+"_"+i);
+            }
+            if (inputButtonText == _negativeButtonList[i]) {
+                inputButtonTextListNum = i;
+                Debug.Log(inputButtonText);
+                Debug.LogError("negaB__" + _nameList[i]);
+            }
+            if (inputButtonText == _altPositionButtonList[i]) {
+                inputButtonTextListNum = i;
+                Debug.Log(inputButtonText);
+                Debug.LogError("altposB__" + _nameList[i]);
+            }
+        }
+
+        //Debug.Log("(重複したキー配列番号)__"+"__"+inputTextListNum);
+        //Debug.Log("(現在入力したキー配列番号)__"+_nameList[inputButtonTextListNum] + "__" + inputButtonTextListNum);
+        //if(inputTextListNum == -1) {
+        //    Debug.LogError("重複無し");
+        //    return;
+        //}
+        //if((inputTextListNum>=10&& inputButtonTextListNum<10)||
+        //    (inputTextListNum<10&& inputButtonTextListNum >= 10)) {
+        //    Debug.LogError("片方判定、片方入力");
+        //    return;
+        //}
+
+
+        //if (inputTextListNum + inputButtonTextListNum == 21) {
+        //    Debug.LogError("OK,Cancelボタンで重複した");
+        //} else {
+        //    Debug.LogError("移動キー、各種操作ボタンで重複した");
+        //}
     }
 
 }//InputManagerEdit

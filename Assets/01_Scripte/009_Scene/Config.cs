@@ -126,14 +126,18 @@ public class Config : MonoBehaviour {
                     string editText = InputManagerEdit.InputTextEdit(code.ToString().ToLower());//入力文字変換
                     if (!InputManagerEdit.InputTextCheack(editText))//対象外文字の選別
                         return;
-                    InputManagerEdit.InputTextDuplicationCheack(editText, _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower());
+                    
+
                     string fixName;
                     InputManagerEdit.InputDataType type;
                     (fixName,type) = InputTypeSelect(_inputButton.name.ToString());
-
+                    //Debug.Log("fixName(変更するaxes名)_"+fixName);
+                    //Debug.Log("type(変更するボタンタイプ)__"+type);
+                    //Debug.Log("editText__"+editText);
+                    InputManagerEdit.InputTextDuplicationCheack(editText, _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower(),fixName,type);
                     //InputManagerEdit.InputDataUpdate(fixName, code.ToString().ToLower(), type);
                     //キーが重複化した場合のそれぞれの入力キーの交換
-                    
+
 
 
                     InputManagerEdit.InputDataUpdate(fixName,editText, type);

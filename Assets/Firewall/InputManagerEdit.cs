@@ -291,11 +291,10 @@ public static class InputManagerEdit {
             return true;
         if (inputText.Length == 1)
             return true;
-        for (int i = 0; i <= 9; i++) {//0～9の数値チェック
-            if (inputText == i.ToString()) {
+        for (int i = 0; i <= 12; i++) {//数値・Fキーのチェック
+            if (inputText == i.ToString()||inputText =="f"+i.ToString()) {
                 return true;
             }
-                
         }//for
         foreach (InputTextCheackData data in Enum.GetValues(typeof(InputTextCheackData))){
             string str = Enum.GetName(typeof(InputTextCheackData), data);
@@ -307,7 +306,6 @@ public static class InputManagerEdit {
     }
 
     enum InputTextCheackData {
-        f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,
         tab,escape,leftshift,leftctrl,leftcmd,leftalt,
         space,rightalt,menu,rightctrl,rightshift,backspace,
         up,down,left,right,insert,delete,home,end,pageup,pagedown,
@@ -320,70 +318,59 @@ public static class InputManagerEdit {
         altPosButton,
     }
 
-    public static void InputTextDuplicationCheack(string inputText,string inputButtonText) {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="inputText">入力したテキスト</param>
+    /// <param name="beforeInputText">入力する前のボタンテキスト</param>
+    public static void InputTextDuplicationCheack(string inputText,string beforeInputText,string fixname,InputDataType type) {
         int inputTextListNum = -1;
         int inputButtonTextListNum=-1;
+        InputDataType inputDataType=InputDataType.KeyPositive;
         InputDataLoad();
-        if (inputText == inputButtonText) {
-            Debug.Log("同じキー入力確認");
+        if (inputText == beforeInputText) {
+            Debug.LogError("同じキー入力確認");
             return;
         }
-        Debug.Log("入力値と同じボタンの値を求める");
-        for(int i = 0; i < 12; i++) {
-            //i==10,11 Submit,Cancel
-            //iが0～9の場合は
+
+        for (int i = 0; i < 12; i++) {//変更するInputManager配列を選択
+            if (fixname == _nameList[i]) {
+                inputButtonTextListNum = i;
+                break;
+            }
+        }
+        //Debug.LogWarning("変更元InputManegerは" + _nameList[inputButtonTextListNum] + "__ボタン__" + beforeInputText+"__"+inputButtonTextListNum);
+        Debug.Log("変更したいキー名__" + inputText);
+
+        //Debug.Log("入力値と同じボタンの値を求める__" + inputText);
+        for (int i = 0; i < 12; i++) {
             if (inputText == _positiveButtonList[i]) {
-                Debug.Log(_nameList[i]+"__"+i+"__posB");
                 inputTextListNum = i;
-                //Debug.Log(InputTextDuplicationType.posButton.ToString());
+                Debug.LogError(inputText+"と重複するInputManegerは" + _nameList[inputTextListNum] +"__" + inputTextListNum);
             }
             if (inputText == _negativeButtonList[i]) {
                 inputTextListNum = i;
-                Debug.Log(_nameList[i] + "__" + i + "__negaB");
+                Debug.LogError(inputText + "と重複するInputManegerは" + _nameList[inputTextListNum] +"__" + inputTextListNum);
             }
             if (inputText == _altPositionButtonList[i]) {
                 inputTextListNum = i;
-                Debug.Log(_nameList[i] + "__" + i + "__altB");
+                Debug.LogError(inputText + "と重複するInputManegerは" + _nameList[inputTextListNum] + "__重複したボタン文字__" + inputText + "__" + inputDataType);
             }
+            if (inputTextListNum != -1) {
+                if (inputButtonTextListNum < 10 && inputTextListNum < 10) {
+                    Debug.LogWarning("ゲーム操作キーで重複あり__" + inputButtonTextListNum + "__" + inputTextListNum);
+                    Debug.LogError(_nameList[inputButtonTextListNum] + "と" + _nameList[inputTextListNum] + "で重複している");
+
+                }
+                if (inputButtonTextListNum > 9 && inputButtonTextListNum < 12 &&
+                    inputTextListNum > 9 && inputTextListNum < 12 ) {
+                    Debug.LogWarning("Ok,Cancelキーで重複あり__" + inputTextListNum + "__" + inputButtonTextListNum);
+                    Debug.LogError(_nameList[inputTextListNum] + "と" + _nameList[inputButtonTextListNum] + "で重複している");
+                }
+                inputTextListNum = -1;
+            }
+
         }
-
-        for (int i = 0; i < 12; i++) {
-
-            if (inputButtonText == _positiveButtonList[i]) {
-                inputButtonTextListNum = i;
-                Debug.Log(inputButtonText);
-                Debug.LogError("posB__" + _nameList[i]+"_"+i);
-            }
-            if (inputButtonText == _negativeButtonList[i]) {
-                inputButtonTextListNum = i;
-                Debug.Log(inputButtonText);
-                Debug.LogError("negaB__" + _nameList[i]);
-            }
-            if (inputButtonText == _altPositionButtonList[i]) {
-                inputButtonTextListNum = i;
-                Debug.Log(inputButtonText);
-                Debug.LogError("altposB__" + _nameList[i]);
-            }
-        }
-
-        //Debug.Log("(重複したキー配列番号)__"+"__"+inputTextListNum);
-        //Debug.Log("(現在入力したキー配列番号)__"+_nameList[inputButtonTextListNum] + "__" + inputButtonTextListNum);
-        //if(inputTextListNum == -1) {
-        //    Debug.LogError("重複無し");
-        //    return;
-        //}
-        //if((inputTextListNum>=10&& inputButtonTextListNum<10)||
-        //    (inputTextListNum<10&& inputButtonTextListNum >= 10)) {
-        //    Debug.LogError("片方判定、片方入力");
-        //    return;
-        //}
-
-
-        //if (inputTextListNum + inputButtonTextListNum == 21) {
-        //    Debug.LogError("OK,Cancelボタンで重複した");
-        //} else {
-        //    Debug.LogError("移動キー、各種操作ボタンで重複した");
-        //}
     }
 
 }//InputManagerEdit

@@ -146,7 +146,7 @@ public static class InputManagerEdit {
                 inputText = _altPositionButtonList[inputNum];
                 break;
         }
-        inputText = inputText.Replace("joystick", "");
+        inputText = inputText.Replace("joystick ", "");
         return inputText.ToUpper();
     }
 
@@ -321,56 +321,57 @@ public static class InputManagerEdit {
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="inputText">入力したテキスト</param>
-    /// <param name="beforeInputText">入力する前のボタンテキスト</param>
-    public static void InputTextDuplicationCheack(string inputText,string beforeInputText,string fixname,InputDataType type) {
-        int inputTextListNum = -1;
-        int inputButtonTextListNum=-1;
-        InputDataType inputDataType=InputDataType.KeyPositive;
+    /// <param name="nowInputValue">入力したテキスト</param>
+    /// <param name="beforeInputValue">入力する前のボタンテキスト</param>
+    public static void InputTextDuplicationCheack(string nowInputValue,string beforeInputValue,string inputAxesName,InputDataType beforeInputValueType) {
+        int nowInputValueCount = -1;
+        int beforeInputValueCount = -1;
+        InputDataType nowInputDataType = InputDataType.KeyPositive;
         InputDataLoad();
-        if (inputText == beforeInputText) {
-            Debug.LogError("同じキー入力確認");
+        Debug.Log(nowInputValue);
+        Debug.Log(beforeInputValue);
+        beforeInputValue = beforeInputValue.Replace("button", "joystick button");
+        Debug.Log(beforeInputValue);
+        if (nowInputValue == beforeInputValue)//変更前・後共に同じ入力値の場合
             return;
-        }
 
         for (int i = 0; i < 12; i++) {//変更するInputManager配列を選択
-            if (fixname == _nameList[i]) {
-                inputButtonTextListNum = i;
+            if (inputAxesName == _nameList[i]) {
+                beforeInputValueCount = i;
                 break;
-            }
-        }
-        //Debug.LogWarning("変更元InputManegerは" + _nameList[inputButtonTextListNum] + "__ボタン__" + beforeInputText+"__"+inputButtonTextListNum);
-        Debug.Log("変更したいキー名__" + inputText);
+            }//if
+        }//for
 
-        //Debug.Log("入力値と同じボタンの値を求める__" + inputText);
-        for (int i = 0; i < 12; i++) {
-            if (inputText == _positiveButtonList[i]) {
-                inputTextListNum = i;
-                Debug.LogError(inputText+"と重複するInputManegerは" + _nameList[inputTextListNum] +"__" + inputTextListNum);
-            }
-            if (inputText == _negativeButtonList[i]) {
-                inputTextListNum = i;
-                Debug.LogError(inputText + "と重複するInputManegerは" + _nameList[inputTextListNum] +"__" + inputTextListNum);
-            }
-            if (inputText == _altPositionButtonList[i]) {
-                inputTextListNum = i;
-                Debug.LogError(inputText + "と重複するInputManegerは" + _nameList[inputTextListNum] + "__重複したボタン文字__" + inputText + "__" + inputDataType);
-            }
-            if (inputTextListNum != -1) {
-                if (inputButtonTextListNum < 10 && inputTextListNum < 10) {
-                    Debug.LogWarning("ゲーム操作キーで重複あり__" + inputButtonTextListNum + "__" + inputTextListNum);
-                    Debug.LogError(_nameList[inputButtonTextListNum] + "と" + _nameList[inputTextListNum] + "で重複している");
+        for (int i = 0; i < 12; i++) {//
+            if (nowInputValue == _positiveButtonList[i]) {
+                nowInputValueCount = i;
+                nowInputDataType = InputDataType.KeyPositive;
+                //Debug.LogError(inputText+"と重複するInputManegerは" + _nameList[inputTextListNum] +"__" + inputTextListNum);
+            }else if (nowInputValue == _negativeButtonList[i]) {
+                nowInputValueCount = i;
+                nowInputDataType = InputDataType.KeyNegative;
+            }else if (nowInputValue == _altPositionButtonList[i]) {
+                nowInputValueCount = i;
+                nowInputDataType = InputDataType.JoystickPositive;
+            }//if
 
-                }
-                if (inputButtonTextListNum > 9 && inputButtonTextListNum < 12 &&
-                    inputTextListNum > 9 && inputTextListNum < 12 ) {
-                    Debug.LogWarning("Ok,Cancelキーで重複あり__" + inputTextListNum + "__" + inputButtonTextListNum);
-                    Debug.LogError(_nameList[inputTextListNum] + "と" + _nameList[inputButtonTextListNum] + "で重複している");
-                }
-                inputTextListNum = -1;
-            }
-
-        }
-    }
+            if (nowInputValueCount != -1) {
+                if ((beforeInputValueCount < 10 && nowInputValueCount < 10)|| 
+                    (beforeInputValueCount > 9 && beforeInputValueCount < 12 && nowInputValueCount > 9 && nowInputValueCount < 12)) {
+                    //Debug.LogWarning("ゲーム操作キーで重複あり__" + beforeInputValueCount + "__" + nowInputValueCount);
+                    Debug.LogError(_nameList[beforeInputValueCount] + "(" + beforeInputValue + ")" + "("+beforeInputValueType+")"+ "と" + _nameList[nowInputValueCount] + "(" + nowInputValue+ ")"+ "(" + nowInputDataType + ")" + "で重複している");
+                    InputDataUpdate(_nameList[beforeInputValueCount], nowInputValue, beforeInputValueType);
+                    InputDataUpdate(_nameList[nowInputValueCount], beforeInputValue, nowInputDataType);
+                    InputManagerUpdate();
+                    return;
+                }//if
+            }//if
+        }//for
+        Debug.Log("inputAxesName_" + inputAxesName);
+        Debug.Log("nowInputValue_" + nowInputValue);
+        Debug.Log("beforeInputValuType_" + beforeInputValueType);
+        InputDataUpdate(inputAxesName, nowInputValue, beforeInputValueType);
+        InputManagerUpdate();
+    }//InputTextDuplicationCheack
 
 }//InputManagerEdit

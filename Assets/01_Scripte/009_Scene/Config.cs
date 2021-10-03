@@ -140,11 +140,11 @@ public class Config : MonoBehaviour {
 
 
 
-                    InputManagerEdit.InputDataUpdate(fixName,editText, type);
-                    InputManagerEdit.InputManagerUpdate();
+                    //InputManagerEdit.InputDataUpdate(fixName,editText, type);
+                    //InputManagerEdit.InputManagerUpdate();
                     //表示文字の変更
-                    _inputButton.transform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.InputTextUpdate(fixName, type);//ボタン文字の変更
-
+                    //_inputButton.transform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.InputTextUpdate(fixName, type);//ボタン文字の変更
+                    InputButtonTextUpdate();
                     break;
                 }//if
             }//foreach

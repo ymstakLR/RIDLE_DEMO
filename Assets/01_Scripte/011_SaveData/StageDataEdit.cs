@@ -18,13 +18,13 @@ public static class StageDataEdit{
     /// </summary>
     private static void StageDataLoad() {
         _nameList = new List<string>();
-        _nameList.AddRange(SaveManager.stageData.nameList);
+        _nameList.AddRange(SaveManager.stageDataStruct.nameList);
         _rankList = new List<string>();
-        _rankList.AddRange(SaveManager.stageData.rankList);
+        _rankList.AddRange(SaveManager.stageDataStruct.rankList);
         _scoreList = new List<string>();
-        _scoreList.AddRange(SaveManager.stageData.scoreList);
+        _scoreList.AddRange(SaveManager.stageDataStruct.scoreList);
         _timeList = new List<string>();
-        _timeList.AddRange(SaveManager.stageData.timeList);
+        _timeList.AddRange(SaveManager.stageDataStruct.timeList);
     }//StageDataLoad
 
     /// <summary>

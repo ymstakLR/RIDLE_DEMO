@@ -20,8 +20,8 @@ public class GameStartInit : MonoBehaviour {
     /// </summary>
     /// <param name="audioManager"></param>
     private void AudioSet(AudioManager audioManager) {
-        audioManager.BGMAudio.volume = SaveManager.optionData.bgmVol/10f;//Vol/10と記述すると整数(0)になる
-        audioManager.SEAudio.volume = SaveManager.optionData.seVol/10f;
+        audioManager.BGMAudio.volume = SaveManager.optionDataStruct.bgmVol/10f;//Vol/10と記述すると整数(0)になる
+        audioManager.SEAudio.volume = SaveManager.optionDataStruct.seVol/10f;
     }//AudioSet
 
 }//SaveData

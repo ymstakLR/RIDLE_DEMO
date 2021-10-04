@@ -48,11 +48,11 @@
         "",
         "",
         "",
-        "joystick button 0",
         "joystick button 1",
+        "joystick button 0",
         "joystick button 2",
         "joystick button 9",
-        "joystick button 0",
+        "joystick button 1",
         "joystick button 2"
     ],
     "invertList": [

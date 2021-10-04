@@ -13,11 +13,11 @@ public static class OptionDataEdit{
     /// オプションデータを読み込む処理
     /// </summary>
     private static void OptionDataLoad() {
-        optionData.Insert(0, SaveManager.optionData.bgmVol);
-        optionData.Insert(1, SaveManager.optionData.seVol);
-        optionData.Insert(2, SaveManager.optionData.resolutionH);
-        optionData.Insert(3, SaveManager.optionData.resolutionW);
-        optionData.Insert(4, SaveManager.optionData.isFullscreen);
+        optionData.Insert(0, SaveManager.optionDataStruct.bgmVol);
+        optionData.Insert(1, SaveManager.optionDataStruct.seVol);
+        optionData.Insert(2, SaveManager.optionDataStruct.resolutionH);
+        optionData.Insert(3, SaveManager.optionDataStruct.resolutionW);
+        optionData.Insert(4, SaveManager.optionDataStruct.isFullscreen);
     }//OptionDataLoad
 
     /// <summary>
@@ -78,9 +78,9 @@ public static class OptionDataEdit{
     /// </summary>
     public static void SetResolution() {
         Screen.SetResolution(
-            SaveManager.optionData.resolutionH,
-            SaveManager.optionData.resolutionW,
-            SaveManager.optionData.isFullscreen
+            SaveManager.optionDataStruct.resolutionH,
+            SaveManager.optionDataStruct.resolutionW,
+            SaveManager.optionDataStruct.isFullscreen
             );
     }//SetResolution
 

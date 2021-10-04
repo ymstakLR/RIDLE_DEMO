@@ -6,7 +6,7 @@ using System;
 
 /// <summary>
 /// InputManagerの編集
-/// 更新日時:20210922
+/// 更新日時:20211004
 /// </summary>
 public static class InputManagerEdit {
     public static List<List<string>> _inputData = new List<List<string>>();
@@ -24,19 +24,19 @@ public static class InputManagerEdit {
     /// </summary>
     public static void InputDataLoad() {
         _nameList = new List<string>();
-        _nameList.AddRange(SaveManager.inputData.nameList);
+        _nameList.AddRange(SaveManager.inputDataStruct.nameList);
         _negativeButtonList = new List<string>();
-        _negativeButtonList.AddRange(SaveManager.inputData.negativeButtonList);
+        _negativeButtonList.AddRange(SaveManager.inputDataStruct.negativeButtonList);
         _positiveButtonList = new List<string>();
-        _positiveButtonList.AddRange(SaveManager.inputData.positiveButtonList);
+        _positiveButtonList.AddRange(SaveManager.inputDataStruct.positiveButtonList);
         _altPositionButtonList = new List<string>();
-        _altPositionButtonList.AddRange(SaveManager.inputData.altPositionButtonList);
+        _altPositionButtonList.AddRange(SaveManager.inputDataStruct.altPositionButtonList);
         _invertList = new List<string>();
-        _invertList.AddRange(SaveManager.inputData.invertList);
+        _invertList.AddRange(SaveManager.inputDataStruct.invertList);
         _typeList = new List<string>();
-        _typeList.AddRange(SaveManager.inputData.typeList);
+        _typeList.AddRange(SaveManager.inputDataStruct.typeList);
         _axisList = new List<string>();
-        _axisList.AddRange(SaveManager.inputData.axisList);
+        _axisList.AddRange(SaveManager.inputDataStruct.axisList);
     }//InputDataLoad
 
     /// <summary>
@@ -200,86 +200,90 @@ public static class InputManagerEdit {
     }
 
 
-
-    public static string InputTextEdit(string inputText) {
-        inputText = inputText.Replace("arrow", "");//矢印キー
-        inputText = inputText.Replace("alpha", "");//数字キー
-        inputText = inputText.Replace("page", "page ");//pageup,pagedown
-        inputText = inputText.Replace("shift", " shift");//Shiftキー
-        inputText = inputText.Replace("control", " ctrl");//Controlキー
-        inputText = inputText.Replace("alt", " alt");//Altキー
-        inputText = inputText.Replace("command", " cmd");//Commandキー
-        inputText = inputText.Replace("sys", "sys ");//PRTSCキー
-        inputText = inputText.Replace("scroll", "scroll ");//SCRLKキー
-        inputText = inputText.Replace("joystickbutton", "joystick button ");
-        if (inputText.Contains("keypad")){//テンキー
-            inputText = inputText.Replace("keypad","");
-            switch (inputText) {
+    /// <summary>
+    /// 入力したボタン文字の編集処理
+    /// </summary>
+    /// <param name="inputButtonText">入力したボタン文字</param>
+    /// <returns>編集した入力ボタン文字</returns>
+    public static string InputButtonTextEdit(string inputButtonText) {
+        inputButtonText = inputButtonText.Replace("arrow", "");//矢印キー
+        inputButtonText = inputButtonText.Replace("alpha", "");//数字キー
+        inputButtonText = inputButtonText.Replace("page", "page ");//pageup,pagedown
+        inputButtonText = inputButtonText.Replace("shift", " shift");//Shiftキー
+        inputButtonText = inputButtonText.Replace("control", " ctrl");//Controlキー
+        inputButtonText = inputButtonText.Replace("alt", " alt");//Altキー
+        inputButtonText = inputButtonText.Replace("command", " cmd");//Commandキー
+        inputButtonText = inputButtonText.Replace("sys", "sys ");//PRTSCキー
+        inputButtonText = inputButtonText.Replace("scroll", "scroll ");//SCRLKキー
+        inputButtonText = inputButtonText.Replace("joystickbutton", "joystick button ");//コントローラキー
+        if (inputButtonText.Contains("keypad")){
+            inputButtonText = inputButtonText.Replace("keypad","");
+            switch (inputButtonText) {
                 case "plus":
-                    inputText = "+";
+                    inputButtonText = "+";
                     break;
                 case "minus":
-                    inputText = "-";
+                    inputButtonText = "-";
                     break;
                 case "multiply":
-                    inputText = "*";
+                    inputButtonText = "*";
                     break;
                 case "divide":
-                    inputText = "/";
+                    inputButtonText = "/";
                     break;
                 case "period":
-                    inputText = ".";
+                    inputButtonText = ".";
                     break;
                 default:
                     break;
-            }
-            if(inputText != "enter")
-                inputText = "[" + inputText + "]";
-            return inputText;
-        }
-        if (inputText.Contains("bracket")) {//[]キー
-            inputText = inputText.Replace("bracket", "");
-            switch (inputText) {
+            }//switch
+            if(inputButtonText != "enter")
+                inputButtonText = "[" + inputButtonText + "]";
+            return inputButtonText;
+        }//if//テンキー
+        if (inputButtonText.Contains("bracket")) {
+            inputButtonText = inputButtonText.Replace("bracket", "");
+            switch (inputButtonText) {
                 case "left":
-                    inputText = "[";
+                    inputButtonText = "[";
                     break;
                 case "right":
-                    inputText = "]";
+                    inputButtonText = "]";
                     break;
-            }
-            return inputText;
-        }
-        switch (inputText) {//その他のキー
+            }//switch
+            return inputButtonText;
+        }//if//[]キー
+        switch (inputButtonText) {
             case "minus":
-                inputText = "-";
+                inputButtonText = "-";
                 break;
             case "quote":
-                inputText = "'";
+                inputButtonText = "'";
                 break;
             case "backquote":
-                inputText = "`";
+                inputButtonText = "`";
                 break;
             case "equals":
-                inputText = "=";
+                inputButtonText = "=";
                 break;
             case "semicolon":
-                inputText = ";";
+                inputButtonText = ";";
                 break;
             case "comma":
-                inputText = ",";
+                inputButtonText = ",";
                 break;
             case "period":
-                inputText = ".";
+                inputButtonText = ".";
                 break;
             case "slash":
-                inputText = "/";
+                inputButtonText = "/";
                 break;
             case "backslash":
-                inputText="\\";
+                inputButtonText="\\";
                 break;
-        }
-        return inputText;
-    }
+        }//switch//その他のキー
+        return inputButtonText;
+    }//InputButtonTextEdit
 
     public static bool InputTextCheack(string inputText) {
         inputText = inputText.Replace(" ", "");
@@ -327,11 +331,7 @@ public static class InputManagerEdit {
         int nowInputValueCount = -1;
         int beforeInputValueCount = -1;
         InputDataType nowInputDataType = InputDataType.KeyPositive;
-        InputDataLoad();
-        Debug.Log(nowInputValue);
-        Debug.Log(beforeInputValue);
         beforeInputValue = beforeInputValue.Replace("button", "joystick button");
-        Debug.Log(beforeInputValue);
         if (nowInputValue == beforeInputValue)//変更前・後共に同じ入力値の場合
             return;
 
@@ -342,11 +342,10 @@ public static class InputManagerEdit {
             }//if
         }//for
 
-        for (int i = 0; i < 12; i++) {//
+        for (int i = 0; i < 12; i++) {//重複したキーの確認
             if (nowInputValue == _positiveButtonList[i]) {
                 nowInputValueCount = i;
                 nowInputDataType = InputDataType.KeyPositive;
-                //Debug.LogError(inputText+"と重複するInputManegerは" + _nameList[inputTextListNum] +"__" + inputTextListNum);
             }else if (nowInputValue == _negativeButtonList[i]) {
                 nowInputValueCount = i;
                 nowInputDataType = InputDataType.KeyNegative;
@@ -355,11 +354,9 @@ public static class InputManagerEdit {
                 nowInputDataType = InputDataType.JoystickPositive;
             }//if
 
-            if (nowInputValueCount != -1) {
+            if (nowInputValueCount != -1) {//重複したキーの入れ替え必要確認
                 if ((beforeInputValueCount < 10 && nowInputValueCount < 10)|| 
                     (beforeInputValueCount > 9 && beforeInputValueCount < 12 && nowInputValueCount > 9 && nowInputValueCount < 12)) {
-                    //Debug.LogWarning("ゲーム操作キーで重複あり__" + beforeInputValueCount + "__" + nowInputValueCount);
-                    Debug.LogError(_nameList[beforeInputValueCount] + "(" + beforeInputValue + ")" + "("+beforeInputValueType+")"+ "と" + _nameList[nowInputValueCount] + "(" + nowInputValue+ ")"+ "(" + nowInputDataType + ")" + "で重複している");
                     InputDataUpdate(_nameList[beforeInputValueCount], nowInputValue, beforeInputValueType);
                     InputDataUpdate(_nameList[nowInputValueCount], beforeInputValue, nowInputDataType);
                     InputManagerUpdate();
@@ -367,9 +364,6 @@ public static class InputManagerEdit {
                 }//if
             }//if
         }//for
-        Debug.Log("inputAxesName_" + inputAxesName);
-        Debug.Log("nowInputValue_" + nowInputValue);
-        Debug.Log("beforeInputValuType_" + beforeInputValueType);
         InputDataUpdate(inputAxesName, nowInputValue, beforeInputValueType);
         InputManagerUpdate();
     }//InputTextDuplicationCheack

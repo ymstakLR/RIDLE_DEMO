@@ -34,13 +34,13 @@ public class StageDataDisp : MonoBehaviour {
         Text updateText = stageData.GetComponent<Text>();
         switch (stageData.ToString()) {
             case string str when str.Contains("Score"):
-                updateText.text = "Score: " + int.Parse(SaveManager.stageData.scoreList[stageCount]).ToString("D5");
+                updateText.text = "Score: " + int.Parse(SaveManager.stageDataStruct.scoreList[stageCount]).ToString("D5");
                 break;
             case string str when str.Contains("Rank"):
-                updateText.text = SaveManager.stageData.rankList[stageCount].ToString();
+                updateText.text = SaveManager.stageDataStruct.rankList[stageCount].ToString();
                 break;
             case string str when str.Contains("Time"):
-                updateText.text = " Time: " + SaveManager.stageData.timeList[stageCount].ToString();
+                updateText.text = " Time: " + SaveManager.stageDataStruct.timeList[stageCount].ToString();
                 break;
         }//switch
     }//StageDataUpdate

@@ -6,14 +6,15 @@ using System;
 
 /// <summary>
 /// キーコンフィグ画面上のボタン処理
-/// 更新日時:20211004
+/// 更新日時:20211005
 /// </summary>
 public class KeyConfigButtonMove : MonoBehaviour {
-    private GameObject _inputButton;
+    private GameObject _inputButton;//コンフィグ対象のボタンオブジェクト
 
-    private bool _isKeyBoardConfigButton;
-    private bool _isControllerConfigButton;
-    private bool _isSubmitButtonUp;
+    private bool _isControllerConfig;//コントローラ設定の判定
+    private bool _isKeyBoardConfig;//キーボード設定の判定
+
+    private bool _isInputKeyUpdatePossible;
 
     private void Awake() {
         InputManagerEdit.InputManagerUpdate();
@@ -21,15 +22,17 @@ public class KeyConfigButtonMove : MonoBehaviour {
     }//Awake
 
     private void Update() {
-        if (_isKeyBoardConfigButton || _isControllerConfigButton) {
+        if (_isKeyBoardConfig || _isControllerConfig) {
             if (Input.GetButtonUp("Submit")) {
-                _isSubmitButtonUp = true;
+                _isInputKeyUpdatePossible = true;
             }//if
         }//if
-        if (_isSubmitButtonUp && Input.anyKeyDown) {
-            InputKeyCheck();
+        if (_isInputKeyUpdatePossible && Input.anyKeyDown) {
+            ConfigUpdateCheck(GetInputKeyCode());
         }//if
     }//Update
+
+///ボタン入力関連の処理
 
     /// <summary>
     /// キーボード用コンフィグボタンが押された際の処理
@@ -80,10 +83,10 @@ public class KeyConfigButtonMove : MonoBehaviour {
             !isKeyBoard && !code.ToString().Contains("Joystick"))
             return;
         if (isKeyBoard && !code.ToString().Contains("Joystick")) {
-            _isKeyBoardConfigButton = true;
+            _isKeyBoardConfig = true;
         }//if
         if (!isKeyBoard && code.ToString().Contains("Joystick")) {
-            _isControllerConfigButton = true;
+            _isControllerConfig = true;
         }//if
         _inputButton = inputButton;
         _inputButton.GetComponent<Animator>().enabled = false;
@@ -92,19 +95,12 @@ public class KeyConfigButtonMove : MonoBehaviour {
     }//ConfigStart
 
     /// <summary>
-    /// 入力されたキーの確認処理
-    /// </summary>
-    private void InputKeyCheck() {
-        ConfigUpdateCheck(GetInputKeyCode());
-    }//InputKeyCheack
-
-    /// <summary>
     /// コンフィグ更新の実行チェック処理
     /// </summary>
     /// <param name="code">入力されたキーコード</param>
     private void ConfigUpdateCheck(KeyCode code) {
-        if ((_isControllerConfigButton && !code.ToString().Contains("Joystick")) ||
-            _isKeyBoardConfigButton && code.ToString().Contains("Joystick"))
+        if ((_isControllerConfig && !code.ToString().Contains("Joystick")) ||
+            _isKeyBoardConfig && code.ToString().Contains("Joystick"))
             return;
         string axesButtonText = InputManagerEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換
         if (InputManagerEdit.GetNonTargetTextCheck_AxesButton(axesButtonText))//対象外文字の選別
@@ -121,17 +117,17 @@ public class KeyConfigButtonMove : MonoBehaviour {
         InputManagerEdit.InputDataType nowInputValueType;
         (axesNameText, nowInputValueType) = ConfigButtonInfoSelect(_inputButton.name.ToString());
         string nowInputValue = _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower();
-        InputManagerEdit.InputTextDuplicationCheack(changeInputValue,nowInputValue, axesNameText, nowInputValueType);
+        InputManagerEdit.InputDataUpdate(axesNameText, changeInputValue,nowInputValue, nowInputValueType);
         ConfigButtonsTextUpdate();
 
         _inputButton.GetComponent<Animator>().enabled = true;
         _inputButton.GetComponent<Image>().color = Color.red;
         _inputButton.GetComponent<Button>().interactable = true;
         _inputButton.GetComponent<Selectable>().Select();
-        _isKeyBoardConfigButton = false;
-        _isControllerConfigButton = false;
-        _isSubmitButtonUp = false;
-    }
+        _isKeyBoardConfig = false;
+        _isControllerConfig = false;
+        _isInputKeyUpdatePossible = false;
+    }//ConfigUpdate
 
     /// <summary>
     /// Defaultボタンが押された際の処理
@@ -145,15 +141,15 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// <summary>
     /// コンフィグボタン全ての文字更新を行う処理
     /// </summary>
-    private void ConfigButtonsTextUpdate() {
-        Transform buttonsInfo = GameObject.Find("ButtonCanvas").transform;
-        foreach (Transform childTransform in buttonsInfo) {
+    private void ConfigButtonsTextUpdate() {//別スクリプトに移動
+        Transform buttonCanvas = this.gameObject.transform;
+        foreach (Transform childTransform in buttonCanvas) {
             if (childTransform.name.ToString() == "Default")//キーボード・コントローラボタンを全て設定するまで繰り返す
                 break;
-            string fixName;
-            InputManagerEdit.InputDataType type;
-            (fixName, type) = ConfigButtonInfoSelect(childTransform.name.ToString());
-            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.InputTextUpdate(fixName, type);
+            string axesName;
+            InputManagerEdit.InputDataType inputDataType;
+            (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
+            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.GetConficButtonText(axesName, inputDataType);
         }//foreach
     }//ConfigButtonsTextUpdate
 
@@ -165,18 +161,18 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// string 修正した名(調べるボタン名→InputManagerの対象Axes名)
     /// InputDataType 対象のInputDataTypeタイプ
     /// </returns>
-    private (string,InputManagerEdit.InputDataType) ConfigButtonInfoSelect(string checkButtonName) {
+    private (string,InputManagerEdit.InputDataType) ConfigButtonInfoSelect(string checkButtonName) {//別スクリプトに移動
         string editText = checkButtonName;
         InputManagerEdit.InputDataType type = InputManagerEdit.InputDataType.JoystickNegative;
         if (editText.Contains("Key")) {//キーボードボタンの場合
             editText = editText.Replace("Key", "");
             type = InputManagerEdit.InputDataType.KeyPositive;
-        }//if
-        if (editText.Contains("Controller")) {//コントローラボタンの場合
+        }else if (editText.Contains("Controller")) {//コントローラボタンの場合
             editText = editText.Replace("Controller", "");
             type = InputManagerEdit.InputDataType.JoystickPositive;
         }//if
-        switch (editText) {//editTextの変更
+
+        switch (editText) {//移動キーのテキスト変更
             case "Up":
                 editText = "Vertical";
                 break;
@@ -196,7 +192,5 @@ public class KeyConfigButtonMove : MonoBehaviour {
         }//switch
         return (editText, type);
     }//ConfigButtonInfoSelect
-
-
 
 }//KeyConfigButtonMove

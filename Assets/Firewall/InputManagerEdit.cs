@@ -201,120 +201,128 @@ public static class InputManagerEdit {
 
 
     /// <summary>
-    /// 入力したボタン文字の編集処理
+    /// 文字編集処理(入力したキー文字 → axesButoon用文字)
     /// </summary>
-    /// <param name="inputButtonText">入力したボタン文字</param>
+    /// <param name="inputKeyCodeText">入力したキー文字/param>
     /// <returns>編集した入力ボタン文字</returns>
-    public static string InputButtonTextEdit(string inputButtonText) {
-        inputButtonText = inputButtonText.Replace("arrow", "");//矢印キー
-        inputButtonText = inputButtonText.Replace("alpha", "");//数字キー
-        inputButtonText = inputButtonText.Replace("page", "page ");//pageup,pagedown
-        inputButtonText = inputButtonText.Replace("shift", " shift");//Shiftキー
-        inputButtonText = inputButtonText.Replace("control", " ctrl");//Controlキー
-        inputButtonText = inputButtonText.Replace("alt", " alt");//Altキー
-        inputButtonText = inputButtonText.Replace("command", " cmd");//Commandキー
-        inputButtonText = inputButtonText.Replace("sys", "sys ");//PRTSCキー
-        inputButtonText = inputButtonText.Replace("scroll", "scroll ");//SCRLKキー
-        inputButtonText = inputButtonText.Replace("joystickbutton", "joystick button ");//コントローラキー
-        if (inputButtonText.Contains("keypad")){
-            inputButtonText = inputButtonText.Replace("keypad","");
-            switch (inputButtonText) {
+    public static string EditText_InputKeyCodeText_To_AxesButtonText(string inputKeyCodeText) {
+        string text = inputKeyCodeText;
+        text = text.Replace("arrow", "");//矢印キー
+        text = text.Replace("alpha", "");//数字キー
+        text = text.Replace("page", "page ");//pageup,pagedown
+        text = text.Replace("shift", " shift");//Shiftキー
+        text = text.Replace("control", " ctrl");//Controlキー
+        text = text.Replace("alt", " alt");//Altキー
+        text = text.Replace("command", " cmd");//Commandキー
+        text = text.Replace("sys", "sys ");//PRTSCキー
+        text = text.Replace("scroll", "scroll ");//SCRLKキー
+        text = text.Replace("joystickbutton", "joystick button ");//コントローラキー
+        if (text.Contains("keypad")){
+            text = text.Replace("keypad","");
+            switch (text) {
                 case "plus":
-                    inputButtonText = "+";
+                    text = "+";
                     break;
                 case "minus":
-                    inputButtonText = "-";
+                    text = "-";
                     break;
                 case "multiply":
-                    inputButtonText = "*";
+                    text = "*";
                     break;
                 case "divide":
-                    inputButtonText = "/";
+                    text = "/";
                     break;
                 case "period":
-                    inputButtonText = ".";
+                    text = ".";
                     break;
                 default:
                     break;
             }//switch
-            if(inputButtonText != "enter")
-                inputButtonText = "[" + inputButtonText + "]";
-            return inputButtonText;
+            if(text != "enter")
+                text = "[" + text + "]";
+            return text;
         }//if//テンキー
-        if (inputButtonText.Contains("bracket")) {
-            inputButtonText = inputButtonText.Replace("bracket", "");
-            switch (inputButtonText) {
+        if (text.Contains("bracket")) {
+            text = text.Replace("bracket", "");
+            switch (text) {
                 case "left":
-                    inputButtonText = "[";
+                    text = "[";
                     break;
                 case "right":
-                    inputButtonText = "]";
+                    text = "]";
                     break;
             }//switch
-            return inputButtonText;
+            return text;
         }//if//[]キー
-        switch (inputButtonText) {
+        switch (text) {
             case "minus":
-                inputButtonText = "-";
+                text = "-";
                 break;
             case "quote":
-                inputButtonText = "'";
+                text = "'";
                 break;
             case "backquote":
-                inputButtonText = "`";
+                text = "`";
                 break;
             case "equals":
-                inputButtonText = "=";
+                text = "=";
                 break;
             case "semicolon":
-                inputButtonText = ";";
+                text = ";";
                 break;
             case "comma":
-                inputButtonText = ",";
+                text = ",";
                 break;
             case "period":
-                inputButtonText = ".";
+                text = ".";
                 break;
             case "slash":
-                inputButtonText = "/";
+                text = "/";
                 break;
             case "backslash":
-                inputButtonText="\\";
+                text="\\";
                 break;
         }//switch//その他のキー
-        return inputButtonText;
-    }//InputButtonTextEdit
+        return text;
+    }//EditText_InputKeyCodeText_To_AxesButtonText
 
-    public static bool InputTextCheack(string inputText) {
-        inputText = inputText.Replace(" ", "");
-        if (inputText.Contains("return"))
-            return true;
-        if (inputText.Contains("[") && inputText.Contains("]"))
-            return true;
-        if (inputText.Contains("button"))
-            return true;
-        if (inputText.Length == 1)
-            return true;
-        for (int i = 0; i <= 12; i++) {//数値・Fキーのチェック
-            if (inputText == i.ToString()||inputText =="f"+i.ToString()) {
-                return true;
-            }
-        }//for
-        foreach (InputTextCheackData data in Enum.GetValues(typeof(InputTextCheackData))){
-            string str = Enum.GetName(typeof(InputTextCheackData), data);
-            if (inputText == str) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    enum InputTextCheackData {
+    /// <summary>
+    /// AxesButtonの対象外文字をチェックする処理
+    /// </summary>
+    /// <param name="checkText">調べる文字</param>
+    /// <returns>対象外の文字化の判定</returns>
+    public static bool GetNonTargetTextCheck_AxesButton(string checkText) {
+        checkText = checkText.Replace(" ", "");
+        if (checkText.Contains("return"))
+            return false;
+        if (checkText.Contains("[") && checkText.Contains("]"))
+            return false;
+        if (checkText.Contains("button"))
+            return false;
+        if (checkText.Length == 1)
+            return false;
+        for (int i = 0; i <= 12; i++) {
+            if (checkText == i.ToString()||checkText =="f"+i.ToString())
+                return false;
+        }//for//数値・Fキーのチェック
+        foreach (TargetTextData_AxesButton data in Enum.GetValues(typeof(TargetTextData_AxesButton))){
+            string targetText = Enum.GetName(typeof(TargetTextData_AxesButton), data);
+            if (checkText == targetText)
+                return false;
+        }//foreach//対象文字列挙体のチェック
+        return true;
+    }//GetNonTartetText
+
+    /// <summary>
+    /// AxesButtonの対象文字の列挙体
+    /// </summary>
+    private enum TargetTextData_AxesButton {
         tab,escape,leftshift,leftctrl,leftcmd,leftalt,
         space,rightalt,menu,rightctrl,rightshift,backspace,
         up,down,left,right,insert,delete,home,end,pageup,pagedown,
         sysreq,scrolllock,pause,enter,numlock,
-    }
+    }//TargetTextData_AxesButton
 
     public enum InputTextDuplicationType {
         posButton,
@@ -325,47 +333,51 @@ public static class InputManagerEdit {
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="nowInputValue">入力したテキスト</param>
-    /// <param name="beforeInputValue">入力する前のボタンテキスト</param>
-    public static void InputTextDuplicationCheack(string nowInputValue,string beforeInputValue,string inputAxesName,InputDataType beforeInputValueType) {
+    /// <param name="changeInputValue">入力したテキスト</param>
+    /// <param name="nowInputValue">入力する前のボタンテキスト</param>
+    public static void InputTextDuplicationCheack(string changeInputValue,string nowInputValue,string axesName,InputDataType nowInputValueType) {
+        int changeInputValueCount = -1;
         int nowInputValueCount = -1;
-        int beforeInputValueCount = -1;
-        InputDataType nowInputDataType = InputDataType.KeyPositive;
-        beforeInputValue = beforeInputValue.Replace("button", "joystick button");
-        if (nowInputValue == beforeInputValue)//変更前・後共に同じ入力値の場合
+        InputDataType changeInputValueType = InputDataType.KeyPositive;
+        nowInputValue = nowInputValue.Replace("button", "joystick button");
+        if (changeInputValue == nowInputValue)//変更前・後共に同じ入力値の場合
             return;
 
         for (int i = 0; i < 12; i++) {//変更するInputManager配列を選択
-            if (inputAxesName == _nameList[i]) {
-                beforeInputValueCount = i;
+            if (axesName == _nameList[i]) {
+                nowInputValueCount = i;
                 break;
             }//if
         }//for
 
         for (int i = 0; i < 12; i++) {//重複したキーの確認
-            if (nowInputValue == _positiveButtonList[i]) {
-                nowInputValueCount = i;
-                nowInputDataType = InputDataType.KeyPositive;
-            }else if (nowInputValue == _negativeButtonList[i]) {
-                nowInputValueCount = i;
-                nowInputDataType = InputDataType.KeyNegative;
-            }else if (nowInputValue == _altPositionButtonList[i]) {
-                nowInputValueCount = i;
-                nowInputDataType = InputDataType.JoystickPositive;
+            if (changeInputValue == _positiveButtonList[i]) {
+                changeInputValueCount = i;
+                changeInputValueType = InputDataType.KeyPositive;
+            }else if (changeInputValue == _negativeButtonList[i]) {
+                changeInputValueCount = i;
+                changeInputValueType = InputDataType.KeyNegative;
+            }else if (changeInputValue == _altPositionButtonList[i]) {
+                changeInputValueCount = i;
+                changeInputValueType = InputDataType.JoystickPositive;
             }//if
 
-            if (nowInputValueCount != -1) {//重複したキーの入れ替え必要確認
-                if ((beforeInputValueCount < 10 && nowInputValueCount < 10)|| 
-                    (beforeInputValueCount > 9 && beforeInputValueCount < 12 && nowInputValueCount > 9 && nowInputValueCount < 12)) {
-                    InputDataUpdate(_nameList[beforeInputValueCount], nowInputValue, beforeInputValueType);
-                    InputDataUpdate(_nameList[nowInputValueCount], beforeInputValue, nowInputDataType);
+            if (changeInputValueCount != -1) {//重複したキーの入れ替え必要確認
+                if ((nowInputValueCount < 10 && changeInputValueCount < 10)|| 
+                    (nowInputValueCount > 9 && nowInputValueCount < 12 && changeInputValueCount > 9 && changeInputValueCount < 12)) {
+                    InputDataUpdate(axesName, changeInputValue, nowInputValueType);
+                    InputDataUpdate(_nameList[changeInputValueCount], nowInputValue, changeInputValueType);
                     InputManagerUpdate();
                     return;
                 }//if
             }//if
         }//for
-        InputDataUpdate(inputAxesName, nowInputValue, beforeInputValueType);
+        InputDataUpdate(axesName, changeInputValue, nowInputValueType);
         InputManagerUpdate();
     }//InputTextDuplicationCheack
+
+    public static void KeySwap() {
+
+    }
 
 }//InputManagerEdit

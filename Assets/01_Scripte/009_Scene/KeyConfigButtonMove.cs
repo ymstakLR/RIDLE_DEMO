@@ -26,7 +26,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
                 _isSubmitButtonUp = true;
             }//if
         }//if
-        if (_isSubmitButtonUp) {
+        if (_isSubmitButtonUp && Input.anyKeyDown) {
             InputKeyCheck();
         }//if
     }//Update
@@ -53,25 +53,85 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// <param name="inputButton">押されたボタンオブジェクト</param>
     /// <param name="isKeyBoard">入力されたコンフィグタイプ(KeyBoardで入力された場合にTrue)</param>
     private void ConfigButton(GameObject inputButton, bool isKeyBoard) {
-        foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
-            if (Input.GetKeyDown(code)) {
-                if ((isKeyBoard && code.ToString().Contains("Joystick")) ||
-                    !isKeyBoard && !code.ToString().Contains("Joystick"))
-                    return;
-                if (isKeyBoard && !code.ToString().Contains("Joystick"))
-                    _isKeyBoardConfigButton = true;
-
-                if (!isKeyBoard && code.ToString().Contains("Joystick"))
-                    _isControllerConfigButton = true;
-
-                _inputButton = inputButton;
-                _inputButton.GetComponent<Animator>().enabled = false;
-                _inputButton.GetComponent<Button>().interactable = false;
-                _inputButton.GetComponent<Image>().color = new Color(0, 180, 255, 255);
-            }//if
-        }//foreach
+        ConfigStart(inputButton, isKeyBoard, GetInputKeyCode());
     }//ConfigButton
 
+    /// <summary>
+    /// 入力されたKeyCodeを取得する処理
+    /// </summary>
+    /// <returns></returns>
+    private KeyCode GetInputKeyCode() {
+        foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {//入力キー取得
+            if (Input.GetKeyDown(code)) {
+                return code;
+            }//if
+        }//foreach
+        return KeyCode.Space;
+    }//GetInputKeyCode
+
+    /// <summary>
+    /// コンフィグを開始する処理
+    /// </summary>
+    /// <param name="inputButton">押されたボタンオブジェクト</param>
+    /// <param name="isKeyBoard">入力されたコンフィグタイプ</param>
+    /// <param name="code">入力されたキーコード</param>
+    private void ConfigStart(GameObject inputButton,bool isKeyBoard,KeyCode code) {
+        if ((isKeyBoard && code.ToString().Contains("Joystick")) ||
+            !isKeyBoard && !code.ToString().Contains("Joystick"))
+            return;
+        if (isKeyBoard && !code.ToString().Contains("Joystick")) {
+            _isKeyBoardConfigButton = true;
+        }//if
+        if (!isKeyBoard && code.ToString().Contains("Joystick")) {
+            _isControllerConfigButton = true;
+        }//if
+        _inputButton = inputButton;
+        _inputButton.GetComponent<Animator>().enabled = false;
+        _inputButton.GetComponent<Button>().interactable = false;
+        _inputButton.GetComponent<Image>().color = new Color(0, 180, 255, 255);
+    }//ConfigStart
+
+    /// <summary>
+    /// 入力されたキーの確認処理
+    /// </summary>
+    private void InputKeyCheck() {
+        ConfigUpdateCheck(GetInputKeyCode());
+    }//InputKeyCheack
+
+    /// <summary>
+    /// コンフィグ更新の実行チェック処理
+    /// </summary>
+    /// <param name="code">入力されたキーコード</param>
+    private void ConfigUpdateCheck(KeyCode code) {
+        if ((_isControllerConfigButton && !code.ToString().Contains("Joystick")) ||
+            _isKeyBoardConfigButton && code.ToString().Contains("Joystick"))
+            return;
+        string axesButtonText = InputManagerEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換
+        if (InputManagerEdit.GetNonTargetTextCheck_AxesButton(axesButtonText))//対象外文字の選別
+            return;
+        ConfigUpdate(axesButtonText);
+    }//ConfigUpdateCheck
+
+    /// <summary>
+    /// コンフィグを更新する処理
+    /// </summary>
+    /// <param name="changeInputValue">AxesButtonで入力できる対象文字</param>
+    private void ConfigUpdate(string changeInputValue) {
+        string axesNameText;
+        InputManagerEdit.InputDataType nowInputValueType;
+        (axesNameText, nowInputValueType) = ConfigButtonInfoSelect(_inputButton.name.ToString());
+        string nowInputValue = _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower();
+        InputManagerEdit.InputTextDuplicationCheack(changeInputValue,nowInputValue, axesNameText, nowInputValueType);
+        ConfigButtonsTextUpdate();
+
+        _inputButton.GetComponent<Animator>().enabled = true;
+        _inputButton.GetComponent<Image>().color = Color.red;
+        _inputButton.GetComponent<Button>().interactable = true;
+        _inputButton.GetComponent<Selectable>().Select();
+        _isKeyBoardConfigButton = false;
+        _isControllerConfigButton = false;
+        _isSubmitButtonUp = false;
+    }
 
     /// <summary>
     /// Defaultボタンが押された際の処理
@@ -106,67 +166,37 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// InputDataType 対象のInputDataTypeタイプ
     /// </returns>
     private (string,InputManagerEdit.InputDataType) ConfigButtonInfoSelect(string checkButtonName) {
-        string fixName = checkButtonName;
+        string editText = checkButtonName;
         InputManagerEdit.InputDataType type = InputManagerEdit.InputDataType.JoystickNegative;
-        if (fixName.Contains("Key")) {//キーボードボタンの場合
-            fixName = fixName.Replace("Key", "");
+        if (editText.Contains("Key")) {//キーボードボタンの場合
+            editText = editText.Replace("Key", "");
             type = InputManagerEdit.InputDataType.KeyPositive;
         }//if
-        if (fixName.Contains("Controller")) {//コントローラボタンの場合
-            fixName = fixName.Replace("Controller", "");
+        if (editText.Contains("Controller")) {//コントローラボタンの場合
+            editText = editText.Replace("Controller", "");
             type = InputManagerEdit.InputDataType.JoystickPositive;
         }//if
-        switch (fixName) {//fixNameの変更
+        switch (editText) {//editTextの変更
             case "Up":
-                fixName = "Vertical";
+                editText = "Vertical";
                 break;
             case "Down":
-                fixName = "Vertical";
+                editText = "Vertical";
                 type = InputManagerEdit.InputDataType.KeyNegative;
                 break;
             case "Left":
-                fixName = "Horizontal";
+                editText = "Horizontal";
                 type = InputManagerEdit.InputDataType.KeyNegative;
                 break;
             case "Right":
-                fixName = "Horizontal";
+                editText = "Horizontal";
                 break;
             default:
                 break;
         }//switch
-        return (fixName, type);
+        return (editText, type);
     }//ConfigButtonInfoSelect
 
-    /// <summary>
-    /// 入力されたキーの確認処理
-    /// </summary>
-    void InputKeyCheck() {
-        if (!Input.anyKeyDown)
-            return;
-        foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
-            if (Input.GetKeyDown(code)) {
-                if ((_isControllerConfigButton && !code.ToString().Contains("Joystick"))||
-                    _isKeyBoardConfigButton && code.ToString().Contains("Joystick")) 
-                    return;
-                string editText = InputManagerEdit.InputButtonTextEdit(code.ToString().ToLower());//入力文字変換
-                if (!InputManagerEdit.InputTextCheack(editText))//対象外文字の選別
-                    return;
-  
-                string fixName;
-                InputManagerEdit.InputDataType type;
-                (fixName,type) = ConfigButtonInfoSelect(_inputButton.name.ToString());
-                InputManagerEdit.InputTextDuplicationCheack(editText, _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower(),fixName,type);
-                ConfigButtonsTextUpdate();
-                break;
-            }//if
-        }//foreach
-        _inputButton.GetComponent<Animator>().enabled = true;
-        _inputButton.GetComponent<Image>().color = Color.red;
-        _inputButton.GetComponent<Button>().interactable = true;
-        _inputButton.GetComponent<Selectable>().Select();
-        _isKeyBoardConfigButton = false;
-        _isControllerConfigButton = false;
-        _isSubmitButtonUp = false;
-    }//DownKeyCheack
+
 
 }//KeyConfigButtonMove

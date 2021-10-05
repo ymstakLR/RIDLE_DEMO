@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+using UnityEngine.UI;
 
 /// <summary>
 /// InputManagerの編集
-/// 更新日時:20211004
+/// 更新日時:20211006
 /// </summary>
 public static class InputManagerEdit {
     public static List<List<string>> _inputData = new List<List<string>>();
@@ -25,7 +26,7 @@ public static class InputManagerEdit {
     /// <summary>
     /// InputDataの読み込み処理
     /// </summary>
-    public static void InputDataLoad() {
+    private static void InputDataLoad() {
         _nameList = new List<string>();
         _nameList.AddRange(SaveManager.inputDataStruct.nameList);
         _negativeButtonList = new List<string>();
@@ -57,9 +58,9 @@ public static class InputManagerEdit {
     }//InputDataSave
 
     /// <summary>
-    /// InputManagerの更新処理
+    /// InputDataの更新処理
     /// </summary>
-    public static void InputManagerUpdate() {
+    public static void InputDataUpdate() {
         InputDataLoad();
         SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
         SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
@@ -132,8 +133,112 @@ public static class InputManagerEdit {
         return null;
     }//SerializedProperty
 
+    ///保存データ関連の処理についての処理///
 
-///別スクリプトに移動
+    /// <summary>
+    /// 入力する値の対応操作タイプの列挙体
+    /// </summary>
+    public enum InputDataType {
+        KeyNegative,
+        KeyPositive,
+        JoystickNegative,
+        JoystickPositive
+    }//InputDataType
+
+
+    /// <summary>
+    /// コンフィグ値を変更する処理
+    /// </summary>
+    /// <param name="targetAxesName">対象のAxes名</param>
+    /// <param name="changeInputValue">変更予定の入力値</param>
+    /// <param name="nowInputValue">現在の入力値</param>
+    /// <param name="nowInputValueType">現在の入力値のInputDataType</param>
+    public static void ConfigDataUpdate(
+        string targetAxesName, string changeInputValue, string nowInputValue, InputDataType nowInputValueType) {
+        int changeInputValueCount = -1;
+        int nowInputValueCount = -1;
+        InputDataType changeInputValueType = InputDataType.KeyPositive;
+
+        nowInputValue = nowInputValue.Replace("button", "joystick button");//コントローラ値の文字修正
+
+        if (changeInputValue == nowInputValue)//変更前・後共に同じ入力値の場合
+            return;
+
+        for (int i = 0; i < 12; i++) {//変更するInputManager配列を選択
+            if (targetAxesName == _nameList[i]) {
+                nowInputValueCount = i;
+                break;
+            }//if
+        }//for
+
+        for (int i = 0; i < 12; i++) {//重複したキーの確認
+            if (changeInputValue == _positiveButtonList[i]) {
+                changeInputValueCount = i;
+                changeInputValueType = InputDataType.KeyPositive;
+            } else if (changeInputValue == _negativeButtonList[i]) {
+                changeInputValueCount = i;
+                changeInputValueType = InputDataType.KeyNegative;
+            } else if (changeInputValue == _altPositionButtonList[i]) {
+                changeInputValueCount = i;
+                changeInputValueType = InputDataType.JoystickPositive;
+            }//if
+
+            if (changeInputValueCount != -1) {//重複したキーの入れ替え必要確認
+                if ((nowInputValueCount < 10 && changeInputValueCount < 10) ||
+                    (nowInputValueCount > 9 && nowInputValueCount < 12 && changeInputValueCount > 9 && changeInputValueCount < 12)) {
+                    ConfigDataChange(_nameList[nowInputValueCount], nowInputValueType, changeInputValue);
+                    ConfigDataChange(_nameList[changeInputValueCount], changeInputValueType, nowInputValue);
+                    return;
+                }//if
+            }//if
+
+        }//for
+        //重複していない場合
+        ConfigDataChange(targetAxesName, nowInputValueType, changeInputValue);
+    }//InputTextDuplicationCheack   
+
+    /// <summary>
+    /// コンフィグデータを変更する処理
+    /// </summary>
+    /// <param name="targetAxesName">対象のAxes名</param>
+    /// <param name="targetInputDataType">対象のInputDataType</param>
+    /// <param name="changeValue">変更する値</param>
+    private static void ConfigDataChange(string targetAxesName, InputDataType targetInputDataType, string changeValue) {
+        InputDataLoad();
+        int targeAxesListCount = GetInputDataID(targetAxesName);
+        switch (targetInputDataType) {
+            case InputDataType.KeyNegative:
+                _negativeButtonList[targeAxesListCount] = changeValue;
+                break;
+            case InputDataType.KeyPositive:
+                _positiveButtonList[targeAxesListCount] = changeValue;
+                break;
+            case InputDataType.JoystickNegative:
+                break;
+            case InputDataType.JoystickPositive:
+                _altPositionButtonList[targeAxesListCount] = changeValue;
+                break;
+            default:
+                break;
+        }//switch
+        InputDataSave();
+        InputDataUpdate();
+    }//InputDataUpdate
+
+
+    /// <summary>
+    /// コンフィグボタン全ての文字更新を行う処理
+    /// </summary>
+    public static void ConfigButtonsTextUpdate(GameObject buttonCanvas) {
+        foreach (Transform childTransform in buttonCanvas.transform) {
+            if (childTransform.name.ToString() == "Default")//キーボード・コントローラボタンを全て設定するまで繰り返す
+                break;
+            string axesName;
+            InputManagerEdit.InputDataType inputDataType;
+            (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
+            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.GetConficButtonText(axesName, inputDataType);
+        }//foreach
+    }//ConfigButtonsTextUpdate
 
     /// <summary>
     /// コンフィグボタンのテキストを取得する処理
@@ -141,7 +246,7 @@ public static class InputManagerEdit {
     /// <param name="targetAxesName">対象のAxes名</param>
     /// <param name="targetInputDataType">対象のInputDataType</param>
     /// <returns>対象コンフィグボタンのキーテキスト</returns>
-    public static string GetConficButtonText(string targetAxesName,InputDataType targetInputDataType) {
+    private static string GetConficButtonText(string targetAxesName, InputDataType targetInputDataType) {
         InputDataLoad();
         string targetKeyText = "";
         int targetAxesListCount = GetInputDataID(targetAxesName);
@@ -163,39 +268,11 @@ public static class InputManagerEdit {
     }//GetConficButtonText
 
     /// <summary>
-    /// キー情報を変更する処理
-    /// </summary>
-    /// <param name="targetAxesName">対象のAxes名</param>
-    /// <param name="targetInputDataType">対象のInputDataType</param>
-    /// <param name="changeValue">変更する値</param>
-    public static void InputDataChange(string targetAxesName,InputDataType targetInputDataType, string changeValue) {
-        InputDataLoad();
-        int targeAxesListCount = GetInputDataID(targetAxesName);
-        switch (targetInputDataType) {
-            case InputDataType.KeyNegative:
-                _negativeButtonList[targeAxesListCount] = changeValue;
-                break;
-            case InputDataType.KeyPositive:
-                _positiveButtonList[targeAxesListCount] = changeValue;
-                break;
-            case InputDataType.JoystickNegative:
-                break;
-            case InputDataType.JoystickPositive:
-                _altPositionButtonList[targeAxesListCount] = changeValue;
-                break;
-            default:
-                break;
-        }//switch
-        InputDataSave();
-        InputManagerUpdate();
-    }//InputDataUpdate
-
-    /// <summary>
     /// 更新したいキー名と等しいリスト配列番号取得処理
     /// </summary>
     /// <param name="inputName"></param>
     /// <returns></returns>
-    public static int GetInputDataID(string inputName) {
+    private static int GetInputDataID(string inputName) {
         int inputNum = 0;
         while (_nameList[inputNum].ToString() != inputName) {
             inputNum++;
@@ -204,14 +281,45 @@ public static class InputManagerEdit {
     }//GetInputDataID
 
     /// <summary>
-    /// 入力する値の対応操作タイプの列挙体
+    /// コンフィグボタンの情報選択処理
     /// </summary>
-    public enum InputDataType {
-        KeyNegative,
-        KeyPositive,
-        JoystickNegative,
-        JoystickPositive
-    }//InputDataType
+    /// <param name="checkButtonName">調べるボタンオブジェクト名</param>
+    /// <returns>
+    /// string 修正した名(調べるボタン名→InputManagerの対象Axes名)
+    /// InputDataType 対象のInputDataTypeタイプ
+    /// </returns>
+    public static (string, InputManagerEdit.InputDataType) ConfigButtonInfoSelect(string checkButtonName) {//別スクリプトに移動
+        string editText = checkButtonName;
+        InputManagerEdit.InputDataType type = InputManagerEdit.InputDataType.JoystickNegative;
+        if (editText.Contains("Key")) {//キーボードボタンの場合
+            editText = editText.Replace("Key", "");
+            type = InputManagerEdit.InputDataType.KeyPositive;
+        } else if (editText.Contains("Controller")) {//コントローラボタンの場合
+            editText = editText.Replace("Controller", "");
+            type = InputManagerEdit.InputDataType.JoystickPositive;
+        }//if
+
+        switch (editText) {//移動キーのテキスト変更
+            case "Up":
+                editText = "Vertical";
+                break;
+            case "Down":
+                editText = "Vertical";
+                type = InputManagerEdit.InputDataType.KeyNegative;
+                break;
+            case "Left":
+                editText = "Horizontal";
+                type = InputManagerEdit.InputDataType.KeyNegative;
+                break;
+            case "Right":
+                editText = "Horizontal";
+                break;
+            default:
+                break;
+        }//switch
+        return (editText, type);
+    }//ConfigButtonInfoSelect
+
 
     /// <summary>
     /// 文字編集処理(入力したキー文字 → axesButoon用文字)
@@ -335,56 +443,5 @@ public static class InputManagerEdit {
         up,down,left,right,insert,delete,home,end,pageup,pagedown,
         sysreq,scrolllock,pause,enter,numlock,
     }//TargetTextData_AxesButton
-
-    /// <summary>
-    /// 入力した値を変更する処理
-    /// </summary>
-    /// <param name="targetAxesName">対象のAxes名</param>
-    /// <param name="changeInputValue">変更予定の入力値</param>
-    /// <param name="nowInputValue">現在の入力値</param>
-    /// <param name="nowInputValueType">現在の入力値のInputDataType</param>
-    public static void InputDataUpdate(
-        string targetAxesName, string changeInputValue,string nowInputValue,InputDataType nowInputValueType) {
-        int changeInputValueCount = -1;
-        int nowInputValueCount = -1;
-        InputDataType changeInputValueType = InputDataType.KeyPositive;
-
-        nowInputValue = nowInputValue.Replace("button", "joystick button");//コントローラ値の文字修正
-
-        if (changeInputValue == nowInputValue)//変更前・後共に同じ入力値の場合
-            return;
-
-        for (int i = 0; i < 12; i++) {//変更するInputManager配列を選択
-            if (targetAxesName == _nameList[i]) {
-                nowInputValueCount = i;
-                break;
-            }//if
-        }//for
-
-        for (int i = 0; i < 12; i++) {//重複したキーの確認
-            if (changeInputValue == _positiveButtonList[i]) {
-                changeInputValueCount = i;
-                changeInputValueType = InputDataType.KeyPositive;
-            }else if (changeInputValue == _negativeButtonList[i]) {
-                changeInputValueCount = i;
-                changeInputValueType = InputDataType.KeyNegative;
-            }else if (changeInputValue == _altPositionButtonList[i]) {
-                changeInputValueCount = i;
-                changeInputValueType = InputDataType.JoystickPositive;
-            }//if
-
-            if (changeInputValueCount != -1) {//重複したキーの入れ替え必要確認
-                if ((nowInputValueCount < 10 && changeInputValueCount < 10)|| 
-                    (nowInputValueCount > 9 && nowInputValueCount < 12 && changeInputValueCount > 9 && changeInputValueCount < 12)) {
-                    InputDataChange(_nameList[nowInputValueCount], nowInputValueType, changeInputValue);
-                    InputDataChange(_nameList[changeInputValueCount], changeInputValueType, nowInputValue);
-                    return;
-                }//if
-            }//if
-
-        }//for
-        //重複していない場合
-        InputDataChange(targetAxesName, nowInputValueType, changeInputValue);
-    }//InputTextDuplicationCheack
 
 }//InputManagerEdit

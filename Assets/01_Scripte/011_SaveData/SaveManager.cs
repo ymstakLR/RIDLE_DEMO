@@ -75,22 +75,22 @@ public static class SaveManager {
         if (File.Exists(path + STAGE_FILE)) {//指定のファイルが存在する場合
             DataLoad(STAGE_FILE);
         } else {
-            StageDataGenerate();
+            StageDataCreate();
         }//if
         if (File.Exists(path + OPTION_FILE)) {
             DataLoad(OPTION_FILE);
         } else {
-            OptionDataGenerate();
+            OptionDataCreate();
         }//if
         if (File.Exists(path + UNLOCK_FILE)) {
             DataLoad(UNLOCK_FILE);
         } else {
-            UnlockDataGenerate();
+            UnlockDataCreate();
         }//if
         if (File.Exists(path + INPUT_FILE)) {
             DataLoad(INPUT_FILE);
         } else {
-            InputDataGenerate();
+            InputDataCreate();
         }//if
     }//DataInit
 
@@ -138,7 +138,7 @@ public static class SaveManager {
     /// ステージデータの初期化処理
     /// </summary>
     /// 
-    private static void StageDataGenerate() {
+    private static void StageDataCreate() {
         stageDataStruct = new StageDataStruct();
         List<string> nList = new List<string>();
         List<string> rList = new List<string>();
@@ -156,13 +156,13 @@ public static class SaveManager {
         stageDataStruct.timeList = tList;
         string jsonData = JsonUtility.ToJson(stageDataStruct, true);
         DataSave(jsonData, STAGE_FILE);
-    }//StageDataInit
+    }//StageDataCreate
 
     /// <summary>
     /// オプションデータの初期化処理
     /// </summary>
     /// 
-    private static void OptionDataGenerate() {
+    private static void OptionDataCreate() {
         optionDataStruct = new OptionDataStruct();
         optionDataStruct.bgmVol = 0;
         optionDataStruct.seVol = 0;
@@ -171,12 +171,12 @@ public static class SaveManager {
         optionDataStruct.isFullscreen = true;
         string jsonData = JsonUtility.ToJson(optionDataStruct, true);
         DataSave(jsonData, OPTION_FILE);
-    }//OptionDataInit
+    }//OptionDataCreate
 
     /// <summary>
     /// アンロックデータの初期化処理
     /// </summary>
-    private static void UnlockDataGenerate() {
+    private static void UnlockDataCreate() {
         unlockDataStruct = new UnlockDataStruct();
         List<bool> list = new List<bool>();
         for (int i = 0; i < STAGE_NUM * 4; i++) {
@@ -185,12 +185,12 @@ public static class SaveManager {
         unlockDataStruct.unlockList = list;
         string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
         DataSave(jsonData, UNLOCK_FILE);
-    }//UnlockDataGenerate
+    }//UnlockDataCreate
 
     /// <summary>
     /// Inputデータの初期化処理
     /// </summary>
-    private static void InputDataGenerate() {
+    private static void InputDataCreate() {
         inputDataStruct = new InputDataStruct();
         List<string> nameList = new List<string>();
         List<string> nButtonList = new List<string>();
@@ -217,7 +217,7 @@ public static class SaveManager {
         inputDataStruct.axisList = axisList;
         string jsonData = JsonUtility.ToJson(inputDataStruct, true);
         DataSave(jsonData, INPUT_FILE);
-    }//InputDataGenerate
+    }//InputDataCreate
 
 
     /// <summary>
@@ -279,7 +279,7 @@ public static class SaveManager {
     /// </summary>
     public static void StageDataDelete() {
         File.Delete(SaveFilePathSetting() + STAGE_FILE);
-        StageDataGenerate();
+        StageDataCreate();
     }//StageDataDelete
 
     /// <summary>
@@ -287,7 +287,7 @@ public static class SaveManager {
     /// </summary>
     public static void UnlockDataDelete() {
         File.Delete(SaveFilePathSetting() + UNLOCK_FILE);
-        UnlockDataGenerate();
+        UnlockDataCreate();
     }//UnlockDataDelete
 
     /// <summary>
@@ -295,7 +295,7 @@ public static class SaveManager {
     /// </summary>
     public static void InputDataDelete() {
         File.Delete(SaveFilePathSetting() + INPUT_FILE);
-        InputDataGenerate();
+        InputDataCreate();
     }//InputDataDelete
 
 }//SaveManager

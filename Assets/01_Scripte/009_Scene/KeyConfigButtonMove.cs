@@ -6,7 +6,7 @@ using System;
 
 /// <summary>
 /// キーコンフィグ画面上のボタン処理
-/// 更新日時:20211005
+/// 更新日時:20211006
 /// </summary>
 public class KeyConfigButtonMove : MonoBehaviour {
     private GameObject _inputButton;//コンフィグ対象のボタンオブジェクト
@@ -17,8 +17,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private bool _isInputKeyUpdatePossible;
 
     private void Awake() {
-        InputManagerEdit.InputManagerUpdate();
-        ConfigButtonsTextUpdate();
+        InputManagerEdit.InputDataUpdate();
+        InputManagerEdit.ConfigButtonsTextUpdate(this.gameObject);
     }//Awake
 
     private void Update() {
@@ -115,10 +115,10 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private void ConfigUpdate(string changeInputValue) {
         string axesNameText;
         InputManagerEdit.InputDataType nowInputValueType;
-        (axesNameText, nowInputValueType) = ConfigButtonInfoSelect(_inputButton.name.ToString());
+        (axesNameText, nowInputValueType) = InputManagerEdit.ConfigButtonInfoSelect(_inputButton.name.ToString());
         string nowInputValue = _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower();
-        InputManagerEdit.InputDataUpdate(axesNameText, changeInputValue,nowInputValue, nowInputValueType);
-        ConfigButtonsTextUpdate();
+        InputManagerEdit.ConfigDataUpdate(axesNameText, changeInputValue,nowInputValue, nowInputValueType);
+        InputManagerEdit.ConfigButtonsTextUpdate(this.gameObject);
 
         _inputButton.GetComponent<Animator>().enabled = true;
         _inputButton.GetComponent<Image>().color = Color.red;
@@ -134,63 +134,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     public void DefaultButton() {
         SaveManager.InputDataDelete();
-        InputManagerEdit.InputManagerUpdate();
-        ConfigButtonsTextUpdate();
+        InputManagerEdit.InputDataUpdate();
+        InputManagerEdit.ConfigButtonsTextUpdate(this.gameObject);
     }//DefaultButton
-
-    /// <summary>
-    /// コンフィグボタン全ての文字更新を行う処理
-    /// </summary>
-    private void ConfigButtonsTextUpdate() {//別スクリプトに移動
-        Transform buttonCanvas = this.gameObject.transform;
-        foreach (Transform childTransform in buttonCanvas) {
-            if (childTransform.name.ToString() == "Default")//キーボード・コントローラボタンを全て設定するまで繰り返す
-                break;
-            string axesName;
-            InputManagerEdit.InputDataType inputDataType;
-            (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
-            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerEdit.GetConficButtonText(axesName, inputDataType);
-        }//foreach
-    }//ConfigButtonsTextUpdate
-
-    /// <summary>
-    /// コンフィグボタンの情報選択処理
-    /// </summary>
-    /// <param name="checkButtonName">調べるボタンオブジェクト名</param>
-    /// <returns>
-    /// string 修正した名(調べるボタン名→InputManagerの対象Axes名)
-    /// InputDataType 対象のInputDataTypeタイプ
-    /// </returns>
-    private (string,InputManagerEdit.InputDataType) ConfigButtonInfoSelect(string checkButtonName) {//別スクリプトに移動
-        string editText = checkButtonName;
-        InputManagerEdit.InputDataType type = InputManagerEdit.InputDataType.JoystickNegative;
-        if (editText.Contains("Key")) {//キーボードボタンの場合
-            editText = editText.Replace("Key", "");
-            type = InputManagerEdit.InputDataType.KeyPositive;
-        }else if (editText.Contains("Controller")) {//コントローラボタンの場合
-            editText = editText.Replace("Controller", "");
-            type = InputManagerEdit.InputDataType.JoystickPositive;
-        }//if
-
-        switch (editText) {//移動キーのテキスト変更
-            case "Up":
-                editText = "Vertical";
-                break;
-            case "Down":
-                editText = "Vertical";
-                type = InputManagerEdit.InputDataType.KeyNegative;
-                break;
-            case "Left":
-                editText = "Horizontal";
-                type = InputManagerEdit.InputDataType.KeyNegative;
-                break;
-            case "Right":
-                editText = "Horizontal";
-                break;
-            default:
-                break;
-        }//switch
-        return (editText, type);
-    }//ConfigButtonInfoSelect
 
 }//KeyConfigButtonMove

@@ -212,7 +212,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 409860014}
     m_SelectOnDown: {fileID: 1308396925}
     m_SelectOnLeft: {fileID: 1413786387}
-    m_SelectOnRight: {fileID: 988749582}
+    m_SelectOnRight: {fileID: 488493563}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1868,10 +1868,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 64439003}
+    m_SelectOnUp: {fileID: 988749582}
     m_SelectOnDown: {fileID: 988749582}
-    m_SelectOnLeft: {fileID: 409860014}
-    m_SelectOnRight: {fileID: 1845897983}
+    m_SelectOnLeft: {fileID: 10720300}
+    m_SelectOnRight: {fileID: 1413786387}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2132,7 +2132,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 950407878}
     m_SelectOnDown: {fileID: 1940265825}
-    m_SelectOnLeft: {fileID: 64439003}
+    m_SelectOnLeft: {fileID: 988749582}
     m_SelectOnRight: {fileID: 1845524663}
   m_Transition: 3
   m_Colors:
@@ -2804,7 +2804,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871913498}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -2813,7 +2813,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1436208578}
-    m_SelectOnDown: {fileID: 1168656164}
+    m_SelectOnDown: {fileID: 1815680951}
     m_SelectOnLeft: {fileID: 224480374}
     m_SelectOnRight: {fileID: 488493563}
   m_Transition: 3
@@ -2843,8 +2843,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: ControllerConfigButton
-        m_Mode: 2
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 871913498}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -2863,7 +2863,7 @@ Animator:
   m_GameObject: {fileID: 871913498}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7378529960b2a66499c33ebf432217e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a4e25611ade0394bbcd4e096e72c5ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2998,7 +2998,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1845524663}
     m_SelectOnDown: {fileID: 1436208578}
     m_SelectOnLeft: {fileID: 1940265825}
-    m_SelectOnRight: {fileID: 64439003}
+    m_SelectOnRight: {fileID: 988749582}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3259,7 +3259,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1194993290}
     m_SelectOnDown: {fileID: 575018982}
-    m_SelectOnLeft: {fileID: 64439003}
+    m_SelectOnLeft: {fileID: 988749582}
     m_SelectOnRight: {fileID: 1991069871}
   m_Transition: 3
   m_Colors:
@@ -3441,9 +3441,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 488493563}
-    m_SelectOnDown: {fileID: 64439003}
-    m_SelectOnLeft: {fileID: 1308396925}
-    m_SelectOnRight: {fileID: 1194993290}
+    m_SelectOnDown: {fileID: 488493563}
+    m_SelectOnLeft: {fileID: 1991069871}
+    m_SelectOnRight: {fileID: 950407878}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4205,7 +4205,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168656161}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -4244,8 +4244,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: ControllerConfigButton
-        m_Mode: 2
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 1168656161}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -4264,7 +4264,7 @@ Animator:
   m_GameObject: {fileID: 1168656161}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7378529960b2a66499c33ebf432217e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a4e25611ade0394bbcd4e096e72c5ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4473,7 +4473,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1413786387}
     m_SelectOnDown: {fileID: 950407878}
-    m_SelectOnLeft: {fileID: 988749582}
+    m_SelectOnLeft: {fileID: 488493563}
     m_SelectOnRight: {fileID: 1308396925}
   m_Transition: 3
   m_Colors:
@@ -4894,7 +4894,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 10720300}
     m_SelectOnDown: {fileID: 1991069871}
     m_SelectOnLeft: {fileID: 1194993290}
-    m_SelectOnRight: {fileID: 988749582}
+    m_SelectOnRight: {fileID: 488493563}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5155,7 +5155,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1845897983}
     m_SelectOnDown: {fileID: 1194993290}
-    m_SelectOnLeft: {fileID: 988749582}
+    m_SelectOnLeft: {fileID: 488493563}
     m_SelectOnRight: {fileID: 10720300}
   m_Transition: 3
   m_Colors:
@@ -5428,7 +5428,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436208575}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -5467,8 +5467,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: ControllerConfigButton
-        m_Mode: 2
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 1436208575}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -5487,7 +5487,7 @@ Animator:
   m_GameObject: {fileID: 1436208575}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7378529960b2a66499c33ebf432217e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a4e25611ade0394bbcd4e096e72c5ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6347,7 +6347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815680948}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -6386,8 +6386,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 368782094}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: ControllerConfigButton
-        m_Mode: 2
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 1815680948}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -6406,7 +6406,7 @@ Animator:
   m_GameObject: {fileID: 1815680948}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7378529960b2a66499c33ebf432217e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a4e25611ade0394bbcd4e096e72c5ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6541,7 +6541,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1991069871}
     m_SelectOnDown: {fileID: 874459264}
     m_SelectOnLeft: {fileID: 575018982}
-    m_SelectOnRight: {fileID: 64439003}
+    m_SelectOnRight: {fileID: 988749582}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -6985,7 +6985,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 575018982}
     m_SelectOnDown: {fileID: 1967754805}
-    m_SelectOnLeft: {fileID: 64439003}
+    m_SelectOnLeft: {fileID: 988749582}
     m_SelectOnRight: {fileID: 874459264}
   m_Transition: 3
   m_Colors:
@@ -7602,7 +7602,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1308396925}
     m_SelectOnDown: {fileID: 1845524663}
     m_SelectOnLeft: {fileID: 950407878}
-    m_SelectOnRight: {fileID: 64439003}
+    m_SelectOnRight: {fileID: 988749582}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}

@@ -31,7 +31,7 @@ public class InputManagerTest : MonoBehaviour {
             Debug.Log("kakunin");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            InputManagerEdit.InputManagerUpdate();
+            InputManagerEdit.InputDataUpdate();
             Debug.Log("kakunin3");
         }
         DownKeyCheck();

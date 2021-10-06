@@ -127,7 +127,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Demo\CubismLookTarget.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\KeyConfigButtonMove.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismUserData3Json.cs" />
-    <Compile Include="Assets\Firewall\InputManagerEdit.cs" />
+    <Compile Include="Assets\01_Scripte\011_SaveData\InputManagerDataEdit.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\CircularMoveing.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\PauseButton.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedParameters.cs" />
@@ -174,7 +174,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismLogging.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\Masking\MaskTexturePreview.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\PlatformEffectorLayarChange.cs" />
-    <Compile Include="Assets\Firewall\InputManagerTest.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\Retray.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycaster.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRenderer.cs" />
@@ -212,14 +211,13 @@
     <Compile Include="Assets\01_Scripte\004_Gimmick\GenerateDamageObjBase.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\ICubismLookTarget.cs" />
     <Compile Include="Assets\01_Scripte\011_SaveData\StageDataEdit.cs" />
-    <Compile Include="Assets\Firewall\InputManagerInfo.cs" />
+    <Compile Include="Assets\01_Scripte\011_SaveData\InputManagerDataInitialSetting.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkParameter.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismParameter.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\KeyItemPositionChange.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemyBodyTrigger.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAudioSamplingQuality.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTilePool.cs" />
-    <Compile Include="Assets\Firewall\InputManagerSetter.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\EnemyArm.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\BenchmarkController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterStore.cs" />
@@ -280,7 +278,6 @@
     <Compile Include="Assets\01_Scripte\004_Gimmick\Spring.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerBodyTrigger.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedParts.cs" />
-    <Compile Include="Assets\Firewall\InputManagerGenerator.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\SceneChange.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy2.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ArrayExtensionMethods.cs" />
@@ -299,7 +296,6 @@
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />
     <None Include="Assets\01_Scripte\000_Log\log.txt" />
-    <None Include="Assets\Firewall\inputmanager.txt" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\x86\Live2DCubismCore.dll" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Mask.shader" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Unlit.shader" />

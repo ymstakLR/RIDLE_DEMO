@@ -200,13 +200,13 @@ public static class SaveManager {
         List<string> typeList = new List<string>();
         List<string> axisList = new List<string>();
         for (int i = 0; i < AXES_SIZE_NUM; i++) {
-            InputManagerInitialSetting.DefaultNameInsert(nameList, i);
-            InputManagerInitialSetting.DefaultNegativeButtonInsert(nButtonList, i);
-            InputManagerInitialSetting.DefaultPositiveButtonInsert(pButtonList, i);
-            InputManagerInitialSetting.DefaultAltPositiveButtonInsert(apButtonList, i);
-            InputManagerInitialSetting.DefaultInvert(invertList, i);
-            InputManagerInitialSetting.DefaultType(typeList, i);
-            InputManagerInitialSetting.DefaultAxis(axisList, i);
+            InputManagerDataInitialSetting.DefaultNameInsert(nameList, i);
+            InputManagerDataInitialSetting.DefaultNegativeButtonInsert(nButtonList, i);
+            InputManagerDataInitialSetting.DefaultPositiveButtonInsert(pButtonList, i);
+            InputManagerDataInitialSetting.DefaultAltPositiveButtonInsert(apButtonList, i);
+            InputManagerDataInitialSetting.DefaultInvert(invertList, i);
+            InputManagerDataInitialSetting.DefaultType(typeList, i);
+            InputManagerDataInitialSetting.DefaultAxis(axisList, i);
         }//for
         inputDataStruct.nameList = nameList;
         inputDataStruct.negativeButtonList = nButtonList;

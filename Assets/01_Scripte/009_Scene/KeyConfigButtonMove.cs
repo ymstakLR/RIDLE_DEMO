@@ -17,8 +17,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private bool _isInputKeyUpdatePossible;
 
     private void Awake() {
-        InputManagerEdit.InputDataUpdate();
-        InputManagerEdit.ConfigButtonsTextUpdate(this.gameObject);
+        InputManagerDataEdit.InputDataUpdate();
+        InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
     }//Awake
 
     private void Update() {
@@ -102,8 +102,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
         if ((_isControllerConfig && !code.ToString().Contains("Joystick")) ||
             _isKeyBoardConfig && code.ToString().Contains("Joystick"))
             return;
-        string axesButtonText = InputManagerEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換
-        if (InputManagerEdit.GetNonTargetTextCheck_AxesButton(axesButtonText))//対象外文字の選別
+        string axesButtonText = InputManagerDataEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換
+        if (InputManagerDataEdit.GetNonTargetTextCheck_AxesButton(axesButtonText))//対象外文字の選別
             return;
         ConfigUpdate(axesButtonText);
     }//ConfigUpdateCheck
@@ -114,11 +114,11 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// <param name="changeInputValue">AxesButtonで入力できる対象文字</param>
     private void ConfigUpdate(string changeInputValue) {
         string axesNameText;
-        InputManagerEdit.InputDataType nowInputValueType;
-        (axesNameText, nowInputValueType) = InputManagerEdit.ConfigButtonInfoSelect(_inputButton.name.ToString());
+        InputManagerDataEdit.InputDataType nowInputValueType;
+        (axesNameText, nowInputValueType) = InputManagerDataEdit.ConfigButtonInfoSelect(_inputButton.name.ToString());
         string nowInputValue = _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower();
-        InputManagerEdit.ConfigDataUpdate(axesNameText, changeInputValue,nowInputValue, nowInputValueType);
-        InputManagerEdit.ConfigButtonsTextUpdate(this.gameObject);
+        InputManagerDataEdit.ConfigDataUpdate(axesNameText, changeInputValue,nowInputValue, nowInputValueType);
+        InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
 
         _inputButton.GetComponent<Animator>().enabled = true;
         _inputButton.GetComponent<Image>().color = Color.red;
@@ -134,8 +134,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     public void DefaultButton() {
         SaveManager.InputDataDelete();
-        InputManagerEdit.InputDataUpdate();
-        InputManagerEdit.ConfigButtonsTextUpdate(this.gameObject);
+        InputManagerDataEdit.InputDataUpdate();
+        InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
     }//DefaultButton
 
 }//KeyConfigButtonMove

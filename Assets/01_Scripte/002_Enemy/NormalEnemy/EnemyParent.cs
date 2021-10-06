@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy全体で使用する処理　このスクリプトを継承してEnemy処理を作成していく
-/// 更新日時:20210912
+/// 更新日時:20211007
 /// </summary>
 public class EnemyParent : MonoBehaviour {
     public AudioManager AudioManager { get; set; }
@@ -150,11 +150,16 @@ public class EnemyParent : MonoBehaviour {
     /// ミスした際の点滅処理
     /// </summary>
     protected void EnemyMissBlinking() {
-        if (_blinkingTimer > BLINKING_TIME * 2)//点滅処理終了後
+        if (_blinkingTimer >= BLINKING_TIME * 2)//点滅処理終了後
             return;
+        if (_stageClearManagement.StageStatus != EnumStageStatus.Normal) {//点滅処理中に別StageStatusに変更された場合
+            _renderer.enabled = false;
+            _blinkingTimer = BLINKING_TIME * 2;
+            return;
+        }//if
         if (_blinkingTimer > BLINKING_TIME) {//点滅処理終了直前
             _renderer.enabled = true;
-            _blinkingTimer= _blinkingTimer*2;
+            _blinkingTimer= BLINKING_TIME*2;
             return;
         }//if
         if (_blinkingTimer >= _blinkingEnableTime) {//点滅切り替え

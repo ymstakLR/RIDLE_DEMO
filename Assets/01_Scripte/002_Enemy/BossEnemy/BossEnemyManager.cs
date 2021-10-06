@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// ボス敵の共通処理をまとめて記載する
-/// 更新日時:0603
+/// 更新日時:20211007
 /// </summary>
 public class BossEnemyManager : MonoBehaviour {
 
@@ -92,7 +93,6 @@ public class BossEnemyManager : MonoBehaviour {
         }//if
         if (!BodyTrigger.GetComponent<PolygonCollider2D>().isTrigger) {//isTriggerがAddComponentと同時に設定できないのでこの処理で設定する
             BodyTrigger.GetComponent<PolygonCollider2D>().isTrigger = true;
-            Debug.Log("true");
             if (_recoveryTimer >= RECOVERY_TIME) {
                 BodyTrigger.layer = LayerMask.NameToLayer("EnemyAttack");
             }//if
@@ -203,10 +203,14 @@ public class BossEnemyManager : MonoBehaviour {
             ;
             this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - (Time.deltaTime * (float)20));
         } else {//画面内から出た場合
-            _stageClearManagement.BossEnemyArray.RemoveAt(0);
-            _stageClearManagement.StageStatus = EnumStageStatus.Normal;
-            _audioManager.PlayBGM(_stageBGMName);
-            Destroy(this.gameObject);
+            try {
+                _stageClearManagement.BossEnemyArray.RemoveAt(0);
+                _stageClearManagement.StageStatus = EnumStageStatus.Normal;
+                _audioManager.PlayBGM(_stageBGMName);
+                Destroy(this.gameObject);
+            } catch (Exception) {
+                Debug.LogError("ボス敵を削除するときにエラー発生");
+            }//try
         }//if
     }//missEnumerator
 

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 609, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 1
-  controlID: 195
+  controlID: 203
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_MinSize: {x: 609, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 196
+  controlID: 204
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -902,9 +902,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.9006311, y: -1.0412321, z: 336.18323}
+    m_Target: {x: 322.62576, y: 0, z: 0}
     speed: 2
-    m_Value: {x: -0.9006311, y: -1.0412321, z: 336.18323}
+    m_Value: {x: 0.3220609, y: -1.4908324, z: -0.40482128}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -955,9 +955,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.9335485
+    m_Target: 10
     speed: 2
-    m_Value: 5.9335485
+    m_Value: 1.091271
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1039,21 +1039,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3efbffff
+      m_ExpandedIDs: 5229feffec2ffeff0e3afefff479fefff679feff7ea3feff80a3feffacc3fefff6d9feffa4d5ffffa0defffffadfffff48e9ffffa4f1ffff2efaffff3efbffffe0970000eaa30000eea60000b2ac0000eeaf0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Enemy6Appearance
+        m_OriginalName: Enemy6Appearance
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -100602
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 14}
       m_SearchString: 
@@ -1102,22 +1102,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/AddAssets/Live2D
+    - Assets/00_Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/AddAssets/Live2D
+  - Assets/00_Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\UnityData\Ridle_Demo
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20490000
-    m_LastClickedID: 18720
-    m_ExpandedIDs: 0000000010490000124900001449000016490000184900001a4900001c4900001e49000020490000224900002449000026490000284900002a4900002c4900002e49000030490000324900003449000036490000
+    m_SelectedIDs: 42490000
+    m_LastClickedID: 18754
+    m_ExpandedIDs: 0000000010490000124900001449000016490000184900001a4900001c4900001e49000020490000224900002449000026490000284900002a4900002c4900002e490000304900003249000034490000364900005a49000062490000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

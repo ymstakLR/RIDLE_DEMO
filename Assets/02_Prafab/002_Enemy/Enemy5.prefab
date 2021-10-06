@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25, y: -2.1}
+  m_Offset: {x: 0.25, y: -1.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -116,7 +116,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.3, y: 0}
-  m_Size: {x: 2.5, y: 4.35}
+  m_Size: {x: 2.5, y: 3.9}
   m_Direction: 0
 --- !u!114 &2770962708692180626
 MonoBehaviour:
@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2770962710004027520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2770962708692180627}
@@ -384,7 +384,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.3, y: 0}
-  m_Size: {x: 2.5, y: 4.35}
+  m_Size: {x: 2.5, y: 3.9}
   m_Direction: 0
 --- !u!50 &2770962710004027583
 Rigidbody2D:

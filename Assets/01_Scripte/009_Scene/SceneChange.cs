@@ -19,7 +19,8 @@ public enum SceneChoice {
     Exit,
     Null,
     Title,
-    Title_Demo
+    Title_Demo,
+    Config_Demo
 }//MainScene
 
 /// <summary>

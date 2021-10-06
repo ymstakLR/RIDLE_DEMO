@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/00_Scenes/Select_Demo.unity
     guid: 15afe59b6876b6849b24a527d27361af
   - enabled: 1
-    path: Assets/00_Scenes/Options_Demo.unity
-    guid: a6cdb16f2a54b2842a712690674ec4ce
-  - enabled: 1
     path: Assets/00_Scenes/Stage1.unity
     guid: 6923ab03c2e29404abdecdecc856d2d5
   - enabled: 1
@@ -23,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00_Scenes/Stage3.unity
     guid: a0ebbb3bc001107479870bea90ad749d
+  - enabled: 1
+    path: Assets/00_Scenes/Options_Demo.unity
+    guid: a6cdb16f2a54b2842a712690674ec4ce
+  - enabled: 1
+    path: Assets/00_Scenes/Config_Demo.unity
+    guid: f8ce218c32a3ff7459c10a2235987bcb
   m_configObjects: {}

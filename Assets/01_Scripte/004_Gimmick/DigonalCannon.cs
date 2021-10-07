@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 放物線大砲の処理
-/// 更新日時:0416
+/// 更新日時:20211007
 /// </summary>
 public class DigonalCannon : CannonBase {
 
@@ -15,7 +15,7 @@ public class DigonalCannon : CannonBase {
     private float _screwRotationZ;
 
     private void Start() {
-        base._genarateObject = (GameObject)Resources.Load("DamegeBoll_Parabole");
+        base._genarateObject = (GameObject)Resources.Load("GameObject/DamegeBoll_Parabole");
         base._generateSpeed = 2;
         _screw1 = transform.Find("Cannon_Screw1");
         _screw2 = transform.Find("Cannon_Screw2");

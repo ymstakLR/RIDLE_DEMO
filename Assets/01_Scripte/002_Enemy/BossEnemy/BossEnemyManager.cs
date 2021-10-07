@@ -129,13 +129,13 @@ public class BossEnemyManager : MonoBehaviour {
                 generatePos = new Vector2(
                     this.gameObject.transform.position.x + this.GetComponent<Collider2D>().offset.x,
                     this.gameObject.transform.position.y + this.GetComponent<Collider2D>().offset.y);
-                AttackEffect.EffectGenerate("SlashingDamage", generatePos, this.gameObject, true);
+                AttackEffect.EffectGenerate("GameObject/SlashingDamage", generatePos, this.gameObject, true);
                 break;
             case EnemyDamageType.Trampling:
                 generatePos = new Vector2(
                     Player.transform.position.x,
                     Player.transform.position.y);
-                AttackEffect.EffectGenerate("ShockWave", generatePos, Player, false);
+                AttackEffect.EffectGenerate("GameObject/ShockWave", generatePos, Player, false);
                 break;
             default:
                 break;

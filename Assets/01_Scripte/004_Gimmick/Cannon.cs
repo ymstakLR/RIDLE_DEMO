@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 横に移動する大砲処理
-/// 更新日時:0416
+/// 更新日時:20211007
 /// </summary>
 public class Cannon : CannonBase {
 
@@ -14,7 +14,7 @@ public class Cannon : CannonBase {
     private float _screwRotationZ;
 
     private void Start() {
-        base._genarateObject = (GameObject)Resources.Load("Drill");
+        base._genarateObject = (GameObject)Resources.Load("GameObject/Drill");
         base._generateSpeed = 3;
         _screw1 = transform.Find("Cannon_Screw1");
         _screw2 = transform.Find("Cannon_Screw2");

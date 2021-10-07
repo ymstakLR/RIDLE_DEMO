@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// ボス敵1の処理
-/// 更新日時:0616
+/// 更新日時:20211007
 /// </summary>
 public class BossEnemy1 : BossEnemyManager {
     private enum EnumMotionFlag {//モーションフラグの列挙体
@@ -168,7 +168,7 @@ public class BossEnemy1 : BossEnemyManager {
             }//if
             _audioManager.PlaySE("BossEnemy_Fire");
             GameObject instance = (GameObject)Instantiate(
-                (GameObject)Resources.Load("BossEnemy1FireBall"), new Vector2(generatePositionX, this.transform.position.y + 3), Quaternion.identity);
+                (GameObject)Resources.Load("GameObject/BossEnemy1FireBall"), new Vector2(generatePositionX, this.transform.position.y + 3), Quaternion.identity);
             instance.transform.localScale = new Vector2(
                 generateScaleX * instance.transform.localScale.x, instance.transform.localScale.y);
             instance.GetComponent<SpriteRenderer>().sortingOrder = this.GetComponent<SpriteRenderer>().sortingOrder - 1;

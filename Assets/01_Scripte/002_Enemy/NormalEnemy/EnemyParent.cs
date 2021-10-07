@@ -85,13 +85,13 @@ public class EnemyParent : MonoBehaviour {
                 generatePos = new Vector2(
                     this.gameObject.transform.position.x + this.GetComponent<Collider2D>().offset.x,
                     this.gameObject.transform.position.y + this.GetComponent<Collider2D>().offset.y);
-                AttackEffect.EffectGenerate("SlashingDamage", generatePos, _playerObject, false);
+                AttackEffect.EffectGenerate("GameObject/SlashingDamage", generatePos, _playerObject, false);
                 break;
             case EnemyDamageType.Trampling:
                 generatePos = new Vector2(
                     _playerObject.transform.position.x,
                     _playerObject.transform.position.y);
-                AttackEffect.EffectGenerate("ShockWave", generatePos, _playerObject, false);
+                AttackEffect.EffectGenerate("GameObject/ShockWave", generatePos, _playerObject, false);
                 break;
             default:
                 break;

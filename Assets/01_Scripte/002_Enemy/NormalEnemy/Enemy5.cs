@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵5の移動・攻撃処理
-/// 更新日時:0602
+/// 更新日時:20211007
 /// </summary>
 public class Enemy5 : EnemyTypeA {
     private GameObject _genarateObject;
@@ -15,7 +15,7 @@ public class Enemy5 : EnemyTypeA {
     public new void Start() {
         base.Start();
         _enemyScore = 200;
-        _genarateObject = (GameObject)Resources.Load("Enemy5Ball");
+        _genarateObject = (GameObject)Resources.Load("GameObject/Enemy5Ball");
         _underDecisionTrigger = this.transform.Find("UnderDecision").GetComponent<EnemyUnderDecisionTrigger>();
         EnemySpeed = 6;
         if (this.GetComponent<Transform>().localScale.x < 0)

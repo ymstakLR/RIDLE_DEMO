@@ -1,4 +1,5 @@
 ///一部参考サイト参考 http://wordpress.notargs.com/blog/blog/2015/01/23/92/
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -475,3 +476,4 @@ public static class InputManagerDataEdit {
     }//TargetTextData_AxesButton
 
 }//InputManagerEdit
+#endif

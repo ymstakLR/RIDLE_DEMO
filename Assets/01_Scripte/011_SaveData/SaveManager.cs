@@ -61,9 +61,9 @@ public static class SaveManager {
         string path = "";
         #if UNITY_EDITOR
             path = Directory.GetCurrentDirectory() + SAVE_DATA_PATH;
-        #else
+#else
             path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');    
-        #endif
+#endif
         return path;
     }//SaveFilePathSetting
 

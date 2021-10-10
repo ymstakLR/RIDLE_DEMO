@@ -40,6 +40,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="inputButton"></param>
     public void KeyBoardConfigButton(GameObject inputButton) {
+        Debug.Log("KeyBoardConfigButton");
         ConfigButton(inputButton, true);
     }//KeyConfigButton
 
@@ -48,6 +49,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="inputButton"></param>
     public void ControllerConfigButton(GameObject inputButton) {
+        Debug.Log("ControllerConfigButton");
         ConfigButton(inputButton, false);
     }//ControllerCOnfigButton
 
@@ -57,6 +59,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// <param name="inputButton">押されたボタンオブジェクト</param>
     /// <param name="isKeyBoard">入力されたコンフィグタイプ(KeyBoardで入力された場合にTrue)</param>
     private void ConfigButton(GameObject inputButton, bool isKeyBoard) {
+        Debug.Log("ConfigButton");
         ConfigStart(inputButton, isKeyBoard, GetInputKeyCode());
     }//ConfigButton
 

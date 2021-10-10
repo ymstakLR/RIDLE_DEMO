@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2020_3_11;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2020_3_11;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -56,6 +56,7 @@
     <Compile Include="Assets\01_Scripte\011_SaveData\OptionDataEdit.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy5.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\ItemManager.cs" />
+    <Compile Include="Assets\Firewall\Config\FileManager_1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\ComponentExtensionMethods.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ICubismOpacityHandler.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskController.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\ICubismMaskCommandSource.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismUpdateExecutionOrder.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismModel.cs" />
+    <Compile Include="Assets\Firewall\Config\ScrollView.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsParticle.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerAnimator.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\AudioManager.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismPhysics3Json.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\CannonBase.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\IntExtensionMethods.cs" />
+    <Compile Include="Assets\Firewall\Config\Test_1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\ModelSpawner.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Pose\CubismPoseData.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderAttack.cs" />
@@ -119,9 +122,11 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterExtensionMethods.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismCoreDll.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\UserData\CubismUserDataBody.cs" />
+    <Compile Include="Assets\Firewall\Config\KeyConfigTest2.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismTaskableModel.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismMouthParameter.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsSourceComponent.cs" />
+    <Compile Include="Assets\Firewall\Config\Test1.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy2.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedArrayView.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Demo\CubismLookTarget.cs" />
@@ -135,6 +140,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedDrawables.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\Score.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderTrigger.cs" />
+    <Compile Include="Assets\Firewall\Config\KeyConfig_1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\Raycasting\RaycastHitDisplay.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\DamegeBoll_Parabola.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderTriggerPE.cs" />
@@ -154,16 +160,20 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ICubismDrawOrderHandler.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\Cannon.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\FpsCounter.cs" />
+    <Compile Include="Assets\Firewall\Config\Toggle.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismUpdateController.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy9.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsNormalization.cs" />
+    <Compile Include="Assets\Firewall\Config\GamepadExample.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemyUnderTrigger.cs" />
+    <Compile Include="Assets\Firewall\Config\InputManager.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\ItemProperty.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsMath.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\BackGroundTimeMove.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerBody.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\TotalElapsedTime.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeStateObserver.cs" />
+    <Compile Include="Assets\Firewall\Config\ResourcesObjectManager.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemyWork.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\OptionsButtonMove.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Demo\CubismSampleController.cs" />
@@ -192,11 +202,13 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismCanvasInformation.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterBlendMode.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedMemory.cs" />
+    <Compile Include="Assets\Firewall\Config\SettingManager_1.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerManager.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismRenderController.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\Supporter1.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\MovingRock_Side.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismDisplayInfoParameterName.cs" />
+    <Compile Include="Assets\Firewall\Config\KeyConfig2.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy1.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Tasking\CubismBuiltinAsyncTaskHandler.cs" />
@@ -218,6 +230,7 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemyBodyTrigger.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAudioSamplingQuality.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTilePool.cs" />
+    <Compile Include="Assets\Firewall\Config\Test_InputKey.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\EnemyArm.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\AsyncBenchmark\BenchmarkController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterStore.cs" />
@@ -230,6 +243,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysics.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadePlayingMotion.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\Drill.cs" />
+    <Compile Include="Assets\Firewall\Config\Test.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedModel.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy1FireBall.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\ButtonInfo.cs" />
@@ -253,8 +267,10 @@
     <Compile Include="Assets\01_Scripte\009_Scene\StageStartInitialize.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\DigonalCannon.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTexture.cs" />
+    <Compile Include="Assets\Firewall\Config\KeyConfig.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeCurveType.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\GameStartInit.cs" />
+    <Compile Include="Assets\Firewall\Config\MBDefine.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy6.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemyStageEdgeGeneration.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemySideDecision.cs" />
@@ -289,10 +305,11 @@
     <Compile Include="Assets\01_Scripte\001_Player\PlayerMiss.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismShaderVariables.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedMoc.cs" />
-    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
+    <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Firewall\ResourcesObjectManager.cs" />
+    <Compile Include="Assets\Firewall\Config\Player.cs" />
+    <Compile Include="Assets\Firewall\TestInputActions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />
@@ -301,6 +318,7 @@
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Mask.shader" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\Unlit.shader" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\x64\Live2DCubismCore.dll" />
+    <None Include="Assets\99_Other\LitJson.dll" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Experimental\UWP\arm64\Live2DCubismCore.dll" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Rendering\Resources\Live2D\Cubism\Shaders\CubismCG.cginc" />
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\RedistributableFiles.txt" />
@@ -538,6 +556,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>Assets\99_Other\LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
@@ -929,11 +950,14 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Analytics">
       <HintPath>Library\ScriptAssemblies\Analytics.dll</HintPath>

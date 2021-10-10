@@ -64,6 +64,10 @@ public static class InputManagerDataEdit {
     public static void InputDataUpdate() {
         InputDataLoad();
         SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
+        //Debug.Log("serializedObject_" + serializedObject+"__"+ AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
+        //UnityEngine.Object obj = new UnityEngine.Object();
+        
+        //SerializedObject so = new SerializedObject();
         SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
         axesProperty.ClearArray();
         for (int i = 0; i < 12; i++) {

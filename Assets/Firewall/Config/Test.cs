@@ -9,16 +9,10 @@ using System.Reflection;
 using UnityEngine;
 
 public class Test : MonoBehaviour {
-    private InputManager im;
-    // Start is called before the first frame update
-    void Start() {
-        im = this.GetComponent<InputManager>();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.A)) {
-            
-        }
+    private Dictionary<Key, EventHandler> testDic = new Dictionary<Key, EventHandler>();
+    private void Start() {
+        Key key= Key.Action;
+        testDic.Add(key, (o, a) => { Debug.Log("ddd"); });
+        Debug.LogError(testDic[Key.Action]);
     }
 }

@@ -12,17 +12,18 @@ using UnityEngine;
 /// キーコンフィグ情報を取り扱う
 /// </summary>
 public class KeyConfig {
-    private Dictionary<string, List<KeyCode>> config = new Dictionary<string, List<KeyCode>>();
-    private readonly string configFilePath;
+    public static Dictionary<string, List<KeyCode>> keyConfig = new Dictionary<string, List<KeyCode>>();
+    private readonly string keyConfigFilePath;
+
 
     /// <summary>
     /// キーコンフィグを管理するクラスを生成する
     /// </summary>
-    /// <param name="configFilePath">コンフィグファイルのパス</param>
-    public KeyConfig(string configFilePath) {
-        this.configFilePath = configFilePath;
-        Debug.Log("KeyConfig.cs__this.configFilePath__" + this.configFilePath);
+    /// <param name="keyConfigFilePath">コンフィグファイルのパス</param>
+    public KeyConfig(string keyConfigFilePath) {
+        this.keyConfigFilePath = keyConfigFilePath;
     }
+
 
     /// <summary>
     /// 指定したキーの入力状態をチェックする
@@ -32,7 +33,7 @@ public class KeyConfig {
     /// <returns>入力状態</returns>
     private bool InputKeyCheck(string keyName, Func<KeyCode, bool> predicate) {
         bool ret = false;
-        foreach (var keyCode in config[keyName])
+        foreach (var keyCode in keyConfig[keyName])
             if (predicate(keyCode))
                 return true;
         return ret;
@@ -71,8 +72,8 @@ public class KeyConfig {
     /// <param name="keyName">キーを示す名前文字列</param>
     /// <returns>キーコード</returns>
     public List<KeyCode> GetKeyCode(string keyName) {
-        if (config.ContainsKey(keyName))
-            return new List<KeyCode>(config[keyName]);
+        if (keyConfig.ContainsKey(keyName))
+            return new List<KeyCode>(keyConfig[keyName]);
         return new List<KeyCode>();
     }
 
@@ -86,10 +87,49 @@ public class KeyConfig {
         //Debug.LogError("KeyConfig.cs_SetKey");
         if (string.IsNullOrEmpty(keyName) || keyCode.Count < 1)
             return false;
-        config[keyName] = keyCode;
-        Debug.Log("Name.Code__" + keyName + "." + keyCode[0]);
+        keyConfig[keyName] = keyCode;
+        //Debug.Log(keyConfig[keyName] + "__" + keyName);
+        //Debug.Log(keyConfig[keyName][0] + "__" + keyName);
         return true;
     }
+
+    /// <summary>
+    /// 入力されたキーコードをチェックする処理
+    /// </summary>
+    /// <param name="keyName">チェックする動作名</param>
+    /// <returns>動作名に対応するキーコード</returns>
+    public KeyCode GetInputKeyCodeCheck(string keyName) {
+        int i = GetCheckKeyListCount(keyName);
+        int j = 0;
+        foreach (List<KeyCode> li in keyConfig.Values) {
+            foreach (KeyCode kc in li) {
+                if (i == j) {
+                    return kc;
+                }
+                j++;
+            }//foreach
+        }//foreach
+        return KeyCode.None;
+    }//KeyCodeCheck
+
+
+    /// <summary>
+    /// 対象の動作名の格納リスト場所を取得する処理
+    /// </summary>
+    /// <param name="keyName">対象の動作名</param>
+    /// <returns>対象の動作名の格納リスト場所</returns>
+    private int GetCheckKeyListCount(string keyName) {
+        int i = 0;
+;        foreach (string str in keyConfig.Keys) {
+            if (keyName == str) {
+                return i;
+            } else {
+                i++;
+            }//if
+        }//foreach
+        return i;
+    }//
+
 
     /// <summary>
     /// コンフィグからキーコードを削除する
@@ -97,45 +137,45 @@ public class KeyConfig {
     /// <param name="keyName">キーに割り付けられている名前</param>
     /// <returns></returns>
     public bool RemoveKey(string keyName) {
-        return config.Remove(keyName);
+        return keyConfig.Remove(keyName);
     }
 
     /// <summary>
     /// 設定されているキーコンフィグを確認用文字列として受け取る
     /// </summary>
     /// <returns>キーコンフィグを表す文字列</returns>
-    public string CheckConfig() {
+    public string CheckKeyConfig() {
         Debug.LogError("KeyConfig.cs__CheckConfig");
         StringBuilder sb = new StringBuilder();
-        foreach (var keyValuePair in config) {
+        foreach (var keyValuePair in keyConfig) {
             sb.AppendLine("Key : " + keyValuePair.Key);
             foreach (var value in keyValuePair.Value) {
                 sb.AppendLine("  |_ Value : " + value);
-                Debug.Log("KeyConfig.cs__CheckConfig__"+ keyValuePair.Key+" : " + value);
+                Debug.Log(keyValuePair.Key+" : " + value);
             }    
         }
+        Debug.LogWarning("KeyConfig.cs__CheckConfig");
         return sb.ToString();
     }
 
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
-    public void LoadConfigFile() {
+    public void LoadKeyConfigFile() {
         //TODO:復号処理
-        using (TextReader tr = new StreamReader(configFilePath, Encoding.UTF8))
-            config = JsonMapper.ToObject<Dictionary<string, List<KeyCode>>>(tr);
-        Debug.LogWarning("KeyConfig.cs__LoadConfigFile__End");
+        using (TextReader tr = new StreamReader(keyConfigFilePath, Encoding.UTF8))
+            keyConfig = JsonMapper.ToObject<Dictionary<string, List<KeyCode>>>(tr);
     }
 
     /// <summary>
     /// 現在のキーコンフィグをファイルにセーブする
     /// ファイルがない場合は新たにファイルを作成する
     /// </summary>
-    public void SaveConfigFile() {
+    public void SaveKeyConfigFile() {
         //TODO:暗号化処理
-        var jsonText = JsonMapper.ToJson(config);
-        using (TextWriter tw = new StreamWriter(configFilePath, false, Encoding.UTF8))
+        var jsonText = JsonMapper.ToJson(keyConfig);
+        using (TextWriter tw = new StreamWriter(keyConfigFilePath, false, Encoding.UTF8))
             tw.Write(jsonText);
-        Debug.LogWarning("KeyConfig.cs__SaveConfigFile__End");
+        Debug.LogWarning("KeyConfigデータの保存完了");
     }
 }

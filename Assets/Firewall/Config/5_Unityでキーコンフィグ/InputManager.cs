@@ -79,20 +79,17 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
         /// <param name="key">キーに割り付ける名前</param>
         /// <returns>キーコードの設定が正常に完了したかどうか</returns>
         public bool SetCurrentKey(Key key) {
-            Debug.LogError("InputManager.cs__SetCurrentKey");
             //HACK:マウス入力も受け付けるようにするべきなので今後改善
             //マウス{0~6}の入力を弾く
             var currentInput = GetCurrentInputKeyCode().Where(c => c < KeyCode.Mouse0 || KeyCode.Mouse6 < c).ToList();
-            Debug.Log("currentInput__" + currentInput);
             if (currentInput == null || currentInput.Count < 1)
                 return false;
             var code = inputManager.keyConfig.GetKeyCode(key.String);
-            Debug.Log("code__"+currentInput[0]);
+            Debug.LogWarning("code__"+currentInput[0]);//入力キー
             //既に設定されているキーと一部でも同じキーが押されている場合
             if (code.Count > currentInput.Count && currentInput.All(k => code.Contains(k)))
                 return false;
             RemoveKey(key);
-            Debug.LogWarning("InputManager.cs__SetCurrentKeyEnd");
             return SetKey(key, currentInput);
         }
 
@@ -102,23 +99,35 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
         public void SetDefaultKeyConfig() {
             //Debug.LogError("InputManager__SetDefaultKeyConfig");
             foreach (var key in Key.AllKeyData) {
-                //Debug.Log("key__"+key);///Action,Jump,Balloon...
+                //Debug.Log("key__"+key+" : DefalutKeyCode_"+key.DefaultKeyCode);///Action,Jump,Balloon...
                 SetKey(key, key.DefaultKeyCode);
             }
             Debug.LogWarning("InputManager.cs__SetDefaultKeyConfigEnd");
         }
 
-        //public List<KeyCode> GetKeyCode(Key keyName) {
-        //    return inputManager.keyConfig.GetKeyCode(keyName.String);
-        //}
+
+        public void SetDefaultAxesConfig() {
+            foreach(var axes in Axes.AllAxesData) {
+                SetAxes(axes, axes.DefaultKeyCode);
+            }
+        }
+
+        public bool SetAxes(Axes key, List<List<KeyCode>> keyCode) {
+            return inputManager.axesConfig.SetAxes(key.String, keyCode);
+        }
 
         public void LoadSetting() {
-            InputManager.Instance.keyConfig.LoadConfigFile();
+            InputManager.Instance.axesConfig.LoadAxesConfigFile();
         }
 
         public void SaveSetting() {
-            InputManager.Instance.keyConfig.SaveConfigFile();
+            InputManager.Instance.keyConfig.SaveKeyConfigFile();
         }
+
+        public KeyCode KeyCodeCheck(string keyName) {
+            return InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String);
+        } 
+
     }
 
     #endregion InnerClass
@@ -126,36 +135,48 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
     /// <summary>
     /// 使用するキーコンフィグ
     /// </summary>
-    private KeyConfig keyConfig = new KeyConfig(ExternalFilePath.KEYCONFIG_PATH);
+    public KeyConfig keyConfig = new KeyConfig(ExternalFilePath.KEYCONFIG_PATH);
+    public AxesConfig axesConfig = new AxesConfig(ExternalFilePath.AXESCONFIG_PATH);
 
     public void Awake() {
         Debug.LogError("InputManager.cs_Awake");
 
         //最初はデフォルトの設定をコンフィグに格納
         KeyConfigSetting.Instance.SetDefaultKeyConfig();
-
+        KeyConfigSetting.Instance.SetDefaultAxesConfig();
         //コンフィグファイルがあれば読み出す
         try {
-            InputManager.Instance.keyConfig.LoadConfigFile();
+            InputManager.Instance.keyConfig.LoadKeyConfigFile();
         } catch (IOException e) {
             Debug.Log(e.Message);
-            InputManager.Instance.keyConfig.SaveConfigFile();
+            InputManager.Instance.keyConfig.SaveKeyConfigFile();
         }
-        //InputManager.Instance.keyConfig.CheckConfig();
-        Debug.LogWarning("InputManager.cs_Awake");
+        try {
+            InputManager.Instance.axesConfig.LoadAxesConfigFile();
+        } catch (IOException e) {
+            Debug.Log(e.Message);
+            InputManager.Instance.axesConfig.SaveAxesConfigFile();
+        }
+
 
     }
 
     public void Update() {
-        if (Input.anyKeyDown) {
-            foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {//入力キー取得
-                if (Input.GetKeyDown(code)) {
-                    
-                }//if
-            }//foreach
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            InputManager.Instance.keyConfig.CheckKeyConfig();
         }
-        KeyConfigSetting.Instance.SetCurrentKey(Key.Balloon);
+        //KeyConfigSetting.Instance.SetCurrentKey(Key.Cancel)//キー入力したとき引数のキーの対応入力キーを変更する//データ保存はされない
+        //if (Input.GetKeyDown(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String))) {
+        //    Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String));
+        //}
+
+        //Debug.Log(GetAxesRaw(Axes.Horizontal));
+
     }
+
+
+
 
     /// <summary>
     /// 指定したキーが押下状態かどうかを返す

@@ -186,6 +186,7 @@ public class PlayerWork : MonoBehaviour {
         switch (this.transform.localEulerAngles.z) {
             case 0:
                 return Input.GetAxisRaw("Horizontal");
+
             case 90:
                 return Input.GetAxisRaw("Vertical");
             case 180:

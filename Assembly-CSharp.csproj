@@ -120,6 +120,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Expression\CubismExpressionPreview.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismDisplayInfo3Json.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterExtensionMethods.cs" />
+    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\Receiver_EH1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismCoreDll.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\UserData\CubismUserDataBody.cs" />
     <Compile Include="Assets\Firewall\Config\KeyConfigTest2.cs" />
@@ -244,12 +245,13 @@
     <Compile Include="Assets\01_Scripte\010_Base\BaseUnderTrigger.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerWork.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\EnemyTypeA.cs" />
+    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\EventTest_EH1.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\RotatingArrow.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAudioMouthInput.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysics.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadePlayingMotion.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\Drill.cs" />
-    <Compile Include="Assets\Firewall\Config\Test.cs" />
+    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\KeyConfigTest.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedModel.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy1FireBall.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\ButtonInfo.cs" />
@@ -317,8 +319,7 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\EventTest_EH1.cs" />
-    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\Receiver_EH1.cs" />
+    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\AxesConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AddAssets\Live2D\Cubism\Plugins\Windows\x86_64\Live2DCubismCore.dll" />

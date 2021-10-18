@@ -112,7 +112,7 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             }
         }
 
-        public bool SetAxes(Axes key, List<List<KeyCode>> keyCode) {
+        public bool SetAxes(Axes key, List<KeyCode> keyCode) {
             return inputManager.axesConfig.SetAxes(key.String, keyCode);
         }
 

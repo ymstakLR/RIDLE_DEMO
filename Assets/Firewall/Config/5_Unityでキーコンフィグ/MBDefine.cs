@@ -49,24 +49,23 @@ namespace MBLDefine {
             return String;
         }
 
-        public static readonly Key HorizontalP = new Key("HorizontalP", new List<KeyCode> { KeyCode.C });
-        public static readonly Key HorizontalN = new Key("HorizontalN", new List<KeyCode> { KeyCode.Z });
-        public static readonly Key VerticalP = new Key("VerticalP", new List<KeyCode> { KeyCode.W });
-        public static readonly Key VerticalN = new Key("VerticalN", new List<KeyCode> { KeyCode.S });
+        public static readonly Key NormalJump = new Key("NormalJump", new List<KeyCode> { KeyCode.J, KeyCode.JoystickButton0 });
+        public static readonly Key FlipJump = new Key("FlipJump", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 });
+        public static readonly Key Attack = new Key("Attack", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 });
+        public static readonly Key Pause = new Key("Pause", new List<KeyCode> { KeyCode.H, KeyCode.JoystickButton9 });
 
-
-        public static readonly Key Submit = new Key("Submit", new List<KeyCode> {KeyCode.K });
-        public static readonly Key Cancel = new Key("Cancel", new List<KeyCode> { KeyCode.L });
+        public static readonly Key Submit = new Key("Submit", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 });
+        public static readonly Key Cancel = new Key("Cancel", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 });
     }
 
     /// <summary>
     /// 使用する軸入力を表すクラス
     /// </summary>
     internal sealed class Axes : InputValue {
-        public readonly List<List<KeyCode>> DefaultKeyCode;
+        public readonly List<KeyCode> DefaultKeyCode;
         public readonly static List<Axes> AllAxesData = new List<Axes>();
 
-        private Axes(string axesName,List<List<KeyCode>> defalutKeyCode)
+        private Axes(string axesName,List<KeyCode> defalutKeyCode)
             : base(axesName) {
             DefaultKeyCode = defalutKeyCode;
             //Debug.Log("axesName__" + axesName);
@@ -79,8 +78,8 @@ namespace MBLDefine {
             return String;
         }
 
-        public static Axes Horizontal = new Axes("Horizontal",new List<List<KeyCode>> { new List<KeyCode> { KeyCode.LeftArrow, KeyCode.RightArrow } });
-        public static Axes Vertical = new Axes("Vertical", new List<List<KeyCode>> { new List<KeyCode> { KeyCode.DownArrow, KeyCode.UpArrow } });
-        public static Axes Test = new Axes("Test", new List<List<KeyCode>> { new List<KeyCode> { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 } });
+        public static Axes Horizontal = new Axes("Horizontal",new List<KeyCode> {KeyCode.LeftArrow, KeyCode.RightArrow });
+        public static Axes Vertical = new Axes("Vertical", new List<KeyCode> { KeyCode.DownArrow, KeyCode.UpArrow } );
+        public static Axes Test = new Axes("Test", new List<KeyCode> { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 });
     }
 }

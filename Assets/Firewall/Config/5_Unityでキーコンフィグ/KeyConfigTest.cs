@@ -11,16 +11,14 @@ using UnityEngine;
 public class KeyConfigTest : MonoBehaviour {
 
     private void Start() {
-        Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.VerticalP.String));
-        Debug.Log(InputManager.Instance.axesConfig.GetInputAxesCodeCheck(Axes.Horizontal.String,AxesConfig.AxesType.Positive));
+        //Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.NormalJump.String));
+        //Debug.Log(InputManager.Instance.axesConfig.GetInputAxesCodeCheck(Axes.Horizontal.String,AxesConfig.AxesType.Positive));
     }
 
     private void Update() {
         //if (Input.GetKeyDown(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Cancel.String))) {
         //    Debug.Log("kakunin");
         //}
-
-
     }
 
 }

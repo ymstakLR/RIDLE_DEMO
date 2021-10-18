@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MBLDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,7 +60,8 @@ public class PlayerUnderAttack : MonoBehaviour {
     /// 敵を攻撃したときの処理
     /// </summary>
     private void AttackEnemy() {
-        if (Input.GetButton(_pJump.NORMAL_JUMP) || Input.GetButton(_pJump.FLIP_JUMP)) {
+        if (InputManager.Instance.keyConfig.GetKey(Key.NormalJump.String) || 
+            InputManager.Instance.keyConfig.GetKey(Key.FlipJump.String)) {
             UnderAttackPower = 2;
         } else {
             UnderAttackPower = 1;

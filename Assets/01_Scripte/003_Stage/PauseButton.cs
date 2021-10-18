@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MBLDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,7 +52,7 @@ public class PauseButton : MonoBehaviour {
     /// pauseを行うための判定取得処理
     /// </summary>
     private void PauseJudge() {
-        if (!Input.GetButtonDown(PAUSE) ||
+        if (!InputManager.Instance.keyConfig.GetKeyDown(Key.Pause.String) ||
             _stageClearManagement.StageStatus == EnumStageStatus.Clear||
             (_stageClearManagement.StageStatus == EnumStageStatus.Pause&&_pauseUI.activeSelf == false))
             return;

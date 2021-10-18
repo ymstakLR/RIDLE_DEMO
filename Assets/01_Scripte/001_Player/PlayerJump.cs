@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MBLDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,9 +34,6 @@ public class PlayerJump : MonoBehaviour {
     private readonly int GRAVITY = -300;
     private readonly int JUMP_POWER = 3;//一回しか使わないが変更しやすくするため定数にした(0916)
     private readonly float KEY_DOWN_TIME = (float)0.3;
-
-    public string NORMAL_JUMP { get { return "NormalJump"; } }
-    public string FLIP_JUMP { get { return "FlipJump"; } }
 
     public readonly float SIDE_GRAVITY_FLIP_TIME = (float)0.5;//Workスクリプトで使用するのでpublicになっている(0928)
 
@@ -84,17 +82,17 @@ public class PlayerJump : MonoBehaviour {
     /// ジャンプボタン各種の入力取得処理
     /// </summary>
     public void JumpButtonInput() {//似た条件文で見やすくするため{}を省略した(0804)
-        if (Input.GetButton(NORMAL_JUMP))
+        if (InputManager.Instance.keyConfig.GetKey(Key.NormalJump.String))
             _normalJumpInput["Button"] = true;
-        if (Input.GetButtonDown(NORMAL_JUMP))
+        if (InputManager.Instance.keyConfig.GetKeyDown(Key.NormalJump.String))
             _normalJumpInput["ButtonDown"] = true;
-        if (Input.GetButtonUp(NORMAL_JUMP))
+        if (InputManager.Instance.keyConfig.GetKeyUp(Key.NormalJump.String))
             _normalJumpInput["ButtonUp"] = true;
-        if (Input.GetButton(FLIP_JUMP))
+        if (InputManager.Instance.keyConfig.GetKey(Key.FlipJump.String))
             _flipJumpInput["Button"] = true;
-        if (Input.GetButtonDown(FLIP_JUMP))
+        if (InputManager.Instance.keyConfig.GetKeyDown(Key.FlipJump.String))
             _flipJumpInput["ButtonDown"] = true;
-        if (Input.GetButtonUp(FLIP_JUMP)) 
+        if (InputManager.Instance.keyConfig.GetKeyUp(Key.FlipJump.String))
             _flipJumpInput["ButtonUp"] = true;
     }//JumpButtonInpu
 

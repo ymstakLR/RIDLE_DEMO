@@ -9,7 +9,7 @@ using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// キーコンフィグ情報を取り扱う
+/// Keyコンフィグ情報を取り扱う
 /// </summary>
 public class KeyConfig {
     public static Dictionary<string, List<KeyCode>> keyConfig = new Dictionary<string, List<KeyCode>>();
@@ -17,12 +17,12 @@ public class KeyConfig {
 
 
     /// <summary>
-    /// キーコンフィグを管理するクラスを生成する
+    /// Keyコンフィグを管理するクラスを生成する
     /// </summary>
-    /// <param name="keyConfigFilePath">コンフィグファイルのパス</param>
+    /// <param name="keyConfigFilePath">Keyコンフィグファイルのパス</param>
     public KeyConfig(string keyConfigFilePath) {
         this.keyConfigFilePath = keyConfigFilePath;
-    }
+    }//KeyCOnfig
 
 
     /// <summary>
@@ -46,7 +46,7 @@ public class KeyConfig {
     /// <returns>入力状態</returns>
     public bool GetKey(string keyName) {
         return InputKeyCheck(keyName, Input.GetKey);
-    }
+    }//GetKey
 
     /// <summary>
     /// 指定したキーが入力されたかどうかを返す
@@ -55,7 +55,7 @@ public class KeyConfig {
     /// <returns>入力状態</returns>
     public bool GetKeyDown(string keyName) {
         return InputKeyCheck(keyName, Input.GetKeyDown);
-    }
+    }//GetKeyDown
 
     /// <summary>
     /// 指定したキーが離されたかどうかを返す
@@ -64,7 +64,7 @@ public class KeyConfig {
     /// <returns>入力状態</returns>
     public bool GetKeyUp(string keyName) {
         return InputKeyCheck(keyName, Input.GetKeyUp);
-    }
+    }//GetKeyUp
 
     /// <summary>
     /// 指定されたキーに割り付けられているキーコードを返す
@@ -75,7 +75,7 @@ public class KeyConfig {
         if (keyConfig.ContainsKey(keyName))
             return new List<KeyCode>(keyConfig[keyName]);
         return new List<KeyCode>();
-    }
+    }//GetKeyCode
 
     /// <summary>
     /// 名前文字列に対するキーコードを設定する
@@ -84,52 +84,20 @@ public class KeyConfig {
     /// <param name="keyCode">キーコード</param>
     /// <returns>キーコードの設定が正常に完了したかどうか</returns>
     public bool SetKey(string keyName, List<KeyCode> keyCode) {
-        //Debug.LogError("KeyConfig.cs_SetKey");
         if (string.IsNullOrEmpty(keyName) || keyCode.Count < 1)
             return false;
         keyConfig[keyName] = keyCode;
-        //Debug.Log(keyConfig[keyName] + "__" + keyName);
-        //Debug.Log(keyConfig[keyName][0] + "__" + keyName);
         return true;
-    }
+    }//SetKey
 
     /// <summary>
     /// 入力されたキーコードをチェックする処理
     /// </summary>
-    /// <param name="keyName">チェックする動作名</param>
-    /// <returns>動作名に対応するキーコード</returns>
+    /// <param name="keyName">チェックするKey名</param>
+    /// <returns>Key名に対応するキーコード</returns>
     public KeyCode GetInputKeyCodeCheck(string keyName) {
-        int i = GetCheckKeyListCount(keyName);
-        int j = 0;
-        foreach (List<KeyCode> li in keyConfig.Values) {
-            foreach (KeyCode kc in li) {
-                if (i == j) {
-                    return kc;
-                }
-                j++;
-            }//foreach
-        }//foreach
-        return KeyCode.None;
+        return keyConfig[keyName][0];
     }//KeyCodeCheck
-
-
-    /// <summary>
-    /// 対象の動作名の格納リスト場所を取得する処理
-    /// </summary>
-    /// <param name="keyName">対象の動作名</param>
-    /// <returns>対象の動作名の格納リスト場所</returns>
-    private int GetCheckKeyListCount(string keyName) {
-        int i = 0;
-;        foreach (string str in keyConfig.Keys) {
-            if (keyName == str) {
-                return i;
-            } else {
-                i++;
-            }//if
-        }//foreach
-        return i;
-    }//
-
 
     /// <summary>
     /// コンフィグからキーコードを削除する
@@ -138,7 +106,7 @@ public class KeyConfig {
     /// <returns></returns>
     public bool RemoveKey(string keyName) {
         return keyConfig.Remove(keyName);
-    }
+    }//RemoveKey
 
     /// <summary>
     /// 設定されているキーコンフィグを確認用文字列として受け取る
@@ -165,7 +133,7 @@ public class KeyConfig {
         //TODO:復号処理
         using (TextReader tr = new StreamReader(keyConfigFilePath, Encoding.UTF8))
             keyConfig = JsonMapper.ToObject<Dictionary<string, List<KeyCode>>>(tr);
-    }
+    }//LoadKeyConfigFile
 
     /// <summary>
     /// 現在のキーコンフィグをファイルにセーブする
@@ -176,6 +144,5 @@ public class KeyConfig {
         var jsonText = JsonMapper.ToJson(keyConfig);
         using (TextWriter tw = new StreamWriter(keyConfigFilePath, false, Encoding.UTF8))
             tw.Write(jsonText);
-        Debug.LogWarning("KeyConfigデータの保存完了");
-    }
+    }//SaveKeyConfigFile
 }

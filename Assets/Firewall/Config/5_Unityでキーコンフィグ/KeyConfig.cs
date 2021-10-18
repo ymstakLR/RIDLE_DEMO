@@ -95,9 +95,17 @@ public class KeyConfig {
     /// </summary>
     /// <param name="keyName">チェックするKey名</param>
     /// <returns>Key名に対応するキーコード</returns>
-    public KeyCode GetInputKeyCodeCheck(string keyName) {
-        return keyConfig[keyName][0];
+    public KeyCode GetInputKeyCodeCheck(string keyName,KeyType keyType) {
+        return keyConfig[keyName][(int)keyType];
     }//KeyCodeCheck
+
+    /// <summary>
+    /// Key入力の入力タイプの列挙体
+    /// </summary>
+    public enum KeyType {
+        KeyBoard = 0,
+        JoyStick = 1
+    }//KeyType
 
     /// <summary>
     /// コンフィグからキーコードを削除する

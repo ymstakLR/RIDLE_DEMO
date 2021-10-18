@@ -183,32 +183,20 @@ public class PlayerWork : MonoBehaviour {
     /// <returns>対応する入力キー</returns>
     private float OperationKeyChange() {
         if(_pJump.IsFlipJumpFall)//左右重力でFlipJumpをして落下する場合
-            return GetAxisRaw(Axes.Horizontal.String);
+            return InputManager.Instance.axesConfig.GetAxisRaw(Axes.Horizontal.String);
         switch (this.transform.localEulerAngles.z) {
             case 0:
-                return GetAxisRaw(Axes.Horizontal.String);
+                return InputManager.Instance.axesConfig.GetAxisRaw(Axes.Horizontal.String);
             case 90:
-                return GetAxisRaw(Axes.Vertical.String);
+                return InputManager.Instance.axesConfig.GetAxisRaw(Axes.Vertical.String);
             case 180:
-                return -GetAxisRaw(Axes.Horizontal.String);
+                return -InputManager.Instance.axesConfig.GetAxisRaw(Axes.Horizontal.String);
             case 270:
-                return -GetAxisRaw(Axes.Vertical.String);
+                return -InputManager.Instance.axesConfig.GetAxisRaw(Axes.Vertical.String);
+            default:
+                return 0;
         }//switch
-        return 0;//到達不可コード
     }//OperationKeyChange
-
-    /// <summary>
-    /// キー入力したときの移動量出力処理
-    /// Input.GetAxisRawとInputManager.GetAxesRaw
-    /// </summary>
-    /// <param name="axesName"></param>
-    /// <returns></returns>
-    private float GetAxisRaw(string axesName) {
-        float workMove = 0;
-        workMove += InputManager.Instance.axesConfig.GetAxesRaw(axesName);
-        workMove += Input.GetAxisRaw(axesName); 
-        return workMove;
-    }//GetAxisRaw
 
     /// <summary>
     /// 直角移動(内側移動と外側移動)の処理

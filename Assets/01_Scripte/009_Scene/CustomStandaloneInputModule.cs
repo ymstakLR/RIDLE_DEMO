@@ -1,4 +1,5 @@
 ﻿using UnityEngine.Serialization;
+using MBLDefine;
 
 namespace UnityEngine.EventSystems {
     [AddComponentMenu("Event/Custom Standalone Input Module")]
@@ -20,6 +21,9 @@ namespace UnityEngine.EventSystems {
 
         [SerializeField]
         private string m_HorizontalAxis = "Horizontal";
+
+        private Axes _HorizontalAxes = Axes.Horizontal;
+
 
         /// <summary>
         /// Name of the vertical axis for movement (if axis events are used).
@@ -111,7 +115,9 @@ namespace UnityEngine.EventSystems {
             var shouldActivate = m_ForceModuleActive;
             shouldActivate |= input.GetButtonDown(m_SubmitButton);
             shouldActivate |= input.GetButtonDown(m_CancelButton);
-            shouldActivate |= !Mathf.Approximately(input.GetAxisRaw(m_HorizontalAxis), 0.0f);
+            //shouldActivate |= !Mathf.Approximately(input.GetAxisRaw(m_HorizontalAxis), 0.0f);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.axesConfig.GetAxisRaw(_HorizontalAxes.String), 0.0f);
+            //Debug.Log("___" + input.GetAxisRaw(m_HorizontalAxis));//代用可能
             shouldActivate |= !Mathf.Approximately(input.GetAxisRaw(m_VerticalAxis), 0.0f);
             if (m_EnableMouse) {
                 shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
@@ -293,9 +299,11 @@ namespace UnityEngine.EventSystems {
 
         private Vector2 GetRawMoveVector() {
             Vector2 move = Vector2.zero;
-            move.x = input.GetAxisRaw(m_HorizontalAxis);
-            move.y = input.GetAxisRaw(m_VerticalAxis);
-
+            //move.x = input.GetAxisRaw(m_HorizontalAxis);
+            move.x = input.GetAxisRaw(_HorizontalAxes.String);
+            //Debug.Log("__" + input.GetAxisRaw(m_HorizontalAxis));//代用可能
+            move.y = InputManager.Instance.axesConfig.GetAxisRaw(m_VerticalAxis);
+            //Debug.Log("__" + input.GetButtonDown(m_HorizontalAxis));//代用可能
             if (input.GetButtonDown(m_HorizontalAxis)) {
                 if (move.x < 0)
                     move.x = -1f;

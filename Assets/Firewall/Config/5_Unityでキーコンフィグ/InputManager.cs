@@ -124,9 +124,9 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             InputManager.Instance.keyConfig.SaveKeyConfigFile();
         }
 
-        public KeyCode KeyCodeCheck(string keyName) {
-            return InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String);
-        } 
+        //public KeyCode KeyCodeCheck(string keyName) {
+        //    return InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String);
+        //} 
 
     }
 

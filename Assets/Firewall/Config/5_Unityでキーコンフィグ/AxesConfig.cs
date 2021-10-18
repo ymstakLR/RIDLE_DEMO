@@ -57,16 +57,47 @@ public class AxesConfig {
         Positive = 1
     }//AxesType
 
-    public int GetAxesRaw(string axesName) {
+    /// <summary>
+    /// 作成したAxes入力の移動量出力処理
+    /// </summary>
+    /// <param name="axesName"></param>
+    /// <returns></returns>
+    public int GetAxesRawValue(string axesName) {
         int i = 0;
         if (Input.GetKey(GetInputAxesCodeCheck(axesName, AxesType.Negative))) {
             i -= 1;
-        }
+        }//if
         if (Input.GetKey(GetInputAxesCodeCheck(axesName, AxesType.Positive))) {
             i += 1;
-        }
+        }//if
         return i;
+    }//
+
+    /// <summary>
+    /// キー入力したときの移動量出力処理
+    /// Input.GetAxisRawとInputManager.GetAxesRaw
+    /// </summary>
+    /// <param name="axesName"></param>
+    /// <returns></returns>
+    public float GetAxisRaw(string axesName) {
+        float workMove = 0;
+        workMove += GetAxesRawValue(axesName);
+        workMove += Input.GetAxisRaw(axesName);
+        return workMove;
+    }//GetAxisRaw
+
+    public bool GetButtonDown(string axesName) {
+        return InputAxesCheck(axesName,Input.GetKeyDown);
     }
+
+    private bool InputAxesCheck(string axesName,Func<KeyCode,bool>predicate) {
+        bool ret = false;
+        foreach(var keyCode in axesConfig[axesName]) {
+            if (predicate(keyCode))
+                return true;
+        }//foreach
+        return ret;
+    }//InputAxesCheck
 
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする

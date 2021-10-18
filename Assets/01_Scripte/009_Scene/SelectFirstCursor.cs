@@ -25,6 +25,7 @@ public class SelectFirstCursor : MonoBehaviour {
         ///2回以下だとボタンを押しっぱなしで次シーンに遷移してしまうから。(20210915)
         if (_cursorInputCounter == CURSOR_INPUT_COUNTER) {
             GetComponent<Selectable>().Select();
+            Debug.Log("kakunin");
         }//if
         _cursorInputCounter++;
     }//CorsorInputCheck

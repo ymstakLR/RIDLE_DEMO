@@ -12,6 +12,11 @@ using System;
 public class KeyConfigButtonMove : MonoBehaviour {
     private GameObject _inputButton;//コンフィグ対象のボタンオブジェクト
 
+    [SerializeField]
+    private GameObject _axesButtonCanvas;
+    [SerializeField]
+    private GameObject _keyButtonCanvas;
+
     private bool _isControllerConfig;//コントローラ設定の判定
     private bool _isKeyBoardConfig;//キーボード設定の判定
 
@@ -19,17 +24,20 @@ public class KeyConfigButtonMove : MonoBehaviour {
 
     private void Awake() {
         //InputManagerDataEdit.InputDataUpdate();
-        InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
+        //InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
+        InputManagerDataEdit.ConfigButtonsTextUpdateTest(_axesButtonCanvas);
+        InputManagerDataEdit.ConfigButtonsTextUpdateTest(_keyButtonCanvas);
     }//Awake
 
     private void Update() {
         if (_isKeyBoardConfig || _isControllerConfig) {
-            if (Input.GetButtonUp("Submit")) {
+            if (InputManager.Instance.keyConfig.GetKeyUp(Key.Submit.String)) {
                 _isInputKeyUpdatePossible = true;
+                Debug.Log("_isInputKeyUpdatePossible");
             }//if
         }//if
         if (_isInputKeyUpdatePossible && Input.anyKeyDown) {
-            ConfigUpdateCheck(GetInputKeyCode());
+            //ConfigUpdateCheck(GetInputKeyCode());
         }//if
     }//Update
 

@@ -172,7 +172,9 @@ public static class InputManagerDataEdit {
         KeyNegative,
         KeyPositive,
         JoystickNegative,
-        JoystickPositive
+        JoystickPositive,
+        AxesPositive,
+        AxesNegative
     }//InputDataType
 
 
@@ -271,6 +273,18 @@ public static class InputManagerDataEdit {
     }//ConfigButtonsTextUpdate
 
     /// <summary>
+    /// コンフィグボタン全ての文字更新を行う処理
+    /// </summary>
+    public static void ConfigButtonsTextUpdateTest(GameObject buttonCanvas) {
+        foreach (Transform childTransform in buttonCanvas.transform) {
+            string axesName;
+            InputManagerDataEdit.InputDataType inputDataType;
+            (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
+            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerDataEdit.GetConficButtonTextTest(axesName, inputDataType);
+        }//foreach
+    }//ConfigButtonsTextUpdate
+
+    /// <summary>
     /// コンフィグボタンのテキストを取得する処理
     /// </summary>
     /// <param name="targetAxesName">対象のAxes名</param>
@@ -295,7 +309,40 @@ public static class InputManagerDataEdit {
         }//switch
         targetKeyText = targetKeyText.Replace("joystick ", "");
         return targetKeyText.ToUpper();
-    }//GetConficButtonText
+    }//GetConficButtonTex
+
+    /// <summary>
+    /// コンフィグボタンのテキストを取得する処理
+    /// </summary>
+    /// <param name="targetName">対象のAxes名</param>
+    /// <param name="targetInputDataType">対象のInputDataType</param>
+    /// <returns>対象コンフィグボタンのキーテキスト</returns>
+    private static string GetConficButtonTextTest(string targetName, InputDataType targetInputDataType) {
+        Debug.Log("targetName__"+targetName);
+        string targetKeyText = "";
+        switch (targetInputDataType) {//TypeごとにtargetKeyTextを呼び出し更新
+            case InputDataType.KeyPositive:
+                //keyconfigの指定名のkeycode
+                Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.KeyBoard));
+                targetKeyText = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.KeyBoard).ToString();
+                break;
+            case InputDataType.JoystickPositive:
+                Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick));
+                targetKeyText = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick).ToString();
+                break;
+            case InputDataType.AxesPositive:
+                //axesconfigの指定名・指定箇所のkeycode
+                targetKeyText = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Positive).ToString();
+                break;
+            case InputDataType.AxesNegative:
+                //axesconfigの指定名・指定箇所のkeycode
+                targetKeyText = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Negative).ToString();
+                break;
+        }//switch
+        targetKeyText = targetKeyText.Replace("Joystick", "");
+        targetKeyText = EditText_InputKeyCodeText_To_AxesButtonText(targetKeyText.ToLower());
+        return targetKeyText.ToUpper();
+    }//GetConficButtonTex
 
     /// <summary>
     /// 更新したいキー名と等しいリスト配列番号取得処理
@@ -332,17 +379,19 @@ public static class InputManagerDataEdit {
         switch (editText) {//移動キーのテキスト変更
             case "Up":
                 editText = "Vertical";
+                type = InputDataType.AxesPositive;
                 break;
             case "Down":
                 editText = "Vertical";
-                type = InputManagerDataEdit.InputDataType.KeyNegative;
+                type = InputDataType.AxesNegative;
                 break;
             case "Left":
                 editText = "Horizontal";
-                type = InputManagerDataEdit.InputDataType.KeyNegative;
+                type = InputDataType.AxesPositive;
                 break;
             case "Right":
                 editText = "Horizontal";
+                type = InputDataType.AxesNegative;
                 break;
             default:
                 break;

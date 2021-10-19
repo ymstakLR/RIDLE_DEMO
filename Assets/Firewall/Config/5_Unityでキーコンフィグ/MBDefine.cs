@@ -54,7 +54,7 @@ namespace MBLDefine {
         public static readonly Key Attack = new Key("Attack", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 });
         public static readonly Key Pause = new Key("Pause", new List<KeyCode> { KeyCode.H, KeyCode.JoystickButton9 });
 
-        public static readonly Key Submit = new Key("Submit", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 });
+        public static readonly Key Submit = new Key("Submit", new List<KeyCode> { KeyCode.I, KeyCode.JoystickButton1 });
         public static readonly Key Cancel = new Key("Cancel", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 });
     }
 

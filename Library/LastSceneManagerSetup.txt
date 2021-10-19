@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Firewall/Title_Demo 1.unity
+- path: Assets/00_Scenes/Config_Demo.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+using MBLDefine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +18,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private bool _isInputKeyUpdatePossible;
 
     private void Awake() {
-        InputManagerDataEdit.InputDataUpdate();
+        //InputManagerDataEdit.InputDataUpdate();
         InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
     }//Awake
 
@@ -73,7 +73,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
                 return code;
             }//if
         }//foreach
-        return KeyCode.Space;
+        return KeyCode.None;
     }//GetInputKeyCode
 
     /// <summary>
@@ -138,9 +138,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     public void DefaultButton() {
         SaveManager.InputDataDelete();
-        InputManagerDataEdit.InputDataUpdate();
+        //InputManagerDataEdit.InputDataUpdate();
         InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
     }//DefaultButton
 
 }//KeyConfigButtonMove
-#endif

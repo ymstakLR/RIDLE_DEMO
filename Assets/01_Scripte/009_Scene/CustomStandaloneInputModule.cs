@@ -19,29 +19,12 @@ namespace UnityEngine.EventSystems {
         [SerializeField]
         private bool m_EnableMouse = false;
 
-        [SerializeField]
-        private string m_HorizontalAxis = "Horizontal";
 
-        private Axes _HorizontalAxes = Axes.Horizontal;
+        private string _HorizontalAxes = Axes.Horizontal.String;
+        private string _VerticalAxes = Axes.Vertical.String;
 
-
-        /// <summary>
-        /// Name of the vertical axis for movement (if axis events are used).
-        /// </summary>
-        [SerializeField]
-        private string m_VerticalAxis = "Vertical";
-
-        /// <summary>
-        /// Name of the submit button.
-        /// </summary>
-        [SerializeField]
-        private string m_SubmitButton = "Submit";
-
-        /// <summary>
-        /// Name of the submit button.
-        /// </summary>
-        [SerializeField]
-        private string m_CancelButton = "Cancel";
+        private string _SubmitButton = Key.Submit.String;
+        private string _CancelButton = Key.Cancel.String;
 
         [SerializeField]
         private float m_InputActionsPerSecond = 10;
@@ -77,26 +60,26 @@ namespace UnityEngine.EventSystems {
         /// Name of the horizontal axis for movement (if axis events are used).
         /// </summary>
         public string horizontalAxis {
-            get { return m_HorizontalAxis; }
-            set { m_HorizontalAxis = value; }
+            get { return /*m_HorizontalAxis*/_HorizontalAxes; }
+            set { _HorizontalAxes = value; }
         }
 
         /// <summary>
         /// Name of the vertical axis for movement (if axis events are used).
         /// </summary>
         public string verticalAxis {
-            get { return m_VerticalAxis; }
-            set { m_VerticalAxis = value; }
+            get { return _VerticalAxes; }
+            set { _VerticalAxes = value; }
         }
 
         public string submitButton {
-            get { return m_SubmitButton; }
-            set { m_SubmitButton = value; }
+            get { return _SubmitButton; }
+            set { _SubmitButton = value; }
         }
 
         public string cancelButton {
-            get { return m_CancelButton; }
-            set { m_CancelButton = value; }
+            get { return _CancelButton; }
+            set { _CancelButton = value; }
         }
 
         public override void UpdateModule() {
@@ -113,12 +96,10 @@ namespace UnityEngine.EventSystems {
                 return false;
 
             var shouldActivate = m_ForceModuleActive;
-            shouldActivate |= input.GetButtonDown(m_SubmitButton);
-            shouldActivate |= input.GetButtonDown(m_CancelButton);
-            //shouldActivate |= !Mathf.Approximately(input.GetAxisRaw(m_HorizontalAxis), 0.0f);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.axesConfig.GetAxisRaw(_HorizontalAxes.String), 0.0f);
-            //Debug.Log("___" + input.GetAxisRaw(m_HorizontalAxis));//代用可能
-            shouldActivate |= !Mathf.Approximately(input.GetAxisRaw(m_VerticalAxis), 0.0f);
+            shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_SubmitButton);
+            shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_CancelButton);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.axesConfig.GetAxesRaw(_HorizontalAxes), 0.0f);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.axesConfig.GetAxesRaw(_VerticalAxes), 0.0f);
             if (m_EnableMouse) {
                 shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
                 shouldActivate |= input.GetMouseButtonDown(0);
@@ -289,10 +270,10 @@ namespace UnityEngine.EventSystems {
                 return false;
 
             var data = GetBaseEventData();
-            if (input.GetButtonDown(m_SubmitButton))
+            if (InputManager.Instance.keyConfig.GetKeyDown(_SubmitButton))
                 ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.submitHandler);
 
-            if (input.GetButtonDown(m_CancelButton))
+            if (InputManager.Instance.keyConfig.GetKeyDown(_CancelButton))
                 ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.cancelHandler);
             return data.used;
         }
@@ -300,17 +281,15 @@ namespace UnityEngine.EventSystems {
         private Vector2 GetRawMoveVector() {
             Vector2 move = Vector2.zero;
             //move.x = input.GetAxisRaw(m_HorizontalAxis);
-            move.x = input.GetAxisRaw(_HorizontalAxes.String);
-            //Debug.Log("__" + input.GetAxisRaw(m_HorizontalAxis));//代用可能
-            move.y = InputManager.Instance.axesConfig.GetAxisRaw(m_VerticalAxis);
-            //Debug.Log("__" + input.GetButtonDown(m_HorizontalAxis));//代用可能
-            if (input.GetButtonDown(m_HorizontalAxis)) {
+            move.x = InputManager.Instance.axesConfig.GetAxesRaw(_HorizontalAxes);
+            move.y = InputManager.Instance.axesConfig.GetAxesRaw(_VerticalAxes);
+            if (InputManager.Instance.axesConfig.GetAxesDown(_HorizontalAxes)) {
                 if (move.x < 0)
                     move.x = -1f;
                 if (move.x > 0)
                     move.x = 1f;
             }
-            if (input.GetButtonDown(m_VerticalAxis)) {
+            if (InputManager.Instance.axesConfig.GetAxesDown(_VerticalAxes)) {
                 if (move.y < 0)
                     move.y = -1f;
                 if (move.y > 0)
@@ -332,7 +311,7 @@ namespace UnityEngine.EventSystems {
             }
 
             // If user pressed key again, always allow event
-            bool allow = input.GetButtonDown(m_HorizontalAxis) || input.GetButtonDown(m_VerticalAxis);
+            bool allow = InputManager.Instance.axesConfig.GetAxesDown(_HorizontalAxes) || InputManager.Instance.axesConfig.GetAxesDown(_VerticalAxes);
             bool similarDir = (Vector2.Dot(movement, m_LastMoveVector) > 0);
             if (!allow) {
                 // Otherwise, user held down key or axis.

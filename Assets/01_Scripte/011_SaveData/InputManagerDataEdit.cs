@@ -1,5 +1,4 @@
 ///一部参考サイト参考 http://wordpress.notargs.com/blog/blog/2015/01/23/92/
-#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,15 +60,15 @@ public static class InputManagerDataEdit {
     /// <summary>
     /// InputDataの更新処理
     /// </summary>
-    public static void InputDataUpdate() {
-        InputDataLoad();
-        SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
-        SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
-        axesProperty.ClearArray();
-        for (int i = 0; i < 12; i++) {
-            AddAxis(CreateInputAxis(i), serializedObject, axesProperty);
-        }//for
-    }//InputManagerUpdate
+    //public static void InputDataUpdate() {
+    //    InputDataLoad();
+    //    SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
+    //    SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
+    //    axesProperty.ClearArray();
+    //    for (int i = 0; i < 12; i++) {
+    //        AddAxis(CreateInputAxis(i), serializedObject, axesProperty);
+    //    }//for
+    //}//InputManagerUpdate
 
     /// <summary>
     /// Axesキーを作成する処理
@@ -129,40 +128,40 @@ public static class InputManagerDataEdit {
     /// <param name="axis">追加するAxis名</param>
     /// <param name="serializedObject"></param>
     /// <param name="axesProperty"></param>
-    private static void AddAxis(InputAxis axis, SerializedObject serializedObject, SerializedProperty axesProperty) {
-        axesProperty.arraySize++;
-        serializedObject.ApplyModifiedProperties();
-        SerializedProperty axisProperty = axesProperty.GetArrayElementAtIndex(axesProperty.arraySize - 1);
+    //private static void AddAxis(InputAxis axis, SerializedObject serializedObject, SerializedProperty axesProperty) {
+    //    axesProperty.arraySize++;
+    //    serializedObject.ApplyModifiedProperties();
+    //    SerializedProperty axisProperty = axesProperty.GetArrayElementAtIndex(axesProperty.arraySize - 1);
 
-        GetChildProperty(axisProperty, "m_Name").stringValue = axis.name;
-        GetChildProperty(axisProperty, "descriptiveName").stringValue = axis.descriptiveName;
-        GetChildProperty(axisProperty, "descriptiveNegativeName").stringValue = axis.descriptiveNegativeName;
-        GetChildProperty(axisProperty, "negativeButton").stringValue = axis.negativeButton;
-        GetChildProperty(axisProperty, "positiveButton").stringValue = axis.positiveButton;
-        GetChildProperty(axisProperty, "altNegativeButton").stringValue = axis.altNegativeButton;
-        GetChildProperty(axisProperty, "altPositiveButton").stringValue = axis.altPositiveButton;
-        GetChildProperty(axisProperty, "gravity").floatValue = axis.gravity;
-        GetChildProperty(axisProperty, "dead").floatValue = axis.dead;
-        GetChildProperty(axisProperty, "sensitivity").floatValue = axis.sensitivity;
-        GetChildProperty(axisProperty, "snap").boolValue = axis.snap;
-        GetChildProperty(axisProperty, "invert").boolValue = axis.invert;
-        GetChildProperty(axisProperty, "type").intValue = (int)axis.type;
-        GetChildProperty(axisProperty, "axis").intValue = axis.axis - 1;
-        GetChildProperty(axisProperty, "joyNum").intValue = axis.joyNum;
+    //    GetChildProperty(axisProperty, "m_Name").stringValue = axis.name;
+    //    GetChildProperty(axisProperty, "descriptiveName").stringValue = axis.descriptiveName;
+    //    GetChildProperty(axisProperty, "descriptiveNegativeName").stringValue = axis.descriptiveNegativeName;
+    //    GetChildProperty(axisProperty, "negativeButton").stringValue = axis.negativeButton;
+    //    GetChildProperty(axisProperty, "positiveButton").stringValue = axis.positiveButton;
+    //    GetChildProperty(axisProperty, "altNegativeButton").stringValue = axis.altNegativeButton;
+    //    GetChildProperty(axisProperty, "altPositiveButton").stringValue = axis.altPositiveButton;
+    //    GetChildProperty(axisProperty, "gravity").floatValue = axis.gravity;
+    //    GetChildProperty(axisProperty, "dead").floatValue = axis.dead;
+    //    GetChildProperty(axisProperty, "sensitivity").floatValue = axis.sensitivity;
+    //    GetChildProperty(axisProperty, "snap").boolValue = axis.snap;
+    //    GetChildProperty(axisProperty, "invert").boolValue = axis.invert;
+    //    GetChildProperty(axisProperty, "type").intValue = (int)axis.type;
+    //    GetChildProperty(axisProperty, "axis").intValue = axis.axis - 1;
+    //    GetChildProperty(axisProperty, "joyNum").intValue = axis.joyNum;
 
-        serializedObject.ApplyModifiedProperties();
-    }//AddAxis
+    //    serializedObject.ApplyModifiedProperties();
+    //}//AddAxis
 
-    private static SerializedProperty GetChildProperty(SerializedProperty parent, string name) {
-        SerializedProperty child = parent.Copy();
-        child.Next(true);
-        do {
-            if (child.name == name) {
-                return child;
-            }
-        } while (child.Next(false));
-        return null;
-    }//SerializedProperty
+    //private static SerializedProperty GetChildProperty(SerializedProperty parent, string name) {
+    //    SerializedProperty child = parent.Copy();
+    //    child.Next(true);
+    //    do {
+    //        if (child.name == name) {
+    //            return child;
+    //        }
+    //    } while (child.Next(false));
+    //    return null;
+    //}//SerializedProperty
 
     ///保存データ関連の処理についての処理///
 
@@ -217,15 +216,15 @@ public static class InputManagerDataEdit {
             if (changeInputValueCount != -1) {//重複したキーの入れ替え必要確認
                 if ((nowInputValueCount < 10 && changeInputValueCount < 10) ||
                     (nowInputValueCount > 9 && nowInputValueCount < 12 && changeInputValueCount > 9 && changeInputValueCount < 12)) {
-                    ConfigDataChange(_nameList[nowInputValueCount], nowInputValueType, changeInputValue);
-                    ConfigDataChange(_nameList[changeInputValueCount], changeInputValueType, nowInputValue);
+                    //ConfigDataChange(_nameList[nowInputValueCount], nowInputValueType, changeInputValue);
+                    //ConfigDataChange(_nameList[changeInputValueCount], changeInputValueType, nowInputValue);
                     return;
                 }//if
             }//if
 
         }//for
         //重複していない場合
-        ConfigDataChange(targetAxesName, nowInputValueType, changeInputValue);
+        //ConfigDataChange(targetAxesName, nowInputValueType, changeInputValue);
     }//InputTextDuplicationCheack   
 
     /// <summary>
@@ -234,27 +233,27 @@ public static class InputManagerDataEdit {
     /// <param name="targetAxesName">対象のAxes名</param>
     /// <param name="targetInputDataType">対象のInputDataType</param>
     /// <param name="changeValue">変更する値</param>
-    private static void ConfigDataChange(string targetAxesName, InputDataType targetInputDataType, string changeValue) {
-        InputDataLoad();
-        int targeAxesListCount = GetInputDataID(targetAxesName);
-        switch (targetInputDataType) {
-            case InputDataType.KeyNegative:
-                _negativeButtonList[targeAxesListCount] = changeValue;
-                break;
-            case InputDataType.KeyPositive:
-                _positiveButtonList[targeAxesListCount] = changeValue;
-                break;
-            case InputDataType.JoystickNegative:
-                break;
-            case InputDataType.JoystickPositive:
-                _altPositionButtonList[targeAxesListCount] = changeValue;
-                break;
-            default:
-                break;
-        }//switch
-        InputDataSave();
-        InputDataUpdate();
-    }//InputDataUpdate
+    //private static void ConfigDataChange(string targetAxesName, InputDataType targetInputDataType, string changeValue) {
+    //    InputDataLoad();
+    //    int targeAxesListCount = GetInputDataID(targetAxesName);
+    //    switch (targetInputDataType) {
+    //        case InputDataType.KeyNegative:
+    //            _negativeButtonList[targeAxesListCount] = changeValue;
+    //            break;
+    //        case InputDataType.KeyPositive:
+    //            _positiveButtonList[targeAxesListCount] = changeValue;
+    //            break;
+    //        case InputDataType.JoystickNegative:
+    //            break;
+    //        case InputDataType.JoystickPositive:
+    //            _altPositionButtonList[targeAxesListCount] = changeValue;
+    //            break;
+    //        default:
+    //            break;
+    //    }//switch
+    //    InputDataSave();
+    //    InputDataUpdate();
+    //}//InputDataUpdate
 
 
     /// <summary>
@@ -476,4 +475,3 @@ public static class InputManagerDataEdit {
     }//TargetTextData_AxesButton
 
 }//InputManagerEdit
-#endif

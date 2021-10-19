@@ -62,7 +62,7 @@ public class AxesConfig {
     /// </summary>
     /// <param name="axesName"></param>
     /// <returns></returns>
-    public int GetAxesRawValue(string axesName) {
+    private int GetAxesRawValue(string axesName) {
         int i = 0;
         if (Input.GetKey(GetInputAxesCodeCheck(axesName, AxesType.Negative))) {
             i -= 1;
@@ -79,14 +79,14 @@ public class AxesConfig {
     /// </summary>
     /// <param name="axesName"></param>
     /// <returns></returns>
-    public float GetAxisRaw(string axesName) {
+    public float GetAxesRaw(string axesName) {
         float workMove = 0;
         workMove += GetAxesRawValue(axesName);
         workMove += Input.GetAxisRaw(axesName);
         return workMove;
     }//GetAxisRaw
 
-    public bool GetButtonDown(string axesName) {
+    public bool GetAxesDown(string axesName) {
         return InputAxesCheck(axesName,Input.GetKeyDown);
     }
 

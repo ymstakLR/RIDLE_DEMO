@@ -22,7 +22,7 @@ public class KeyConfigTest : MonoBehaviour {
         //if (Input.GetKeyDown(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Cancel.String))) {
         //    Debug.Log("kakunin");
         //}
-        Debug.Log(InputManager.Instance.axesConfig.GetButtonDown(Axes.Horizontal.String));
+        Debug.Log(InputManager.Instance.axesConfig.GetAxesDown(Axes.Horizontal.String));
     }
 
 }

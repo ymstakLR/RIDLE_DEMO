@@ -68,9 +68,6 @@ namespace MBLDefine {
         private Axes(string axesName,List<KeyCode> defalutKeyCode)
             : base(axesName) {
             DefaultKeyCode = defalutKeyCode;
-            //Debug.Log("axesName__" + axesName);
-            //Debug.Log(defalutKeyCode[0][0]);
-            //Debug.Log(defalutKeyCode[0][1]);
             AllAxesData.Add(this);
         }
 
@@ -80,6 +77,5 @@ namespace MBLDefine {
 
         public static Axes Horizontal = new Axes("Horizontal",new List<KeyCode> {KeyCode.LeftArrow, KeyCode.RightArrow });
         public static Axes Vertical = new Axes("Vertical", new List<KeyCode> { KeyCode.DownArrow, KeyCode.UpArrow } );
-        public static Axes Test = new Axes("Test", new List<KeyCode> { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 });
     }
 }

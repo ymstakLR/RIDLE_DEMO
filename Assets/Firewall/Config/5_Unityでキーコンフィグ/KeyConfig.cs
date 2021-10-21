@@ -1,4 +1,5 @@
 //参考URL:https://qiita.com/Es_Program/items/fde067254cfc68035173
+using MBLDefine;
 using LitJson;
 using System;
 using System.Collections.Generic;
@@ -90,6 +91,8 @@ public class KeyConfig {
         return true;
     }//SetKey
 
+
+
     /// <summary>
     /// 入力されたキーコードをチェックする処理
     /// </summary>
@@ -98,6 +101,7 @@ public class KeyConfig {
     public KeyCode GetInputKeyCodeCheck(string keyName,KeyType keyType) {
         return keyConfig[keyName][(int)keyType];
     }//KeyCodeCheck
+
 
     /// <summary>
     /// Key入力の入力タイプの列挙体
@@ -132,6 +136,33 @@ public class KeyConfig {
         }
         Debug.LogWarning("KeyConfig.cs__CheckConfig");
         return sb.ToString();
+    }
+
+    public void DuplicationKeyCheck(string targetName,KeyCode changeCode,KeyCode nowCode,int inputType) {
+        foreach(var keyInfo in keyConfig) {
+            for(int i = 0; i < 2; i++) {
+                if (changeCode == keyConfig[keyInfo.Key][i]) {
+                    if (!DuplicationKeyChangeJudge(targetName, keyInfo.Key))
+                        break;
+                    ChangeKeyCode(targetName, changeCode, inputType);
+                    ChangeKeyCode(keyInfo.Key, nowCode, i);
+                }
+            }
+        }
+        ChangeKeyCode(targetName, changeCode, inputType);
+    }
+
+    public bool DuplicationKeyChangeJudge(string targetName,string checkKeyName) {
+        bool check1 = targetName ==  Key.Submit.String|| targetName == Key.Cancel.String;
+        bool check2 = checkKeyName == Key.Submit.String || checkKeyName == Key.Cancel.String;
+        if(check1 == check2)
+            return true;
+        return false;    
+    }
+
+    private void ChangeKeyCode(string changeName,KeyCode changeCode,int inputType) {
+        keyConfig[changeName][inputType] = changeCode;
+        SaveKeyConfigFile();
     }
 
     /// <summary>

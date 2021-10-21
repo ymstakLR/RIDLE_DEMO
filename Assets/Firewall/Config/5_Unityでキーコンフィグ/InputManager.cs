@@ -73,25 +73,25 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             return inputManager.keyConfig.RemoveKey(key.String);
         }
 
-        /// <summary>
-        /// 押されているキーを名前文字列に対するキーとして設定する
-        /// </summary>
-        /// <param name="key">キーに割り付ける名前</param>
-        /// <returns>キーコードの設定が正常に完了したかどうか</returns>
-        public bool SetCurrentKey(Key key) {
-            //HACK:マウス入力も受け付けるようにするべきなので今後改善
-            //マウス{0~6}の入力を弾く
-            var currentInput = GetCurrentInputKeyCode().Where(c => c < KeyCode.Mouse0 || KeyCode.Mouse6 < c).ToList();
-            if (currentInput == null || currentInput.Count < 1)
-                return false;
-            var code = inputManager.keyConfig.GetKeyCode(key.String);
-            Debug.LogWarning("code__"+currentInput[0]);//入力キー
-            //既に設定されているキーと一部でも同じキーが押されている場合
-            if (code.Count > currentInput.Count && currentInput.All(k => code.Contains(k)))
-                return false;
-            RemoveKey(key);
-            return SetKey(key, currentInput);
-        }
+        ///// <summary>
+        ///// 押されているキーを名前文字列に対するキーとして設定する
+        ///// </summary>
+        ///// <param name="key">キーに割り付ける名前</param>
+        ///// <returns>キーコードの設定が正常に完了したかどうか</returns>
+        //public bool SetCurrentKey(Key key) {
+        //    //HACK:マウス入力も受け付けるようにするべきなので今後改善
+        //    //マウス{0~6}の入力を弾く
+        //    var currentInput = GetCurrentInputKeyCode().Where(c => c < KeyCode.Mouse0 || KeyCode.Mouse6 < c).ToList();
+        //    if (currentInput == null || currentInput.Count < 1)
+        //        return false;
+        //    var code = inputManager.keyConfig.GetKeyCode(key.String);
+        //    Debug.LogWarning("code__"+currentInput[0]);//入力キー
+        //    //既に設定されているキーと一部でも同じキーが押されている場合
+        //    if (code.Count > currentInput.Count && currentInput.All(k => code.Contains(k)))
+        //        return false;
+        //    RemoveKey(key);
+        //    return SetKey(key, currentInput);
+        //}
 
         /// <summary>
         /// デフォルトのキー設定を適用する
@@ -99,7 +99,6 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
         public void SetDefaultKeyConfig() {
             //Debug.LogError("InputManager__SetDefaultKeyConfig");
             foreach (var key in Key.AllKeyData) {
-                //Debug.Log("key__"+key+" : DefalutKeyCode_"+key.DefaultKeyCode);///Action,Jump,Balloon...
                 SetKey(key, key.DefaultKeyCode);
             }
             Debug.LogWarning("InputManager.cs__SetDefaultKeyConfigEnd");
@@ -163,9 +162,9 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
 
     public void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            InputManager.Instance.keyConfig.CheckKeyConfig();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //    InputManager.Instance.keyConfig.CheckKeyConfig();
+        //}
         //KeyConfigSetting.Instance.SetCurrentKey(Key.Cancel)//キー入力したとき引数のキーの対応入力キーを変更する//データ保存はされない
         //if (Input.GetKeyDown(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String))) {
         //    Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String));

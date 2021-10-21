@@ -17,27 +17,30 @@ public class KeyConfigButtonMove : MonoBehaviour {
     [SerializeField]
     private GameObject _keyButtonCanvas;
 
-    private bool _isControllerConfig;//コントローラ設定の判定
-    private bool _isKeyBoardConfig;//キーボード設定の判定
-
     private bool _isInputKeyUpdatePossible;
 
+    private enum InputType {
+        keyButton=0,
+        joystickButton=1,
+        axesButton=2,
+        none
+    }
+    private InputType _isInputType;
+
     private void Awake() {
-        //InputManagerDataEdit.InputDataUpdate();
-        //InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
-        InputManagerDataEdit.ConfigButtonsTextUpdateTest(_axesButtonCanvas);
-        InputManagerDataEdit.ConfigButtonsTextUpdateTest(_keyButtonCanvas);
+        _isInputType = InputType.none;
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
     }//Awake
 
     private void Update() {
-        if (_isKeyBoardConfig || _isControllerConfig) {
+        if (_isInputType!=InputType.none) {
             if (InputManager.Instance.keyConfig.GetKeyUp(Key.Submit.String)) {
                 _isInputKeyUpdatePossible = true;
-                Debug.Log("_isInputKeyUpdatePossible");
             }//if
         }//if
         if (_isInputKeyUpdatePossible && Input.anyKeyDown) {
-            //ConfigUpdateCheck(GetInputKeyCode());
+            ConfigUpdateCheck(GetInputKeyCode());
         }//if
     }//Update
 
@@ -48,8 +51,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="inputButton"></param>
     public void KeyBoardConfigButton(GameObject inputButton) {
-        Debug.Log("KeyBoardConfigButton");
-        ConfigButton(inputButton, true);
+        ConfigButton(inputButton, InputType.keyButton);
     }//KeyConfigButton
 
     /// <summary>
@@ -57,8 +59,15 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="inputButton"></param>
     public void ControllerConfigButton(GameObject inputButton) {
-        Debug.Log("ControllerConfigButton");
-        ConfigButton(inputButton, false);
+        ConfigButton(inputButton, InputType.joystickButton);
+    }//ControllerCOnfigButton
+
+    /// <summary>
+    /// コントローラ用コンフィグボタンが押された際の処理
+    /// </summary>
+    /// <param name="inputButton"></param>
+    public void AxesConfigButton(GameObject inputButton) {
+        ConfigButton(inputButton, InputType.axesButton);
     }//ControllerCOnfigButton
 
     /// <summary>
@@ -66,9 +75,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="inputButton">押されたボタンオブジェクト</param>
     /// <param name="isKeyBoard">入力されたコンフィグタイプ(KeyBoardで入力された場合にTrue)</param>
-    private void ConfigButton(GameObject inputButton, bool isKeyBoard) {
-        Debug.Log("ConfigButton");
-        ConfigStart(inputButton, isKeyBoard, GetInputKeyCode());
+    private void ConfigButton(GameObject inputButton, InputType inputType) {
+        ConfigStart(inputButton, inputType, GetInputKeyCode());
     }//ConfigButton
 
     /// <summary>
@@ -88,18 +96,13 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// コンフィグを開始する処理
     /// </summary>
     /// <param name="inputButton">押されたボタンオブジェクト</param>
-    /// <param name="isKeyBoard">入力されたコンフィグタイプ</param>
+    /// <param name="inputType">入力されたコンフィグタイプ</param>
     /// <param name="code">入力されたキーコード</param>
-    private void ConfigStart(GameObject inputButton,bool isKeyBoard,KeyCode code) {
-        if ((isKeyBoard && code.ToString().Contains("Joystick")) ||
-            !isKeyBoard && !code.ToString().Contains("Joystick"))
+    private void ConfigStart(GameObject inputButton,InputType inputType,KeyCode code) {
+        if (((inputType ==InputType.keyButton || inputType == InputType.axesButton) && code.ToString().Contains("Joystick")) ||
+            inputType == InputType.joystickButton && !code.ToString().Contains("Joystick"))
             return;
-        if (isKeyBoard && !code.ToString().Contains("Joystick")) {
-            _isKeyBoardConfig = true;
-        }//if
-        if (!isKeyBoard && code.ToString().Contains("Joystick")) {
-            _isControllerConfig = true;
-        }//if
+        _isInputType = inputType;
         _inputButton = inputButton;
         _inputButton.GetComponent<Animator>().enabled = false;
         _inputButton.GetComponent<Button>().interactable = false;
@@ -111,34 +114,37 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="code">入力されたキーコード</param>
     private void ConfigUpdateCheck(KeyCode code) {
-        if ((_isControllerConfig && !code.ToString().Contains("Joystick")) ||
-            _isKeyBoardConfig && code.ToString().Contains("Joystick"))
+        if (((_isInputType == InputType.keyButton || _isInputType == InputType.axesButton) && code.ToString().Contains("Joystick")) ||
+            _isInputType == InputType.joystickButton && !code.ToString().Contains("Joystick"))
             return;
         string axesButtonText = InputManagerDataEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換
         if (InputManagerDataEdit.GetNonTargetTextCheck_AxesButton(axesButtonText))//対象外文字の選別
             return;
-        ConfigUpdate(axesButtonText);
+        //Debug.Log("axesButtonText__" + axesButtonText+"__code__"+code);
+        ConfigUpdate(code);
     }//ConfigUpdateCheck
 
     /// <summary>
     /// コンフィグを更新する処理
     /// </summary>
     /// <param name="changeInputValue">AxesButtonで入力できる対象文字</param>
-    private void ConfigUpdate(string changeInputValue) {
+    private void ConfigUpdate(KeyCode changeKeyCode) {
         string axesNameText;
         InputManagerDataEdit.InputDataType nowInputValueType;
         (axesNameText, nowInputValueType) = InputManagerDataEdit.ConfigButtonInfoSelect(_inputButton.name.ToString());
-        string nowInputValue = _inputButton.transform.GetChild(0).GetComponent<Text>().text.ToLower();
-        InputManagerDataEdit.ConfigDataUpdate(axesNameText, changeInputValue,nowInputValue, nowInputValueType);
-        InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
+        KeyCode nowInputKeyCode = InputManagerDataEdit.GetConficButtonKeyCode(axesNameText, nowInputValueType);
+
+        InputManagerDataEdit.ConfigDataUpdate(axesNameText, changeKeyCode,nowInputKeyCode, (int)_isInputType);
+        //InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
 
         _inputButton.GetComponent<Animator>().enabled = true;
         _inputButton.GetComponent<Image>().color = Color.red;
         _inputButton.GetComponent<Button>().interactable = true;
         _inputButton.GetComponent<Selectable>().Select();
-        _isKeyBoardConfig = false;
-        _isControllerConfig = false;
+        _isInputType = InputType.none;
         _isInputKeyUpdatePossible = false;
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
     }//ConfigUpdate
 
     /// <summary>

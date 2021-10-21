@@ -212,7 +212,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 409860014}
     m_SelectOnDown: {fileID: 1308396925}
     m_SelectOnLeft: {fileID: 1413786387}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 243427925}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
@@ -1006,8 +1006,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 2016062053}
     m_SelectOnDown: {fileID: 2016062053}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 10720300}
+    m_SelectOnRight: {fileID: 1413786387}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1372,7 +1372,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 440707441}
     m_SelectOnDown: {fileID: 616940610}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 634769187}
     m_SelectOnRight: {fileID: 243427925}
   m_Transition: 3
   m_Colors:
@@ -1792,10 +1792,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 616940610}
     m_SelectOnDown: {fileID: 10720300}
     m_SelectOnLeft: {fileID: 1845897983}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 243427925}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1821,7 +1821,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
@@ -1928,7 +1928,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1720887286}
     m_SelectOnDown: {fileID: 273574919}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1309222211}
     m_SelectOnRight: {fileID: 243427925}
   m_Transition: 3
   m_Colors:
@@ -2189,10 +2189,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 1940265825}
     m_SelectOnDown: {fileID: 1309222211}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 243427925}
+    m_SelectOnRight: {fileID: 1720887286}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2218,9 +2218,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyBoardConfigButton
+        m_MethodName: AxesConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 555476173}
@@ -2435,7 +2435,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 950407878}
     m_SelectOnDown: {fileID: 1940265825}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 2016062053}
     m_SelectOnRight: {fileID: 1845524663}
   m_Transition: 3
   m_Colors:
@@ -2462,7 +2462,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
@@ -2617,8 +2617,8 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 273574919}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnDown: {fileID: 409860014}
+    m_SelectOnLeft: {fileID: 1313676763}
     m_SelectOnRight: {fileID: 243427925}
   m_Transition: 3
   m_Colors:
@@ -2752,8 +2752,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1309222211}
     m_SelectOnDown: {fileID: 1313676763}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 243427925}
+    m_SelectOnRight: {fileID: 273574919}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2779,9 +2779,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyBoardConfigButton
+        m_MethodName: AxesConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 634769186}
@@ -3141,9 +3141,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1845524663}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 1720887286}
     m_SelectOnLeft: {fileID: 1940265825}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2016062053}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
@@ -3404,7 +3404,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1194993290}
     m_SelectOnDown: {fileID: 575018982}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 2016062053}
     m_SelectOnRight: {fileID: 1991069871}
   m_Transition: 3
   m_Colors:
@@ -3431,7 +3431,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
@@ -4331,7 +4331,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1413786387}
     m_SelectOnDown: {fileID: 950407878}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 2016062053}
     m_SelectOnRight: {fileID: 1308396925}
   m_Transition: 3
   m_Colors:
@@ -4358,7 +4358,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
@@ -4831,7 +4831,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 10720300}
     m_SelectOnDown: {fileID: 1991069871}
     m_SelectOnLeft: {fileID: 1194993290}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2016062053}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4857,7 +4857,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
@@ -4964,8 +4964,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 555476174}
     m_SelectOnDown: {fileID: 634769187}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 243427925}
+    m_SelectOnRight: {fileID: 440707441}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4991,9 +4991,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyBoardConfigButton
+        m_MethodName: AxesConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1309222210}
@@ -5195,9 +5195,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 634769187}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnDown: {fileID: 1845897983}
+    m_SelectOnLeft: {fileID: 243427925}
+    m_SelectOnRight: {fileID: 616940610}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5223,9 +5223,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: KeyBoardConfigButton
+        m_MethodName: AxesConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1313676760}
@@ -5458,7 +5458,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1845897983}
     m_SelectOnDown: {fileID: 1194993290}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 243427925}
     m_SelectOnRight: {fileID: 10720300}
   m_Transition: 3
   m_Colors:
@@ -5485,7 +5485,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
@@ -6504,9 +6504,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 874459264}
     m_SelectOnDown: {fileID: 440707441}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 555476174}
     m_SelectOnRight: {fileID: 243427925}
   m_Transition: 3
   m_Colors:
@@ -6897,7 +6897,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1991069871}
     m_SelectOnDown: {fileID: 874459264}
     m_SelectOnLeft: {fileID: 575018982}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2016062053}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -6923,7 +6923,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
@@ -7077,9 +7077,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 1313676763}
     m_SelectOnDown: {fileID: 1413786387}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 243427925}
     m_SelectOnRight: {fileID: 409860014}
   m_Transition: 3
   m_Colors:
@@ -7106,7 +7106,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
@@ -7340,8 +7340,8 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 575018982}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnDown: {fileID: 555476174}
+    m_SelectOnLeft: {fileID: 2016062053}
     m_SelectOnRight: {fileID: 874459264}
   m_Transition: 3
   m_Colors:
@@ -7368,7 +7368,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
@@ -7604,7 +7604,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1308396925}
     m_SelectOnDown: {fileID: 1845524663}
     m_SelectOnLeft: {fileID: 950407878}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2016062053}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -7630,7 +7630,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
@@ -7737,8 +7737,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 243427925}
     m_SelectOnDown: {fileID: 243427925}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1991069871}
+    m_SelectOnRight: {fileID: 950407878}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}

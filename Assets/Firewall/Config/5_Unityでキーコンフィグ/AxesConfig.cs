@@ -99,6 +99,31 @@ public class AxesConfig {
         return ret;
     }//InputAxesCheck
 
+
+    public void DuplicationAxesCheck(string targetName, KeyCode changeCode, KeyCode nowCode) {
+        int nowCodeType;
+        for(nowCodeType=0; nowCodeType < 2; nowCodeType++) {
+            if (axesConfig[targetName][nowCodeType] == nowCode)
+                break;
+        }
+        foreach (var axesInfo in axesConfig) {
+            for (int i = 0; i < 2; i++) {
+                if (changeCode == axesConfig[axesInfo.Key][i]) {
+                    ChangeAxesCode(targetName, changeCode, nowCodeType);
+                    ChangeAxesCode(axesInfo.Key, nowCode, i);
+                    return;
+                }
+            }
+        }
+        ChangeAxesCode(targetName, changeCode, nowCodeType);
+    }
+
+    private void ChangeAxesCode(string changeName, KeyCode changeCode, int inputType) {
+        axesConfig[changeName][inputType] = changeCode;
+        SaveAxesConfigFile();
+    }
+
+
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>

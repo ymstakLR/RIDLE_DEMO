@@ -58,19 +58,6 @@ public static class InputManagerDataEdit {
     }//InputDataSave
 
     /// <summary>
-    /// InputDataの更新処理
-    /// </summary>
-    //public static void InputDataUpdate() {
-    //    InputDataLoad();
-    //    SerializedObject serializedObject = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0]);
-    //    SerializedProperty axesProperty = serializedObject.FindProperty("m_Axes");
-    //    axesProperty.ClearArray();
-    //    for (int i = 0; i < 12; i++) {
-    //        AddAxis(CreateInputAxis(i), serializedObject, axesProperty);
-    //    }//for
-    //}//InputManagerUpdate
-
-    /// <summary>
     /// Axesキーを作成する処理
     /// </summary>
     private static InputAxis CreateInputAxis(int i) {
@@ -182,80 +169,26 @@ public static class InputManagerDataEdit {
     /// コンフィグ値を変更する処理
     /// </summary>
     /// <param name="targetAxesName">対象のAxes名</param>
-    /// <param name="changeInputValue">変更予定の入力値</param>
-    /// <param name="nowInputValue">現在の入力値</param>
-    /// <param name="nowInputValueType">現在の入力値のInputDataType</param>
+    /// <param name="changeKeyCode">変更予定の入力値</param>
+    /// <param name="nowInputKeyCode">現在の入力値</param>
+    /// <param name="inputType">現在の入力値のInputDataType</param>
     public static void ConfigDataUpdate(
-        string targetAxesName, string changeInputValue, string nowInputValue, InputDataType nowInputValueType) {
-        int changeInputValueCount = -1;
-        int nowInputValueCount = -1;
-        InputDataType changeInputValueType = InputDataType.KeyPositive;
+        string targetAxesName, KeyCode changeKeyCode, KeyCode nowInputKeyCode, int inputType) {
 
-        nowInputValue = nowInputValue.Replace("button", "joystick button");//コントローラ値の文字修正
-
-        if (changeInputValue == nowInputValue)//変更前・後共に同じ入力値の場合
+        Debug.Log(changeKeyCode + "__" + nowInputKeyCode);
+        if (changeKeyCode == nowInputKeyCode) {//変更前・後共に同じ入力値の場合
             return;
-
-        for (int i = 0; i < 12; i++) {//変更するInputManager配列を選択
-            if (targetAxesName == _nameList[i]) {
-                nowInputValueCount = i;
+        }
+        switch (inputType) {
+            case 0:
+            case 1:
+                InputManager.Instance.keyConfig.DuplicationKeyCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType);
                 break;
-            }//if
-        }//for
-
-        for (int i = 0; i < 12; i++) {//重複したキーの確認
-            if (changeInputValue == _positiveButtonList[i]) {
-                changeInputValueCount = i;
-                changeInputValueType = InputDataType.KeyPositive;
-            } else if (changeInputValue == _negativeButtonList[i]) {
-                changeInputValueCount = i;
-                changeInputValueType = InputDataType.KeyNegative;
-            } else if (changeInputValue == _altPositionButtonList[i]) {
-                changeInputValueCount = i;
-                changeInputValueType = InputDataType.JoystickPositive;
-            }//if
-
-            if (changeInputValueCount != -1) {//重複したキーの入れ替え必要確認
-                if ((nowInputValueCount < 10 && changeInputValueCount < 10) ||
-                    (nowInputValueCount > 9 && nowInputValueCount < 12 && changeInputValueCount > 9 && changeInputValueCount < 12)) {
-                    //ConfigDataChange(_nameList[nowInputValueCount], nowInputValueType, changeInputValue);
-                    //ConfigDataChange(_nameList[changeInputValueCount], changeInputValueType, nowInputValue);
-                    return;
-                }//if
-            }//if
-
-        }//for
-        //重複していない場合
-        //ConfigDataChange(targetAxesName, nowInputValueType, changeInputValue);
+            case 2:
+                InputManager.Instance.axesConfig.DuplicationAxesCheck(targetAxesName, changeKeyCode, nowInputKeyCode);
+                break;
+        }
     }//InputTextDuplicationCheack   
-
-    /// <summary>
-    /// コンフィグデータを変更する処理
-    /// </summary>
-    /// <param name="targetAxesName">対象のAxes名</param>
-    /// <param name="targetInputDataType">対象のInputDataType</param>
-    /// <param name="changeValue">変更する値</param>
-    //private static void ConfigDataChange(string targetAxesName, InputDataType targetInputDataType, string changeValue) {
-    //    InputDataLoad();
-    //    int targeAxesListCount = GetInputDataID(targetAxesName);
-    //    switch (targetInputDataType) {
-    //        case InputDataType.KeyNegative:
-    //            _negativeButtonList[targeAxesListCount] = changeValue;
-    //            break;
-    //        case InputDataType.KeyPositive:
-    //            _positiveButtonList[targeAxesListCount] = changeValue;
-    //            break;
-    //        case InputDataType.JoystickNegative:
-    //            break;
-    //        case InputDataType.JoystickPositive:
-    //            _altPositionButtonList[targeAxesListCount] = changeValue;
-    //            break;
-    //        default:
-    //            break;
-    //    }//switch
-    //    InputDataSave();
-    //    InputDataUpdate();
-    //}//InputDataUpdate
 
 
     /// <summary>
@@ -263,85 +196,37 @@ public static class InputManagerDataEdit {
     /// </summary>
     public static void ConfigButtonsTextUpdate(GameObject buttonCanvas) {
         foreach (Transform childTransform in buttonCanvas.transform) {
-            if (childTransform.name.ToString() == "Default")//キーボード・コントローラボタンを全て設定するまで繰り返す
-                break;
             string axesName;
             InputManagerDataEdit.InputDataType inputDataType;
             (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
-            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerDataEdit.GetConficButtonText(axesName, inputDataType);
+            axesName = InputManagerDataEdit.GetConficButtonKeyCode(axesName, inputDataType).ToString();
+            childTransform.GetChild(0).GetComponent<Text>().text = EditText_InputKeyCodeText_To_AxesButtonText(axesName.ToLower());
         }//foreach
     }//ConfigButtonsTextUpdate
 
     /// <summary>
-    /// コンフィグボタン全ての文字更新を行う処理
-    /// </summary>
-    public static void ConfigButtonsTextUpdateTest(GameObject buttonCanvas) {
-        foreach (Transform childTransform in buttonCanvas.transform) {
-            string axesName;
-            InputManagerDataEdit.InputDataType inputDataType;
-            (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
-            childTransform.GetChild(0).GetComponent<Text>().text = InputManagerDataEdit.GetConficButtonTextTest(axesName, inputDataType);
-        }//foreach
-    }//ConfigButtonsTextUpdate
-
-    /// <summary>
-    /// コンフィグボタンのテキストを取得する処理
-    /// </summary>
-    /// <param name="targetAxesName">対象のAxes名</param>
-    /// <param name="targetInputDataType">対象のInputDataType</param>
-    /// <returns>対象コンフィグボタンのキーテキスト</returns>
-    private static string GetConficButtonText(string targetAxesName, InputDataType targetInputDataType) {
-        InputDataLoad();
-        string targetKeyText = "";
-        int targetAxesListCount = GetInputDataID(targetAxesName);
-        switch (targetInputDataType) {
-            case InputDataType.KeyNegative:
-                targetKeyText = _negativeButtonList[targetAxesListCount];
-                break;
-            case InputDataType.KeyPositive:
-                targetKeyText = _positiveButtonList[targetAxesListCount];
-                break;
-            case InputDataType.JoystickNegative:
-                break;
-            case InputDataType.JoystickPositive:
-                targetKeyText = _altPositionButtonList[targetAxesListCount];
-                break;
-        }//switch
-        targetKeyText = targetKeyText.Replace("joystick ", "");
-        return targetKeyText.ToUpper();
-    }//GetConficButtonTex
-
-    /// <summary>
-    /// コンフィグボタンのテキストを取得する処理
+    /// コンフィグボタンのキーコードを取得する処理
     /// </summary>
     /// <param name="targetName">対象のAxes名</param>
     /// <param name="targetInputDataType">対象のInputDataType</param>
-    /// <returns>対象コンフィグボタンのキーテキスト</returns>
-    private static string GetConficButtonTextTest(string targetName, InputDataType targetInputDataType) {
-        Debug.Log("targetName__"+targetName);
-        string targetKeyText = "";
+    /// <returns>対象コンフィグボタンのキーコード</returns>
+    public static KeyCode GetConficButtonKeyCode(string targetName, InputDataType targetInputDataType) {
+        KeyCode targetKeyCode = KeyCode.None;
         switch (targetInputDataType) {//TypeごとにtargetKeyTextを呼び出し更新
             case InputDataType.KeyPositive:
-                //keyconfigの指定名のkeycode
-                Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.KeyBoard));
-                targetKeyText = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.KeyBoard).ToString();
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.KeyBoard);
                 break;
             case InputDataType.JoystickPositive:
-                Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick));
-                targetKeyText = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick).ToString();
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick);
                 break;
             case InputDataType.AxesPositive:
-                //axesconfigの指定名・指定箇所のkeycode
-                targetKeyText = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Positive).ToString();
+                targetKeyCode = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Positive);
                 break;
             case InputDataType.AxesNegative:
-                //axesconfigの指定名・指定箇所のkeycode
-                targetKeyText = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Negative).ToString();
+                targetKeyCode = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Negative);
                 break;
         }//switch
-        targetKeyText = targetKeyText.Replace("Joystick", "");
-        targetKeyText = EditText_InputKeyCodeText_To_AxesButtonText(targetKeyText.ToLower());
-        return targetKeyText.ToUpper();
+        return targetKeyCode;
     }//GetConficButtonTex
 
     /// <summary>
@@ -417,6 +302,7 @@ public static class InputManagerDataEdit {
         text = text.Replace("sys", "sys ");//PRTSCキー
         text = text.Replace("scroll", "scroll ");//SCRLKキー
         text = text.Replace("joystickbutton", "joystick button ");//コントローラキー
+        text = text.Replace("Joystick", "");
         if (text.Contains("keypad")){
             text = text.Replace("keypad","");
             switch (text) {

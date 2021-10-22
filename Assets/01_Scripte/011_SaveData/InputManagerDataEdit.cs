@@ -179,13 +179,16 @@ public static class InputManagerDataEdit {
         if (changeKeyCode == nowInputKeyCode) {//変更前・後共に同じ入力値の場合
             return;
         }
+        Debug.Log(inputType);
         switch (inputType) {
             case 0:
             case 1:
                 InputManager.Instance.keyConfig.DuplicationKeyCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType);
                 break;
             case 2:
-                InputManager.Instance.axesConfig.DuplicationAxesCheck(targetAxesName, changeKeyCode, nowInputKeyCode);
+            case 3:
+                InputManager.Instance.keyConfig.DuplicationKeyCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType-2);
+                //InputManager.Instance.axesConfig.DuplicationAxesCheck(targetAxesName, changeKeyCode, nowInputKeyCode);
                 break;
         }
     }//InputTextDuplicationCheack   
@@ -220,10 +223,10 @@ public static class InputManagerDataEdit {
                 targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick);
                 break;
             case InputDataType.AxesPositive:
-                targetKeyCode = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Positive);
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxesCodeCheck(targetName, KeyConfig.AxesType.Positive);
                 break;
             case InputDataType.AxesNegative:
-                targetKeyCode = InputManager.Instance.axesConfig.GetInputAxesCodeCheck(targetName, AxesConfig.AxesType.Negative);
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxesCodeCheck(targetName, KeyConfig.AxesType.Negative);
                 break;
         }//switch
         return targetKeyCode;
@@ -272,11 +275,11 @@ public static class InputManagerDataEdit {
                 break;
             case "Left":
                 editText = "Horizontal";
-                type = InputDataType.AxesPositive;
+                type = InputDataType.AxesNegative;
                 break;
             case "Right":
                 editText = "Horizontal";
-                type = InputDataType.AxesNegative;
+                type = InputDataType.AxesPositive;
                 break;
             default:
                 break;

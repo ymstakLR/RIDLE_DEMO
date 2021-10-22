@@ -20,9 +20,10 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private bool _isInputKeyUpdatePossible;
 
     private enum InputType {
-        keyButton=0,
-        joystickButton=1,
-        axesButton=2,
+        keyButton= 0,
+        joystickButton= 1,
+        axesPositiveButton = 2,
+        axesNegativeButton = 3,
         none
     }
     private InputType _isInputType;
@@ -66,8 +67,16 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// コントローラ用コンフィグボタンが押された際の処理
     /// </summary>
     /// <param name="inputButton"></param>
-    public void AxesConfigButton(GameObject inputButton) {
-        ConfigButton(inputButton, InputType.axesButton);
+    public void AxesPositiveConfigButton(GameObject inputButton) {
+        ConfigButton(inputButton, InputType.axesPositiveButton);
+    }//ControllerCOnfigButton
+
+    /// <summary>
+    /// コントローラ用コンフィグボタンが押された際の処理
+    /// </summary>
+    /// <param name="inputButton"></param>
+    public void AxesNegativeConfigButton(GameObject inputButton) {
+        ConfigButton(inputButton, InputType.axesNegativeButton);
     }//ControllerCOnfigButton
 
     /// <summary>
@@ -99,7 +108,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// <param name="inputType">入力されたコンフィグタイプ</param>
     /// <param name="code">入力されたキーコード</param>
     private void ConfigStart(GameObject inputButton,InputType inputType,KeyCode code) {
-        if (((inputType ==InputType.keyButton || inputType == InputType.axesButton) && code.ToString().Contains("Joystick")) ||
+        if (((inputType !=InputType.joystickButton && inputType != InputType.none) && code.ToString().Contains("Joystick")) ||
             inputType == InputType.joystickButton && !code.ToString().Contains("Joystick"))
             return;
         _isInputType = inputType;
@@ -114,7 +123,7 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// </summary>
     /// <param name="code">入力されたキーコード</param>
     private void ConfigUpdateCheck(KeyCode code) {
-        if (((_isInputType == InputType.keyButton || _isInputType == InputType.axesButton) && code.ToString().Contains("Joystick")) ||
+        if (((_isInputType != InputType.joystickButton && _isInputType != InputType.none) && code.ToString().Contains("Joystick")) ||
             _isInputType == InputType.joystickButton && !code.ToString().Contains("Joystick"))
             return;
         string axesButtonText = InputManagerDataEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換

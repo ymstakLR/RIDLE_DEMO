@@ -2220,7 +2220,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesConfigButton
+        m_MethodName: AxesNegativeConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 555476173}
@@ -2781,7 +2781,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesConfigButton
+        m_MethodName: AxesPositiveConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 634769186}
@@ -4993,7 +4993,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesConfigButton
+        m_MethodName: AxesPositiveConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1309222210}
@@ -5225,7 +5225,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2066153389}
         m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesConfigButton
+        m_MethodName: AxesNegativeConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1313676760}

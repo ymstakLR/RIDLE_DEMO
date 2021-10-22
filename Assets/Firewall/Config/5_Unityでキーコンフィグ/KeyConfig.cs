@@ -166,6 +166,53 @@ public class KeyConfig {
     }
 
     /// <summary>
+    /// Axes入力の+/-判定列挙体
+    /// </summary>
+    public enum AxesType {
+        Negative = 0,
+        Positive = 1
+    }//AxesType
+
+    /// <summary>
+    /// 入力されたAxesコードをチェックする処理
+    /// </summary>
+    /// <param name="axesName">チェックするaxes名</param>
+    /// <param name="axesType">チェックするaxesタイプ</param>
+    /// <returns>axes名とaxesタイプに対応するキーコード</returns>
+    public KeyCode GetInputAxesCodeCheck(string axesName, AxesType axesType) {
+        return keyConfig[axesName][(int)axesType];
+    }//KeyCodeCheck
+
+    /// <summary>
+    /// 作成したAxes入力の移動量出力処理
+    /// </summary>
+    /// <param name="axesName"></param>
+    /// <returns></returns>
+    private int GetAxesRawValue(string axesName) {
+        int i = 0;
+        if (Input.GetKey(GetInputAxesCodeCheck(axesName, AxesType.Negative))) {
+            i -= 1;
+        }//if
+        if (Input.GetKey(GetInputAxesCodeCheck(axesName, AxesType.Positive))) {
+            i += 1;
+        }//if
+        return i;
+    }//
+
+    /// <summary>
+    /// キー入力したときの移動量出力処理
+    /// Input.GetAxisRawとInputManager.GetAxesRaw
+    /// </summary>
+    /// <param name="axesName"></param>
+    /// <returns></returns>
+    public float GetAxesRaw(string axesName) {
+        float workMove = 0;
+        workMove += GetAxesRawValue(axesName);
+        workMove += Input.GetAxisRaw(axesName);
+        return workMove;
+    }//GetAxisRaw
+
+    /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
     public void LoadKeyConfigFile() {

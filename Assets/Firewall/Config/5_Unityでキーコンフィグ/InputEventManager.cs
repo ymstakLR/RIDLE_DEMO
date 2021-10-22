@@ -14,8 +14,8 @@ public class InputEventManager : SingletonMonoBehaviour<InputEventManager> {
     private Dictionary<Key, EventHandler> onKeyDownEvents = new Dictionary<Key, EventHandler>();
     private Dictionary<Key, EventHandler> onKeyUpEvents = new Dictionary<Key, EventHandler>();
     private Dictionary<Key, EventHandler> onKeyNotPressedEvents = new Dictionary<Key, EventHandler>();
-    private Dictionary<Axes, EventHandler> onAxesEvents = new Dictionary<Axes, EventHandler>();
-    private Dictionary<Axes, EventHandler> onAxesRowEvents = new Dictionary<Axes, EventHandler>();
+    //private Dictionary<Axes, EventHandler> onAxesEvents = new Dictionary<Axes, EventHandler>();
+    //private Dictionary<Axes, EventHandler> onAxesRowEvents = new Dictionary<Axes, EventHandler>();
 
     /// <summary>
     /// キー入力イベントの実行を制御する
@@ -34,11 +34,10 @@ public class InputEventManager : SingletonMonoBehaviour<InputEventManager> {
             onKeyNotPressedEvents.Add(key, (o, a) => { });
         }
 
-        foreach (Axes axes in Axes.AllAxesData) {
-            onAxesEvents.Add(axes, (o, a) => { });
-            onAxesRowEvents.Add(axes, (o, a) => { });
-        }
-        Debug.LogWarning("InputEventManager.cs_Awake");
+        //foreach (Axes axes in Axes.AllAxesData) {
+        //    onAxesEvents.Add(axes, (o, a) => { });
+        //    onAxesRowEvents.Add(axes, (o, a) => { });
+        //}
     }
 
     public void Update() {
@@ -51,8 +50,8 @@ public class InputEventManager : SingletonMonoBehaviour<InputEventManager> {
         KeyEventInvoke(InputManager.Instance.GetKeyUp, onKeyUpEvents, new EventArgs());
         KeyEventInvoke((key) => { return !InputManager.Instance.GetKey(key); }, onKeyNotPressedEvents, new EventArgs());
 
-        AxesEventInvoke(onAxesEvents, new EventArgs());
-        AxesEventInvoke(onAxesRowEvents, new EventArgs());
+        //AxesEventInvoke(onAxesEvents, new EventArgs());
+        //AxesEventInvoke(onAxesRowEvents, new EventArgs());
     }
 
     /// <summary>
@@ -91,23 +90,23 @@ public class InputEventManager : SingletonMonoBehaviour<InputEventManager> {
         onKeyNotPressedEvents[key] += eventHandler;
     }
 
-    /// <summary>
-    /// 軸入力時イベントをセットする
-    /// </summary>
-    /// <param name="axes">軸の種類</param>
-    /// <param name="eventHandler">実行するイベント</param>
-    internal void SetAxesEvent(Axes axes, EventHandler eventHandler) {
-        onAxesEvents[axes] += eventHandler;
-    }
+    ///// <summary>
+    ///// 軸入力時イベントをセットする
+    ///// </summary>
+    ///// <param name="axes">軸の種類</param>
+    ///// <param name="eventHandler">実行するイベント</param>
+    //internal void SetAxesEvent(Axes axes, EventHandler eventHandler) {
+    //    onAxesEvents[axes] += eventHandler;
+    //}
 
-    /// <summary>
-    /// 軸入力時イベントをセットする
-    /// </summary>
-    /// <param name="axes">軸の種類</param>
-    /// <param name="eventHandler">実行するイベント</param>
-    internal void SetAxesRowEvent(Axes axes, EventHandler eventHandler) {
-        onAxesRowEvents[axes] += eventHandler;
-    }
+    ///// <summary>
+    ///// 軸入力時イベントをセットする
+    ///// </summary>
+    ///// <param name="axes">軸の種類</param>
+    ///// <param name="eventHandler">実行するイベント</param>
+    //internal void SetAxesRowEvent(Axes axes, EventHandler eventHandler) {
+    //    onAxesRowEvents[axes] += eventHandler;
+    //}
 
     /// <summary>
     /// キー入力イベントから指定したイベントを削除する
@@ -145,23 +144,23 @@ public class InputEventManager : SingletonMonoBehaviour<InputEventManager> {
         onKeyNotPressedEvents[key] -= eventHandler;
     }
 
-    /// <summary>
-    /// 軸入力時イベントを削除する
-    /// </summary>
-    /// <param name="axes">軸の種類</param>
-    /// <param name="eventHandler">削除するイベント</param>
-    internal void RemoveAxesEvent(Axes axes, EventHandler eventHandler) {
-        onAxesEvents[axes] -= eventHandler;
-    }
+    ///// <summary>
+    ///// 軸入力時イベントを削除する
+    ///// </summary>
+    ///// <param name="axes">軸の種類</param>
+    ///// <param name="eventHandler">削除するイベント</param>
+    //internal void RemoveAxesEvent(Axes axes, EventHandler eventHandler) {
+    //    onAxesEvents[axes] -= eventHandler;
+    //}
 
-    /// <summary>
-    /// 軸入力時イベントを削除する
-    /// </summary>
-    /// <param name="axes">軸の種類</param>
-    /// <param name="eventHandler">削除するイベント</param>
-    internal void RemoveAxesRowEvent(Axes axes, EventHandler eventHandler) {
-        onAxesRowEvents[axes] -= eventHandler;
-    }
+    ///// <summary>
+    ///// 軸入力時イベントを削除する
+    ///// </summary>
+    ///// <param name="axes">軸の種類</param>
+    ///// <param name="eventHandler">削除するイベント</param>
+    //internal void RemoveAxesRowEvent(Axes axes, EventHandler eventHandler) {
+    //    onAxesRowEvents[axes] -= eventHandler;
+    //}
 
     /// <summary>
     /// キーイベントを実行する
@@ -181,15 +180,15 @@ public class InputEventManager : SingletonMonoBehaviour<InputEventManager> {
                 
     }
 
-    /// <summary>
-    /// 軸イベントを実行する
-    /// </summary>
-    /// <param name="axesEntryDecision">軸入力値取得を行う述語</param>
-    /// <param name="axesEvent">軸ごとのイベントを格納するハッシュマップ</param>
-    /// <param name="args">イベント実行に用いる引数</param>
-    private void AxesEventInvoke(Dictionary<Axes, EventHandler> axesEvent, EventArgs args) {
-        foreach (Axes axes in Axes.AllAxesData)
-            if (axesEvent[axes] != null)
-                axesEvent[axes](this, args);
-    }
+    ///// <summary>
+    ///// 軸イベントを実行する
+    ///// </summary>
+    ///// <param name="axesEntryDecision">軸入力値取得を行う述語</param>
+    ///// <param name="axesEvent">軸ごとのイベントを格納するハッシュマップ</param>
+    ///// <param name="args">イベント実行に用いる引数</param>
+    //private void AxesEventInvoke(Dictionary<Axes, EventHandler> axesEvent, EventArgs args) {
+    //    foreach (Axes axes in Axes.AllAxesData)
+    //        if (axesEvent[axes] != null)
+    //            axesEvent[axes](this, args);
+    //}
 }

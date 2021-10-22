@@ -28,16 +28,16 @@ public static class InputManagerDataInitialSetting {
     //    list.Insert(i, descriptiveName[i]);
     //}
     public static void DefaultNegativeButtonInsert(List<string> list,int i) {
-        string[] negativeButton = { "a", "s", "", "", "", "", "", "", "", "", "", "" };
+        string[] negativeButton = { "", "", "", "", "", "", "", "", "", "", "", "" };
         list.Insert(i, negativeButton[i]);
     }
     public static void DefaultPositiveButtonInsert(List<string> list, int i) {
-        string[] positiveButton = { "d", "w", "", "", "", "", "k", "j", "l", "h",  "k", "l" };
+        string[] positiveButton = { "", "", "", "", "", "", "", "", "", "",  "", "" };
         list.Insert(i, positiveButton[i]);
     }
     public static void DefaultAltPositiveButtonInsert(List<string> list, int i) {
-        string[] altPositiveButton = { "", "", "", "","", "", "joystick button 1", "joystick button 0", "joystick button 2",
-                                        "joystick button 9", "joystick button 1", "joystick button 2" };
+        string[] altPositiveButton = { "", "", "", "","", "", "", "", "",
+                                        "", "", "" };
         list.Insert(i, altPositiveButton[i]);
     }
     public static void DefaultInvert(List<string>list,int i) {

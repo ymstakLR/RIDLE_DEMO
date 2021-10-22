@@ -20,8 +20,8 @@ namespace UnityEngine.EventSystems {
         private bool m_EnableMouse = false;
 
 
-        private string _HorizontalAxes = Axes.Horizontal.String;
-        private string _VerticalAxes = Axes.Vertical.String;
+        private string _HorizontalAxes = Key.Horizontal.String;
+        private string _VerticalAxes = Key.Vertical.String;
 
         private string _SubmitButton = Key.Submit.String;
         private string _CancelButton = Key.Cancel.String;
@@ -98,8 +98,8 @@ namespace UnityEngine.EventSystems {
             var shouldActivate = m_ForceModuleActive;
             shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_SubmitButton);
             shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_CancelButton);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.axesConfig.GetAxesRaw(_HorizontalAxes), 0.0f);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.axesConfig.GetAxesRaw(_VerticalAxes), 0.0f);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxesRaw(_HorizontalAxes), 0.0f);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxesRaw(_VerticalAxes), 0.0f);
             if (m_EnableMouse) {
                 shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
                 shouldActivate |= input.GetMouseButtonDown(0);
@@ -281,15 +281,15 @@ namespace UnityEngine.EventSystems {
         private Vector2 GetRawMoveVector() {
             Vector2 move = Vector2.zero;
             //move.x = input.GetAxisRaw(m_HorizontalAxis);
-            move.x = InputManager.Instance.axesConfig.GetAxesRaw(_HorizontalAxes);
-            move.y = InputManager.Instance.axesConfig.GetAxesRaw(_VerticalAxes);
-            if (InputManager.Instance.axesConfig.GetAxesDown(_HorizontalAxes)) {
+            move.x = InputManager.Instance.keyConfig.GetAxesRaw(_HorizontalAxes);
+            move.y = InputManager.Instance.keyConfig.GetAxesRaw(_VerticalAxes);
+            if (InputManager.Instance.keyConfig.GetKeyDown(_HorizontalAxes)) {
                 if (move.x < 0)
                     move.x = -1f;
                 if (move.x > 0)
                     move.x = 1f;
             }
-            if (InputManager.Instance.axesConfig.GetAxesDown(_VerticalAxes)) {
+            if (InputManager.Instance.keyConfig.GetKeyDown(_VerticalAxes)) {
                 if (move.y < 0)
                     move.y = -1f;
                 if (move.y > 0)
@@ -311,7 +311,7 @@ namespace UnityEngine.EventSystems {
             }
 
             // If user pressed key again, always allow event
-            bool allow = InputManager.Instance.axesConfig.GetAxesDown(_HorizontalAxes) || InputManager.Instance.axesConfig.GetAxesDown(_VerticalAxes);
+            bool allow = InputManager.Instance.keyConfig.GetKeyDown(_HorizontalAxes) || InputManager.Instance.keyConfig.GetKeyDown(_VerticalAxes);
             bool similarDir = (Vector2.Dot(movement, m_LastMoveVector) > 0);
             if (!allow) {
                 // Otherwise, user held down key or axis.

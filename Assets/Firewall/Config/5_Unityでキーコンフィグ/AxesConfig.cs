@@ -33,9 +33,6 @@ public class AxesConfig {
         if (string.IsNullOrEmpty(axesName) || axesList.Count < 1)
             return false;
         axesConfig[axesName] = axesList;
-        Debug.LogWarning(axesConfig.Count + "__" + axesName);
-        Debug.LogWarning("Name.Code__" + axesName + "." + axesList[0]);//対応キー名:対応入力キー
-        Debug.LogWarning("Name.Code__" + axesName + "." + axesList[1]);//対応キー名:対応入力キー
         return true;
     }//SetAxes
 

@@ -13,8 +13,8 @@ public class KeyConfigTest : MonoBehaviour {
     private void Start() {
         Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.NormalJump.String,KeyConfig.KeyType.KeyBoard));
         Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.NormalJump.String, KeyConfig.KeyType.JoyStick));
-        Debug.Log(InputManager.Instance.axesConfig.GetInputAxesCodeCheck(Axes.Horizontal.String,AxesConfig.AxesType.Positive));
-        Debug.Log(InputManager.Instance.axesConfig.GetInputAxesCodeCheck(Axes.Horizontal.String, AxesConfig.AxesType.Negative));
+        //Debug.Log(InputManager.Instance.axesConfig.GetInputAxesCodeCheck(Axes.Horizontal.String,AxesConfig.AxesType.Positive));
+        //Debug.Log(InputManager.Instance.axesConfig.GetInputAxesCodeCheck(Axes.Horizontal.String, AxesConfig.AxesType.Negative));
        
     }
 
@@ -22,7 +22,7 @@ public class KeyConfigTest : MonoBehaviour {
         //if (Input.GetKeyDown(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Cancel.String))) {
         //    Debug.Log("kakunin");
         //}
-        Debug.Log(InputManager.Instance.axesConfig.GetAxesDown(Axes.Horizontal.String));
+        //Debug.Log(InputManager.Instance.axesConfig.GetAxesDown(Axes.Horizontal.String));
     }
 
 }

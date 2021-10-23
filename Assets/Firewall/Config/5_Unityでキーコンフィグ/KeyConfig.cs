@@ -14,16 +14,16 @@ using UnityEngine;
 /// </summary>
 public class KeyConfig {
     public static Dictionary<string, List<KeyCode>> keyConfig = new Dictionary<string, List<KeyCode>>();
-    private readonly string keyConfigFilePath;
+    private readonly string keyConfigFilePath = "keyconf.dat";
 
 
-    /// <summary>
-    /// Keyコンフィグを管理するクラスを生成する
-    /// </summary>
-    /// <param name="keyConfigFilePath">Keyコンフィグファイルのパス</param>
-    public KeyConfig(string keyConfigFilePath) {
-        this.keyConfigFilePath = keyConfigFilePath;
-    }//KeyCOnfig
+    ///// <summary>
+    ///// Keyコンフィグを管理するクラスを生成する
+    ///// </summary>
+    ///// <param name="keyConfigFilePath">Keyコンフィグファイルのパス</param>
+    //public KeyConfig(string keyConfigFilePath) {
+    //    this.keyConfigFilePath = keyConfigFilePath;
+    //}//KeyCOnfig
 
 
     /// <summary>
@@ -231,4 +231,25 @@ public class KeyConfig {
         using (TextWriter tw = new StreamWriter(keyConfigFilePath, false, Encoding.UTF8))
             tw.Write(jsonText);
     }//SaveKeyConfigFile
+
+
+    public void SetDefaultConfig() {
+        foreach(KeyValuePair<string,List<KeyCode>> keyInfo in _defaultKeyCode) {
+            SetKey(keyInfo.Key, keyInfo.Value);
+        }
+        SaveKeyConfigFile();
+    }
+
+    Dictionary<string, List<KeyCode>> _defaultKeyCode = new Dictionary<string, List<KeyCode>>() {
+        {"NormalJump", new List<KeyCode> { KeyCode.J, KeyCode.JoystickButton0 } },
+        {"FlipJump", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 }},
+        {"Attack", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 } },
+        {"Pause", new List<KeyCode> { KeyCode.H, KeyCode.JoystickButton9 } },
+        {"Horizontal", new List<KeyCode> { KeyCode.A, KeyCode.D } },
+        {"Vertical", new List<KeyCode> { KeyCode.S, KeyCode.W } },
+        {"Submit", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 } },
+        {"Cancel", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 } }
+    };
+
+
 }

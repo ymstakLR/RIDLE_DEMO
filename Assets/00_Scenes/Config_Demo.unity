@@ -1033,8 +1033,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Config, Assembly-CSharp
+      - m_Target: {fileID: 2066153389}
+        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
         m_MethodName: DefaultButton
         m_Mode: 1
         m_Arguments:
@@ -7970,7 +7970,7 @@ GameObject:
   - component: {fileID: 2066153390}
   - component: {fileID: 2066153389}
   m_Layer: 0
-  m_Name: ButtonInfo
+  m_Name: ButtonCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

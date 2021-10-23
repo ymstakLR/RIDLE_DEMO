@@ -174,12 +174,9 @@ public static class InputManagerDataEdit {
     /// <param name="inputType">現在の入力値のInputDataType</param>
     public static void ConfigDataUpdate(
         string targetAxesName, KeyCode changeKeyCode, KeyCode nowInputKeyCode, int inputType) {
-
-        Debug.Log(changeKeyCode + "__" + nowInputKeyCode);
         if (changeKeyCode == nowInputKeyCode) {//変更前・後共に同じ入力値の場合
             return;
         }
-        Debug.Log(inputType);
         switch (inputType) {
             case 0:
             case 1:
@@ -203,7 +200,7 @@ public static class InputManagerDataEdit {
             InputManagerDataEdit.InputDataType inputDataType;
             (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
             axesName = InputManagerDataEdit.GetConficButtonKeyCode(axesName, inputDataType).ToString();
-            childTransform.GetChild(0).GetComponent<Text>().text = EditText_InputKeyCodeText_To_AxesButtonText(axesName.ToLower());
+            childTransform.GetChild(0).GetComponent<Text>().text = EditText_InputKeyCodeText_To_AxesButtonText(axesName.ToLower()).ToUpper();
         }//foreach
     }//ConfigButtonsTextUpdate
 
@@ -304,8 +301,7 @@ public static class InputManagerDataEdit {
         text = text.Replace("command", " cmd");//Commandキー
         text = text.Replace("sys", "sys ");//PRTSCキー
         text = text.Replace("scroll", "scroll ");//SCRLKキー
-        text = text.Replace("joystickbutton", "joystick button ");//コントローラキー
-        text = text.Replace("Joystick", "");
+        text = text.Replace("joystickbutton", "button");//コントローラキー
         if (text.Contains("keypad")){
             text = text.Replace("keypad","");
             switch (text) {

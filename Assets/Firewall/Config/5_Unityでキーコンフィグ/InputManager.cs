@@ -63,26 +63,6 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             return inputManager.keyConfig.RemoveKey(key.String);
         }
 
-        ///// <summary>
-        ///// 押されているキーを名前文字列に対するキーとして設定する
-        ///// </summary>
-        ///// <param name="key">キーに割り付ける名前</param>
-        ///// <returns>キーコードの設定が正常に完了したかどうか</returns>
-        //public bool SetCurrentKey(Key key) {
-        //    //HACK:マウス入力も受け付けるようにするべきなので今後改善
-        //    //マウス{0~6}の入力を弾く
-        //    var currentInput = GetCurrentInputKeyCode().Where(c => c < KeyCode.Mouse0 || KeyCode.Mouse6 < c).ToList();
-        //    if (currentInput == null || currentInput.Count < 1)
-        //        return false;
-        //    var code = inputManager.keyConfig.GetKeyCode(key.String);
-        //    Debug.LogWarning("code__"+currentInput[0]);//入力キー
-        //    //既に設定されているキーと一部でも同じキーが押されている場合
-        //    if (code.Count > currentInput.Count && currentInput.All(k => code.Contains(k)))
-        //        return false;
-        //    RemoveKey(key);
-        //    return SetKey(key, currentInput);
-        //}
-
         /// <summary>
         /// デフォルトのキー設定を適用する
         /// </summary>
@@ -102,29 +82,6 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             return inputManager.keyConfig.SetKey(key.String, keyCode);
         }
 
-
-        //public void SetDefaultAxesConfig() {
-        //    foreach(var axes in Axes.AllAxesData) {
-        //        SetAxes(axes, axes.DefaultKeyCode);
-        //    }
-        //}
-
-        //public bool SetAxes(Axes key, List<KeyCode> keyCode) {
-        //    return inputManager.axesConfig.SetAxes(key.String, keyCode);
-        //}
-
-        //public void LoadSetting() {
-        //    InputManager.Instance.axesConfig.LoadAxesConfigFile();
-        //}
-
-        public void SaveSetting() {
-            InputManager.Instance.keyConfig.SaveKeyConfigFile();
-        }
-
-        //public KeyCode KeyCodeCheck(string keyName) {
-        //    return InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String);
-        //} 
-
     }
 
     #endregion InnerClass
@@ -132,15 +89,11 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
     /// <summary>
     /// 使用するキーコンフィグ
     /// </summary>
-    public KeyConfig keyConfig = new KeyConfig(ExternalFilePath.KEYCONFIG_PATH);
-    //public AxesConfig axesConfig = new AxesConfig(ExternalFilePath.AXESCONFIG_PATH);
+    public KeyConfig keyConfig = new KeyConfig();
 
     public void Awake() {
-        Debug.LogError("InputManager.cs_Awake");
-
         //最初はデフォルトの設定をコンフィグに格納
         KeyConfigSetting.Instance.SetDefaultKeyConfig();
-        //KeyConfigSetting.Instance.SetDefaultAxesConfig();
         //コンフィグファイルがあれば読み出す
         try {
             InputManager.Instance.keyConfig.LoadKeyConfigFile();
@@ -148,28 +101,9 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
             Debug.Log(e.Message);
             InputManager.Instance.keyConfig.SaveKeyConfigFile();
         }
-        //try {
-        //    InputManager.Instance.axesConfig.LoadAxesConfigFile();
-        //} catch (IOException e) {
-        //    Debug.Log(e.Message);
-        //    InputManager.Instance.axesConfig.SaveAxesConfigFile();
-        //}
-
-
     }
 
     public void Update() {
-
-        //if (Input.GetKeyDown(KeyCode.Alpha1)) {
-        //    InputManager.Instance.keyConfig.CheckKeyConfig();
-        //}
-        //KeyConfigSetting.Instance.SetCurrentKey(Key.Cancel)//キー入力したとき引数のキーの対応入力キーを変更する//データ保存はされない
-        //if (Input.GetKeyDown(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String))) {
-        //    Debug.Log(InputManager.Instance.keyConfig.GetInputKeyCodeCheck(Key.Submit.String));
-        //}
-
-        //Debug.Log(GetAxesRaw(Axes.Horizontal));
-
     }
 
 
@@ -199,19 +133,4 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
         return keyConfig.GetKeyUp(key.String);
     }
 
-    ///// <summary>
-    ///// 軸入力に対する値を返す
-    ///// </summary>
-    ///// <returns>入力値</returns>
-    //internal float GetAxes(Axes axes) {
-    //    return Input.GetAxis(axes.String);
-    //}
-
-    ///// <summary>
-    ///// 軸入力に対する値を返す
-    ///// </summary>
-    ///// <returns>平滑化フィルターが適用されていない入力値</returns>
-    //internal float GetAxesRaw(Axes axes) {
-    //    return Input.GetAxisRaw(axes.String);
-    //}
 }

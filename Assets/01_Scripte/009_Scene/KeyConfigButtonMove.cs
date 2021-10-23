@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System;
 
 /// <summary>
@@ -19,6 +20,10 @@ public class KeyConfigButtonMove : MonoBehaviour {
 
     private bool _isInputKeyUpdatePossible;
 
+    private CustomStandaloneInputModule _inputModule;
+    private KeyCode _changeKeyCode = KeyCode.None;
+
+
     private enum InputType {
         keyButton= 0,
         joystickButton= 1,
@@ -29,12 +34,16 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private InputType _isInputType;
 
     private void Awake() {
+        _inputModule = GameObject.Find("EventSystem").GetComponent<CustomStandaloneInputModule>();
         _isInputType = InputType.none;
         InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
         InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
     }//Awake
 
     private void Update() {
+        if(_isInputType ==InputType.none && Input.GetKeyUp(_changeKeyCode)) {
+            _inputModule.isKeyInvalid = false;
+        }
         if (_isInputType!=InputType.none) {
             if (InputManager.Instance.keyConfig.GetKeyUp(Key.Submit.String)) {
                 _isInputKeyUpdatePossible = true;
@@ -129,7 +138,6 @@ public class KeyConfigButtonMove : MonoBehaviour {
         string axesButtonText = InputManagerDataEdit.EditText_InputKeyCodeText_To_AxesButtonText(code.ToString().ToLower());//入力文字変換
         if (InputManagerDataEdit.GetNonTargetTextCheck_AxesButton(axesButtonText))//対象外文字の選別
             return;
-        //Debug.Log("axesButtonText__" + axesButtonText+"__code__"+code);
         ConfigUpdate(code);
     }//ConfigUpdateCheck
 
@@ -144,7 +152,8 @@ public class KeyConfigButtonMove : MonoBehaviour {
         KeyCode nowInputKeyCode = InputManagerDataEdit.GetConficButtonKeyCode(axesNameText, nowInputValueType);
 
         InputManagerDataEdit.ConfigDataUpdate(axesNameText, changeKeyCode,nowInputKeyCode, (int)_isInputType);
-        //InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
 
         _inputButton.GetComponent<Animator>().enabled = true;
         _inputButton.GetComponent<Image>().color = Color.red;
@@ -152,17 +161,20 @@ public class KeyConfigButtonMove : MonoBehaviour {
         _inputButton.GetComponent<Selectable>().Select();
         _isInputType = InputType.none;
         _isInputKeyUpdatePossible = false;
-        InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
-        InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
+        _inputModule.isKeyInvalid = true;
+        _changeKeyCode = changeKeyCode;
     }//ConfigUpdate
 
     /// <summary>
     /// Defaultボタンが押された際の処理
     /// </summary>
     public void DefaultButton() {
-        SaveManager.InputDataDelete();
-        //InputManagerDataEdit.InputDataUpdate();
-        InputManagerDataEdit.ConfigButtonsTextUpdate(this.gameObject);
+        KeyConfig keyConfig = new KeyConfig();
+        keyConfig.SetDefaultConfig();
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
+        InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
+        //_inputModule.isKeyInvalid = true;
+        //_isInputType = InputType.none;
     }//DefaultButton
 
 }//KeyConfigButtonMove

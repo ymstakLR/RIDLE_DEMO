@@ -68,7 +68,6 @@ public class SceneChange : MonoBehaviour {
     /// 一つ前の遷移に戻る処理
     /// </summary>
     public void BackSceneChange(bool isBackSE) {
-        this.GetComponent<ButtonInfo>().ButtonInteractable(false);
         BackSceneJudge(isBackSE);
     }//MainChange
 

@@ -17,7 +17,6 @@ namespace MBLDefine {
     /// </summary>
     internal struct ExternalFilePath {
         internal const string KEYCONFIG_PATH = "keyconf.dat";
-        //internal const string AXESCONFIG_PATH = "axesconf.dat";
     }
 
     /// <summary>
@@ -37,12 +36,11 @@ namespace MBLDefine {
     internal sealed class Key : InputValue {
         public readonly List<KeyCode> DefaultKeyCode;
         public readonly static List<Key> AllKeyData = new List<Key>();
-
         private Key(string keyName, List<KeyCode> defaultKeyCode)
             : base(keyName) {
             DefaultKeyCode = defaultKeyCode;
-            //Debug.Log("this_" + this);//Action,Balloon...
             AllKeyData.Add(this);
+            
         }
 
         public override string ToString() {
@@ -60,24 +58,31 @@ namespace MBLDefine {
         public static readonly Key Cancel = new Key("Cancel", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 });
     }
 
-    ///// <summary>
-    ///// 使用する軸入力を表すクラス
-    ///// </summary>
-    //internal sealed class Axes : InputValue {
-    //    public readonly List<KeyCode> DefaultKeyCode;
-    //    public readonly static List<Axes> AllAxesData = new List<Axes>();
+    /// <summary>
+    /// 使用するキーを表すクラス
+    /// </summary>
+    internal sealed class DefalutKey : InputValue {
+        public readonly List<KeyCode> DefaultKeyCode;
+        public readonly static List<DefalutKey> AllKeyData = new List<DefalutKey>();
+        private DefalutKey(string keyName, List<KeyCode> defaultKeyCode)
+            : base(keyName) {
+            DefaultKeyCode = defaultKeyCode;
+            AllKeyData.Add(this);
 
-    //    private Axes(string axesName,List<KeyCode> defalutKeyCode)
-    //        : base(axesName) {
-    //        DefaultKeyCode = defalutKeyCode;
-    //        AllAxesData.Add(this);
-    //    }
+        }
 
-    //    public override string ToString() {
-    //        return String;
-    //    }
+        public override string ToString() {
+            return String;
+        }
 
-    //    public static Axes Horizontal = new Axes("Horizontal",new List<KeyCode> {KeyCode.LeftArrow, KeyCode.RightArrow });
-    //    public static Axes Vertical = new Axes("Vertical", new List<KeyCode> { KeyCode.DownArrow, KeyCode.UpArrow } );
-    //}
+        private static readonly DefalutKey NormalJump = new DefalutKey("NormalJump", new List<KeyCode> { KeyCode.J, KeyCode.JoystickButton0 });
+        private static readonly DefalutKey FlipJump = new DefalutKey("FlipJump", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 });
+        private static readonly DefalutKey Attack = new DefalutKey("Attack", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 });
+        private static readonly DefalutKey Pause = new DefalutKey("Pause", new List<KeyCode> { KeyCode.H, KeyCode.JoystickButton9 });
+        private static readonly DefalutKey Horizontal = new DefalutKey("Horizontal", new List<KeyCode> { KeyCode.A, KeyCode.D });
+        private static readonly DefalutKey Vertical = new DefalutKey("Vertical", new List<KeyCode> { KeyCode.S, KeyCode.W });
+
+        private static readonly DefalutKey Submit = new DefalutKey("Submit", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 });
+        private static readonly DefalutKey Cancel = new DefalutKey("Cancel", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 });
+    }
 }

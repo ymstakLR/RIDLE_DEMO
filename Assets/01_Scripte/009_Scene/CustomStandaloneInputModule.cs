@@ -36,6 +36,12 @@ namespace UnityEngine.EventSystems {
         [FormerlySerializedAs("m_AllowActivationOnMobileDevice")]
         private bool m_ForceModuleActive;
 
+        private bool _isKeyMovement;
+        public bool isKeyInvalid {
+            get { return _isKeyMovement; }
+            set { _isKeyMovement = value; }
+        }
+
         public bool enableMouse {
             get { return m_EnableMouse; }
             set { m_EnableMouse = value; }
@@ -129,12 +135,12 @@ namespace UnityEngine.EventSystems {
         }
 
         public override void Process() {
-            bool usedEvent = SendUpdateEventToSelectedObject();
-
+            //bool usedEvent = SendUpdateEventToSelectedObject();
+            bool usedEvent = _isKeyMovement;
+            Debug.Log(usedEvent);
             if (eventSystem.sendNavigationEvents) {
                 if (!usedEvent)
                     usedEvent |= SendMoveEventToSelectedObject();
-
                 if (!usedEvent)
                     SendSubmitEventToSelectedObject();
             }
@@ -477,5 +483,7 @@ namespace UnityEngine.EventSystems {
         protected GameObject GetCurrentFocusedGameObject() {
             return m_CurrentFocusedGameObject;
         }
+
     }
+
 }

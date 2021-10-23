@@ -135,9 +135,7 @@ namespace UnityEngine.EventSystems {
         }
 
         public override void Process() {
-            //bool usedEvent = SendUpdateEventToSelectedObject();
             bool usedEvent = _isKeyMovement;
-            Debug.Log(usedEvent);
             if (eventSystem.sendNavigationEvents) {
                 if (!usedEvent)
                     usedEvent |= SendMoveEventToSelectedObject();

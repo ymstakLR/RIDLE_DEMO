@@ -68,6 +68,10 @@ public class SceneChange : MonoBehaviour {
     /// 一つ前の遷移に戻る処理
     /// </summary>
     public void BackSceneChange(bool isBackSE) {
+        if (Input.anyKeyDown) {
+            Debug.Log("Input.anyKeyDown");
+        }
+        
         BackSceneJudge(isBackSE);
     }//MainChange
 

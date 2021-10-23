@@ -43,6 +43,10 @@ public class KeyConfigButtonMove : MonoBehaviour {
     private void Update() {
         if(_isInputType ==InputType.none && Input.GetKeyUp(_changeKeyCode)) {
             _inputModule.isKeyInvalid = false;
+            _inputButton.GetComponent<Button>().interactable = true;
+            _inputButton.GetComponent<Selectable>().Select();
+            _changeKeyCode = KeyCode.None;
+
         }
         if (_isInputType!=InputType.none) {
             if (InputManager.Instance.keyConfig.GetKeyUp(Key.Submit.String)) {
@@ -168,13 +172,15 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// <summary>
     /// DefaultÉ{É^ÉìÇ™âüÇ≥ÇÍÇΩç€ÇÃèàóù
     /// </summary>
-    public void DefaultButton() {
+    public void DefaultButton(GameObject inputObject) {
         KeyConfig keyConfig = new KeyConfig();
         keyConfig.SetDefaultConfig();
         InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
         InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
-        //_inputModule.isKeyInvalid = true;
-        //_isInputType = InputType.none;
+        _inputButton = inputObject;
+        _inputButton.GetComponent<Button>().interactable = false;
+        _changeKeyCode = GetInputKeyCode();
+        _isInputType = InputType.none;
     }//DefaultButton
 
 }//KeyConfigButtonMove

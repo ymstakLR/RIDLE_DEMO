@@ -104,8 +104,8 @@ namespace UnityEngine.EventSystems {
             var shouldActivate = m_ForceModuleActive;
             shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_SubmitButton);
             shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_CancelButton);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxesRaw(_HorizontalAxes), 0.0f);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxesRaw(_VerticalAxes), 0.0f);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxisRaw(_HorizontalAxes), 0.0f);
+            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxisRaw(_VerticalAxes), 0.0f);
             if (m_EnableMouse) {
                 shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
                 shouldActivate |= input.GetMouseButtonDown(0);
@@ -285,8 +285,8 @@ namespace UnityEngine.EventSystems {
         private Vector2 GetRawMoveVector() {
             Vector2 move = Vector2.zero;
             //move.x = input.GetAxisRaw(m_HorizontalAxis);
-            move.x = InputManager.Instance.keyConfig.GetAxesRaw(_HorizontalAxes);
-            move.y = InputManager.Instance.keyConfig.GetAxesRaw(_VerticalAxes);
+            move.x = InputManager.Instance.keyConfig.GetAxisRaw(_HorizontalAxes);
+            move.y = InputManager.Instance.keyConfig.GetAxisRaw(_VerticalAxes);
             if (InputManager.Instance.keyConfig.GetKeyDown(_HorizontalAxes)) {
                 if (move.x < 0)
                     move.x = -1f;

@@ -38,19 +38,6 @@ public static class SaveManager {
     }//UnlockDataStruct
     public static UnlockDataStruct unlockDataStruct;
     private const string UNLOCK_FILE ="unlockData.json";
-    //Inputデータ用情報
-    public struct InputDataStruct {
-        public List<string> nameList;
-        public List<string> negativeButtonList;
-        public List<string> positiveButtonList;
-        public List<string> altPositionButtonList;
-        public List<string> invertList;
-        public List<string> typeList;
-        public List<string> axisList;
-    }//InputDataStruct
-    public static InputDataStruct inputDataStruct;
-    private const string INPUT_FILE = "inputData.json";
-    private const int AXES_SIZE_NUM = 12;
 
 
     /// <summary>
@@ -61,9 +48,9 @@ public static class SaveManager {
         string path = "";
         #if UNITY_EDITOR
             path = Directory.GetCurrentDirectory() + SAVE_DATA_PATH;
-#else
+        #else
             path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');    
-#endif
+#       endif
         return path;
     }//SaveFilePathSetting
 
@@ -87,11 +74,6 @@ public static class SaveManager {
         } else {
             UnlockDataCreate();
         }//if
-        if (File.Exists(path + INPUT_FILE)) {
-            DataLoad(INPUT_FILE);
-        } else {
-            InputDataCreate();
-        }//if
     }//DataInit
 
     /// <summary>
@@ -111,9 +93,6 @@ public static class SaveManager {
                 break;
             case UNLOCK_FILE:
                 unlockDataStruct = JsonUtility.FromJson<UnlockDataStruct>(json);
-                break;
-            case INPUT_FILE:
-                inputDataStruct = JsonUtility.FromJson<InputDataStruct>(json);
                 break;
         }//switch
         reader.Close();
@@ -188,39 +167,6 @@ public static class SaveManager {
     }//UnlockDataCreate
 
     /// <summary>
-    /// Inputデータの初期化処理
-    /// </summary>
-    private static void InputDataCreate() {
-        inputDataStruct = new InputDataStruct();
-        List<string> nameList = new List<string>();
-        List<string> nButtonList = new List<string>();
-        List<string> pButtonList = new List<string>();
-        List<string> apButtonList = new List<string>();
-        List<string> invertList = new List<string>();
-        List<string> typeList = new List<string>();
-        List<string> axisList = new List<string>();
-        for (int i = 0; i < AXES_SIZE_NUM; i++) {
-            InputManagerDataInitialSetting.DefaultNameInsert(nameList, i);
-            InputManagerDataInitialSetting.DefaultNegativeButtonInsert(nButtonList, i);
-            InputManagerDataInitialSetting.DefaultPositiveButtonInsert(pButtonList, i);
-            InputManagerDataInitialSetting.DefaultAltPositiveButtonInsert(apButtonList, i);
-            InputManagerDataInitialSetting.DefaultInvert(invertList, i);
-            InputManagerDataInitialSetting.DefaultType(typeList, i);
-            InputManagerDataInitialSetting.DefaultAxis(axisList, i);
-        }//for
-        inputDataStruct.nameList = nameList;
-        inputDataStruct.negativeButtonList = nButtonList;
-        inputDataStruct.positiveButtonList = pButtonList;
-        inputDataStruct.altPositionButtonList = apButtonList;
-        inputDataStruct.invertList = invertList;
-        inputDataStruct.typeList = typeList;
-        inputDataStruct.axisList = axisList;
-        string jsonData = JsonUtility.ToJson(inputDataStruct, true);
-        DataSave(jsonData, INPUT_FILE);
-    }//InputDataCreate
-
-
-    /// <summary>
     /// ステージデータ更新処理
     /// </summary>
     /// <param name="list">データ更新するリスト</param>
@@ -257,22 +203,6 @@ public static class SaveManager {
         DataSave(jsonData, UNLOCK_FILE);
     }//UnlockDataUpdate
 
-    /// <summary>
-    /// InputDataの更新処理
-    /// </summary>
-    /// <param name="list">データ更新するリスト</param>
-    public static void InputDataUpdate(List<List<string>> list) {
-        inputDataStruct.nameList = list[0];
-        inputDataStruct.negativeButtonList = list[1];
-        inputDataStruct.positiveButtonList = list[2];
-        inputDataStruct.altPositionButtonList = list[3];
-        inputDataStruct.invertList = list[4];
-        inputDataStruct.typeList = list[5];
-        inputDataStruct.axisList = list[6];
-        string jsonData = JsonUtility.ToJson(inputDataStruct, true);
-        DataSave(jsonData, INPUT_FILE);
-    }//InputDataUpdate
-
 
     /// <summary>
     /// ステージデータを削除する処理
@@ -289,13 +219,5 @@ public static class SaveManager {
         File.Delete(SaveFilePathSetting() + UNLOCK_FILE);
         UnlockDataCreate();
     }//UnlockDataDelete
-
-    /// <summary>
-    /// InputDataを削除する処理
-    /// </summary>
-    public static void InputDataDelete() {
-        File.Delete(SaveFilePathSetting() + INPUT_FILE);
-        InputDataCreate();
-    }//InputDataDelete
 
 }//SaveManager

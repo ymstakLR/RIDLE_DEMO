@@ -120,7 +120,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Expression\CubismExpressionPreview.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismDisplayInfo3Json.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismParameterExtensionMethods.cs" />
-    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\Receiver_EH1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismCoreDll.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\UserData\CubismUserDataBody.cs" />
     <Compile Include="Assets\Firewall\Config\KeyConfigTest2.cs" />
@@ -139,14 +138,12 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedParameters.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Motion\CubismMotionPriority.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedDrawables.cs" />
-    <Compile Include="Assets\Firewall\Config\1_UnityでEventHandler使ってみた\Move.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\Score.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderTrigger.cs" />
     <Compile Include="Assets\Firewall\Config\KeyConfig_1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\Raycasting\RaycastHitDisplay.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\DamegeBoll_Parabola.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerUnderTriggerPE.cs" />
-    <Compile Include="Assets\Firewall\Config\3_【Unity】 ActionとEventを勉強した手順\Practice.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\LookAt\Billboarder.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\StageTime.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycastablePrecision.cs" />
@@ -168,7 +165,6 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy9.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsNormalization.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemyUnderTrigger.cs" />
-    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\Receiver_EH.cs" />
     <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\InputManager.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\ItemProperty.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsMath.cs" />
@@ -190,7 +186,6 @@
     <Compile Include="Assets\01_Scripte\009_Scene\Retray.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Raycasting\CubismRaycaster.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRenderer.cs" />
-    <Compile Include="Assets\Firewall\Config\3_【Unity】 ActionとEventを勉強した手順\Practice1.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Pose\CubismPosePart.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskRendererExtensionMethods.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\ObjectAppearanceManager.cs" />
@@ -208,13 +203,11 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedMemory.cs" />
     <Compile Include="Assets\Firewall\Config\SettingManager_1.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerManager.cs" />
-    <Compile Include="Assets\Firewall\Config\4_【Unity】Event関連の一体どいつがイベントハンドラー、Sender、Receiverなのか\Sender.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismRenderController.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\Supporter1.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\MovingRock_Side.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismDisplayInfoParameterName.cs" />
     <Compile Include="Assets\Firewall\Config\KeyConfig2.cs" />
-    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\EventTest_EH.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy1.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Tasking\CubismBuiltinAsyncTaskHandler.cs" />
@@ -226,11 +219,9 @@
     <Compile Include="Assets\01_Scripte\009_Scene\Initialize.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\ICubismFadeState.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTile.cs" />
-    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\InputEventManager.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\GenerateDamageObjBase.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\LookAt\ICubismLookTarget.cs" />
     <Compile Include="Assets\01_Scripte\011_SaveData\StageDataEdit.cs" />
-    <Compile Include="Assets\01_Scripte\011_SaveData\InputManagerDataInitialSetting.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\CubismEyeBlinkParameter.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\CubismParameter.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\KeyItemPositionChange.cs" />
@@ -245,13 +236,11 @@
     <Compile Include="Assets\01_Scripte\010_Base\BaseUnderTrigger.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerWork.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\EnemyTypeA.cs" />
-    <Compile Include="Assets\Firewall\Config\2_EventHandlerを使用して呼び出す方法\EventTest_EH1.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\RotatingArrow.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MouthMovement\CubismAudioMouthInput.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysics.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadePlayingMotion.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\Drill.cs" />
-    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\KeyConfigTest.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedModel.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy1FireBall.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\ButtonInfo.cs" />
@@ -275,8 +264,7 @@
     <Compile Include="Assets\01_Scripte\009_Scene\StageStartInitialize.cs" />
     <Compile Include="Assets\01_Scripte\004_Gimmick\DigonalCannon.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\Masking\CubismMaskTexture.cs" />
-    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\KeyConfig.cs" />
-    <Compile Include="Assets\Firewall\Config\1_UnityでEventHandler使ってみた\Jump.cs" />
+    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\Config.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeCurveType.cs" />
     <Compile Include="Assets\01_Scripte\009_Scene\GameStartInit.cs" />
     <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\MBDefine.cs" />
@@ -306,7 +294,6 @@
     <Compile Include="Assets\01_Scripte\009_Scene\SceneChange.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\BossEnemy\BossEnemy2.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\ArrayExtensionMethods.cs" />
-    <Compile Include="Assets\Firewall\Config\1_UnityでEventHandler使ってみた\Player.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Expression\CubismExpressionController.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Samples\OriginalWorkflow\Motion\CubismMotionPreview.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\MotionFade\CubismFadeController.cs" />
@@ -314,7 +301,6 @@
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismJsonParser.cs" />
     <Compile Include="Assets\01_Scripte\001_Player\PlayerMiss.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Rendering\CubismShaderVariables.cs" />
-    <Compile Include="Assets\Firewall\Config\4_【Unity】Event関連の一体どいつがイベントハンドラー、Sender、Receiverなのか\Receiver.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Core\Unmanaged\CubismUnmanagedMoc.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Json\CubismBuiltinPickers.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\HarmonicMotion\CubismHarmonicMotionController.cs" />

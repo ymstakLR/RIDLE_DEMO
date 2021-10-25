@@ -183,16 +183,16 @@ public class PlayerWork : MonoBehaviour {
     /// <returns>対応する入力キー</returns>
     private float OperationKeyChange() {
         if(_pJump.IsFlipJumpFall)//左右重力でFlipJumpをして落下する場合
-            return InputManager.Instance.keyConfig.GetAxesRaw(Key.Horizontal.String);
+            return InputManager.Instance.keyConfig.GetAxisRaw(Key.Horizontal.String);
         switch (this.transform.localEulerAngles.z) {
             case 0:
-                return InputManager.Instance.keyConfig.GetAxesRaw(Key.Horizontal.String);
+                return InputManager.Instance.keyConfig.GetAxisRaw(Key.Horizontal.String);
             case 90:
-                return InputManager.Instance.keyConfig.GetAxesRaw(Key.Vertical.String);
+                return InputManager.Instance.keyConfig.GetAxisRaw(Key.Vertical.String);
             case 180:
-                return -InputManager.Instance.keyConfig.GetAxesRaw(Key.Horizontal.String);
+                return -InputManager.Instance.keyConfig.GetAxisRaw(Key.Horizontal.String);
             case 270:
-                return -InputManager.Instance.keyConfig.GetAxesRaw(Key.Vertical.String);
+                return -InputManager.Instance.keyConfig.GetAxisRaw(Key.Vertical.String);
             default:
                 return 0;
         }//switch

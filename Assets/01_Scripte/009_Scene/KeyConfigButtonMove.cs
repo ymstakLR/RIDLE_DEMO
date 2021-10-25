@@ -173,8 +173,9 @@ public class KeyConfigButtonMove : MonoBehaviour {
     /// Defaultƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½Û‚Ìˆ—
     /// </summary>
     public void DefaultButton(GameObject inputObject) {
-        KeyConfig keyConfig = new KeyConfig();
+        Config keyConfig = new Config();
         keyConfig.SetDefaultConfig();
+        keyConfig.SaveKeyConfigFile();
         InputManagerDataEdit.ConfigButtonsTextUpdate(_axesButtonCanvas);
         InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
         _inputButton = inputObject;

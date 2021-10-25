@@ -11,146 +11,8 @@ using UnityEngine.UI;
 /// 更新日時:20211006
 /// </summary>
 public static class InputManagerDataEdit {
-    public static List<List<string>> _inputData = new List<List<string>>();
-
-    public static List<string> _nameList;
-    public static List<string> _negativeButtonList;
-    public static List<string> _positiveButtonList;
-    public static List<string> _altPositionButtonList;
-    public static List<string> _invertList;
-    public static List<string> _typeList;
-    public static List<string> _axisList;
 
 ///保存データ関連の処理についての処理
-
-    /// <summary>
-    /// InputDataの読み込み処理
-    /// </summary>
-    private static void InputDataLoad() {
-        _nameList = new List<string>();
-        _nameList.AddRange(SaveManager.inputDataStruct.nameList);
-        _negativeButtonList = new List<string>();
-        _negativeButtonList.AddRange(SaveManager.inputDataStruct.negativeButtonList);
-        _positiveButtonList = new List<string>();
-        _positiveButtonList.AddRange(SaveManager.inputDataStruct.positiveButtonList);
-        _altPositionButtonList = new List<string>();
-        _altPositionButtonList.AddRange(SaveManager.inputDataStruct.altPositionButtonList);
-        _invertList = new List<string>();
-        _invertList.AddRange(SaveManager.inputDataStruct.invertList);
-        _typeList = new List<string>();
-        _typeList.AddRange(SaveManager.inputDataStruct.typeList);
-        _axisList = new List<string>();
-        _axisList.AddRange(SaveManager.inputDataStruct.axisList);
-    }//InputDataLoad
-
-    /// <summary>
-    /// InputDataの保存処理
-    /// </summary>
-    private static void InputDataSave() {
-        _inputData.Insert(0, _nameList);
-        _inputData.Insert(1, _negativeButtonList);
-        _inputData.Insert(2, _positiveButtonList);
-        _inputData.Insert(3, _altPositionButtonList);
-        _inputData.Insert(4, _invertList);
-        _inputData.Insert(5, _typeList);
-        _inputData.Insert(6, _axisList);
-        SaveManager.InputDataUpdate(_inputData);
-    }//InputDataSave
-
-    /// <summary>
-    /// Axesキーを作成する処理
-    /// </summary>
-    private static InputAxis CreateInputAxis(int i) {
-        var axis = new InputAxis();
-        axis.name = _nameList[i];
-        axis.negativeButton = _negativeButtonList[i];
-        axis.positiveButton = _positiveButtonList[i];
-        axis.altPositiveButton = _altPositionButtonList[i];
-        axis.gravity = 1000;
-        axis.dead = 0.2f;
-        axis.sensitivity = 1;
-        if (_invertList[i].ToLower() == "true") {
-            axis.invert = true;
-        }//if
-        if (_typeList[i] == "JoystickAxis") {
-            axis.type = AxisType.JoystickAxis;
-        }//if
-        axis.axis = int.Parse(_axisList[i]);
-        return axis;
-    }//CreateInputAxis
-
-    /// <summary>
-    /// 入力の情報
-    /// </summary>
-    public class InputAxis {
-        /// <summary>
-        /// inputManager各操作コマンドの情報
-        /// </summary>
-        public string name = "";
-        public string descriptiveName = "";
-        public string descriptiveNegativeName = "";
-        public string negativeButton = "";
-        public string positiveButton = "";
-        public string altNegativeButton = "";
-        public string altPositiveButton = "";
-
-        public float gravity = 0;
-        public float dead = 0;
-        public float sensitivity = 0;
-
-        public bool snap = false;
-        public bool invert = false;
-
-        public AxisType type = AxisType.KeyOrMouseButton;
-
-        // 1から始まる。
-        public int axis = 1;
-        // 0なら全てのゲームパッドから取得される。1以降なら対応したゲームパッド。
-        public int joyNum = 0;
-    }
-
-    /// <summary>
-    /// InputManagerにキーを追加する処理
-    /// </summary>
-    /// <param name="axis">追加するAxis名</param>
-    /// <param name="serializedObject"></param>
-    /// <param name="axesProperty"></param>
-    //private static void AddAxis(InputAxis axis, SerializedObject serializedObject, SerializedProperty axesProperty) {
-    //    axesProperty.arraySize++;
-    //    serializedObject.ApplyModifiedProperties();
-    //    SerializedProperty axisProperty = axesProperty.GetArrayElementAtIndex(axesProperty.arraySize - 1);
-
-    //    GetChildProperty(axisProperty, "m_Name").stringValue = axis.name;
-    //    GetChildProperty(axisProperty, "descriptiveName").stringValue = axis.descriptiveName;
-    //    GetChildProperty(axisProperty, "descriptiveNegativeName").stringValue = axis.descriptiveNegativeName;
-    //    GetChildProperty(axisProperty, "negativeButton").stringValue = axis.negativeButton;
-    //    GetChildProperty(axisProperty, "positiveButton").stringValue = axis.positiveButton;
-    //    GetChildProperty(axisProperty, "altNegativeButton").stringValue = axis.altNegativeButton;
-    //    GetChildProperty(axisProperty, "altPositiveButton").stringValue = axis.altPositiveButton;
-    //    GetChildProperty(axisProperty, "gravity").floatValue = axis.gravity;
-    //    GetChildProperty(axisProperty, "dead").floatValue = axis.dead;
-    //    GetChildProperty(axisProperty, "sensitivity").floatValue = axis.sensitivity;
-    //    GetChildProperty(axisProperty, "snap").boolValue = axis.snap;
-    //    GetChildProperty(axisProperty, "invert").boolValue = axis.invert;
-    //    GetChildProperty(axisProperty, "type").intValue = (int)axis.type;
-    //    GetChildProperty(axisProperty, "axis").intValue = axis.axis - 1;
-    //    GetChildProperty(axisProperty, "joyNum").intValue = axis.joyNum;
-
-    //    serializedObject.ApplyModifiedProperties();
-    //}//AddAxis
-
-    //private static SerializedProperty GetChildProperty(SerializedProperty parent, string name) {
-    //    SerializedProperty child = parent.Copy();
-    //    child.Next(true);
-    //    do {
-    //        if (child.name == name) {
-    //            return child;
-    //        }
-    //    } while (child.Next(false));
-    //    return null;
-    //}//SerializedProperty
-
-    ///保存データ関連の処理についての処理///
 
     /// <summary>
     /// 入力する値の対応操作タイプの列挙体
@@ -180,12 +42,11 @@ public static class InputManagerDataEdit {
         switch (inputType) {
             case 0:
             case 1:
-                InputManager.Instance.keyConfig.DuplicationKeyCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType);
+                InputManager.Instance.keyConfig.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType);
                 break;
             case 2:
             case 3:
-                InputManager.Instance.keyConfig.DuplicationKeyCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType-2);
-                //InputManager.Instance.axesConfig.DuplicationAxesCheck(targetAxesName, changeKeyCode, nowInputKeyCode);
+                InputManager.Instance.keyConfig.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType-2);
                 break;
         }
     }//InputTextDuplicationCheack   
@@ -214,33 +75,20 @@ public static class InputManagerDataEdit {
         KeyCode targetKeyCode = KeyCode.None;
         switch (targetInputDataType) {//TypeごとにtargetKeyTextを呼び出し更新
             case InputDataType.KeyPositive:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.KeyBoard);
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, Config.KeyType.KeyBoard);
                 break;
             case InputDataType.JoystickPositive:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, KeyConfig.KeyType.JoyStick);
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, Config.KeyType.JoyStick);
                 break;
             case InputDataType.AxesPositive:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxesCodeCheck(targetName, KeyConfig.AxesType.Positive);
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxisCodeCheck(targetName, Config.AxisType.Positive);
                 break;
             case InputDataType.AxesNegative:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxesCodeCheck(targetName, KeyConfig.AxesType.Negative);
+                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxisCodeCheck(targetName, Config.AxisType.Negative);
                 break;
         }//switch
         return targetKeyCode;
     }//GetConficButtonTex
-
-    /// <summary>
-    /// 更新したいキー名と等しいリスト配列番号取得処理
-    /// </summary>
-    /// <param name="inputName"></param>
-    /// <returns></returns>
-    private static int GetInputDataID(string inputName) {
-        int inputNum = 0;
-        while (_nameList[inputNum].ToString() != inputName) {
-            inputNum++;
-        }//while
-        return inputNum;
-    }//GetInputDataID
 
     /// <summary>
     /// コンフィグボタンの情報選択処理

@@ -42,11 +42,11 @@ public static class InputManagerDataEdit {
         switch (inputType) {
             case 0:
             case 1:
-                InputManager.Instance.keyConfig.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType);
+                ConfigManager.Instance.config.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType);
                 break;
             case 2:
             case 3:
-                InputManager.Instance.keyConfig.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType-2);
+                ConfigManager.Instance.config.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType-2);
                 break;
         }
     }//InputTextDuplicationCheack   
@@ -61,7 +61,7 @@ public static class InputManagerDataEdit {
             InputManagerDataEdit.InputDataType inputDataType;
             (axesName, inputDataType) = ConfigButtonInfoSelect(childTransform.name.ToString());
             axesName = InputManagerDataEdit.GetConficButtonKeyCode(axesName, inputDataType).ToString();
-            childTransform.GetChild(0).GetComponent<Text>().text = EditText_InputKeyCodeText_To_AxesButtonText(axesName.ToLower()).ToUpper();
+            childTransform.GetChild(0).GetComponent<Text>().text = EditText_InputCodeText_To_AxesButtonText(axesName.ToLower()).ToUpper();
         }//foreach
     }//ConfigButtonsTextUpdate
 
@@ -75,16 +75,16 @@ public static class InputManagerDataEdit {
         KeyCode targetKeyCode = KeyCode.None;
         switch (targetInputDataType) {//TypeごとにtargetKeyTextを呼び出し更新
             case InputDataType.KeyPositive:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, Config.KeyType.KeyBoard);
+                targetKeyCode = ConfigManager.Instance.config.GetInputKeyCodeCheck(targetName, Config.KeyType.KeyBoard);
                 break;
             case InputDataType.JoystickPositive:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputKeyCodeCheck(targetName, Config.KeyType.JoyStick);
+                targetKeyCode = ConfigManager.Instance.config.GetInputKeyCodeCheck(targetName, Config.KeyType.JoyStick);
                 break;
             case InputDataType.AxesPositive:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxisCodeCheck(targetName, Config.AxisType.Positive);
+                targetKeyCode = ConfigManager.Instance.config.GetInputAxisCodeCheck(targetName, Config.AxisType.Positive);
                 break;
             case InputDataType.AxesNegative:
-                targetKeyCode = InputManager.Instance.keyConfig.GetInputAxisCodeCheck(targetName, Config.AxisType.Negative);
+                targetKeyCode = ConfigManager.Instance.config.GetInputAxisCodeCheck(targetName, Config.AxisType.Negative);
                 break;
         }//switch
         return targetKeyCode;
@@ -138,7 +138,7 @@ public static class InputManagerDataEdit {
     /// </summary>
     /// <param name="inputKeyCodeText">入力したキー文字/param>
     /// <returns>編集した入力ボタン文字</returns>
-    public static string EditText_InputKeyCodeText_To_AxesButtonText(string inputKeyCodeText) {
+    public static string EditText_InputCodeText_To_AxesButtonText(string inputKeyCodeText) {
         string text = inputKeyCodeText;
         text = text.Replace("arrow", "");//矢印キー
         text = text.Replace("alpha", "");//数字キー
@@ -224,7 +224,7 @@ public static class InputManagerDataEdit {
     /// </summary>
     /// <param name="checkText">調べる文字</param>
     /// <returns>対象外の文字化の判定</returns>
-    public static bool GetNonTargetTextCheck_AxesButton(string checkText) {
+    public static bool GetNonTargetTextCheck(string checkText) {
         checkText = checkText.Replace(" ", "");
         if (checkText.Contains("return"))
             return false;
@@ -238,8 +238,8 @@ public static class InputManagerDataEdit {
             if (checkText == i.ToString()||checkText =="f"+i.ToString())
                 return false;
         }//for//数値・Fキーのチェック
-        foreach (TargetTextData_AxesButton data in Enum.GetValues(typeof(TargetTextData_AxesButton))){
-            string targetText = Enum.GetName(typeof(TargetTextData_AxesButton), data);
+        foreach (TargetTextData data in Enum.GetValues(typeof(TargetTextData))){
+            string targetText = Enum.GetName(typeof(TargetTextData), data);
             if (checkText == targetText)
                 return false;
         }//foreach//対象文字列挙体のチェック
@@ -249,7 +249,7 @@ public static class InputManagerDataEdit {
     /// <summary>
     /// AxesButtonの対象文字の列挙体
     /// </summary>
-    private enum TargetTextData_AxesButton {
+    private enum TargetTextData {
         tab,escape,leftshift,leftctrl,leftcmd,leftalt,
         space,rightalt,menu,rightctrl,rightshift,backspace,
         up,down,left,right,insert,delete,home,end,pageup,pagedown,

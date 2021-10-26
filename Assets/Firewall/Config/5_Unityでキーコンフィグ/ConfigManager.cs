@@ -1,0 +1,31 @@
+//参考URL:https://qiita.com/Es_Program/items/fde067254cfc68035173
+using MBLDefine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+
+/// <summary>
+/// コンフィグ機能を管理する
+/// 更新日時:20211026
+/// </summary>
+public class ConfigManager : SingletonMonoBehaviour<ConfigManager> {
+
+    public Config config = new Config();
+
+    public new void Awake() {
+        //最初はデフォルトの設定をコンフィグに格納
+        config.SetDefaultConfig();
+        //コンフィグファイルがあれば読み出す
+        try {
+            config.LoadKeyConfigFile();
+        } catch (IOException e) {
+            config.SaveKeyConfigFile();
+        }//tru
+    }//Awake
+    
+}//InputManager

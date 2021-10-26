@@ -165,7 +165,7 @@
     <Compile Include="Assets\01_Scripte\002_Enemy\NormalEnemy\Enemy9.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsNormalization.cs" />
     <Compile Include="Assets\01_Scripte\002_Enemy\EnemyUnderTrigger.cs" />
-    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\InputManager.cs" />
+    <Compile Include="Assets\Firewall\Config\5_Unityでキーコンフィグ\ConfigManager.cs" />
     <Compile Include="Assets\01_Scripte\005_Item\ItemProperty.cs" />
     <Compile Include="Assets\AddAssets\Live2D\Cubism\Framework\Physics\CubismPhysicsMath.cs" />
     <Compile Include="Assets\01_Scripte\003_Stage\BackGroundTimeMove.cs" />

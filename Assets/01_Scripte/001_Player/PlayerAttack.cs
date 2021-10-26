@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using MBLDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 自機の攻撃用の処理
-/// 更新日時 : 0602
+/// 更新日時 :20211026
 /// </summary>
 public class PlayerAttack : MonoBehaviour {
     private Animator _animator;
@@ -45,7 +46,7 @@ public class PlayerAttack : MonoBehaviour {
         if(_attackTimer < ATTACK_TIME * 1.75||//攻撃終了後の一定時間
             _pAnimator.AniDamage)
             return;
-        if (Input.GetButtonDown("Attack")) {//入力判定
+        if (ConfigManager.Instance.config.GetKeyDown(ConfigData.Attack.String)) {//入力判定
             _animator.SetBool("AniEffect", true);
             _boxCollider2D.enabled = true;
             _renderer.enabled = true;

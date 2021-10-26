@@ -14,7 +14,7 @@ using UnityEngine;
 /// 更新日時:20211025
 /// </summary>
 public class Config {
-    public static Dictionary<string, List<KeyCode>> _config = new Dictionary<string, List<KeyCode>>();
+    private static Dictionary<string, List<KeyCode>> _config = new Dictionary<string, List<KeyCode>>();
     private readonly string _configFilePath = "config.dat";
 
     /// <summary>
@@ -121,8 +121,8 @@ public class Config {
     /// <param name="checkInputName">調べる入力名</param>
     /// <returns>入力コード同士の交換可否 true:交換する false:交換しない</returns>
     public bool CodeExchangeCheck(string targetInputName,string checkInputName) {
-        bool check1 = targetInputName ==  Key.Submit.String|| targetInputName == Key.Cancel.String;
-        bool check2 = checkInputName == Key.Submit.String || checkInputName == Key.Cancel.String;
+        bool check1 = targetInputName ==  ConfigData.Submit.String|| targetInputName == ConfigData.Cancel.String;
+        bool check2 = checkInputName == ConfigData.Submit.String || checkInputName == ConfigData.Cancel.String;
         if(check1 == check2)
             return true;
         return false;    

@@ -17,7 +17,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:20210830
+/// 更新日時:20211026
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -82,17 +82,17 @@ public class PlayerJump : MonoBehaviour {
     /// ジャンプボタン各種の入力取得処理
     /// </summary>
     public void JumpButtonInput() {//似た条件文で見やすくするため{}を省略した(0804)
-        if (InputManager.Instance.keyConfig.GetKey(Key.NormalJump.String))
+        if (ConfigManager.Instance.config.GetKey(ConfigData.NormalJump.String))
             _normalJumpInput["Button"] = true;
-        if (InputManager.Instance.keyConfig.GetKeyDown(Key.NormalJump.String))
+        if (ConfigManager.Instance.config.GetKeyDown(ConfigData.NormalJump.String))
             _normalJumpInput["ButtonDown"] = true;
-        if (InputManager.Instance.keyConfig.GetKeyUp(Key.NormalJump.String))
+        if (ConfigManager.Instance.config.GetKeyUp(ConfigData.NormalJump.String))
             _normalJumpInput["ButtonUp"] = true;
-        if (InputManager.Instance.keyConfig.GetKey(Key.FlipJump.String))
+        if (ConfigManager.Instance.config.GetKey(ConfigData.FlipJump.String))
             _flipJumpInput["Button"] = true;
-        if (InputManager.Instance.keyConfig.GetKeyDown(Key.FlipJump.String))
+        if (ConfigManager.Instance.config.GetKeyDown(ConfigData.FlipJump.String))
             _flipJumpInput["ButtonDown"] = true;
-        if (InputManager.Instance.keyConfig.GetKeyUp(Key.FlipJump.String))
+        if (ConfigManager.Instance.config.GetKeyUp(ConfigData.FlipJump.String))
             _flipJumpInput["ButtonUp"] = true;
     }//JumpButtonInpu
 

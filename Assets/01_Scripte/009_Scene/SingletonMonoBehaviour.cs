@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿///webサイトからの引用　https://qiita.com/Teach/items/c146c7939db7acbd7eee
 using System;
+using UnityEngine;
 
-///webサイトからの引用　https://qiita.com/Teach/items/c146c7939db7acbd7eee
 
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour {
 
@@ -25,7 +25,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour {
         CheckInstance();
     }//Awake
 
-    protected bool CheckInstance() {
+    private bool CheckInstance() {
         if (instance == null) {
             instance = this as T;
             return true;

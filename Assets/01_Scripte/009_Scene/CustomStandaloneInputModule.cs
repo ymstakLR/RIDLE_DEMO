@@ -20,11 +20,11 @@ namespace UnityEngine.EventSystems {
         private bool m_EnableMouse = false;
 
 
-        private string _HorizontalAxes = Key.Horizontal.String;
-        private string _VerticalAxes = Key.Vertical.String;
+        private string _HorizontalAxes = ConfigData.Horizontal.String;
+        private string _VerticalAxes = ConfigData.Vertical.String;
 
-        private string _SubmitButton = Key.Submit.String;
-        private string _CancelButton = Key.Cancel.String;
+        private string _SubmitButton = ConfigData.Submit.String;
+        private string _CancelButton = ConfigData.Cancel.String;
 
         [SerializeField]
         private float m_InputActionsPerSecond = 10;
@@ -102,10 +102,10 @@ namespace UnityEngine.EventSystems {
                 return false;
 
             var shouldActivate = m_ForceModuleActive;
-            shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_SubmitButton);
-            shouldActivate |= InputManager.Instance.keyConfig.GetKeyDown(_CancelButton);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxisRaw(_HorizontalAxes), 0.0f);
-            shouldActivate |= !Mathf.Approximately(InputManager.Instance.keyConfig.GetAxisRaw(_VerticalAxes), 0.0f);
+            shouldActivate |= ConfigManager.Instance.config.GetKeyDown(_SubmitButton);
+            shouldActivate |= ConfigManager.Instance.config.GetKeyDown(_CancelButton);
+            shouldActivate |= !Mathf.Approximately(ConfigManager.Instance.config.GetAxisRaw(_HorizontalAxes), 0.0f);
+            shouldActivate |= !Mathf.Approximately(ConfigManager.Instance.config.GetAxisRaw(_VerticalAxes), 0.0f);
             if (m_EnableMouse) {
                 shouldActivate |= (m_MousePosition - m_LastMousePosition).sqrMagnitude > 0.0f;
                 shouldActivate |= input.GetMouseButtonDown(0);
@@ -274,10 +274,10 @@ namespace UnityEngine.EventSystems {
                 return false;
 
             var data = GetBaseEventData();
-            if (InputManager.Instance.keyConfig.GetKeyDown(_SubmitButton))
+            if (ConfigManager.Instance.config.GetKeyDown(_SubmitButton))
                 ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.submitHandler);
 
-            if (InputManager.Instance.keyConfig.GetKeyDown(_CancelButton))
+            if (ConfigManager.Instance.config.GetKeyDown(_CancelButton))
                 ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.cancelHandler);
             return data.used;
         }
@@ -285,15 +285,15 @@ namespace UnityEngine.EventSystems {
         private Vector2 GetRawMoveVector() {
             Vector2 move = Vector2.zero;
             //move.x = input.GetAxisRaw(m_HorizontalAxis);
-            move.x = InputManager.Instance.keyConfig.GetAxisRaw(_HorizontalAxes);
-            move.y = InputManager.Instance.keyConfig.GetAxisRaw(_VerticalAxes);
-            if (InputManager.Instance.keyConfig.GetKeyDown(_HorizontalAxes)) {
+            move.x = ConfigManager.Instance.config.GetAxisRaw(_HorizontalAxes);
+            move.y = ConfigManager.Instance.config.GetAxisRaw(_VerticalAxes);
+            if (ConfigManager.Instance.config.GetKeyDown(_HorizontalAxes)) {
                 if (move.x < 0)
                     move.x = -1f;
                 if (move.x > 0)
                     move.x = 1f;
             }
-            if (InputManager.Instance.keyConfig.GetKeyDown(_VerticalAxes)) {
+            if (ConfigManager.Instance.config.GetKeyDown(_VerticalAxes)) {
                 if (move.y < 0)
                     move.y = -1f;
                 if (move.y > 0)
@@ -315,7 +315,7 @@ namespace UnityEngine.EventSystems {
             }
 
             // If user pressed key again, always allow event
-            bool allow = InputManager.Instance.keyConfig.GetKeyDown(_HorizontalAxes) || InputManager.Instance.keyConfig.GetKeyDown(_VerticalAxes);
+            bool allow = ConfigManager.Instance.config.GetKeyDown(_HorizontalAxes) || ConfigManager.Instance.config.GetKeyDown(_VerticalAxes);
             bool similarDir = (Vector2.Dot(movement, m_LastMoveVector) > 0);
             if (!allow) {
                 // Otherwise, user held down key or axis.

@@ -52,7 +52,7 @@ public class PauseButton : MonoBehaviour {
     /// pauseを行うための判定取得処理
     /// </summary>
     private void PauseJudge() {
-        if (!InputManager.Instance.keyConfig.GetKeyDown(Key.Pause.String) ||
+        if (!ConfigManager.Instance.config.GetKeyDown(ConfigData.Pause.String) ||
             _stageClearManagement.StageStatus == EnumStageStatus.Clear||
             (_stageClearManagement.StageStatus == EnumStageStatus.Pause&&_pauseUI.activeSelf == false))
             return;

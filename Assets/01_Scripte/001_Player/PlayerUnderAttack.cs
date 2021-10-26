@@ -60,8 +60,8 @@ public class PlayerUnderAttack : MonoBehaviour {
     /// 敵を攻撃したときの処理
     /// </summary>
     private void AttackEnemy() {
-        if (InputManager.Instance.keyConfig.GetKey(Key.NormalJump.String) || 
-            InputManager.Instance.keyConfig.GetKey(Key.FlipJump.String)) {
+        if (ConfigManager.Instance.config.GetKey(ConfigData.NormalJump.String) || 
+            ConfigManager.Instance.config.GetKey(ConfigData.FlipJump.String)) {
             UnderAttackPower = 2;
         } else {
             UnderAttackPower = 1;

@@ -1,6 +1,6 @@
 //参考URL:https://qiita.com/Es_Program/items/fde067254cfc68035173
 using LitJson;
-using MBLDefine;
+using ConfigDataDefine;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -47,6 +47,17 @@ public class Config {
         Positive = 1
     }//AxisType
 
+    /// <summary>
+    /// 入力されたKeyCodeを取得する処理
+    /// </summary>
+    /// <returns></returns>
+    public KeyCode GetInputKeyCode() {
+        foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {//入力キー取得
+            if (Input.GetKeyDown(code))
+                return code;
+        }//foreach
+        return KeyCode.None;
+    }//GetInputKeyCode
 
     #region GetKey//操作可能キーの入力確認処理
     /// <summary>
@@ -140,6 +151,14 @@ public class Config {
     }//ChangeKeyCode
     #endregion ConfigCodeChange
 
+    /// <summary>
+    /// 入力されたキーコードをチェックする処理
+    /// </summary>
+    /// <param name="keyName">チェックするKey名</param>
+    /// <returns>Key名に対応するキーコード</returns>
+    public KeyCode GetInputKeyCodeCheck(string keyName, KeyType keyType) {
+        return _config[keyName][(int)keyType];
+    }//GetInputKeyCodeCheck
 
     #region AxisRaw //軸入力したときの軸値
     /// <summary>
@@ -182,7 +201,7 @@ public class Config {
     }//KeyCodeCheck
     #endregion AxisRaw
 
-
+    #region DefaultConfigChange
     /// <summary>
     /// デフォルトコンフィグのキーコードを代入する
     /// </summary>
@@ -204,16 +223,9 @@ public class Config {
         _config[keyName] = keyCode;
         return true;
     }//SetKey
+    #endregion DefaultConfigChange
 
-    /// <summary>
-    /// 入力されたキーコードをチェックする処理
-    /// </summary>
-    /// <param name="keyName">チェックするKey名</param>
-    /// <returns>Key名に対応するキーコード</returns>
-    public KeyCode GetInputKeyCodeCheck(string keyName, KeyType keyType) {
-        return _config[keyName][(int)keyType];
-    }//KeyCodeCheck
-
+    #region Save・Load
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
@@ -231,5 +243,6 @@ public class Config {
         using (TextWriter tw = new StreamWriter(_configFilePath, false, Encoding.UTF8))
             tw.Write(jsonText);
     }//SaveKeyConfigFile
+    #endregion Save・Load
 
 }//Config

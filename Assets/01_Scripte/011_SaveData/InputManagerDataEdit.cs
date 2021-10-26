@@ -1,9 +1,9 @@
 ///一部参考サイト参考 http://wordpress.notargs.com/blog/blog/2015/01/23/92/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System;
 using UnityEngine.UI;
 
 /// <summary>
@@ -11,8 +11,6 @@ using UnityEngine.UI;
 /// 更新日時:20211006
 /// </summary>
 public static class InputManagerDataEdit {
-
-///保存データ関連の処理についての処理
 
     /// <summary>
     /// 入力する値の対応操作タイプの列挙体
@@ -36,9 +34,8 @@ public static class InputManagerDataEdit {
     /// <param name="inputType">現在の入力値のInputDataType</param>
     public static void ConfigDataUpdate(
         string targetAxesName, KeyCode changeKeyCode, KeyCode nowInputKeyCode, int inputType) {
-        if (changeKeyCode == nowInputKeyCode) {//変更前・後共に同じ入力値の場合
+        if (changeKeyCode == nowInputKeyCode)//変更前・後共に同じ入力値の場合
             return;
-        }
         switch (inputType) {
             case 0:
             case 1:
@@ -48,7 +45,7 @@ public static class InputManagerDataEdit {
             case 3:
                 ConfigManager.Instance.config.DuplicationCodeCheck(targetAxesName, changeKeyCode, nowInputKeyCode, inputType-2);
                 break;
-        }
+        }//switch
     }//InputTextDuplicationCheack   
 
 

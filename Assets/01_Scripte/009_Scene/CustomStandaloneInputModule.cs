@@ -1,5 +1,5 @@
 ﻿using UnityEngine.Serialization;
-using MBLDefine;
+using ConfigDataDefine;
 
 namespace UnityEngine.EventSystems {
     [AddComponentMenu("Event/Custom Standalone Input Module")]
@@ -292,15 +292,15 @@ namespace UnityEngine.EventSystems {
                     move.x = -1f;
                 if (move.x > 0)
                     move.x = 1f;
-            }
+            }//if
             if (ConfigManager.Instance.config.GetKeyDown(_VerticalAxes)) {
                 if (move.y < 0)
                     move.y = -1f;
                 if (move.y > 0)
                     move.y = 1f;
-            }
+            }//if
             return move;
-        }
+        }//GetRawMoveVector
 
         /// <summary>
         /// Process keyboard events.
@@ -445,8 +445,6 @@ namespace UnityEngine.EventSystems {
                 // Debug.Log("Executing pressup on: " + pointer.pointerPress);
                 ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerUpHandler);
 
-                // Debug.Log("KeyCode: " + pointer.eventData.keyCode);
-
                 // see if we mouse up on the same element that we clicked on...
                 var pointerUpHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentOverGo);
 
@@ -467,10 +465,6 @@ namespace UnityEngine.EventSystems {
                 pointerEvent.dragging = false;
                 pointerEvent.pointerDrag = null;
 
-                // redo pointer enter / exit to refresh state
-                // so that if we moused over somethign that ignored it before
-                // due to having pressed on something else
-                // it now gets it.
                 if (currentOverGo != pointerEvent.pointerEnter) {
                     HandlePointerExitAndEnter(pointerEvent, null);
                     HandlePointerExitAndEnter(pointerEvent, currentOverGo);

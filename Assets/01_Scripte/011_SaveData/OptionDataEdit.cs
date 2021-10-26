@@ -12,7 +12,7 @@ public static class OptionDataEdit{
     /// <summary>
     /// オプションデータを読み込む処理
     /// </summary>
-    private static void OptionDataLoad() {
+    private static void OptionDataLoad() { 
         optionData.Insert(0, SaveManager.optionDataStruct.bgmVol);
         optionData.Insert(1, SaveManager.optionDataStruct.seVol);
         optionData.Insert(2, SaveManager.optionDataStruct.resolutionH);

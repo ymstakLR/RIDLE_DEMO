@@ -239,7 +239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
@@ -1822,7 +1822,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
@@ -2219,8 +2219,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesNegativeConfigButton
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
+        m_MethodName: AxisNegativeConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 555476173}
@@ -2463,7 +2463,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
@@ -2780,8 +2780,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesPositiveConfigButton
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
+        m_MethodName: AxisPositiveConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 634769186}
@@ -3170,7 +3170,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
@@ -3432,7 +3432,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
@@ -4359,7 +4359,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
@@ -4858,7 +4858,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
@@ -4992,8 +4992,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesPositiveConfigButton
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
+        m_MethodName: AxisPositiveConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1309222210}
@@ -5224,8 +5224,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
-        m_MethodName: AxesNegativeConfigButton
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
+        m_MethodName: AxisNegativeConfigButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1313676760}
@@ -5486,7 +5486,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
@@ -6924,7 +6924,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
@@ -7107,7 +7107,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
@@ -7369,7 +7369,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: KeyBoardConfigButton
         m_Mode: 2
         m_Arguments:
@@ -7631,7 +7631,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2066153389}
-        m_TargetAssemblyTypeName: KeyConfigButtonMove, Assembly-CSharp
+        m_TargetAssemblyTypeName: ConfigButtonMove, Assembly-CSharp
         m_MethodName: ControllerConfigButton
         m_Mode: 2
         m_Arguments:
@@ -7988,7 +7988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9d56dcdc7784e4ca421dc9d35169d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _axesButtonCanvas: {fileID: 1558428336}
+  _axisButtonCanvas: {fileID: 0}
   _keyButtonCanvas: {fileID: 368782089}
 --- !u!4 &2066153390
 Transform:

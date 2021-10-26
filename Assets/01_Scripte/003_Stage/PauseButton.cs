@@ -1,4 +1,4 @@
-﻿using MBLDefine;
+﻿using ConfigDataDefine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

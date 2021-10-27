@@ -147,7 +147,7 @@ public class Config {
     /// <param name="changeInputType">changeInputNameの入力タイプ</param>
     private void ChangeCode(string changeInputName,KeyCode changeCode,int changeInputType) {
         _config[changeInputName][changeInputType] = changeCode;
-        SaveKeyConfigFile();
+        SaveConfigFile();
     }//ChangeKeyCode
     #endregion ConfigCodeChange
 
@@ -229,20 +229,20 @@ public class Config {
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
-    public void LoadKeyConfigFile() {
+    public void LoadConfigFile() {
         using (TextReader tr = new StreamReader(_configFilePath, Encoding.UTF8))
             _config = JsonMapper.ToObject<Dictionary<string, List<KeyCode>>>(tr);
-    }//LoadKeyConfigFile
+    }//LoadConfigFile
 
     /// <summary>
     /// 現在のキーコンフィグをファイルにセーブする
     /// ファイルがない場合は新たにファイルを作成する
     /// </summary>
-    public void SaveKeyConfigFile() {
+    public void SaveConfigFile() {
         var jsonText = JsonMapper.ToJson(_config);
         using (TextWriter tw = new StreamWriter(_configFilePath, false, Encoding.UTF8))
             tw.Write(jsonText);
-    }//SaveKeyConfigFile
+    }//SaveConfigFile
     #endregion Save・Load
 
 }//Config

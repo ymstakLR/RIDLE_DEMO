@@ -21,9 +21,9 @@ public class ConfigManager : SingletonMonoBehaviour<ConfigManager> {
         config.SetDefaultConfig();
         //コンフィグファイルがあれば読み出す
         try {
-            config.LoadKeyConfigFile();
+            config.LoadConfigFile();
         } catch (IOException e) {
-            config.SaveKeyConfigFile();
+            config.SaveConfigFile();
         }//tru
     }//Awake
     

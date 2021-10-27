@@ -163,7 +163,7 @@ public class ConfigButtonMove : MonoBehaviour {
     public void DefaultButton(GameObject inputObject) {
         Config config = new Config();
         config.SetDefaultConfig();
-        config.SaveKeyConfigFile();
+        config.SaveConfigFile();
         InputManagerDataEdit.ConfigButtonsTextUpdate(_axisButtonCanvas);
         InputManagerDataEdit.ConfigButtonsTextUpdate(_keyButtonCanvas);
         _inputButton = inputObject;

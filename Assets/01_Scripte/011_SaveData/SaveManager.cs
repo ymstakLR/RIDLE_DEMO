@@ -1,7 +1,9 @@
+using LitJson;
 using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +22,7 @@ public static class SaveManager {
         public List<string> timeList;
     }//StageDataStruct
     public static StageDataStruct stageDataStruct;
-    private const string STAGE_FILE = "stageData.json";
+    private const string STAGE_FILE = "stageData.dat";
     private const int STAGE_NUM = 3;
     //オプションデータ用情報
     public struct OptionDataStruct {
@@ -31,13 +33,13 @@ public static class SaveManager {
         public bool isFullscreen;
     }//OptionDataStruct
     public static OptionDataStruct optionDataStruct;
-    private const string OPTION_FILE ="optionData.json";
+    private const string OPTION_FILE = "optionData.dat";
     //アンロックデータ用情報
     public struct UnlockDataStruct {
         public List<bool> unlockList;
     }//UnlockDataStruct
     public static UnlockDataStruct unlockDataStruct;
-    private const string UNLOCK_FILE ="unlockData.json";
+    private const string UNLOCK_FILE = "unlockData.dat";
 
 
     /// <summary>
@@ -86,13 +88,19 @@ public static class SaveManager {
         string json = reader.ReadToEnd();
         switch (loadFilePath) {
             case STAGE_FILE:
-                stageDataStruct = JsonUtility.FromJson<StageDataStruct>(json);
+                //stageDataStruct = JsonUtility.FromJson<StageDataStruct>(json);
+                using (TextReader tr = new StreamReader(SaveFilePathSetting() + loadFilePath, Encoding.UTF8))
+                    stageDataStruct = JsonMapper.ToObject<StageDataStruct>(tr);
                 break;
             case OPTION_FILE:
-                optionDataStruct = JsonUtility.FromJson<OptionDataStruct>(json);
+                //optionDataStruct = JsonUtility.FromJson<OptionDataStruct>(json);
+                using (TextReader tr = new StreamReader(SaveFilePathSetting() + loadFilePath, Encoding.UTF8))
+                    optionDataStruct = JsonMapper.ToObject<OptionDataStruct>(tr);
                 break;
             case UNLOCK_FILE:
-                unlockDataStruct = JsonUtility.FromJson<UnlockDataStruct>(json);
+                //unlockDataStruct = JsonUtility.FromJson<UnlockDataStruct>(json);
+                using (TextReader tr = new StreamReader(SaveFilePathSetting() + loadFilePath, Encoding.UTF8))
+                    unlockDataStruct = JsonMapper.ToObject<UnlockDataStruct>(tr);
                 break;
         }//switch
         reader.Close();
@@ -111,6 +119,18 @@ public static class SaveManager {
         writer.Flush();
         writer.Close();
     }//DataSave
+
+    /// <summary>
+    /// 現在のキーコンフィグをファイルにセーブする
+    /// ファイルがない場合は新たにファイルを作成する
+    /// </summary>
+    public static void SaveConfigFile(string jsonText,string filePath) {
+        //var jsonText = JsonMapper.ToJson(_config);
+        string path = SaveFilePathSetting();
+        path = path + filePath;
+        using (TextWriter tw = new StreamWriter(path, false, Encoding.UTF8))
+            tw.Write(jsonText);
+    }//SaveConfigFile
 
 
     /// <summary>
@@ -133,8 +153,10 @@ public static class SaveManager {
         stageDataStruct.rankList = rList;
         stageDataStruct.scoreList = sList;
         stageDataStruct.timeList = tList;
-        string jsonData = JsonUtility.ToJson(stageDataStruct, true);
-        DataSave(jsonData, STAGE_FILE);
+        //string jsonData = JsonUtility.ToJson(stageDataStruct, true);
+        //DataSave(jsonData, STAGE_FILE);
+        string jsonText = JsonMapper.ToJson(stageDataStruct);
+        SaveConfigFile(jsonText, STAGE_FILE);
     }//StageDataCreate
 
     /// <summary>
@@ -148,8 +170,10 @@ public static class SaveManager {
         optionDataStruct.resolutionH = 1980;
         optionDataStruct.resolutionW = 1080;
         optionDataStruct.isFullscreen = true;
-        string jsonData = JsonUtility.ToJson(optionDataStruct, true);
-        DataSave(jsonData, OPTION_FILE);
+        //string jsonData = JsonUtility.ToJson(optionDataStruct, true);
+        //DataSave(jsonData, OPTION_FILE);
+        string jsonText = JsonMapper.ToJson(optionDataStruct);
+        SaveConfigFile(jsonText, OPTION_FILE);
     }//OptionDataCreate
 
     /// <summary>
@@ -162,8 +186,10 @@ public static class SaveManager {
             list.Insert(i, false);
         }
         unlockDataStruct.unlockList = list;
-        string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
-        DataSave(jsonData, UNLOCK_FILE);
+        //string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
+        //DataSave(jsonData, UNLOCK_FILE);
+        string jsonText = JsonMapper.ToJson(unlockDataStruct);
+        SaveConfigFile(jsonText, UNLOCK_FILE);
     }//UnlockDataCreate
 
     /// <summary>
@@ -175,8 +201,10 @@ public static class SaveManager {
         stageDataStruct.rankList = list[1];
         stageDataStruct.scoreList = list[2];
         stageDataStruct.timeList = list[3];
-        string jsonData = JsonUtility.ToJson(stageDataStruct, true);//SaveData情報
-        DataSave(jsonData, STAGE_FILE);
+        //string jsonData = JsonUtility.ToJson(stageDataStruct, true);//SaveData情報
+        //DataSave(jsonData, STAGE_FILE);
+        string jsonText = JsonMapper.ToJson(stageDataStruct);
+        SaveConfigFile(jsonText, STAGE_FILE);
     }//StageDataUpdate
 
     /// <summary>
@@ -189,8 +217,10 @@ public static class SaveManager {
         optionDataStruct.resolutionH = (int)arrayList[2];
         optionDataStruct.resolutionW = (int)arrayList[3];
         optionDataStruct.isFullscreen = (bool)arrayList[4];
-        string jsonData = JsonUtility.ToJson(optionDataStruct, true);
-        DataSave(jsonData, OPTION_FILE);
+        //string jsonData = JsonUtility.ToJson(optionDataStruct, true);
+        //DataSave(jsonData, OPTION_FILE);
+        string jsonText = JsonMapper.ToJson(optionDataStruct);
+        SaveConfigFile(jsonText, OPTION_FILE);
     }//OptionDataUpdate
 
     /// <summary>
@@ -199,8 +229,10 @@ public static class SaveManager {
     /// <param name="list">データ更新するリスト</param>
     public static void UnlockDataUpdate(List<bool> list) {
         unlockDataStruct.unlockList = list;
-        string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
-        DataSave(jsonData, UNLOCK_FILE);
+        //string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
+        //DataSave(jsonData, UNLOCK_FILE);
+        string jsonText = JsonMapper.ToJson(unlockDataStruct);
+        SaveConfigFile(jsonText, UNLOCK_FILE);
     }//UnlockDataUpdate
 
 
@@ -219,5 +251,9 @@ public static class SaveManager {
         File.Delete(SaveFilePathSetting() + UNLOCK_FILE);
         UnlockDataCreate();
     }//UnlockDataDelete
+
+
+
+
 
 }//SaveManager

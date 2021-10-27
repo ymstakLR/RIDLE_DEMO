@@ -5904,7 +5904,7 @@ GameObject:
   - component: {fileID: 1558428340}
   - component: {fileID: 1558428339}
   m_Layer: 5
-  m_Name: AxesButtonCanvas
+  m_Name: AxisButtonCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7988,7 +7988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9d56dcdc7784e4ca421dc9d35169d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _axisButtonCanvas: {fileID: 0}
+  _axisButtonCanvas: {fileID: 1558428336}
   _keyButtonCanvas: {fileID: 368782089}
 --- !u!4 &2066153390
 Transform:

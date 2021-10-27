@@ -7,10 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Firewall/StartUp.unity
-    guid: 9b119ed5d1d8c4d4c8e9958900e330e0
+    guid: 574bfd6f4640c264bba8ed3404516939
   - enabled: 1
     path: Assets/00_Scenes/Title_Demo.unity
     guid: 99f16c3219df31b408468297e555bf7f
+  - enabled: 0
+    path: Assets/00_Scenes/StartUp.unity
+    guid: 9b119ed5d1d8c4d4c8e9958900e330e0
   - enabled: 1
     path: Assets/00_Scenes/Select_Demo.unity
     guid: 15afe59b6876b6849b24a527d27361af

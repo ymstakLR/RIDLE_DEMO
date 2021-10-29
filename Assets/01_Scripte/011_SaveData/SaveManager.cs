@@ -51,8 +51,8 @@ public static class SaveManager {
         #if UNITY_EDITOR
             path = Directory.GetCurrentDirectory() + SAVE_DATA_PATH;
         #else
-            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');    
-#       endif
+            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/RIDLE_Data/";    
+        #endif
         return path;
     }//SaveFilePathSetting
 
@@ -88,17 +88,14 @@ public static class SaveManager {
         string json = reader.ReadToEnd();
         switch (loadFilePath) {
             case STAGE_FILE:
-                //stageDataStruct = JsonUtility.FromJson<StageDataStruct>(json);
                 using (TextReader tr = new StreamReader(SaveFilePathSetting() + loadFilePath, Encoding.UTF8))
                     stageDataStruct = JsonMapper.ToObject<StageDataStruct>(tr);
                 break;
             case OPTION_FILE:
-                //optionDataStruct = JsonUtility.FromJson<OptionDataStruct>(json);
                 using (TextReader tr = new StreamReader(SaveFilePathSetting() + loadFilePath, Encoding.UTF8))
                     optionDataStruct = JsonMapper.ToObject<OptionDataStruct>(tr);
                 break;
             case UNLOCK_FILE:
-                //unlockDataStruct = JsonUtility.FromJson<UnlockDataStruct>(json);
                 using (TextReader tr = new StreamReader(SaveFilePathSetting() + loadFilePath, Encoding.UTF8))
                     unlockDataStruct = JsonMapper.ToObject<UnlockDataStruct>(tr);
                 break;
@@ -106,26 +103,12 @@ public static class SaveManager {
         reader.Close();
     }//DataLoad
 
-    /// <summary>
-    /// データの保存処理
-    /// </summary>
-    /// <param name="json">保存するjsonData</param>
-    /// <param name="filePath">保存するファイルパス</param>
-    private static void DataSave(string json, string filePath) {
-        string path = SaveFilePathSetting();
-        path = path + filePath;
-        StreamWriter writer = new StreamWriter(path, false);
-        writer.WriteLine(json);
-        writer.Flush();
-        writer.Close();
-    }//DataSave
 
     /// <summary>
     /// 現在のキーコンフィグをファイルにセーブする
     /// ファイルがない場合は新たにファイルを作成する
     /// </summary>
-    public static void SaveConfigFile(string jsonText,string filePath) {
-        //var jsonText = JsonMapper.ToJson(_config);
+    public static void SaveDataFile(string jsonText,string filePath) {
         string path = SaveFilePathSetting();
         path = path + filePath;
         using (TextWriter tw = new StreamWriter(path, false, Encoding.UTF8))
@@ -156,7 +139,7 @@ public static class SaveManager {
         //string jsonData = JsonUtility.ToJson(stageDataStruct, true);
         //DataSave(jsonData, STAGE_FILE);
         string jsonText = JsonMapper.ToJson(stageDataStruct);
-        SaveConfigFile(jsonText, STAGE_FILE);
+        SaveDataFile(jsonText, STAGE_FILE);
     }//StageDataCreate
 
     /// <summary>
@@ -173,7 +156,7 @@ public static class SaveManager {
         //string jsonData = JsonUtility.ToJson(optionDataStruct, true);
         //DataSave(jsonData, OPTION_FILE);
         string jsonText = JsonMapper.ToJson(optionDataStruct);
-        SaveConfigFile(jsonText, OPTION_FILE);
+        SaveDataFile(jsonText, OPTION_FILE);
     }//OptionDataCreate
 
     /// <summary>
@@ -189,7 +172,7 @@ public static class SaveManager {
         //string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
         //DataSave(jsonData, UNLOCK_FILE);
         string jsonText = JsonMapper.ToJson(unlockDataStruct);
-        SaveConfigFile(jsonText, UNLOCK_FILE);
+        SaveDataFile(jsonText, UNLOCK_FILE);
     }//UnlockDataCreate
 
     /// <summary>
@@ -204,7 +187,7 @@ public static class SaveManager {
         //string jsonData = JsonUtility.ToJson(stageDataStruct, true);//SaveData情報
         //DataSave(jsonData, STAGE_FILE);
         string jsonText = JsonMapper.ToJson(stageDataStruct);
-        SaveConfigFile(jsonText, STAGE_FILE);
+        SaveDataFile(jsonText, STAGE_FILE);
     }//StageDataUpdate
 
     /// <summary>
@@ -220,7 +203,7 @@ public static class SaveManager {
         //string jsonData = JsonUtility.ToJson(optionDataStruct, true);
         //DataSave(jsonData, OPTION_FILE);
         string jsonText = JsonMapper.ToJson(optionDataStruct);
-        SaveConfigFile(jsonText, OPTION_FILE);
+        SaveDataFile(jsonText, OPTION_FILE);
     }//OptionDataUpdate
 
     /// <summary>
@@ -232,7 +215,7 @@ public static class SaveManager {
         //string jsonData = JsonUtility.ToJson(unlockDataStruct, true);
         //DataSave(jsonData, UNLOCK_FILE);
         string jsonText = JsonMapper.ToJson(unlockDataStruct);
-        SaveConfigFile(jsonText, UNLOCK_FILE);
+        SaveDataFile(jsonText, UNLOCK_FILE);
     }//UnlockDataUpdate
 
 

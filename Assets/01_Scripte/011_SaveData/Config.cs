@@ -15,7 +15,7 @@ using UnityEngine;
 /// </summary>
 public class Config {
     private static Dictionary<string, List<KeyCode>> _config = new Dictionary<string, List<KeyCode>>();
-    private readonly string _configFilePath = "config.dat";
+    private string _configFilePath = "config.dat";
 
     /// <summary>
     /// コンフィグキーのデフォルトコード
@@ -226,11 +226,27 @@ public class Config {
     #endregion DefaultConfigChange
 
     #region Save・Load
+
+    /// <summary>
+    /// ファイルを保存するパスを設定する処理
+    /// </summary>
+    /// <returns>ファイルを保存するパス</returns>
+    private string SaveFilePathSetting() {
+        string path = "";
+        #if UNITY_EDITOR
+             path = Directory.GetCurrentDirectory() + "/ Assets / 05_SaveData /";
+        #else
+            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/RIDLE_Data/";    
+        #endif
+        return path;
+    }//SaveFilePathSetting
+
+
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
     public void LoadConfigFile() {
-        using (TextReader tr = new StreamReader(_configFilePath, Encoding.UTF8))
+        using (TextReader tr = new StreamReader(SaveFilePathSetting()+_configFilePath, Encoding.UTF8))
             _config = JsonMapper.ToObject<Dictionary<string, List<KeyCode>>>(tr);
     }//LoadConfigFile
 
@@ -240,7 +256,7 @@ public class Config {
     /// </summary>
     public void SaveConfigFile() {
         var jsonText = JsonMapper.ToJson(_config);
-        using (TextWriter tw = new StreamWriter(_configFilePath, false, Encoding.UTF8))
+        using (TextWriter tw = new StreamWriter(SaveFilePathSetting()+_configFilePath, false, Encoding.UTF8))
             tw.Write(jsonText);
     }//SaveConfigFile
     #endregion Save・Load

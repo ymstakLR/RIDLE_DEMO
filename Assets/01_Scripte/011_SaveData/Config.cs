@@ -234,7 +234,7 @@ public class Config {
     private string SaveFilePathSetting() {
         string path = "";
         #if UNITY_EDITOR
-             path = Directory.GetCurrentDirectory() + "/ Assets / 05_SaveData /";
+             path = Directory.GetCurrentDirectory() + "/Assets/05_SaveData/";
         #else
             path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/RIDLE_Data/";    
         #endif

@@ -36,7 +36,7 @@ public class ResourcesObjectManager : MonoBehaviour {
         //foreach()
     }
 
-    private const float TIMER = 1f;
+    private const float TIMER = 2f;
     private float timer;
     private void Update() {
         if (timer > TIMER) {

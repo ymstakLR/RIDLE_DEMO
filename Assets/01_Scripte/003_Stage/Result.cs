@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ConfigDataDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -151,8 +152,11 @@ public class Result : MonoBehaviour {
     /// ステージを終了できる状態にする処理
     /// </summary>
     private void StageEndStatus() {
-        if ((Input.GetButtonDown("NormalJump") ||Input.GetButtonDown("FlipJump") || Input.GetButtonDown("Attack")) &&
-            !_isSceneBack) {
+        if (!ConfigManager.Instance.config.GetKeyDown(ConfigData.NormalJump.String) &&
+            !ConfigManager.Instance.config.GetKeyDown(ConfigData.FlipJump.String) &&
+            !ConfigManager.Instance.config.GetKeyDown(ConfigData.Attack.String))
+            return;
+        if (!_isSceneBack) {
             GameObject.Find("GameManager").GetComponent<SceneChange>().BackSceneChange(isBackSE: false);
             _isSceneBack = true;
         }//if

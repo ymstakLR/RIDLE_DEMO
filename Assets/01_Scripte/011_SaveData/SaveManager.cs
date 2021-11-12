@@ -148,8 +148,8 @@ public static class SaveManager {
     /// 
     private static void OptionDataCreate() {
         optionDataStruct = new OptionDataStruct();
-        optionDataStruct.bgmVol = 0;
-        optionDataStruct.seVol = 0;
+        optionDataStruct.bgmVol = 1;
+        optionDataStruct.seVol = 1;
         optionDataStruct.resolutionH = 1980;
         optionDataStruct.resolutionW = 1080;
         optionDataStruct.isFullscreen = true;

@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e6e92dd618a9043bc339f804f23423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmName: Title
+  bgmName: NoBGM
 --- !u!4 &1267429046108457164
 Transform:
   m_ObjectHideFlags: 0
@@ -422,6 +422,11 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1832153143263605792, guid: 2dd952ae5aa7ffd4894ef8ebf7ba3e7e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c3c54c217f80a24896438dd220a79ff, type: 3}
     - target: {fileID: 1832153143263605793, guid: 2dd952ae5aa7ffd4894ef8ebf7ba3e7e,
         type: 3}
       propertyPath: m_Volume

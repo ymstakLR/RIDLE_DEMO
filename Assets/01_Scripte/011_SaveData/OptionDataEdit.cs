@@ -77,6 +77,7 @@ public static class OptionDataEdit{
     /// ‰æ–Ê•`‰æ‚Ì”½‰fˆ—
     /// </summary>
     public static void SetResolution() {
+        
         Screen.SetResolution(
             SaveManager.optionDataStruct.resolutionH,
             SaveManager.optionDataStruct.resolutionW,

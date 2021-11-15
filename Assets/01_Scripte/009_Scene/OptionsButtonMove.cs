@@ -59,8 +59,10 @@ public class OptionsButtonMove : MonoBehaviour {
         _numericalValueText.text = Screen.width + "×" + Screen.height;
         if (Screen.fullScreen) {
             _fullScreenText.text = "ON";
+            _isFullScreen = true;
         } else {
             _fullScreenText.text = "OFF";
+            _isFullScreen = false;
         }//if
         _isInit = true;
     }//OptionInit

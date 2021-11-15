@@ -150,11 +150,9 @@ public static class SaveManager {
         optionDataStruct = new OptionDataStruct();
         optionDataStruct.bgmVol = 1;
         optionDataStruct.seVol = 1;
-        optionDataStruct.resolutionH = 1980;
-        optionDataStruct.resolutionW = 1080;
-        optionDataStruct.isFullscreen = true;
-        //string jsonData = JsonUtility.ToJson(optionDataStruct, true);
-        //DataSave(jsonData, OPTION_FILE);
+        optionDataStruct.resolutionH = 1280;
+        optionDataStruct.resolutionW = 720;
+        optionDataStruct.isFullscreen = false;
         string jsonText = JsonMapper.ToJson(optionDataStruct);
         SaveDataFile(jsonText, OPTION_FILE);
     }//OptionDataCreate

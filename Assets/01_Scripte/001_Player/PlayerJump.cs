@@ -50,6 +50,8 @@ public class PlayerJump : MonoBehaviour {
     public bool IsJump { get; set; }
     public bool IsWorkSpeedFlip { get; set; }
 
+    public bool IsFlipUpsideDown { get; set; }//上下反転を行ったかの確認判定
+
 
     private void Start() {
         _pAnimator = this.GetComponent<PlayerAnimator>();
@@ -233,6 +235,7 @@ public class PlayerJump : MonoBehaviour {
     private float JumpWithWall(float jumpSpeed) {//重力上側にする場合
         RotationChange(this.transform.localEulerAngles.z + 180);
         this.transform.localScale = new Vector2(-this.transform.localScale.x, -this.transform.localScale.y);
+        IsFlipUpsideDown = true;
         return GRAVITY;
     }//JumpWithWall
 

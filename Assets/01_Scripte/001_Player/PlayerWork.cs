@@ -95,9 +95,13 @@ public class PlayerWork : MonoBehaviour {
             if (_pJump.JumpTypeFlag == EnumJumpTypeFlag.wallFall && !_pAnimator.AniFall) {
                 movingSpeed = -movingSpeed;
             }//if
+            if (_pJump.IsFlipUpsideDown) {
+                movingSpeed = -movingSpeed;
+                Debug.LogError("処理の確認中_rotateZが0度から180度に変更された直後に移動量を反転させる処理");
+                _pJump.IsFlipUpsideDown = false;
+            }
             _isMovingSpeedInversion = false;
-        }//if            
-
+        }//if   
         //床に触れたとき
         if (_pUnderTrigger.IsUnderTrigger) {
             _isMovingSpeedInversion = true;

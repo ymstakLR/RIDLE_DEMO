@@ -178,7 +178,6 @@ public class PlayerJump : MonoBehaviour {
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp &&
             _pUnderTrigger.IsUnderTrigger)//重力を反対角度に変更する
             return JumpWithWall(jumpSpeed);
-
         if (_pUnderTrigger.IsUnderTrigger &&
             _flipJumpInput["ButtonDown"] &&
             JumpTypeFlag < EnumJumpTypeFlag.flipFall) {//FlipJumpボタンを押したとき

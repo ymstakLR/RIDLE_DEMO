@@ -56,9 +56,10 @@ public class PlayerWork : MonoBehaviour {
             else
                 return -MAX_MOVING_VALUE;
         }//if
-        if (!_pJump.IsJump) {
+        if (!_pJump.IsJump && !_pJump.IsFlipUpsideDown) {
             DirectionChange(movingSpeed);
         }//if
+        _pJump.IsFlipUpsideDown = false;
         if (movingDirection > 0 || movingDirection < 0) {//移動する場合
             return MoveUpdate(movingSpeed, movingDirection);
         }//if
@@ -98,10 +99,9 @@ public class PlayerWork : MonoBehaviour {
             if (_pJump.IsFlipUpsideDown) {
                 movingSpeed = -movingSpeed;
                 Debug.LogError("処理の確認中_rotateZが0度から180度に変更された直後に移動量を反転させる処理");
-                _pJump.IsFlipUpsideDown = false;
             }
             _isMovingSpeedInversion = false;
-        }//if   
+        }//if
         //床に触れたとき
         if (_pUnderTrigger.IsUnderTrigger) {
             _isMovingSpeedInversion = true;

@@ -144,8 +144,6 @@ public static class InputManagerDataEdit {
         text = text.Replace("control", " ctrl");//Controlキー
         text = text.Replace("alt", " alt");//Altキー
         text = text.Replace("command", " cmd");//Commandキー
-        text = text.Replace("sys", "sys ");//PRTSCキー
-        text = text.Replace("scroll", "scroll ");//SCRLKキー
         text = text.Replace("joystickbutton", "button");//コントローラキー
         if (text.Contains("keypad")){
             text = text.Replace("keypad","");
@@ -212,6 +210,12 @@ public static class InputManagerDataEdit {
             case "backslash":
                 text="\\";
                 break;
+            case "scrolllock":
+                text = "scrlk";
+                break;
+            case "sysreq":
+                text = "prtsc";
+                break;
         }//switch//その他のキー
         return text;
     }//EditText_InputKeyCodeText_To_AxesButtonText
@@ -250,7 +254,7 @@ public static class InputManagerDataEdit {
         tab,escape,leftshift,leftctrl,leftcmd,leftalt,
         space,rightalt,menu,rightctrl,rightshift,backspace,
         up,down,left,right,insert,delete,home,end,pageup,pagedown,
-        sysreq,scrolllock,pause,enter,numlock,
+        prtsc, scrlk, pause,enter,numlock,
     }//TargetTextData_AxesButton
 
 }//InputManagerEdit

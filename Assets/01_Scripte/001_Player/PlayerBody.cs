@@ -44,7 +44,6 @@ public class PlayerBody : MonoBehaviour {
     private void OnCollisionExit2D(Collision2D col) {
         if (col.gameObject.tag == "Stage") {
             IsBody = BodyType.wait;
-            Debug.Log("Wait");
         }//if
         if (col.gameObject.tag == "PlatformEffector") {
             IsBody = BodyType.wait;

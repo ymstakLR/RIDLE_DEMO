@@ -90,7 +90,7 @@ public class PlayerLife : MonoBehaviour {
         for (int i = _life.Length - 1; 0 <= i; --i) {
             if (_life[1].fillAmount==0) {//ゲームミスになる
                 _life[0].fillAmount = 0;
-                _pAnimator.AudioManager.PlaySE("PlayerMiss");
+                _pAnimator.AudioManager.PlaySE("PlayerMiss_Hide");
                 this.GetComponent<PlayerAnimator>().AniMiss = true;
                 return;
             }//if

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// UnderTriggerの変数を使用する
-/// 更新日時:20210906
+/// 更新日時:20211117
 /// </summary>
 public class PlayerUnderTriggerPE : PlayerUnderTrigger {
 
@@ -40,6 +40,8 @@ public class PlayerUnderTriggerPE : PlayerUnderTrigger {
 
     private void OnTriggerStay2D(Collider2D col) {//元々はOnTriggerEnter2Dの処理だった 不具合があった場合上記のコメントになっている処理を確認する(0805)
         if (col.gameObject.tag != "PlatformEffector")
+            return;
+        if (this.transform.parent.localEulerAngles.z != 0)
             return;
         if (!_pUnderTrigger.IsJumpUp && _isPEExit) {
             _pUnderTrigger.IsUnderTrigger = true;

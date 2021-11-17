@@ -2,7 +2,7 @@
 using UnityEngine;
 /// <summary>
 /// SE,BGM関連の管理処理
-/// 更新日時:0603
+/// 更新日時:20211117
 /// </summary>
 public class AudioManager : MonoBehaviour {
     [SerializeField, Tooltip("BGM用のAudio Source")]
@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour {
     /// <param name="seName"></param>
     public void PlaySE(string seName) {
         if (!_seDic.ContainsKey(seName)) {
-            Debug.LogError(seName + "が存在しません フォルダに入っているか確認する");
+            Debug.LogError("[SE"+seName + "]が存在しません フォルダに入っているか確認する");
             return;
         }//if
         seAudio.PlayOneShot(_seDic[seName]);
@@ -70,7 +70,7 @@ public class AudioManager : MonoBehaviour {
     /// <param name="bgmName"></param>
     public void PlayBGM(string bgmName) {
         if (!_bgmDic.ContainsKey(bgmName)) {
-            Debug.LogError(bgmName + "が存在しません フォルダに入っているか確認する");
+            Debug.LogError("[BGM"+bgmName + "]が存在しません フォルダに入っているか確認する");
             return;
         }//if
         if (bgmAudio.clip.name.ToString() == bgmName && bgmAudio.clip.name.Substring(0,5) != "Stage") {

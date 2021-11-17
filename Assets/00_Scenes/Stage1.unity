@@ -63056,10 +63056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableMouse: 0
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -67109,7 +67105,7 @@ PrefabInstance:
     - target: {fileID: 5239941732824858755, guid: 3890c636b8ec4d348b18cabe68a795da,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5239941732824858755, guid: 3890c636b8ec4d348b18cabe68a795da,
         type: 3}

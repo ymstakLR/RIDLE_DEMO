@@ -15,6 +15,8 @@ public class PlayerUnderTrigger : BaseUnderTrigger {
         _pAnimator = this.transform.parent.GetComponent<PlayerAnimator>();
     }//Start
 
+    private void Update() {
+    }
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Stage") {

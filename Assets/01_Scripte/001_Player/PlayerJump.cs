@@ -17,7 +17,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:20211026
+/// 更新日時:20211123
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -44,9 +44,7 @@ public class PlayerJump : MonoBehaviour {
     public float PastTPY { get; set; }
 
 
-    private bool _isFlipJumpFall;
-    public bool IsFlipJumpFall { get { return _isFlipJumpFall; } }//読み取り専用
-
+    public bool IsFlipJumpFall { get; set; }
     public bool IsJump { get; set; }
     public bool IsWorkSpeedFlip { get; set; }
 
@@ -253,7 +251,7 @@ public class PlayerJump : MonoBehaviour {
             return -200;
 
         //左右重力の時にFlipJumpを行い自機のBodyからステージに触れた場合
-        if (_pBody.IsBody != BodyType.wait && _isFlipJumpFall && (int)this.transform.localEulerAngles.z != 0) {
+        if (_pBody.IsBody != BodyType.wait && IsFlipJumpFall && (int)this.transform.localEulerAngles.z != 0) {
             //上部のステージに触れたとき
             if (!_pBodyBack.IsBodyBack &&
                 ((this.transform.localEulerAngles.z == 270 && this.transform.localScale.x < 0) ||
@@ -264,11 +262,13 @@ public class PlayerJump : MonoBehaviour {
             float posX = this.transform.position.x;
             float posY = this.transform.position.y + 3f;
             this.transform.position = new Vector2(posX, posY);
-            _isFlipJumpFall = false;
+            IsFlipJumpFall = false;
         }//if
 
         ///FlipJump状態を解除させる
-        if (_sideGravityFlipTimer > SIDE_GRAVITY_FLIP_TIME && _sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 2) {
+        if (_sideGravityFlipTimer > SIDE_GRAVITY_FLIP_TIME && 
+            _sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 2 &&
+            IsFlipJumpFall) {
             float jumpPower = FIRST_JUMP_POWER;
             //下向きに落下する場合
             if (this.transform.localScale.x > 0 && this.transform.localEulerAngles.z == 270 ||
@@ -279,7 +279,7 @@ public class PlayerJump : MonoBehaviour {
             }//if
             ///上昇,下降共通処理
             _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;
-            _isFlipJumpFall = true;
+            IsFlipJumpFall = true;
             return jumpPower;
         } else if (_sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 3) {
             _sideGravityFlipTimer += Time.deltaTime;
@@ -339,7 +339,7 @@ public class PlayerJump : MonoBehaviour {
         if (JumpTypeFlag == EnumJumpTypeFlag.flipUp && _keyDownTimer > KEY_DOWN_TIME) {//FlipJump中の処理
             this.transform.localScale = new Vector2(this.transform.localScale.x, -this.transform.localScale.y);
             JumpTypeFlag = EnumJumpTypeFlag.flipFall;
-            _isFlipJumpFall = true;
+            IsFlipJumpFall = true;
         }//if
         if (!_pUnderTrigger.IsUnderTrigger) {//ステージに触れていないとき
             _pAnimator.AniFall = true;
@@ -380,7 +380,7 @@ public class PlayerJump : MonoBehaviour {
         _sideGravityFlipTimer = SIDE_GRAVITY_FLIP_TIME * 3;
         JumpTypeFlag = 0;
         IsJump = false;
-        _isFlipJumpFall = false;
+        IsFlipJumpFall = false;
         return LandingJudgSpeed(jumpSpeed);
     }//LandingJudgment
 

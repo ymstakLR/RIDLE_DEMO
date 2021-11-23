@@ -5,7 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// 足部分の攻撃判定処理
-/// 更新日時:0804
+/// 更新日時:20211123
 /// </summary>
 public class PlayerUnderAttack : MonoBehaviour {
     private PlayerJump _pJump;
@@ -20,8 +20,11 @@ public class PlayerUnderAttack : MonoBehaviour {
     }//Start
 
     private void OnTriggerEnter2D(Collider2D col) {
-        if(this.transform.parent.localScale.y == -1)
-            return;   
+        if(this.transform.parent.localScale.y < 0)
+            return;
+        if (col.gameObject.tag != "Stage" && 
+            col.gameObject.tag !="Enemy")//タグを動的に変更する際はこの処理の修正を行う必要がある
+            return;
         PlayerTagChange(col,"Player");
         AttackEnemyJudge(col);
     }//OnTriggerEnter2D

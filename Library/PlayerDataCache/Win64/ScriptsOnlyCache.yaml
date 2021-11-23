@@ -2613,4 +2613,4 @@ ScriptsOnlyBuild:
   - Assets/00_Scenes/Stage3.unity
   - Assets/00_Scenes/Options_Demo.unity
   - Assets/00_Scenes/Config_Demo.unity
-  playerPath: D:/UnityData/00000003_BildData/RIDLE_DEMO/RIDLE.exe
+  playerPath: D:/UnityData/00000003_BildData/RIDLE Demo/RIDLE.exe

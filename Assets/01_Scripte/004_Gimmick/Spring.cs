@@ -77,6 +77,7 @@ public class Spring : MonoBehaviour {
         
         col.gameObject.GetComponent<PlayerJump>().RotationChange(0);
         col.gameObject.GetComponent<PlayerJump>().PastTPY = this.transform.position.y-1;
+        col.gameObject.GetComponent<PlayerJump>().IsFlipJumpFall = false;
         col.gameObject.GetComponent<PlayerAnimator>().AniJump = true;
         col.gameObject.GetComponent<PlayerAnimator>().AniFall = false;
         

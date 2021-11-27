@@ -236,7 +236,7 @@ public class Config {
         #if UNITY_EDITOR
              path = Directory.GetCurrentDirectory() + "/Assets/05_SaveData/";
         #else
-            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/RIDLE_Data/";    
+            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/"+Application.productName+"_Data/";    
         #endif
         return path;
     }//SaveFilePathSetting

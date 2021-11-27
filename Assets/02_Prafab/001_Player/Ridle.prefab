@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.45, y: 1}
+  m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1973435607488047170
 MonoBehaviour:
@@ -335,7 +335,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.78}
-  m_Size: {x: 2.25, y: 4}
+  m_Size: {x: 1.5, y: 4}
   m_Direction: 0
 --- !u!1 &4951278201676708545
 GameObject:
@@ -422,7 +422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4951278201911385336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -0.21, z: 0}
+  m_LocalPosition: {x: 1.5, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4951278202313641509}
@@ -592,7 +592,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.45, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1973435608497707850
 MonoBehaviour:
@@ -1089,16 +1089,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.61214405, y: -3.5184584}
-      - {x: 0.7419784, y: -3.520562}
-      - {x: 1.2310894, y: 2.282176}
-      - {x: 1.0104332, y: 2.83845}
-      - {x: 0.601721, y: 3.1050022}
-      - {x: 0, y: 3.1280835}
-      - {x: -0.55279523, y: 3.112387}
-      - {x: -0.9603731, y: 2.8648608}
-      - {x: -1.1845523, y: 2.2735786}
-      - {x: -0.7070389, y: -3.509693}
+    - - {x: -0.4504583, y: -3.5211136}
+      - {x: 0.5525274, y: -3.520562}
+      - {x: 0.85666656, y: 1.7428632}
+      - {x: 0.2937889, y: 2.408537}
+      - {x: 0.2937889, y: 2.3947916}
+      - {x: -0.55279523, y: 2.4258049}
+      - {x: -0.8962394, y: 1.7930579}
+      - {x: -0.5382459, y: -3.4957142}
 --- !u!70 &4491829621295995302
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1122,7 +1120,7 @@ PlatformEffector2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4951278203148568641}
-  m_Enabled: 0
+  m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2

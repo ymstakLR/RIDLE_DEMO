@@ -17,7 +17,7 @@ public enum EnumJumpTypeFlag {
 
 /// <summary>
 /// 自機のジャンプを行うための処理
-/// 更新日時:20211123
+/// 更新日時:20211127
 /// </summary>
 public class PlayerJump : MonoBehaviour {
     private PlayerAnimator _pAnimator;
@@ -267,14 +267,15 @@ public class PlayerJump : MonoBehaviour {
 
         ///FlipJump状態を解除させる
         if (_sideGravityFlipTimer > SIDE_GRAVITY_FLIP_TIME && 
-            _sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 2 &&
-            IsFlipJumpFall) {
+            _sideGravityFlipTimer < SIDE_GRAVITY_FLIP_TIME * 2 ) {
             float jumpPower = FIRST_JUMP_POWER;
-            //下向きに落下する場合
-            if (this.transform.localScale.x > 0 && this.transform.localEulerAngles.z == 270 ||
-                this.transform.localScale.x < 0 && this.transform.localEulerAngles.z == 90 ||
-                    this.transform.localEulerAngles.z == 0) {
-                IsWorkSpeedFlip = true;
+            //下向きに落下する場合(左右重力状態の下向きFlipJumpや上重力状態のFlipJump)
+            if ((this.transform.localScale.x > 0 && this.transform.localEulerAngles.z == 270) ||
+                (this.transform.localScale.x < 0 && this.transform.localEulerAngles.z == 90) ||
+                (this.transform.localEulerAngles.z == 0 && JumpTypeFlag == EnumJumpTypeFlag.wallFlipFall)) {
+                if(this.transform.localEulerAngles.z != 0) {
+                    IsWorkSpeedFlip = true;
+                }//if
                 jumpPower = GRAVITY;
             }//if
             ///上昇,下降共通処理

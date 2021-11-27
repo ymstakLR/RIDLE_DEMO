@@ -42,6 +42,9 @@ public class PlayerWork : MonoBehaviour {
     /// <param name="movingSpeed">プレイヤーの現在の移動量</param>
     /// <returns>プレイヤーの変更後の移動量</returns>
     public int MoveWork(int movingSpeed) {//PlayerManagerで使用する
+        if (!_pJump.IsJump && !_pJump.IsFlipUpsideDown) {
+            DirectionChange(movingSpeed);
+        }//if
         movingSpeed = GravityChange(movingSpeed);
         float movingDirection = OperationKeyChange();
 
@@ -56,10 +59,7 @@ public class PlayerWork : MonoBehaviour {
             else
                 return -MAX_MOVING_VALUE;
         }//if
-        if (!_pJump.IsJump && !_pJump.IsFlipUpsideDown) {
-            DirectionChange(movingSpeed);
-        }//if
-        _pJump.IsFlipUpsideDown = false;
+        
         if (movingDirection > 0 || movingDirection < 0) {//移動する場合
             return MoveUpdate(movingSpeed, movingDirection);
         }//if
@@ -75,8 +75,9 @@ public class PlayerWork : MonoBehaviour {
         if (!_pJump.IsWorkSpeedFlip)
             return movingSpeed;
         _pJump.IsWorkSpeedFlip = false;
-        if (_pUnderTrigger.IsUnderTrigger)
+        if (_pUnderTrigger.IsUnderTrigger) { 
             return movingSpeed;
+        }
         return -movingSpeed;
     }//FlipValueUpdate
 
@@ -98,7 +99,7 @@ public class PlayerWork : MonoBehaviour {
             }//if
             if (_pJump.IsFlipUpsideDown) {
                 movingSpeed = -movingSpeed;
-                Debug.LogError("処理の確認中_rotateZが0度から180度に変更された直後に移動量を反転させる処理");
+                _pJump.IsFlipUpsideDown = false;
             }
             _isMovingSpeedInversion = false;
         }//if
@@ -168,7 +169,7 @@ public class PlayerWork : MonoBehaviour {
         if (-MOVING_VALUE < movingSpeed && movingSpeed < MOVING_VALUE )
             return 0;
         if (movingSpeed > 0) {
-            if(movingSpeed - STOP_VALUE < 0)
+            if (movingSpeed - STOP_VALUE < 0)
                 return 0;
             return movingSpeed - STOP_VALUE;
         }//if

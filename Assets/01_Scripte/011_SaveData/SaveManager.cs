@@ -51,7 +51,7 @@ public static class SaveManager {
         #if UNITY_EDITOR
             path = Directory.GetCurrentDirectory() + SAVE_DATA_PATH;
         #else
-            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/RIDLE_Data/";    
+            path = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')+"/"+Application.productName+"_Data/";  
         #endif
         return path;
     }//SaveFilePathSetting
@@ -148,8 +148,8 @@ public static class SaveManager {
     /// 
     private static void OptionDataCreate() {
         optionDataStruct = new OptionDataStruct();
-        optionDataStruct.bgmVol = 1;
-        optionDataStruct.seVol = 1;
+        optionDataStruct.bgmVol = 2;
+        optionDataStruct.seVol = 2;
         optionDataStruct.resolutionH = 1280;
         optionDataStruct.resolutionW = 720;
         optionDataStruct.isFullscreen = false;

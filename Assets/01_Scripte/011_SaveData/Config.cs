@@ -21,14 +21,14 @@ public class Config {
     /// コンフィグキーのデフォルトコード
     /// </summary>
     private readonly Dictionary<string, List<KeyCode>> _defaultKeyCode = new Dictionary<string, List<KeyCode>>() {
-        {"NormalJump", new List<KeyCode> { KeyCode.J, KeyCode.JoystickButton0 } },
-        {"FlipJump", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 }},
-        {"Attack", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 } },
-        {"Pause", new List<KeyCode> { KeyCode.H, KeyCode.JoystickButton9 } },
-        {"Horizontal", new List<KeyCode> { KeyCode.A, KeyCode.D } },
-        {"Vertical", new List<KeyCode> { KeyCode.S, KeyCode.W } },
-        {"Submit", new List<KeyCode> { KeyCode.K, KeyCode.JoystickButton1 } },
-        {"Cancel", new List<KeyCode> { KeyCode.L, KeyCode.JoystickButton2 } }
+        {"NormalJump", new List<KeyCode> { KeyCode.Z, KeyCode.JoystickButton2 } },
+        {"FlipJump", new List<KeyCode> { KeyCode.C, KeyCode.JoystickButton1 }},
+        {"Attack", new List<KeyCode> { KeyCode.X, KeyCode.JoystickButton0 } },
+        {"Pause", new List<KeyCode> { KeyCode.V, KeyCode.JoystickButton7 } },
+        {"Horizontal", new List<KeyCode> { KeyCode.LeftArrow, KeyCode.RightArrow } },
+        {"Vertical", new List<KeyCode> { KeyCode.DownArrow, KeyCode.UpArrow } },
+        {"Submit", new List<KeyCode> { KeyCode.X, KeyCode.JoystickButton0 } },
+        {"Cancel", new List<KeyCode> { KeyCode.Z, KeyCode.JoystickButton1 } }
     };//_defaultKeyCode
 
     /// <summary>
